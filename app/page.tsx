@@ -1,11 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 
 export default function Home() {
   const router = useRouter();
+  const [isMounted, setIsMounted] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [noButtonSize, setNoButtonSize] = useState(100);
   const [noClicks, setNoClicks] = useState(0);
@@ -17,6 +18,10 @@ export default function Home() {
     'Pretty please with hearts on top? 💗',
   ]);
   const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   // Sample images for the gallery - you can replace these with your own images
   const galleryImages = [
@@ -157,7 +162,7 @@ export default function Home() {
 
       {/* Decorative Hearts */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        {[...Array(20)].map((_, i) => (
+        {isMounted && [...Array(20)].map((_, i) => (
           <div
             key={i}
             className="absolute text-2xl animate-pulse"

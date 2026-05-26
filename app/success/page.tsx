@@ -1,14 +1,16 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import confetti from 'canvas-confetti';
 import Link from 'next/link';
 
 export default function SuccessPage() {
   const router = useRouter();
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    setIsMounted(true);
     // Trigger confetti animation
     const duration = 4 * 1000;
     const animationEnd = Date.now() + duration;
@@ -45,7 +47,7 @@ export default function SuccessPage() {
 
       {/* Floating hearts background */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden -z-5">
-        {[...Array(30)].map((_, i) => (
+        {isMounted && [...Array(30)].map((_, i) => (
           <div
             key={i}
             className="absolute text-4xl"
