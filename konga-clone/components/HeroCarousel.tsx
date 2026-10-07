@@ -18,55 +18,55 @@ export default function HeroCarousel() {
 
   return (
     <div
-      className="group relative h-[180px] overflow-hidden rounded sm:h-[260px] md:h-[340px]"
+      className="group relative aspect-[2/1] overflow-hidden rounded-md bg-white"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
       <div className="flex h-full transition-transform duration-700 ease-out" style={{ transform: `translateX(-${index * 100}%)` }}>
         {heroSlides.map((s) => (
-          <Link
-            key={s.title}
-            href={s.href}
-            className="relative flex h-full w-full shrink-0 items-center overflow-hidden px-6 md:px-12"
-            style={{ background: `linear-gradient(120deg, ${s.from}, ${s.to})` }}
-          >
-            <div className="absolute -right-10 -top-16 h-72 w-72 rounded-full bg-white/10" />
-            <div className="absolute -bottom-24 right-40 h-60 w-60 rounded-full bg-white/10" />
-            <div className="relative z-10 max-w-[60%] text-white">
-              <p className="mb-1 text-[11px] font-bold uppercase tracking-[0.2em] text-white/80 md:text-xs">Only on Konga</p>
-              <h2 className="text-2xl font-black leading-tight sm:text-3xl md:text-5xl">{s.title}</h2>
-              <p className="mt-2 text-sm text-white/90 md:text-lg">{s.subtitle}</p>
-              <span className="mt-4 inline-block rounded bg-white px-5 py-2 text-sm font-bold text-konga-ink shadow-lift md:mt-6">
+          <Link key={s.title} href={s.href} className="relative flex h-full w-full shrink-0" style={{ background: s.bg }}>
+            <div className="relative z-10 flex w-[56%] flex-col justify-center pl-[5%] pr-[2%]">
+              <p className="text-[10px] font-bold tracking-[0.25em] sm:text-xs" style={{ color: s.ink }}>
+                {s.kicker}
+              </p>
+              <h2 className="mt-1 text-[20px] font-extrabold uppercase leading-[1.05] sm:text-[32px] lg:text-[40px] xl:text-[46px]" style={{ color: s.ink }}>
+                {s.title}
+              </h2>
+              <p className="mt-2 hidden max-w-[90%] text-sm text-[#333] sm:block lg:text-base">{s.subtitle}</p>
+              <span className="mt-3 inline-block w-fit rounded-full bg-konga px-4 py-1.5 text-xs font-semibold text-white sm:mt-5 sm:px-6 sm:py-2.5 sm:text-sm">
                 {s.cta}
               </span>
             </div>
-            <span className="absolute right-6 top-1/2 -translate-y-1/2 text-[90px] drop-shadow-2xl sm:text-[140px] md:right-16 md:text-[200px]">
-              {s.art}
-            </span>
+            <div className="relative flex w-[44%] items-center justify-center">
+              <div className="absolute h-[70%] w-[70%] rounded-full bg-white/15" />
+              <span className="relative text-[64px] drop-shadow-2xl sm:text-[110px] lg:text-[150px]">{s.art[0]}</span>
+              <span className="absolute bottom-[12%] left-[8%] text-[32px] drop-shadow-xl sm:text-[56px] lg:text-[72px]">{s.art[1]}</span>
+              <span className="absolute right-[8%] top-[12%] text-[28px] drop-shadow-xl sm:text-[48px] lg:text-[64px]">{s.art[2]}</span>
+            </div>
           </Link>
         ))}
       </div>
 
-      {[-1, 1].map((d) => (
+      {([-1, 1] as const).map((d) => (
         <button
           key={d}
           aria-label={d < 0 ? 'Previous slide' : 'Next slide'}
           onClick={() => go(index + d)}
-          className={`absolute top-1/2 hidden -translate-y-1/2 rounded-full bg-white/80 p-2 text-konga-ink opacity-0 shadow transition group-hover:opacity-100 md:block ${
+          className={`absolute top-1/2 hidden h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/85 text-konga-ink opacity-0 shadow transition group-hover:opacity-100 md:flex ${
             d < 0 ? 'left-3' : 'right-3'
           }`}
         >
-          {d < 0 ? <ChevronLeft size={20} /> : <ChevronRight size={20} />}
+          {d < 0 ? <ChevronLeft size={18} /> : <ChevronRight size={18} />}
         </button>
       ))}
 
-      <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-2">
+      <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1.5">
         {heroSlides.map((s, i) => (
           <button
             key={s.title}
             aria-label={`Go to slide ${i + 1}`}
             onClick={() => go(i)}
-            className={`h-2 rounded-full transition-all ${i === index ? 'w-6 bg-white' : 'w-2 bg-white/50'}`}
+            className={`h-[6px] rounded-full transition-all ${i === index ? 'w-8 bg-white' : 'w-3 bg-white/50'}`}
           />
         ))}
       </div>

@@ -37,7 +37,7 @@ export default function BuyBox({ product }: { product: Product }) {
 
       <div className="flex gap-3">
         <button
-          className="flex-1 rounded bg-konga-purple py-3 text-sm font-bold text-white hover:bg-[#25036a]"
+          className="flex-1 rounded bg-konga py-3 text-sm font-semibold text-white hover:bg-konga-dark"
           onClick={() => {
             add(product.slug, qty);
             router.push('/cart');
@@ -46,7 +46,7 @@ export default function BuyBox({ product }: { product: Product }) {
           Buy Now
         </button>
         <button
-          className="flex-1 rounded bg-konga py-3 text-sm font-bold text-white hover:bg-konga-dark"
+          className="flex-1 rounded bg-konga-orange py-3 text-sm font-semibold text-white hover:brightness-95"
           onClick={() => add(product.slug, qty)}
         >
           Add To Cart

@@ -4,8 +4,9 @@ import { useMemo, useState } from 'react';
 import { SlidersHorizontal, X } from 'lucide-react';
 import { Product } from '@/lib/data';
 import { naira } from '@/lib/format';
-import ProductCard from './ProductCard';
+import ProductCard, { CardVariant } from './ProductCard';
 import Stars from './Stars';
+import { KongaNowBadge, OfficialStoreTag } from './Badges';
 
 const priceBands: [string, number, number][] = [
   ['Under ₦20,000', 0, 20000],
@@ -24,11 +25,12 @@ const sorts = {
 
 type SortKey = keyof typeof sorts;
 
-export default function Listing({ products }: { products: Product[] }) {
+export default function Listing({ products, variant = 'reviews' }: { products: Product[]; variant?: CardVariant }) {
   const [brandsSel, setBrandsSel] = useState<string[]>([]);
   const [band, setBand] = useState<number | null>(null);
   const [minRating, setMinRating] = useState(0);
   const [express, setExpress] = useState(false);
+  const [official, setOfficial] = useState(false);
   const [sort, setSort] = useState<SortKey>('popular');
   const [panel, setPanel] = useState(false);
 
@@ -40,7 +42,8 @@ export default function Listing({ products }: { products: Product[] }) {
         (brandsSel.length === 0 || brandsSel.includes(p.brand)) &&
         (band === null || (p.price >= priceBands[band][1] && p.price < priceBands[band][2])) &&
         p.rating >= minRating &&
-        (!express || p.express),
+        (!express || p.kongaNow) &&
+        (!official || p.official),
     );
     const off = (p: Product) => (p.oldPrice ? (p.oldPrice - p.price) / p.oldPrice : 0);
     const cmp: Record<SortKey, (a: Product, b: Product) => number> = {
@@ -51,14 +54,15 @@ export default function Listing({ products }: { products: Product[] }) {
       discount: (a, b) => off(b) - off(a),
     };
     return [...list].sort(cmp[sort]);
-  }, [products, brandsSel, band, minRating, express, sort]);
+  }, [products, brandsSel, band, minRating, express, official, sort]);
 
-  const activeCount = brandsSel.length + (band !== null ? 1 : 0) + (minRating ? 1 : 0) + (express ? 1 : 0);
+  const activeCount = brandsSel.length + (band !== null ? 1 : 0) + (minRating ? 1 : 0) + (express ? 1 : 0) + (official ? 1 : 0);
   const reset = () => {
     setBrandsSel([]);
     setBand(null);
     setMinRating(0);
     setExpress(false);
+    setOfficial(false);
   };
 
   const filters = (
@@ -66,7 +70,11 @@ export default function Listing({ products }: { products: Product[] }) {
       <FilterGroup title="Delivery">
         <label className="flex cursor-pointer items-center gap-2">
           <input type="checkbox" className="accent-konga" checked={express} onChange={(e) => setExpress(e.target.checked)} />
-          <span className="font-bold italic text-konga-purple">Konga Express</span>
+          <KongaNowBadge small /> <span className="text-xs">Same day</span>
+        </label>
+        <label className="flex cursor-pointer items-center gap-2">
+          <input type="checkbox" className="accent-konga" checked={official} onChange={(e) => setOfficial(e.target.checked)} />
+          <OfficialStoreTag />
         </label>
       </FilterGroup>
       <FilterGroup title="Price">
@@ -156,9 +164,9 @@ export default function Listing({ products }: { products: Product[] }) {
         </div>
 
         {shown.length ? (
-          <div className="grid grid-cols-2 gap-1 sm:grid-cols-3 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
             {shown.map((p) => (
-              <ProductCard key={p.slug} product={p} />
+              <ProductCard key={p.slug} product={p} variant={variant} />
             ))}
           </div>
         ) : (

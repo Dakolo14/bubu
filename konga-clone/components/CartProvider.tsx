@@ -15,20 +15,26 @@ type CartContextValue = {
   remove: (slug: string) => void;
   clear: () => void;
   toast: string | null;
+  wishlist: string[];
+  toggleWish: (slug: string) => void;
 };
 
 const CartContext = createContext<CartContextValue | null>(null);
 const STORAGE_KEY = 'konga-clone-cart';
+const WISH_KEY = 'konga-clone-wishlist';
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<Line[]>([]);
   const [loaded, setLoaded] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
+  const [wishlist, setWishlist] = useState<string[]>([]);
 
   useEffect(() => {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
       if (raw) setItems(JSON.parse(raw));
+      const wish = localStorage.getItem(WISH_KEY);
+      if (wish) setWishlist(JSON.parse(wish));
     } catch {}
     setLoaded(true);
   }, []);
@@ -37,8 +43,9 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     if (!loaded) return;
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+      localStorage.setItem(WISH_KEY, JSON.stringify(wishlist));
     } catch {}
-  }, [items, loaded]);
+  }, [items, wishlist, loaded]);
 
   useEffect(() => {
     if (!toast) return;
@@ -55,6 +62,12 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       count: lines.reduce((n, l) => n + l.qty, 0),
       subtotal: lines.reduce((n, l) => n + l.qty * l.product.price, 0),
       toast,
+      wishlist,
+      toggleWish: (slug) => {
+        const saved = wishlist.includes(slug);
+        setWishlist((prev) => (saved ? prev.filter((s) => s !== slug) : [...prev, slug]));
+        setToast(saved ? 'Item removed from your wishlist' : 'Item saved to your wishlist');
+      },
       add: (slug, qty = 1) => {
         setItems((prev) => {
           const found = prev.find((l) => l.slug === slug);
@@ -68,13 +81,13 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       remove: (slug) => setItems((prev) => prev.filter((l) => l.slug !== slug)),
       clear: () => setItems([]),
     };
-  }, [items, toast]);
+  }, [items, toast, wishlist]);
 
   return (
     <CartContext.Provider value={value}>
       {children}
       {toast && (
-        <div className="fixed left-1/2 top-4 z-[60] -translate-x-1/2 rounded bg-konga-green px-5 py-3 text-sm font-semibold text-white shadow-lift">
+        <div className="fixed left-1/2 top-4 z-[60] -translate-x-1/2 rounded bg-[#1F9D55] px-5 py-3 text-[13px] font-medium text-white shadow-lift">
           ✓ {toast}
         </div>
       )}

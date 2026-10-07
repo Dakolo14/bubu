@@ -27,7 +27,7 @@ const columns = [
 
 export default function Footer() {
   return (
-    <footer className="mt-10">
+    <footer className="relative z-10 mt-10">
       {/* Newsletter */}
       <div className="bg-konga">
         <div className="mx-auto flex max-w-site flex-col items-start gap-4 px-4 py-6 md:flex-row md:items-center md:justify-between">
@@ -42,7 +42,7 @@ export default function Footer() {
               placeholder="Enter your email address"
               className="min-w-0 flex-1 px-3 py-2.5 text-sm outline-none"
             />
-            <button className="bg-konga-purple px-5 text-sm font-semibold text-white">Subscribe</button>
+            <button className="bg-konga-orange px-5 text-sm font-semibold text-white">Subscribe</button>
           </form>
         </div>
       </div>

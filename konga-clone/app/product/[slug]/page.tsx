@@ -7,6 +7,7 @@ import ProductRail from '@/components/ProductRail';
 import ProductTabs from '@/components/ProductTabs';
 import Section from '@/components/Section';
 import Stars from '@/components/Stars';
+import { KongaNowBadge, OfficialStoreTag } from '@/components/Badges';
 import { getCategory, getProduct, products, productsIn } from '@/lib/data';
 import { discount, naira } from '@/lib/format';
 
@@ -36,7 +37,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
           <div>
             <div className="relative aspect-square overflow-hidden rounded border border-konga-line">
               {off > 0 && (
-                <span className="absolute left-3 top-3 z-10 rounded-sm bg-konga px-2 py-1 text-xs font-bold text-white">-{off}%</span>
+                <span className="absolute left-3 top-3 z-10 rounded-[3px] bg-konga-deal px-2 py-1 text-xs font-medium text-white">-{off}%</span>
               )}
               <ProductImage product={product} size="lg" />
             </div>
@@ -79,10 +80,15 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
               </p>
             </div>
 
-            {product.express && (
-              <p className="mt-4 flex items-center gap-2 text-sm font-bold italic text-konga-purple">
-                <Truck size={18} /> Konga Express — ships within 24 hours
-              </p>
+            {(product.kongaNow || product.official) && (
+              <div className="mt-4 flex flex-wrap items-center gap-3 text-[13px]">
+                {product.kongaNow && (
+                  <span className="flex items-center gap-2">
+                    <KongaNowBadge /> Same day delivery in Lagos &amp; Abuja
+                  </span>
+                )}
+                {product.official && <OfficialStoreTag />}
+              </div>
             )}
 
             <BuyBox product={product} />

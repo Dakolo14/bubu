@@ -114,7 +114,7 @@ export default function CartPage() {
       )}
 
       <Section title="You May Also Like">
-        <ProductRail products={withTag('top')} />
+        <ProductRail products={withTag('best')} />
       </Section>
     </div>
   );

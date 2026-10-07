@@ -14,7 +14,7 @@ npm run dev      # http://localhost:3001
 
 | Route | What it is |
 | --- | --- |
-| `/` | Home: hero carousel, side banners, quick links, Today's Deals with a midnight countdown, category tiles, top sellers, per-category rails, recommendations, top brands |
+| `/` | Home, laid out after the live konga.com: top promo banner, hero carousel with 4 side tiles, shortcut tiles, services strip, Today's Deals (with % sold bars), Now Trending, Freedom Sales banner, Sponsored Products, Same Day Delivery (KongaNow), brand-store banner, Best Selling Products, category rails, top brands, side ad panels on wide screens |
 | `/category/[slug]` | Category listing with filters (Express, price, brand, rating), sort options and a mobile filter sheet |
 | `/deals` | All deal items |
 | `/search?q=` | Keyword search across name, brand and category |
@@ -23,12 +23,12 @@ npm run dev      # http://localhost:3001
 | `/checkout` | Address, delivery method, payment method (KongaPay 5% off), order confirmation |
 | `/login` | Login / sign-up tabs (demo only) |
 
-The header has the Konga utility strip, magenta search bar, Help dropdown, cart badge, a mega-menu on hover per category, and a slide-out drawer on mobile.
+The header has the Konga logo, Sell on Konga, Konga Outlets, the search bar with an orange button, Download App and Help dropdowns, and a cart badge. Below it, an All Categories flyout and a mega-menu per category; on mobile, a slide-out drawer. Cards show KongaNow, discount and Official Store badges and a wishlist heart. A chat widget, back-to-top button and Feedback tab float on every page.
 
 ## Where things live
 
 - `lib/data.ts`: categories, mega-menu groups, products, hero slides, quick links and brands. Edit this to change the catalogue.
-- `tailwind.config.js`: brand tokens (`konga` magenta `#ED017F`, `konga-purple` `#33058D`, etc.).
+- `tailwind.config.js`: brand tokens (`konga` magenta `#ED017F`, `konga-orange` `#F7941D`, deal green, blush section headers, etc.). The font is Poppins.
 - `components/`: Header, Footer, ProductCard, ProductRail, Listing (filters/sort), BuyBox, CartProvider, and others.
 
 ## Product images
