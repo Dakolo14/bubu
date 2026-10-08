@@ -84,15 +84,10 @@ const Receipt = forwardRef<HTMLDivElement, Props>(function Receipt({ order, gift
 
       {/* Hero */}
       <div className="px-[6%] pb-7 pt-6 text-center">
-        <p className="text-[13px] font-semibold uppercase tracking-[0.18em] text-white/85">{gift ? 'Gift Receipt' : 'Order Total'}</p>
-        {gift ? (
-          <p className="mt-2 text-[34px] font-extrabold leading-tight sm:text-[44px]">A gift for you 🎁</p>
-        ) : (
-          <p className="mt-1 text-[44px] font-extrabold leading-none tracking-tight sm:text-[56px]">
-            {money(t.total).whole}
-            <span className="text-[0.62em]">.{money(t.total).kobo}</span>
-          </p>
-        )}
+        <p className="text-[13px] font-semibold uppercase tracking-[0.18em] text-white/85">{gift ? 'Gift Receipt' : 'Order Receipt'}</p>
+        <p className="mt-2 text-[32px] font-extrabold leading-tight sm:text-[44px]">
+          {gift ? 'A gift for you 🎁' : `Thank you, ${firstName} 🛍️`}
+        </p>
         <div className="mt-4 flex flex-wrap items-center justify-center gap-2 text-[12px] font-semibold">
           <span className="rounded-full bg-white px-3 py-1.5 text-[#0E8A4A]">✓ {gift ? `From ${firstName}` : `Paid · ${order.paymentMethod}`}</span>
           <span className="rounded-full bg-white/15 px-3 py-1.5">Order #{order.id}</span>
@@ -101,20 +96,17 @@ const Receipt = forwardRef<HTMLDivElement, Props>(function Receipt({ order, gift
 
       {/* Details card */}
       <div className="mx-[4%] rounded-2xl bg-[#FFF8FB] px-5 py-2 text-[#1D1A1F] sm:px-7">
-        <Row label={gift ? 'Gifted By' : 'Customer'} value={order.customer.name} sub={gift ? undefined : order.customer.phone} />
+        <Row label={gift ? 'Gifted By' : 'Customer'} value={order.customer.name} />
         <Row label="Delivery" value={order.deliveryMethod} sub={order.address} />
         <Row
           label="Ordered On"
           value={placed.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Africa/Lagos' })}
           sub={placed.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', timeZone: 'Africa/Lagos' })}
         />
-        {!gift && <Row label="Payment" value={order.paymentMethod} sub={order.paymentRef} />}
 
         {/* Items */}
         <div className="border-b border-[#F4DCE9] py-4">
-          <p className="mb-3 text-[14px] text-[#8A8590]">
-            Items ({t.items})
-          </p>
+          <p className="mb-3 text-[14px] text-[#8A8590]">Items ({t.items})</p>
           <ul className="space-y-3">
             {order.lines.map((l) => {
               const p = lineProduct(l);
@@ -127,7 +119,7 @@ const Receipt = forwardRef<HTMLDivElement, Props>(function Receipt({ order, gift
                   <span className="min-w-0 flex-1">
                     <span className="line-clamp-2 text-[13px] font-medium leading-snug">{p.name}</span>
                     <span className="block text-[11px] text-[#8A8590]">
-                      {gift ? `Qty ${l.qty}` : `${l.qty} × ${money(l.price).whole}`} · Sold by {p.seller}
+                      Qty {l.qty} · Sold by {p.seller}
                     </span>
                   </span>
                   {!gift && <Amount value={l.price * l.qty} className="shrink-0 text-[13px] font-semibold" />}
@@ -138,37 +130,22 @@ const Receipt = forwardRef<HTMLDivElement, Props>(function Receipt({ order, gift
         </div>
 
         {!gift && (
-          <div className="border-b border-[#F4DCE9] py-3 text-[14px]">
-            {[
-              ['Subtotal', t.subtotal, ''],
-              ['Shipping Fee', order.shipping, ''],
-              ...(order.discount ? [[`${order.paymentMethod} Discount`, -order.discount, 'text-[#0E8A4A]']] : []),
-              ['VAT (7.5%, included)', t.vat, 'text-[#8A8590]'],
-            ].map(([label, value, cls]) => (
-              <div key={label as string} className={`flex justify-between py-1 ${cls}`}>
-                <span className={cls ? '' : 'text-[#8A8590]'}>{label}</span>
-                <span>
-                  {label === 'Shipping Fee' && value === 0 ? (
-                    'Free'
-                  ) : (
-                    <>
-                      {(value as number) < 0 ? '−' : ''}
-                      <Amount value={Math.abs(value as number)} />
-                    </>
-                  )}
-                </span>
-              </div>
-            ))}
-            <div className="mt-2 flex items-center justify-between border-t border-dashed border-[#F0C6DC] pt-3">
-              <span className="font-semibold">Total Paid</span>
-              <Amount value={t.total} className="text-[18px] font-extrabold" />
-            </div>
-          </div>
-        )}
-
-        {!gift && t.savings > 0 && (
-          <div className="my-4 rounded-xl bg-[#E7F7EE] px-4 py-3 text-center text-[13px] font-semibold text-[#0E8A4A]">
-            🎉 You saved {money(t.savings).whole} on this order
+          <div className="flex items-start justify-between gap-6 border-b border-[#F4DCE9] py-4">
+            <span>
+              <span className="block text-[14px] font-semibold">Total Paid</span>
+              <span className="mt-0.5 block text-[11px] text-[#8A8590]">
+                {order.paymentMethod} · {order.paymentRef}
+              </span>
+            </span>
+            <span className="text-right">
+              <Amount value={t.total} className="block text-[20px] font-extrabold leading-tight" />
+              <span className="mt-0.5 block text-[11px] text-[#8A8590]">
+                Incl. {order.shipping ? `${money(order.shipping).whole} shipping` : 'free shipping'} · {money(t.vat).whole} VAT
+              </span>
+              {t.savings > 0 && (
+                <span className="mt-1 block text-[12px] font-semibold text-[#0E8A4A]">You saved {money(t.savings).whole} 🎉</span>
+              )}
+            </span>
           </div>
         )}
 

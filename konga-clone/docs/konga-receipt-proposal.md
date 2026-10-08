@@ -33,12 +33,11 @@ A **Konga Receipt**, available from:
 | Element | Why it's there |
 | --- | --- |
 | Oversized **konga** wordmark in a lighter tint of magenta on `#ED017F` | Recognisable from a WhatsApp thumbnail. Brand first, like Kuda. |
-| **Order total** as the hero, kobo set smaller | The number people want to see, and the format they're used to from bank receipts |
+| A personal headline, **"Thank you, {name} 🛍️"** | Warm and worth sharing, not just a bill. It reads the same way for a gift ("A gift for you 🎁"). |
 | **Paid · KongaPay** status pill and order number | Instant confidence that the order went through |
-| Customer, delivery, date and time, payment reference | Everything support, a warranty desk or a finance team asks for |
+| Customer, delivery, date and time | The essentials, with no clutter (the phone number is left off so the image is safe to share) |
 | Line items with thumbnail, quantity, unit price and **Sold by** | Makes marketplace sellers visible and accountable |
-| Subtotal, shipping, discounts, **VAT (7.5% included)** | Makes the receipt valid for expense and tax purposes |
-| **"You saved ₦X on this order"** | Reinforces value at the moment of purchase |
+| One **Total Paid** line with payment reference, "incl. shipping · VAT" and **"You saved ₦X 🎉"** | Everything a finance team or warranty desk needs in a single line, and it reinforces value at the moment of purchase |
 | **QR code → konga.com/verify/{order}** | Anyone can check it's a genuine Konga order. This is the anti-fraud layer the email can only warn about. |
 | **Referral card**: "Share Konga, earn ₦1,000" with a personal code | Turns every shared receipt into an acquisition channel |
 | Footer: support contacts and "Konga will never ask you to pay into a personal account" | Keeps the existing safety message, in a calmer tone |
