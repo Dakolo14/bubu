@@ -21,6 +21,7 @@ npm run dev      # http://localhost:3001
 | `/product/[slug]` | Product page: gallery, price and savings, quantity, Buy Now / Add To Cart, delivery and seller boxes, description/specs/reviews tabs, related items |
 | `/cart` | Cart with quantity controls and order summary (saved in `localStorage`) |
 | `/checkout` | Address, delivery method, payment method (KongaPay 5% off), order confirmation |
+| `/receipt/[id]` | Branded order receipt (Image, A4 PDF, Share, Gift receipt). `/receipt/demo` shows a sample; checkout ends with **Download Receipt**. Proposal: `docs/konga-receipt-proposal.md` |
 | `/login` | Login / sign-up tabs (demo only) |
 
 The header has the Konga logo, Sell on Konga, Konga Outlets, the search bar with an orange button, Download App and Help dropdowns, and a cart badge. Below it, an All Categories flyout and a mega-menu per category; on mobile, a slide-out drawer. Cards show KongaNow, discount and Official Store badges and a wishlist heart. A chat widget, back-to-top button and Feedback tab float on every page.

@@ -2,10 +2,11 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { CheckCircle2 } from 'lucide-react';
+import { CheckCircle2, Download } from 'lucide-react';
 import { useCart } from '@/components/CartProvider';
 import ProductImage from '@/components/ProductImage';
 import { naira } from '@/lib/format';
+import { newOrderId, newPaymentRef, saveOrder } from '@/lib/orders';
 
 const states = ['Lagos', 'Abuja (FCT)', 'Rivers', 'Oyo', 'Kano', 'Enugu', 'Delta', 'Ogun', 'Kaduna', 'Anambra'];
 const payments = [
@@ -34,9 +35,17 @@ export default function CheckoutPage() {
           Your order <strong className="text-konga-ink">#{order}</strong> has been placed. You&apos;ll receive an email
           confirmation shortly.
         </p>
-        <Link href="/" className="mt-6 inline-block rounded bg-konga px-6 py-3 text-sm font-bold text-white">
-          Continue Shopping
-        </Link>
+        <div className="mt-6 flex flex-wrap justify-center gap-3">
+          <Link
+            href={`/receipt/${order}`}
+            className="flex items-center gap-2 rounded bg-konga px-6 py-3 text-sm font-bold text-white"
+          >
+            <Download size={16} /> Download Receipt
+          </Link>
+          <Link href="/" className="rounded border border-konga px-6 py-3 text-sm font-bold text-konga">
+            Continue Shopping
+          </Link>
+        </div>
       </div>
     );
   }
@@ -62,7 +71,22 @@ export default function CheckoutPage() {
         className="grid gap-4 lg:grid-cols-[1fr_340px]"
         onSubmit={(e) => {
           e.preventDefault();
-          setOrder(String(Date.now()).slice(-9));
+          const f = new FormData(e.currentTarget);
+          const get = (k: string) => String(f.get(k) ?? '').trim();
+          const id = newOrderId();
+          saveOrder({
+            id,
+            placedAt: new Date().toISOString(),
+            customer: { name: `${get('first')} ${get('last')}`, phone: get('phone'), email: get('email') },
+            address: [get('street'), get('city'), get('state')].filter(Boolean).join(', '),
+            deliveryMethod: method === 'door' ? 'Door Delivery' : 'Pickup Station',
+            paymentMethod: payments.find((p) => p.id === payment)!.label,
+            paymentRef: newPaymentRef(),
+            lines: lines.map((l) => ({ slug: l.slug, qty: l.qty, price: l.product.price, oldPrice: l.product.oldPrice })),
+            shipping: delivery,
+            discount: promo,
+          });
+          setOrder(id);
           clear();
         }}
       >
@@ -71,13 +95,13 @@ export default function CheckoutPage() {
             <legend className="sr-only">Delivery address</legend>
             <h2 className="mb-4 font-bold">1. Delivery Address</h2>
             <div className="grid gap-3 sm:grid-cols-2">
-              <input required className={input} placeholder="First name" />
-              <input required className={input} placeholder="Last name" />
-              <input required type="tel" className={input} placeholder="Phone number" />
-              <input required type="email" className={input} placeholder="Email address" />
-              <input required className={`${input} sm:col-span-2`} placeholder="Street address" />
-              <input required className={input} placeholder="City / Town" />
-              <select required className={input} defaultValue="">
+              <input required name="first" className={input} placeholder="First name" />
+              <input required name="last" className={input} placeholder="Last name" />
+              <input required name="phone" type="tel" className={input} placeholder="Phone number" />
+              <input required name="email" type="email" className={input} placeholder="Email address" />
+              <input required name="street" className={`${input} sm:col-span-2`} placeholder="Street address" />
+              <input required name="city" className={input} placeholder="City / Town" />
+              <select required name="state" className={input} defaultValue="">
                 <option value="" disabled>
                   Select state
                 </option>
