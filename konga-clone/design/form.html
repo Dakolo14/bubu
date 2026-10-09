@@ -1,0 +1,803 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Request a Product | Konga</title>
+  <meta name="description" content="Request a product you can't find on Konga (design prototype)." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" crossorigin="anonymous" />
+  <style>
+    /* ===================== Brand tokens ===================== */
+    :root {
+      --konga: #ed017f;          /* Konga magenta (brand) */
+      --konga-dark: #c70069;
+      --konga-tint: #fff5fa;     /* receipt card background */
+      --konga-tint-line: #f9c6e0;
+      --orange: #f7941d;         /* search button / logo smiley */
+      --green: #22c55e;          /* success check */
+      --green-dark: #1f9d55;     /* "You saved" */
+      --ink: #111827;
+      --ink-2: #1f2937;
+      --body: #4b5563;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --page: #f3f4f6;
+      --slate: #4b5563;
+      --footer-top: #2e2e2e;
+      --footer: #111111;
+      --radius: 6px;
+      --shadow: 0 10px 30px rgba(17, 24, 39, 0.18);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: 'Poppins', 'Helvetica Neue', Arial, sans-serif;
+      color: var(--ink);
+      background: var(--page);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
+    svg { display: block; }
+    .container { width: 100%; max-width: 1312px; margin: 0 auto; padding: 0 16px; }
+
+    /* ===================== Top promo banner ===================== */
+    .promo {
+      height: 88px; background: #141a3a; display: flex; align-items: center; justify-content: center;
+      color: #fff; font-weight: 800; font-size: 32px; letter-spacing: -0.02em; text-transform: uppercase; text-align: center;
+    }
+    .promo span { color: #f4c35a; }
+
+    /* ===================== Header ===================== */
+    .header { position: sticky; top: 0; z-index: 40; }
+    .bar { background: var(--konga); color: #fff; }
+    .bar .container { height: 58px; display: flex; align-items: center; gap: 20px; }
+    .logo { display: inline-flex; align-items: center; font-weight: 800; font-size: 28px; letter-spacing: -0.04em; line-height: 1; }
+    .logo .dot { width: 0.62em; height: 0.62em; border-radius: 50%; margin-right: 1px; transform: translateY(-0.06em);
+      background: radial-gradient(circle at 35% 35%, #ffd25a, var(--orange) 70%); }
+    .bar-link { display: flex; align-items: center; gap: 6px; font-size: 13px; white-space: nowrap; }
+    .bar-link:hover { opacity: 0.85; }
+    .search { flex: 1; display: flex; height: 40px; border-radius: 4px; overflow: hidden; background: #fff; }
+    .search input { flex: 1; min-width: 0; border: 0; outline: 0; padding: 0 12px; font: inherit; font-size: 13px; color: var(--ink); }
+    .search button { width: 54px; background: var(--orange); color: #fff; display: flex; align-items: center; justify-content: center; }
+    .cart { position: relative; }
+    .cart .badge { position: absolute; top: -8px; right: -6px; min-width: 18px; height: 18px; padding: 0 4px; border-radius: 9px;
+      background: #22a447; color: #fff; font-size: 11px; font-weight: 600; display: flex; align-items: center; justify-content: center; }
+
+    .cats { background: #fff; border-bottom: 1px solid var(--line); }
+    .cats .container { height: 50px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .cats a { font-size: 13px; font-weight: 500; color: #333; white-space: nowrap; }
+    .cats a:hover { color: var(--konga); }
+    .all-cats { display: flex; align-items: center; gap: 8px; background: #f2f2f2; padding: 6px 12px; border-radius: 6px; }
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; border-radius: var(--radius);
+      font-weight: 500; transition: background 0.15s, color 0.15s; }
+    .btn-sm { padding: 8px 12px; font-size: 13px; }
+    .btn-lg { padding: 12px 24px; font-size: 16px; }
+    .btn-primary { background: var(--konga); color: #fff; }
+    .btn-primary:hover { background: var(--konga-dark); }
+    .btn-outline { border: 1px solid var(--konga); color: var(--konga); background: #fff; }
+    .btn-outline:hover { background: #fde6f2; }
+    .btn-ghost { border: 1px solid #d1d5db; color: var(--ink); background: #fff; }
+    .btn-ghost:hover { background: #f9fafb; }
+    .actions { margin-top: 32px; display: grid; grid-template-columns: auto 1fr; gap: 8px; }
+    .help { margin-top: 24px; font-size: 12px; color: var(--muted); }
+    .help a { color: var(--konga); }
+    /* ===================== Footer ===================== */
+    .support { background: var(--footer-top); color: #fff; }
+    .support .container { display: grid; grid-template-columns: repeat(3, 1fr) 1.2fr; gap: 24px; align-items: center; padding-top: 24px; padding-bottom: 24px; }
+    .support-item { display: flex; align-items: center; gap: 10px; }
+    .support-item .ic { width: 40px; height: 40px; border-radius: 50%; background: #fff; color: #2e2e2e; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .support-item small { display: block; font-size: 14px; font-weight: 500; text-transform: uppercase; }
+    .support-item span { font-size: 14px; color: #d1d5db; }
+    .support .container > * { min-width: 0; }
+    .newsletter small { display: block; font-size: 14px; font-weight: 500; margin-bottom: 6px; }
+    .newsletter form { display: flex; border-radius: 4px; overflow: hidden; }
+    .newsletter input { flex: 1; min-width: 0; border: 0; padding: 10px 12px; font: inherit; font-size: 14px; outline: 0; }
+    .newsletter button { background: var(--konga); color: #fff; padding: 0 14px; font-weight: 500; }
+
+    .footer { background: var(--footer); color: #d1d5db; }
+    .footer .container { display: grid; grid-template-columns: repeat(4, 1fr) 1.3fr; gap: 24px; padding-top: 48px; padding-bottom: 48px; }
+    .footer h4 { color: #fff; font-size: 14px; font-weight: 500; text-transform: uppercase; margin-bottom: 14px; }
+    .footer ul { list-style: none; display: grid; gap: 10px; font-size: 14px; }
+    .footer a:hover { color: #fff; }
+    .app-box { display: flex; gap: 10px; align-items: center; background: #fff; color: var(--ink); border-radius: 6px; padding: 8px; width: fit-content; }
+    .app-box b { display: block; font-size: 12px; font-weight: 600; }
+    .app-box small { font-size: 9px; color: var(--muted); }
+    #footer-qr img, #footer-qr canvas { width: 64px !important; height: 64px !important; }
+    .socials { display: flex; gap: 10px; margin-top: 10px; }
+    .socials a { width: 36px; height: 36px; border-radius: 50%; background: #1f2937; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 13px; font-weight: 700; }
+    .copyright { border-top: 1px solid #222; text-align: center; padding: 18px; font-size: 12px; color: #9ca3af; }
+
+    /* ===================== Cookie banner ===================== */
+    .cookie { position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; background: #fff; box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.12); }
+    .cookie .container { display: flex; align-items: center; gap: 24px; padding-top: 20px; padding-bottom: 20px; max-width: 1240px; }
+    .cookie h5 { font-size: 17px; font-weight: 600; }
+    .cookie p { margin-top: 4px; font-size: 14px; color: var(--body); }
+    .cookie p a { color: var(--konga); text-decoration: underline; }
+    .cookie .btns { display: flex; gap: 10px; flex-shrink: 0; }
+
+    /* ===================== Floating widgets ===================== */
+    .feedback { position: fixed; right: 0; top: 50%; transform: translateY(-50%); z-index: 30; background: var(--konga); color: #fff;
+      writing-mode: vertical-rl; padding: 12px 6px; border-radius: 6px 0 0 6px; font-size: 12px; font-weight: 600; }
+    .chat { position: fixed; right: 24px; bottom: 120px; z-index: 30; width: 60px; height: 60px; border-radius: 50%; background: #f0396e;
+      color: #fff; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow); }
+
+    .toast { position: fixed; top: 16px; left: 50%; transform: translateX(-50%); z-index: 200; background: var(--green-dark); color: #fff;
+      padding: 10px 18px; border-radius: 6px; font-size: 13px; font-weight: 500; box-shadow: var(--shadow); display: none; max-width: calc(100% - 32px); text-align: center; }
+    /* ===================== Request a Product ===================== */
+    main { padding: 24px 16px 96px; }
+    .crumbs { max-width: 1120px; margin: 0 auto 16px; font-size: 12px; color: var(--muted); }
+    .crumbs a:hover { color: var(--konga); }
+    .crumbs b { color: var(--ink); font-weight: 500; }
+    .layout { max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: 380px 1fr; gap: 24px; align-items: start; }
+
+    /* Left: intro panel */
+    .intro { position: sticky; top: 132px; background: var(--konga); color: #fff; border-radius: var(--radius); padding: 32px 28px; overflow: hidden; }
+    .intro::after { content: ''; position: absolute; right: -60px; bottom: -60px; width: 200px; height: 200px; border-radius: 50%; background: rgba(255, 255, 255, 0.08); }
+    .intro .kicker { font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.85; }
+    .intro h1 { margin-top: 8px; font-size: 28px; line-height: 1.2; font-weight: 700; letter-spacing: -0.02em; }
+    .intro > p { margin-top: 10px; font-size: 14px; line-height: 1.6; opacity: 0.92; }
+    .steps { list-style: none; margin-top: 24px; display: grid; gap: 16px; position: relative; z-index: 1; }
+    .steps li { display: flex; gap: 12px; font-size: 14px; line-height: 1.5; }
+    .steps li b { display: block; font-weight: 600; }
+    .steps li span { opacity: 0.88; }
+    .steps .num { width: 28px; height: 28px; flex-shrink: 0; border-radius: 50%; background: #fff; color: var(--konga);
+      display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; }
+    .intro .free { margin-top: 24px; display: inline-flex; align-items: center; gap: 6px; background: rgba(255, 255, 255, 0.16);
+      padding: 8px 12px; border-radius: 999px; font-size: 12px; font-weight: 500; position: relative; z-index: 1; }
+
+    /* Right: form card */
+    .card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 32px; }
+    .card h2 { font-size: 22px; font-weight: 600; color: var(--ink-2); }
+    .card .sub { margin-top: 4px; font-size: 13px; color: var(--muted); }
+    .card .sub i { color: var(--konga); font-style: normal; }
+    .section { margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--line); }
+    .section:first-of-type { border-top: 0; padding-top: 0; }
+    .section-title { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+    .section-title span { width: 22px; height: 22px; border-radius: 50%; background: #fde6f2; color: var(--konga); display: flex; align-items: center; justify-content: center; font-size: 12px; letter-spacing: 0; }
+    .field { margin-top: 18px; position: relative; }
+    .field > label, .field > .label { display: block; margin-bottom: 6px; font-size: 14px; font-weight: 500; color: var(--ink-2); }
+    .field .opt-tag { font-weight: 400; color: var(--muted); font-size: 12px; }
+    .req { color: var(--konga); }
+    .input, .select, .textarea { width: 100%; border: 1px solid #d1d5db; border-radius: var(--radius); background: #fff; font: inherit;
+      font-size: 14px; color: var(--ink); outline: 0; transition: border-color 0.15s, box-shadow 0.15s; }
+    .input, .select { height: 48px; padding: 0 14px; }
+    .textarea { min-height: 96px; padding: 12px 14px; resize: vertical; line-height: 1.5; }
+    .input:focus, .select:focus, .textarea:focus { border-color: var(--konga); box-shadow: 0 0 0 3px rgba(237, 1, 127, 0.12); }
+    .input::placeholder, .textarea::placeholder { color: #9ca3af; }
+    .with-icon { position: relative; }
+    .with-icon svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: #9ca3af; pointer-events: none; }
+    .with-icon .input { padding-left: 42px; }
+    .hint { margin-top: 6px; font-size: 12px; color: var(--muted); }
+    .error-msg { display: none; margin-top: 6px; font-size: 12px; color: #dc2626; }
+    .field.invalid .input, .field.invalid .select { border-color: #dc2626; }
+    .field.invalid .pills .pill { border-color: #fca5a5; }
+    .field.invalid .error-msg { display: block; }
+
+    /* "Me too" suggestions */
+    .suggest { position: absolute; left: 0; right: 0; top: calc(100% + 4px); z-index: 20; background: #fff; border: 1px solid var(--line);
+      border-radius: var(--radius); box-shadow: 0 12px 28px rgba(17, 24, 39, 0.12); display: none; overflow: hidden; }
+    .suggest.open { display: block; }
+    .suggest-head { padding: 10px 14px; font-size: 12px; color: var(--muted); background: #f9fafb; border-bottom: 1px solid var(--line); }
+    .suggest-row { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-bottom: 1px solid #f3f4f6; }
+    .suggest-row:last-child { border-bottom: 0; }
+    .suggest-row .t { flex: 1; min-width: 0; }
+    .suggest-row .t b { display: block; font-size: 14px; font-weight: 500; color: var(--ink); }
+    .suggest-row .t small { font-size: 12px; color: var(--muted); }
+    .metoo { flex-shrink: 0; border: 1px solid var(--konga); color: var(--konga); border-radius: 999px; padding: 6px 12px; font-size: 13px; font-weight: 500; background: #fff; }
+    .metoo:hover { background: #fde6f2; }
+    .metoo.done { background: var(--konga); color: #fff; }
+
+    /* Category chip */
+    .chip-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .chip { display: inline-flex; align-items: center; gap: 8px; background: #f3f4f6; border-radius: 999px; padding: 8px 14px; font-size: 14px; font-weight: 500; color: var(--ink); }
+    .chip.empty { color: var(--muted); font-weight: 400; }
+    .link-btn { font-size: 13px; font-weight: 500; color: var(--konga); }
+    .link-btn:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .auto-tag { font-size: 11px; color: var(--muted); }
+
+    /* Pills (budget, timing, notify) */
+    .pills { display: flex; flex-wrap: wrap; gap: 8px; }
+    .pill { position: relative; }
+    .pill input { position: absolute; opacity: 0; pointer-events: none; }
+    .pill span { display: inline-flex; align-items: center; gap: 6px; border: 1px solid #d1d5db; border-radius: 999px; padding: 9px 16px;
+      font-size: 13px; font-weight: 500; color: var(--ink); background: #fff; cursor: pointer; transition: all 0.15s; user-select: none; }
+    .pill span:hover { border-color: var(--konga); }
+    .pill input:checked + span { border-color: var(--konga); background: #fde6f2; color: var(--konga); }
+    .pill input:focus-visible + span { box-shadow: 0 0 0 3px rgba(237, 1, 127, 0.2); }
+
+    /* Extras (link, photo) */
+    .extras { margin-top: 10px; display: flex; gap: 18px; flex-wrap: wrap; }
+    .extra { margin-top: 10px; display: none; }
+    .extra.open { display: block; }
+    .counter { position: absolute; right: 0; top: 2px; font-size: 12px; color: var(--muted); }
+    .photo-preview { margin-top: 10px; display: none; align-items: center; gap: 12px; }
+    .photo-preview.open { display: flex; }
+    .photo-preview img { width: 64px; height: 64px; object-fit: cover; border-radius: var(--radius); border: 1px solid var(--line); }
+    .photo-preview small { display: block; font-size: 12px; color: var(--muted); }
+
+    .two { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .phone-line { margin-top: 10px; font-size: 13px; color: var(--body); }
+    .phone-line b { color: var(--ink); font-weight: 600; }
+
+    .seller { margin-top: 24px; display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; border: 1px dashed #f9c6e0; border-radius: var(--radius); background: #fff8fb; cursor: pointer; }
+    .seller input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--konga); flex-shrink: 0; }
+    .seller b { display: block; font-size: 14px; font-weight: 500; color: var(--ink-2); }
+    .seller small { font-size: 12px; color: var(--muted); }
+
+    .submit { margin-top: 28px; width: 100%; padding: 14px 24px; font-size: 16px; }
+    .fine { margin-top: 12px; text-align: center; font-size: 12px; color: var(--muted); }
+
+    /* Success state (matches the order success page) */
+    .done-state { display: none; text-align: center; max-width: 448px; margin: 0 auto; padding: 8px 0; }
+    .card.submitted form { display: none; }
+    .card.submitted .done-state { display: block; }
+    .check { width: 50px; height: 50px; margin: 0 auto; border: 3px solid var(--green); border-radius: 50%; color: var(--green);
+      display: flex; align-items: center; justify-content: center; }
+    .done-state h2 { margin-top: 24px; font-size: 24px; }
+    .req-id { margin-top: 8px; font-size: 14px; color: var(--body); display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: center; }
+    .req-id strong { color: var(--ink); font-weight: 600; }
+    .copy { font-size: 12px; font-weight: 500; color: var(--konga); border: 1px solid #f9c6e0; border-radius: 999px; padding: 3px 10px; }
+    .summary { margin-top: 20px; text-align: left; background: #f9fafb; border-radius: var(--radius); padding: 14px 16px; font-size: 13px; color: var(--body); display: grid; gap: 6px; }
+    .summary div { display: flex; justify-content: space-between; gap: 12px; }
+    .summary b { color: var(--ink); font-weight: 500; text-align: right; }
+    .next { margin-top: 16px; border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 24px; text-align: left; }
+    .next ol { list-style: none; margin-top: 10px; display: grid; gap: 12px; counter-reset: s; }
+    .next li { display: flex; gap: 12px; font-size: 14px; line-height: 1.55; color: var(--body); counter-increment: s; }
+    .next li::before { content: counter(s); width: 22px; height: 22px; flex-shrink: 0; border-radius: 50%; background: #fde6f2; color: var(--konga);
+      font-size: 12px; font-weight: 600; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+
+
+    /* ===================== Responsive ===================== */
+    @media (max-width: 1100px) {
+      .bar-link.hide-md, .cats a:not(.all-cats) { display: none; }
+      .footer .container { grid-template-columns: repeat(2, 1fr); }
+      .support .container { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 960px) {
+      .layout { grid-template-columns: 1fr; }
+      .intro { position: static; padding: 24px 20px; }
+      .intro h1 { font-size: 22px; }
+      .steps { grid-template-columns: 1fr; gap: 12px; margin-top: 18px; }
+    }
+    @media (max-width: 640px) {
+      .promo { height: auto; padding: 12px 16px; font-size: 16px; }
+      .bar .container { gap: 12px; }
+      .bar .search-wrap { display: none; }
+      .bar-link.hide-sm { display: none; }
+      main { padding: 16px 12px 160px; }
+      .card { padding: 22px 16px; }
+      .actions { grid-template-columns: 1fr; }
+      .support .container, .footer .container { grid-template-columns: 1fr; }
+      .cookie .container { flex-direction: column; align-items: stretch; }
+      .pill span { padding: 9px 14px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- ============ Top promo banner ============ -->
+  <div class="promo"><p><span>Konga Freedom Sales.</span>&nbsp;Up to 66% off everything.</p></div>
+
+  <!-- ============ Header ============ -->
+  <header class="header">
+    <div class="bar">
+      <div class="container">
+        <a href="#" class="logo" aria-label="Konga home"><i class="dot"></i>konga</a>
+        <a href="#" class="bar-link hide-md">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8Z"/><circle cx="7" cy="7" r="1.5"/></svg>
+          Sell on Konga
+        </a>
+        <a href="#" class="bar-link hide-md">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9 4.5 4h15L21 9M3 9v11h18V9M3 9h18M9 20v-6h6v6"/></svg>
+          Konga Outlets
+        </a>
+        <form class="search search-wrap" role="search" onsubmit="return false">
+          <input placeholder="Search for products, brands and categories..." aria-label="Search" />
+          <button aria-label="Search">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          </button>
+        </form>
+        <a href="#" class="bar-link hide-md">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM20 20h1M17 20h1M20 17h1"/></svg>
+          Download App ⌄
+        </a>
+        <a href="#" class="bar-link hide-sm">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6V14M12 17h.01"/></svg>
+          Help ⌄
+        </a>
+        <a href="#" class="bar-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+          <span class="hide-sm">Login/Sign Up ⌄</span>
+        </a>
+        <a href="#" class="cart" aria-label="Cart">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.7 12.4a1.5 1.5 0 0 0 1.5 1.1h8.6a1.5 1.5 0 0 0 1.5-1.2L21 7H6"/></svg>
+          <span class="badge">0</span>
+        </a>
+      </div>
+    </div>
+    <nav class="cats">
+      <div class="container">
+        <a href="#" class="all-cats">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+          All Categories
+        </a>
+        <a href="#">Computers and Accessories</a>
+        <a href="#">Phones and Tablets</a>
+        <a href="#">Electronics</a>
+        <a href="#">Konga Fashion</a>
+        <a href="#">Home and Kitchen</a>
+        <a href="#">Baby, Kids and Toys</a>
+        <a href="#">Beauty, Health &amp; Personal Care</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ============ Request a Product ============ -->
+  <main>
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="#">Home</a> / <b>Request a Product</b></nav>
+
+    <div class="layout">
+      <!-- Intro panel -->
+      <aside class="intro">
+        <p class="kicker">Konga Request</p>
+        <h1>Can't find what you're looking for?</h1>
+        <p>Tell us what you want and we'll find it from trusted sellers, then let you know the moment it's available.</p>
+        <ol class="steps">
+          <li><span class="num">1</span><div><b>Tell us what you need</b><span>It takes about a minute.</span></div></li>
+          <li><span class="num">2</span><div><b>We source it for you</b><span>Our team and sellers look for the best price.</span></div></li>
+          <li><span class="num">3</span><div><b>We'll let you know</b><span>On WhatsApp, SMS or email, so you can order it right away.</span></div></li>
+        </ol>
+        <span class="free">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 12 5 5 9-10"/></svg>
+          Free to request. No payment needed.
+        </span>
+      </aside>
+
+      <!-- Form card -->
+      <section class="card" id="card" aria-labelledby="form-title">
+        <form id="request-form" novalidate>
+          <h2 id="form-title">Request a Product</h2>
+          <p class="sub">Fields marked <i>*</i> are required.</p>
+
+          <!-- 1. The product -->
+          <div class="section">
+            <p class="section-title"><span>1</span> The product</p>
+
+            <!-- Field 1: product (prefilled from search, with "Me too" matches) -->
+            <div class="field" data-field="product">
+              <label for="product">What are you looking for? <span class="req">*</span></label>
+              <div class="with-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                <input class="input" id="product" name="product" autocomplete="off" placeholder="e.g. PlayStation 5 Pro, Tecno Camon 40" maxlength="120" />
+              </div>
+              <div class="suggest" id="suggest" role="listbox" aria-label="Similar requests"></div>
+              <p class="error-msg">Tell us the product you want.</p>
+            </div>
+
+            <!-- Field 2: category (auto-detected, with Change) -->
+            <div class="field" data-field="category">
+              <span class="label">Category <span class="req">*</span></span>
+              <div class="chip-row" id="cat-view">
+                <span class="chip empty" id="cat-chip">We'll pick this from the product name</span>
+                <button type="button" class="link-btn" id="cat-change">Change</button>
+              </div>
+              <select class="select" id="category" name="category" style="display:none; margin-top:10px" aria-label="Category">
+                <option value="">Select a category</option>
+              </select>
+              <p class="error-msg">Choose a category.</p>
+            </div>
+
+            <!-- Field 3: brand, model or specs (+ optional link and photo) -->
+            <div class="field">
+              <label for="details">Brand, model or specs <span class="opt-tag">(optional)</span></label>
+              <span class="counter"><span id="count">0</span>/300</span>
+              <textarea class="textarea" id="details" name="details" maxlength="300" placeholder="e.g. Sony, 2TB, white. Or the size, colour and anything else that matters."></textarea>
+              <div class="extras">
+                <button type="button" class="link-btn" data-toggle="link-box">+ Seen it somewhere? Add a link</button>
+                <button type="button" class="link-btn" id="photo-btn">+ Add a photo</button>
+                <input type="file" id="photo" name="photo" accept="image/*" hidden />
+              </div>
+              <div class="extra" id="link-box">
+                <input class="input" type="url" name="link" placeholder="Paste a link to another store or a social post" />
+                <p class="hint">A link helps us source the exact item faster.</p>
+              </div>
+              <div class="photo-preview" id="photo-preview">
+                <img alt="Selected photo" id="photo-img" />
+                <div><span id="photo-name" style="font-size:13px"></span><small><button type="button" class="link-btn" id="photo-remove">Remove</button></small></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. Budget and timing -->
+          <div class="section">
+            <p class="section-title"><span>2</span> Budget and timing</p>
+
+            <!-- Field 4: budget range -->
+            <div class="field" data-field="budget">
+              <span class="label">Budget range <span class="req">*</span></span>
+              <div class="pills" role="radiogroup" aria-label="Budget range">
+                <label class="pill"><input type="radio" name="budget" value="Under ₦50k" /><span>Under ₦50k</span></label>
+                <label class="pill"><input type="radio" name="budget" value="₦50k – ₦200k" /><span>₦50k – ₦200k</span></label>
+                <label class="pill"><input type="radio" name="budget" value="₦200k – ₦500k" /><span>₦200k – ₦500k</span></label>
+                <label class="pill"><input type="radio" name="budget" value="Above ₦500k" /><span>Above ₦500k</span></label>
+                <label class="pill"><input type="radio" name="budget" value="Not sure" /><span>Not sure</span></label>
+              </div>
+              <p class="error-msg">Pick a budget range so we know what to look for.</p>
+            </div>
+
+            <!-- Field 5: timing -->
+            <div class="field">
+              <span class="label">How soon do you need it?</span>
+              <div class="pills" role="radiogroup" aria-label="How soon">
+                <label class="pill"><input type="radio" name="timing" value="This week" /><span>This week</span></label>
+                <label class="pill"><input type="radio" name="timing" value="This month" checked /><span>This month</span></label>
+                <label class="pill"><input type="radio" name="timing" value="No rush" /><span>No rush</span></label>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. Keep me posted -->
+          <div class="section">
+            <p class="section-title"><span>3</span> Keep me posted</p>
+
+            <!-- Field 6: deliver to (state, prefilled) -->
+            <div class="field" data-field="state">
+              <label for="state">Deliver to <span class="req">*</span></label>
+              <select class="select" id="state" name="state"></select>
+              <p class="hint">From your default address. We'll favour sellers near you.</p>
+              <p class="error-msg">Choose a state.</p>
+            </div>
+
+            <!-- Field 7: notify via (+ phone from account) -->
+            <div class="field" data-field="phone">
+              <span class="label">Notify me via</span>
+              <div class="pills" role="radiogroup" aria-label="Notify via">
+                <label class="pill"><input type="radio" name="notify" value="WhatsApp" checked /><span>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-2 1-2.3.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.5-.3.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.1.1.6-.1 1.2Z"/></svg>
+                  WhatsApp</span></label>
+                <label class="pill"><input type="radio" name="notify" value="SMS" /><span>SMS</span></label>
+                <label class="pill"><input type="radio" name="notify" value="Email" /><span>Email</span></label>
+              </div>
+              <p class="phone-line" id="contact-line"></p>
+              <div class="extra" id="contact-box">
+                <input class="input" id="contact" name="contact" />
+              </div>
+              <p class="error-msg">Enter a valid phone number or email.</p>
+            </div>
+          </div>
+
+          <!-- Seller acquisition -->
+          <label class="seller">
+            <input type="checkbox" name="seller" />
+            <span><b>I sell this product</b><small>We'll invite you to list it on Konga and reach shoppers asking for it.</small></span>
+          </label>
+
+          <button type="submit" class="btn btn-primary submit">Submit Request</button>
+          <p class="fine">By submitting, you agree that Konga can contact you about this request.</p>
+        </form>
+
+        <!-- After submitting -->
+        <div class="done-state" aria-live="polite">
+          <div class="check" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 12 5 5 9-10"/></svg>
+          </div>
+          <h2>Request Received!</h2>
+          <p class="req-id">Your request ID is <strong id="req-id"></strong> <button type="button" class="copy" id="copy-id">Copy</button></p>
+          <div class="summary" id="summary"></div>
+          <div class="next">
+            <h3 style="font-size:14px;font-weight:600;color:var(--ink-2)">What happens next?</h3>
+            <ol>
+              <li>Our sourcing team and sellers start looking for your product.</li>
+              <li id="next-notify">We'll message you on WhatsApp as soon as it's available.</li>
+              <li>Order it on Konga and we'll deliver it to you.</li>
+            </ol>
+          </div>
+          <div class="actions">
+            <a href="#" class="btn btn-lg btn-ghost">Track My Requests</a>
+            <a href="#" class="btn btn-lg btn-primary">Continue Shopping</a>
+          </div>
+          <p class="help">Need help? <a href="#">Contact support</a></p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+
+  <!-- ============ Footer ============ -->
+  <section class="support">
+    <div class="container">
+      <div class="support-item"><span class="ic">✉</span><div><small>Email Support</small><span>help@konga.com</span></div></div>
+      <div class="support-item"><span class="ic">☎</span><div><small>Phone Support</small><span>07080635700, 02018883435</span></div></div>
+      <div class="support-item"><span class="ic">💬</span><div><small>WhatsApp</small><span>09070038400</span></div></div>
+      <div class="newsletter">
+        <small>Get Latest Deals</small>
+        <form onsubmit="return false"><input type="email" placeholder="Email address" aria-label="Email address" /><button>Subscribe</button></form>
+      </div>
+    </div>
+  </section>
+  <footer class="footer">
+    <div class="container">
+      <div><h4>About Konga</h4><ul><li><a href="#">Contact Us</a></li><li><a href="#">About Us</a></li><li><a href="#">Careers</a></li><li><a href="#">Become an Affiliate</a></li><li><a href="#">Our Blog</a></li><li><a href="#">Terms of Use</a></li></ul></div>
+      <div><h4>Payment</h4><ul><li><a href="#">KongaPay</a></li><li><a href="#">Wallet</a></li><li><a href="#">Verve</a></li><li><a href="#">Mastercard</a></li><li><a href="#">Visa</a></li></ul></div>
+      <div><h4>Buying on Konga</h4><ul><li><a href="#">Buyer Safety Centre</a></li><li><a href="#">FAQs</a></li><li><a href="#">Delivery</a></li><li><a href="#">Konga Return Policy</a></li><li><a href="#">Bulk Purchase</a></li></ul></div>
+      <div><h4>More Info</h4><ul><li><a href="#">Site Map</a></li><li><a href="#">Track My Order</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Authentic Items Policy</a></li></ul></div>
+      <div>
+        <h4>Download &amp; Shop on the Go</h4>
+        <div class="app-box"><div id="footer-qr" style="width:64px;height:64px"></div><div><b>Download the Konga App</b><small>Scan the QR code to download</small></div></div>
+        <h4 style="margin-top:22px">Connect With Us</h4>
+        <div class="socials"><a href="#" aria-label="Facebook">f</a><a href="#" aria-label="LinkedIn">in</a><a href="#" aria-label="X">X</a><a href="#" aria-label="Instagram">◎</a><a href="#" aria-label="YouTube">▶</a></div>
+      </div>
+    </div>
+    <p class="copyright">Copyright © <span data-year>2026</span> Konga.com. All rights reserved.</p>
+  </footer>
+
+  <!-- ============ Cookie banner ============ -->
+  <div class="cookie" id="cookie">
+    <div class="container">
+      <div style="flex:1">
+        <h5>Allow Us Serve You Better</h5>
+        <p>We use cookies to enhance your browsing experience, analyze site traffic, and personalize content. By clicking "Accept All", you consent to our use of cookies. <a href="#">Learn more</a></p>
+      </div>
+      <div class="btns">
+        <button class="btn btn-sm btn-outline" data-cookie>Only Necessary</button>
+        <button class="btn btn-sm btn-primary" data-cookie>Accept All</button>
+      </div>
+    </div>
+  </div>
+
+  <a href="#" class="feedback">Feedback</a>
+  <button class="chat" aria-label="Chat with us">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12Z"/><path d="M8 12h.01M12 12h.01M16 12h.01"/></svg>
+  </button>
+
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script>
+    /* =========================================================
+       Sample data. In production these come from the account,
+       the search query and the requests API.
+       ========================================================= */
+    const ACCOUNT = { phone: '0703 248 4145', email: 'augusta@example.com', defaultState: 'Lagos' };
+    const DEFAULT_QUERY = 'PlayStation 5 Pro'; // used when the page is opened without ?q=
+
+    const CATEGORIES = [
+      { name: 'Computers and Accessories', icon: '💻', words: ['laptop', 'macbook', 'computer', 'desktop', 'monitor', 'keyboard', 'mouse', 'printer', 'ssd', 'ram', 'hard drive', 'router'] },
+      { name: 'Phones and Tablets', icon: '📱', words: ['phone', 'iphone', 'samsung', 'galaxy', 'tecno', 'infinix', 'itel', 'redmi', 'pixel', 'camon', 'spark', 'ipad', 'tablet', 'screen guard', 'charger', 'airpods', 'earbuds', 'smart watch', 'smartwatch'] },
+      { name: 'Electronics', icon: '📺', words: ['tv', 'television', 'soundbar', 'speaker', 'generator', 'inverter', 'solar', 'battery', 'starlink', 'camera', 'cctv', 'drone', 'home theatre'] },
+      { name: 'Konga Fashion', icon: '👗', words: ['shoe', 'sneaker', 'dress', 'shirt', 'bag', 'watch', 'ankara', 'jeans', 'gown', 'perfume', 'wig'] },
+      { name: 'Home and Kitchen', icon: '🍳', words: ['fridge', 'refrigerator', 'freezer', 'blender', 'air fryer', 'microwave', 'ac', 'air conditioner', 'washing machine', 'cooker', 'pot', 'mattress', 'fan', 'iron'] },
+      { name: 'Baby, Kids and Toys', icon: '🧸', words: ['baby', 'diaper', 'stroller', 'car seat', 'toy', 'kids', 'lego', 'school'] },
+      { name: 'Beauty, Health & Personal Care', icon: '💄', words: ['cream', 'lotion', 'makeup', 'hair', 'vitamin', 'supplement', 'toothpaste', 'skincare', 'serum', 'shaver'] },
+      { name: 'Gaming', icon: '🎮', words: ['playstation', 'ps5', 'ps4', 'xbox', 'nintendo', 'switch', 'controller', 'gaming', 'fifa', 'fc 26'] },
+      { name: 'Groceries', icon: '🛒', words: ['rice', 'oil', 'milk', 'noodles', 'spaghetti', 'drink', 'water', 'beverage', 'garri', 'beans'] },
+      { name: 'Automobile', icon: '🚗', words: ['tyre', 'tire', 'car', 'engine oil', 'dashcam', 'wiper'] },
+    ];
+
+    // Requests other shoppers already made (for "Me too")
+    const EXISTING = [
+      { title: 'PlayStation 5 Pro Digital Edition', category: 'Gaming', votes: 128 },
+      { title: 'PlayStation Portal Remote Player', category: 'Gaming', votes: 41 },
+      { title: 'Nintendo Switch 2', category: 'Gaming', votes: 96 },
+      { title: 'iPhone 17 Pro Max 256GB', category: 'Phones and Tablets', votes: 342 },
+      { title: 'Tecno Camon 40 Premier', category: 'Phones and Tablets', votes: 57 },
+      { title: 'Infinix Hot 50 Pro screen guard', category: 'Phones and Tablets', votes: 18 },
+      { title: 'Starlink Mini wall mount', category: 'Electronics', votes: 22 },
+      { title: 'Hisense 2HP inverter air conditioner', category: 'Home and Kitchen', votes: 41 },
+      { title: 'Baby car seat with ISOFIX', category: 'Baby, Kids and Toys', votes: 15 },
+      { title: 'Ankara fabric, 6 yards', category: 'Konga Fashion', votes: 33 },
+    ];
+
+    const STATES = ['Abia', 'Adamawa', 'Akwa Ibom', 'Anambra', 'Bauchi', 'Bayelsa', 'Benue', 'Borno', 'Cross River', 'Delta', 'Ebonyi', 'Edo',
+      'Ekiti', 'Enugu', 'FCT (Abuja)', 'Gombe', 'Imo', 'Jigawa', 'Kaduna', 'Kano', 'Katsina', 'Kebbi', 'Kogi', 'Kwara', 'Lagos', 'Nasarawa',
+      'Niger', 'Ogun', 'Ondo', 'Osun', 'Oyo', 'Plateau', 'Rivers', 'Sokoto', 'Taraba', 'Yobe', 'Zamfara'];
+
+    const $ = (s) => document.querySelector(s);
+    const $$ = (s) => document.querySelectorAll(s);
+    const form = $('#request-form');
+
+    function toast(msg) {
+      const t = $('#toast');
+      t.textContent = msg;
+      t.style.display = 'block';
+      clearTimeout(toast.timer);
+      toast.timer = setTimeout(() => (t.style.display = 'none'), 2600);
+    }
+
+    /* ---------- Product + "Me too" ---------- */
+    const product = $('#product');
+    const suggest = $('#suggest');
+    const voted = new Set();
+
+    function renderSuggestions() {
+      const q = product.value.trim().toLowerCase();
+      if (q.length < 2) return suggest.classList.remove('open');
+      const words = q.split(/\s+/);
+      const hits = EXISTING.filter((r) => words.some((w) => w.length > 1 && r.title.toLowerCase().includes(w))).slice(0, 4);
+      if (!hits.length) return suggest.classList.remove('open');
+      suggest.innerHTML =
+        `<div class="suggest-head">Others have asked for this. Add your vote instead of a new request:</div>` +
+        hits
+          .map((r) => {
+            const i = EXISTING.indexOf(r);
+            const done = voted.has(i);
+            return `<div class="suggest-row" role="option">
+              <div class="t"><b>${r.title}</b><small>${r.category} · ${r.votes + (done ? 1 : 0)} shoppers want this</small></div>
+              <button type="button" class="metoo ${done ? 'done' : ''}" data-vote="${i}">${done ? '✓ You\'re in' : '+ Me too'}</button>
+            </div>`;
+          })
+          .join('');
+      suggest.classList.add('open');
+    }
+
+    suggest.addEventListener('click', (e) => {
+      e.stopPropagation(); // keep the list open after voting
+      const b = e.target.closest('[data-vote]');
+      if (!b) return;
+      const i = Number(b.dataset.vote);
+      if (voted.has(i)) return;
+      voted.add(i);
+      renderSuggestions();
+      toast(`Vote added. We'll notify you on ${selected('notify')} when it's available.`);
+    });
+    document.addEventListener('click', (e) => { if (!e.target.closest('[data-field="product"]')) suggest.classList.remove('open'); });
+    product.addEventListener('focus', renderSuggestions);
+
+    /* ---------- Category: auto-detected, with Change ---------- */
+    const catSelect = $('#category');
+    const catChip = $('#cat-chip');
+    let catManual = false;
+    catSelect.innerHTML += CATEGORIES.map((c) => `<option>${c.name}</option>`).join('');
+
+    function detectCategory(text) {
+      const t = ` ${text.toLowerCase()} `;
+      let best = null, score = 0;
+      for (const c of CATEGORIES) {
+        const s = c.words.filter((w) => t.includes(w.includes(' ') ? w : ` ${w}`) || t.includes(`${w} `)).length;
+        if (s > score) { best = c; score = s; }
+      }
+      return best;
+    }
+    function showCategory() {
+      const c = CATEGORIES.find((x) => x.name === catSelect.value);
+      if (c) {
+        catChip.textContent = `${c.icon}  ${c.name}`;
+        catChip.classList.remove('empty');
+      } else {
+        catChip.textContent = "We'll pick this from the product name";
+        catChip.classList.add('empty');
+      }
+    }
+    function autoCategory() {
+      if (catManual) return;
+      const c = detectCategory(product.value);
+      catSelect.value = c ? c.name : '';
+      showCategory();
+    }
+    $('#cat-change').addEventListener('click', () => {
+      const open = catSelect.style.display === 'none';
+      catSelect.style.display = open ? 'block' : 'none';
+      $('#cat-change').textContent = open ? 'Done' : 'Change';
+      if (open) catSelect.focus();
+    });
+    catSelect.addEventListener('change', () => { catManual = true; showCategory(); clearError('category'); });
+
+    product.addEventListener('input', () => { renderSuggestions(); autoCategory(); clearError('product'); });
+
+    /* ---------- Details: counter, link, photo ---------- */
+    const details = $('#details');
+    details.addEventListener('input', () => ($('#count').textContent = details.value.length));
+    $$('[data-toggle]').forEach((b) =>
+      b.addEventListener('click', () => {
+        const box = document.getElementById(b.dataset.toggle);
+        box.classList.toggle('open');
+        if (box.classList.contains('open')) box.querySelector('input').focus();
+      })
+    );
+    const photo = $('#photo');
+    $('#photo-btn').addEventListener('click', () => photo.click());
+    photo.addEventListener('change', () => {
+      const f = photo.files[0];
+      if (!f) return;
+      if (f.size > 5 * 1024 * 1024) { photo.value = ''; return toast('Please choose a photo under 5MB.'); }
+      $('#photo-img').src = URL.createObjectURL(f);
+      $('#photo-name').textContent = f.name;
+      $('#photo-preview').classList.add('open');
+    });
+    $('#photo-remove').addEventListener('click', () => { photo.value = ''; $('#photo-preview').classList.remove('open'); });
+
+    /* ---------- Deliver to ---------- */
+    const state = $('#state');
+    state.innerHTML = `<option value="">Select a state</option>` + STATES.map((s) => `<option>${s}</option>`).join('');
+    state.value = ACCOUNT.defaultState;
+    state.addEventListener('change', () => clearError('state'));
+
+    /* ---------- Notify via + contact ---------- */
+    const contact = $('#contact');
+    const selected = (name) => (form.querySelector(`input[name="${name}"]:checked`) || {}).value || '';
+    const mask = (v) => (v.includes('@') ? v.replace(/^(.).*(@.*)$/, '$1•••$2') : v.replace(/^(\d{4})\s?\d{3}\s?(\d{4})$/, '$1 *** $2'));
+    let customContact = { phone: ACCOUNT.phone, email: ACCOUNT.email };
+
+    function renderContact() {
+      const via = selected('notify');
+      const isEmail = via === 'Email';
+      const value = isEmail ? customContact.email : customContact.phone;
+      $('#contact-line').innerHTML = `We'll reach you ${isEmail ? 'at' : 'on'} <b>${mask(value)}</b> · <button type="button" class="link-btn" id="contact-change">Change</button>`;
+      contact.type = isEmail ? 'email' : 'tel';
+      contact.placeholder = isEmail ? 'you@example.com' : '0803 000 0000';
+      contact.value = value;
+      $('#contact-change').addEventListener('click', () => { $('#contact-box').classList.add('open'); contact.focus(); });
+    }
+    form.querySelectorAll('input[name="notify"]').forEach((r) => r.addEventListener('change', () => { $('#contact-box').classList.remove('open'); clearError('phone'); renderContact(); }));
+    contact.addEventListener('input', () => {
+      if (selected('notify') === 'Email') customContact.email = contact.value;
+      else customContact.phone = contact.value;
+      clearError('phone');
+    });
+    contact.addEventListener('blur', () => { if (contactValid()) { $('#contact-box').classList.remove('open'); renderContact(); } });
+    function contactValid() {
+      const v = contact.value.trim();
+      return selected('notify') === 'Email' ? /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) : v.replace(/\D/g, '').length >= 10;
+    }
+
+    /* ---------- Validation + submit ---------- */
+    const setError = (k) => document.querySelector(`[data-field="${k}"]`).classList.add('invalid');
+    const clearError = (k) => document.querySelector(`[data-field="${k}"]`).classList.remove('invalid');
+    form.querySelectorAll('input[name="budget"]').forEach((r) => r.addEventListener('change', () => clearError('budget')));
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const errors = [];
+      if (!product.value.trim()) errors.push('product');
+      if (!catSelect.value) errors.push('category');
+      if (!selected('budget')) errors.push('budget');
+      if (!state.value) errors.push('state');
+      if (!contactValid()) { errors.push('phone'); $('#contact-box').classList.add('open'); }
+      errors.forEach(setError);
+      if (errors.length) {
+        if (errors.includes('category')) { catSelect.style.display = 'block'; $('#cat-change').textContent = 'Done'; }
+        document.querySelector(`[data-field="${errors[0]}"]`).scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      const id = 'REQ-' + Math.random().toString(36).slice(2, 8).toUpperCase();
+      const data = Object.fromEntries(new FormData(form));
+      console.log('Product request', { id, ...data, contact: contact.value, photo: photo.files[0]?.name || null });
+
+      $('#req-id').textContent = id;
+      $('#summary').innerHTML = [
+        ['Product', product.value.trim()],
+        ['Category', catSelect.value],
+        ['Budget', selected('budget')],
+        ['Needed', selected('timing') || 'No rush'],
+        ['Deliver to', state.value],
+      ].map(([k, v]) => `<div><span>${k}</span><b>${v}</b></div>`).join('');
+      const via = selected('notify');
+      $('#next-notify').textContent = via === 'Email'
+        ? "We'll email you as soon as it's available."
+        : `We'll message you on ${via} as soon as it's available.`;
+      $('#card').classList.add('submitted');
+      window.scrollTo({ top: $('#card').getBoundingClientRect().top + window.scrollY - 130, behavior: 'smooth' });
+    });
+
+    $('#copy-id').addEventListener('click', async () => {
+      try { await navigator.clipboard.writeText($('#req-id').textContent); toast('Request ID copied'); } catch { toast($('#req-id').textContent); }
+    });
+
+    /* ---------- Start: prefill from the search ---------- */
+    const q = new URLSearchParams(location.search).get('q');
+    product.value = q || DEFAULT_QUERY;
+    autoCategory();
+    renderContact();
+    $('[data-cookie]') && $$('[data-cookie]').forEach((b) => b.addEventListener('click', () => ($('#cookie').style.display = 'none')));
+
+    if (window.QRCode) new QRCode($('#footer-qr'), { text: 'https://www.konga.com/app', width: 128, height: 128, colorDark: '#111111', colorLight: '#ffffff' });
+  </script>
+
+</body>
+</html>
