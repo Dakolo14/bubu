@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { CheckCircle2, Download } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import { useCart } from '@/components/CartProvider';
 import ProductImage from '@/components/ProductImage';
 import { naira } from '@/lib/format';
@@ -20,35 +20,11 @@ export default function CheckoutPage() {
   const { lines, subtotal, clear } = useCart();
   const [method, setMethod] = useState<'door' | 'pickup'>('door');
   const [payment, setPayment] = useState('kongapay');
-  const [order, setOrder] = useState<string | null>(null);
+  const router = useRouter();
 
   const delivery = method === 'pickup' || subtotal >= 50000 ? 0 : 2500;
   const promo = payment === 'kongapay' ? Math.round(subtotal * 0.05) : 0;
   const total = subtotal + delivery - promo;
-
-  if (order) {
-    return (
-      <div className="mx-auto max-w-lg px-4 py-16 text-center">
-        <CheckCircle2 size={64} className="mx-auto text-konga-green" />
-        <h1 className="mt-4 text-2xl font-black">Thank you for your order!</h1>
-        <p className="mt-2 text-konga-muted">
-          Your order <strong className="text-konga-ink">#{order}</strong> has been placed. You&apos;ll receive an email
-          confirmation shortly.
-        </p>
-        <div className="mt-6 flex flex-wrap justify-center gap-3">
-          <Link
-            href={`/receipt/${order}`}
-            className="flex items-center gap-2 rounded bg-konga px-6 py-3 text-sm font-bold text-white"
-          >
-            <Download size={16} /> Download Receipt
-          </Link>
-          <Link href="/" className="rounded border border-konga px-6 py-3 text-sm font-bold text-konga">
-            Continue Shopping
-          </Link>
-        </div>
-      </div>
-    );
-  }
 
   if (!lines.length) {
     return (
@@ -86,8 +62,8 @@ export default function CheckoutPage() {
             shipping: delivery,
             discount: promo,
           });
-          setOrder(id);
           clear();
+          router.push(`/order-success/${id}`);
         }}
       >
         <div className="space-y-4">

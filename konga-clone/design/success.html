@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Order Successful | Konga</title>
+  <meta name="description" content="Konga order success page with the Download Receipt entry point (design prototype)." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* ===================== Brand tokens ===================== */
+    :root {
+      --konga: #ed017f;          /* Konga magenta (brand) */
+      --konga-dark: #c70069;
+      --konga-tint: #fff5fa;     /* receipt card background */
+      --konga-tint-line: #f9c6e0;
+      --orange: #f7941d;         /* search button / logo smiley */
+      --green: #22c55e;          /* success check */
+      --green-dark: #1f9d55;     /* "You saved" */
+      --ink: #111827;
+      --ink-2: #1f2937;
+      --body: #4b5563;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --page: #f3f4f6;
+      --slate: #4b5563;
+      --footer-top: #2e2e2e;
+      --footer: #111111;
+      --radius: 6px;
+      --shadow: 0 10px 30px rgba(17, 24, 39, 0.18);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: 'Poppins', 'Helvetica Neue', Arial, sans-serif;
+      color: var(--ink);
+      background: var(--page);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
+    svg { display: block; }
+    .container { width: 100%; max-width: 1312px; margin: 0 auto; padding: 0 16px; }
+
+    /* ===================== Top promo banner ===================== */
+    .promo {
+      height: 88px; background: #141a3a; display: flex; align-items: center; justify-content: center;
+      color: #fff; font-weight: 800; font-size: 32px; letter-spacing: -0.02em; text-transform: uppercase; text-align: center;
+    }
+    .promo span { color: #f4c35a; }
+
+    /* ===================== Header ===================== */
+    .header { position: sticky; top: 0; z-index: 40; }
+    .bar { background: var(--konga); color: #fff; }
+    .bar .container { height: 58px; display: flex; align-items: center; gap: 20px; }
+    .logo { display: inline-flex; align-items: center; font-weight: 800; font-size: 28px; letter-spacing: -0.04em; line-height: 1; }
+    .logo .dot { width: 0.62em; height: 0.62em; border-radius: 50%; margin-right: 1px; transform: translateY(-0.06em);
+      background: radial-gradient(circle at 35% 35%, #ffd25a, var(--orange) 70%); }
+    .bar-link { display: flex; align-items: center; gap: 6px; font-size: 13px; white-space: nowrap; }
+    .bar-link:hover { opacity: 0.85; }
+    .search { flex: 1; display: flex; height: 40px; border-radius: 4px; overflow: hidden; background: #fff; }
+    .search input { flex: 1; min-width: 0; border: 0; outline: 0; padding: 0 12px; font: inherit; font-size: 13px; color: var(--ink); }
+    .search button { width: 54px; background: var(--orange); color: #fff; display: flex; align-items: center; justify-content: center; }
+    .cart { position: relative; }
+    .cart .badge { position: absolute; top: -8px; right: -6px; min-width: 18px; height: 18px; padding: 0 4px; border-radius: 9px;
+      background: #22a447; color: #fff; font-size: 11px; font-weight: 600; display: flex; align-items: center; justify-content: center; }
+
+    .cats { background: #fff; border-bottom: 1px solid var(--line); }
+    .cats .container { height: 50px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .cats a { font-size: 13px; font-weight: 500; color: #333; white-space: nowrap; }
+    .cats a:hover { color: var(--konga); }
+    .all-cats { display: flex; align-items: center; gap: 8px; background: #f2f2f2; padding: 6px 12px; border-radius: 6px; }
+
+    /* ===================== Success card ===================== */
+    main { padding: 64px 16px 120px; }
+    .success { max-width: 448px; margin: 0 auto; background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 36px 32px; text-align: center; }
+    .check { width: 50px; height: 50px; margin: 0 auto; border: 3px solid var(--green); border-radius: 50%; color: var(--green);
+      display: flex; align-items: center; justify-content: center; }
+    .success h1 { margin-top: 24px; font-size: 24px; font-weight: 600; color: var(--ink-2); }
+    .order-no { margin-top: 8px; font-size: 14px; color: var(--body); }
+    .order-no strong { color: var(--ink); font-weight: 600; }
+
+    /* NEW: receipt entry point (quiet text link) */
+    .receipt-link { margin-top: 14px; display: inline-flex; align-items: center; gap: 6px;
+      font-size: 14px; font-weight: 500; color: var(--konga); padding: 4px 2px; }
+    .receipt-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .next { margin-top: 24px !important; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; border-radius: var(--radius);
+      font-weight: 500; transition: background 0.15s, color 0.15s; }
+    .btn-sm { padding: 8px 12px; font-size: 13px; }
+    .btn-lg { padding: 12px 24px; font-size: 16px; }
+    .btn-primary { background: var(--konga); color: #fff; }
+    .btn-primary:hover { background: var(--konga-dark); }
+    .btn-outline { border: 1px solid var(--konga); color: var(--konga); background: #fff; }
+    .btn-outline:hover { background: #fde6f2; }
+    .btn-ghost { border: 1px solid #d1d5db; color: var(--ink); background: #fff; }
+    .btn-ghost:hover { background: #f9fafb; }
+
+    .next { margin-top: 16px; border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 24px; text-align: left; }
+    .next h3 { font-size: 14px; font-weight: 600; color: var(--ink-2); }
+    .next ul { list-style: none; margin-top: 8px; display: grid; gap: 8px; }
+    .next li { display: flex; gap: 10px; font-size: 14px; line-height: 1.6; color: var(--body); }
+    .next li::before { content: ''; width: 5px; height: 5px; margin-top: 9px; border-radius: 50%; background: #9ca3af; flex-shrink: 0; }
+    .actions { margin-top: 32px; display: grid; grid-template-columns: auto 1fr; gap: 8px; }
+    .help { margin-top: 24px; font-size: 12px; color: var(--muted); }
+    .help a { color: var(--konga); }
+
+    /* ===================== Services ===================== */
+    .services { max-width: 1312px; margin: 0 auto 24px; padding: 0 16px; }
+    .services-head { background: var(--slate); color: #fff; text-align: center; font-size: 18px; font-weight: 600; padding: 14px; border-radius: 6px 6px 0 0; }
+    .services-grid { background: #fff; padding: 8px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; border-radius: 0 0 6px 6px; }
+    .service { height: 136px; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #fff;
+      font-size: 22px; font-weight: 600; letter-spacing: -0.02em; text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4); position: relative; overflow: hidden; }
+    .service::after { content: ''; position: absolute; inset: 0; background: rgba(0, 0, 0, 0.35); }
+    .service span { position: relative; z-index: 1; display: flex; align-items: center; gap: 6px; }
+
+    /* ===================== Footer ===================== */
+    .support { background: var(--footer-top); color: #fff; }
+    .support .container { display: grid; grid-template-columns: repeat(3, 1fr) 1.2fr; gap: 24px; align-items: center; padding-top: 24px; padding-bottom: 24px; }
+    .support-item { display: flex; align-items: center; gap: 10px; }
+    .support-item .ic { width: 40px; height: 40px; border-radius: 50%; background: #fff; color: #2e2e2e; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .support-item small { display: block; font-size: 14px; font-weight: 500; text-transform: uppercase; }
+    .support-item span { font-size: 14px; color: #d1d5db; }
+    .newsletter small { display: block; font-size: 14px; font-weight: 500; margin-bottom: 6px; }
+    .newsletter form { display: flex; border-radius: 4px; overflow: hidden; }
+    .newsletter input { flex: 1; min-width: 0; border: 0; padding: 10px 12px; font: inherit; font-size: 14px; outline: 0; }
+    .newsletter button { background: var(--konga); color: #fff; padding: 0 14px; font-weight: 500; }
+
+    .footer { background: var(--footer); color: #d1d5db; }
+    .footer .container { display: grid; grid-template-columns: repeat(4, 1fr) 1.3fr; gap: 24px; padding-top: 48px; padding-bottom: 48px; }
+    .footer h4 { color: #fff; font-size: 14px; font-weight: 500; text-transform: uppercase; margin-bottom: 14px; }
+    .footer ul { list-style: none; display: grid; gap: 10px; font-size: 14px; }
+    .footer a:hover { color: #fff; }
+    .app-box { display: flex; gap: 10px; align-items: center; background: #fff; color: var(--ink); border-radius: 6px; padding: 8px; width: fit-content; }
+    .app-box b { display: block; font-size: 12px; font-weight: 600; }
+    .app-box small { font-size: 9px; color: var(--muted); }
+    .socials { display: flex; gap: 10px; margin-top: 10px; }
+    .socials a { width: 36px; height: 36px; border-radius: 50%; background: #1f2937; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 13px; font-weight: 700; }
+    .copyright { border-top: 1px solid #222; text-align: center; padding: 18px; font-size: 12px; color: #9ca3af; }
+
+    /* ===================== Cookie banner ===================== */
+    .cookie { position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; background: #fff; box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.12); }
+    .cookie .container { display: flex; align-items: center; gap: 24px; padding-top: 20px; padding-bottom: 20px; max-width: 1240px; }
+    .cookie h5 { font-size: 17px; font-weight: 600; }
+    .cookie p { margin-top: 4px; font-size: 14px; color: var(--body); }
+    .cookie p a { color: var(--konga); text-decoration: underline; }
+    .cookie .btns { display: flex; gap: 10px; flex-shrink: 0; }
+
+    /* ===================== Floating widgets ===================== */
+    .feedback { position: fixed; right: 0; top: 50%; transform: translateY(-50%); z-index: 30; background: var(--konga); color: #fff;
+      writing-mode: vertical-rl; padding: 12px 6px; border-radius: 6px 0 0 6px; font-size: 12px; font-weight: 600; }
+    .chat { position: fixed; right: 24px; bottom: 120px; z-index: 30; width: 60px; height: 60px; border-radius: 50%; background: #f0396e;
+      color: #fff; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow); }
+
+    /* ===================== Receipt modal ===================== */
+    .modal { position: fixed; inset: 0; z-index: 100; display: none; align-items: flex-start; justify-content: center;
+      background: rgba(17, 24, 39, 0.6); padding: 24px 16px; overflow-y: auto; }
+    .modal.open { display: flex; }
+    .sheet-wrap { width: 100%; max-width: 560px; }
+    .toolbar { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 12px; }
+    .toolbar h3 { color: #fff; font-size: 16px; font-weight: 600; }
+    .toolbar .btns { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    .toolbar .btn-close { width: 36px; height: 36px; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; }
+    .toast { position: fixed; top: 16px; left: 50%; transform: translateX(-50%); z-index: 200; background: var(--green-dark); color: #fff;
+      padding: 10px 18px; border-radius: 6px; font-size: 13px; font-weight: 500; box-shadow: var(--shadow); display: none; }
+
+    /* ---- The receipt (matches the approved design) ---- */
+    .receipt { background: var(--konga); color: #fff; padding: 40px 28px 28px; border-radius: 12px; overflow: hidden; }
+    .r-logo { display: flex; align-items: center; justify-content: center; gap: 6px; }
+    .r-logo .word { font-size: 92px; font-weight: 800; letter-spacing: -0.05em; line-height: 0.9; }
+    .r-label { margin-top: 18px; text-align: center; font-size: 22px; font-weight: 500; letter-spacing: -0.02em; }
+    .r-title { margin-top: 2px; text-align: center; font-size: 34px; font-weight: 700; letter-spacing: -0.04em; text-transform: uppercase; line-height: 1.1; }
+    .r-card { margin-top: 28px; background: #fff; color: var(--ink); border-radius: 10px; padding: 6px 22px; }
+    .r-row { display: flex; justify-content: space-between; gap: 16px; padding: 14px 0; border-bottom: 1px solid #f0f0f0; }
+    .r-row .k { font-size: 14px; color: #222; }
+    .r-row .v { text-align: right; font-size: 14px; font-weight: 500; }
+    .r-row .v small { display: block; margin-top: 4px; font-size: 12px; font-weight: 400; color: #9ca3af; }
+    .r-items { padding: 14px 0; border-bottom: 1px solid #f0f0f0; }
+    .r-items .k { font-size: 14px; }
+    .r-item { display: flex; align-items: center; gap: 12px; margin-top: 14px; }
+    .r-item .img { width: 46px; height: 46px; border-radius: 6px; background: linear-gradient(180deg, #e8f4ff, #f6fbff); display: flex; align-items: center; justify-content: center; font-size: 26px; flex-shrink: 0; }
+    .r-item .name { font-size: 13px; font-weight: 500; line-height: 1.3; }
+    .r-item .meta { margin-top: 3px; font-size: 11px; color: #9ca3af; }
+    .r-item .price { margin-left: auto; font-size: 13px; font-weight: 600; white-space: nowrap; align-self: flex-start; padding-top: 2px; }
+    .r-more { display: block; width: 100%; margin-top: 14px; text-align: center; font-size: 13px; color: #222; }
+    .r-total { display: flex; justify-content: space-between; gap: 16px; padding: 16px 0 18px; }
+    .r-total .k b { display: block; font-size: 15px; font-weight: 500; }
+    .r-total .k small { display: block; margin-top: 4px; font-size: 12px; color: #9ca3af; }
+    .r-total .v { text-align: right; }
+    .r-total .v b { display: block; font-size: 16px; font-weight: 600; }
+    .r-total .v small { display: block; margin-top: 4px; font-size: 12px; color: #9ca3af; }
+    .r-total .v .saved { color: #22a447; font-weight: 500; font-size: 13px; }
+    .r-app { margin: 24px auto 0; max-width: 420px; display: flex; align-items: center; gap: 14px; background: #fde9f3; color: #3a0020; border-radius: 6px; padding: 12px 16px; }
+    .r-app .qr { width: 56px; height: 56px; flex-shrink: 0; background: #fff; border-radius: 4px; padding: 4px; }
+    .r-app .qr img, .r-app .qr canvas { width: 100% !important; height: 100% !important; }
+    .r-app b { display: block; font-size: 14px; font-weight: 600; letter-spacing: -0.02em; }
+    .r-app span { display: block; margin-top: 2px; font-size: 11px; line-height: 1.45; }
+    .r-legal { margin-top: 20px; text-align: center; font-size: 11px; line-height: 1.7; color: rgba(255, 255, 255, 0.92); }
+
+    /* ===================== Responsive ===================== */
+    @media (max-width: 1100px) {
+      .bar-link.hide-md, .cats a:not(.all-cats) { display: none; }
+      .services-grid { grid-template-columns: repeat(3, 1fr); }
+      .footer .container { grid-template-columns: repeat(2, 1fr); }
+      .support .container { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .promo { height: auto; padding: 12px 16px; font-size: 16px; }
+      .bar .container { gap: 12px; }
+      .bar .search-wrap { display: none; }
+      .bar-link.hide-sm { display: none; }
+      main { padding: 24px 12px 160px; }
+      .success { padding: 28px 18px; }
+      .actions { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .support .container, .footer .container { grid-template-columns: 1fr; }
+      .cookie .container { flex-direction: column; align-items: stretch; }
+      .receipt { padding: 28px 16px 20px; }
+      .r-logo .word { font-size: 60px; }
+      .r-logo svg { width: 64px; height: 64px; }
+      .r-title { font-size: 24px; }
+      .r-label { font-size: 16px; }
+      .r-card { padding: 4px 14px; }
+      .toolbar { flex-direction: column; align-items: stretch; }
+    }
+
+    /* ===================== Print: only the receipt ===================== */
+    @media print {
+      @page { size: A4; margin: 10mm; }
+      body { background: #fff; }
+      body > *:not(.modal) { display: none !important; }
+      .modal { position: static; display: block !important; background: none; padding: 0; }
+      .toolbar { display: none; }
+      .receipt { -webkit-print-color-adjust: exact; print-color-adjust: exact; border-radius: 0; }
+      .sheet-wrap { max-width: 520px; margin: 0 auto; }
+    }
+  </style>
+</head>
+<body>
+  <!-- ============ Top promo banner ============ -->
+  <div class="promo"><p><span>Konga Freedom Sales.</span>&nbsp;Up to 66% off everything.</p></div>
+
+  <!-- ============ Header ============ -->
+  <header class="header">
+    <div class="bar">
+      <div class="container">
+        <a href="#" class="logo" aria-label="Konga home"><i class="dot"></i>konga</a>
+        <a href="#" class="bar-link hide-md">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8Z"/><circle cx="7" cy="7" r="1.5"/></svg>
+          Sell on Konga
+        </a>
+        <a href="#" class="bar-link hide-md">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9 4.5 4h15L21 9M3 9v11h18V9M3 9h18M9 20v-6h6v6"/></svg>
+          Konga Outlets
+        </a>
+        <form class="search search-wrap" role="search" onsubmit="return false">
+          <input placeholder="Search for products, brands and categories..." aria-label="Search" />
+          <button aria-label="Search">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          </button>
+        </form>
+        <a href="#" class="bar-link hide-md">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM20 20h1M17 20h1M20 17h1"/></svg>
+          Download App ⌄
+        </a>
+        <a href="#" class="bar-link hide-sm">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6V14M12 17h.01"/></svg>
+          Help ⌄
+        </a>
+        <a href="#" class="bar-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+          <span class="hide-sm">Login/Sign Up ⌄</span>
+        </a>
+        <a href="#" class="cart" aria-label="Cart">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.7 12.4a1.5 1.5 0 0 0 1.5 1.1h8.6a1.5 1.5 0 0 0 1.5-1.2L21 7H6"/></svg>
+          <span class="badge">0</span>
+        </a>
+      </div>
+    </div>
+    <nav class="cats">
+      <div class="container">
+        <a href="#" class="all-cats">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+          All Categories
+        </a>
+        <a href="#">Computers and Accessories</a>
+        <a href="#">Phones and Tablets</a>
+        <a href="#">Electronics</a>
+        <a href="#">Konga Fashion</a>
+        <a href="#">Home and Kitchen</a>
+        <a href="#">Baby, Kids and Toys</a>
+        <a href="#">Beauty, Health &amp; Personal Care</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ============ Order success ============ -->
+  <main>
+    <section class="success" aria-labelledby="success-title">
+      <div class="check" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 12 5 5 9-10"/></svg>
+      </div>
+      <h1 id="success-title">Thank You for your Order!</h1>
+      <p class="order-no">Your order number is <strong data-order-id>R081698457</strong></p>
+
+      <!-- NEW: Download Receipt entry point. A quiet text link under the order
+           number: visible at the moment of purchase without competing with
+           the primary "Continue Shopping" button. -->
+      <button class="receipt-link" data-open-receipt>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0-4.5-4.5M12 15l4.5-4.5M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+        Download Receipt
+      </button>
+
+      <div class="next">
+        <h3>What happens next?</h3>
+        <ul>
+          <li>You will receive an order confirmation email shortly, with your receipt attached.</li>
+          <li>We'll notify you when your order has been shipped.</li>
+          <li>Track your order or download your receipt anytime from your account's order history.</li>
+        </ul>
+      </div>
+
+      <div class="actions">
+        <a href="#" class="btn btn-lg btn-ghost">View Orders</a>
+        <a href="#" class="btn btn-lg btn-primary">Continue Shopping</a>
+      </div>
+      <p class="help">Need help? <a href="#">Contact support</a></p>
+    </section>
+  </main>
+
+  <!-- ============ Other services ============ -->
+  <section class="services" aria-label="Explore our other services">
+    <div class="services-head">Explore Our Other Services</div>
+    <div class="services-grid">
+      <a href="#" class="service" style="background:linear-gradient(135deg,#3b4a6b,#1f2a44)"><span>konga <small style="font-size:11px">TRAVEL</small></span></a>
+      <a href="#" class="service" style="background:linear-gradient(135deg,#5b4636,#2b211a)"><span>Kxpress</span></a>
+      <a href="#" class="service" style="background:linear-gradient(135deg,#5f7c8a,#2f4450)"><span>KongaHealth</span></a>
+      <a href="#" class="service" style="background:linear-gradient(135deg,#6b5b4b,#33291f)"><span>🛍 Brand Stores</span></a>
+      <a href="#" class="service" style="background:linear-gradient(135deg,#4a4a4a,#1f1f1f)"><span>KongaPay</span></a>
+    </div>
+  </section>
+
+  <!-- ============ Footer ============ -->
+  <section class="support">
+    <div class="container">
+      <div class="support-item"><span class="ic">✉</span><div><small>Email Support</small><span>help@konga.com</span></div></div>
+      <div class="support-item"><span class="ic">☎</span><div><small>Phone Support</small><span>07080635700, 02018883435</span></div></div>
+      <div class="support-item"><span class="ic">💬</span><div><small>WhatsApp</small><span>09070038400</span></div></div>
+      <div class="newsletter">
+        <small>Get Latest Deals</small>
+        <form onsubmit="return false"><input type="email" placeholder="Email address" aria-label="Email address" /><button>Subscribe</button></form>
+      </div>
+    </div>
+  </section>
+  <footer class="footer">
+    <div class="container">
+      <div><h4>About Konga</h4><ul><li><a href="#">Contact Us</a></li><li><a href="#">About Us</a></li><li><a href="#">Careers</a></li><li><a href="#">Become an Affiliate</a></li><li><a href="#">Our Blog</a></li><li><a href="#">Terms of Use</a></li></ul></div>
+      <div><h4>Payment</h4><ul><li><a href="#">KongaPay</a></li><li><a href="#">Wallet</a></li><li><a href="#">Verve</a></li><li><a href="#">Mastercard</a></li><li><a href="#">Visa</a></li></ul></div>
+      <div><h4>Buying on Konga</h4><ul><li><a href="#">Buyer Safety Centre</a></li><li><a href="#">FAQs</a></li><li><a href="#">Delivery</a></li><li><a href="#">Konga Return Policy</a></li><li><a href="#">Bulk Purchase</a></li></ul></div>
+      <div><h4>More Info</h4><ul><li><a href="#">Site Map</a></li><li><a href="#">Track My Order</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Authentic Items Policy</a></li></ul></div>
+      <div>
+        <h4>Download &amp; Shop on the Go</h4>
+        <div class="app-box"><div id="footer-qr" style="width:64px;height:64px"></div><div><b>Download the Konga App</b><small>Scan the QR code to download</small></div></div>
+        <h4 style="margin-top:22px">Connect With Us</h4>
+        <div class="socials"><a href="#" aria-label="Facebook">f</a><a href="#" aria-label="LinkedIn">in</a><a href="#" aria-label="X">X</a><a href="#" aria-label="Instagram">◎</a><a href="#" aria-label="YouTube">▶</a></div>
+      </div>
+    </div>
+    <p class="copyright">Copyright © <span data-year>2026</span> Konga.com. All rights reserved.</p>
+  </footer>
+
+  <!-- ============ Cookie banner ============ -->
+  <div class="cookie" id="cookie">
+    <div class="container">
+      <div style="flex:1">
+        <h5>Allow Us Serve You Better</h5>
+        <p>We use cookies to enhance your browsing experience, analyze site traffic, and personalize content. By clicking "Accept All", you consent to our use of cookies. <a href="#">Learn more</a></p>
+      </div>
+      <div class="btns">
+        <button class="btn btn-sm btn-outline" data-cookie>Only Necessary</button>
+        <button class="btn btn-sm btn-primary" data-cookie>Accept All</button>
+      </div>
+    </div>
+  </div>
+
+  <a href="#" class="feedback">Feedback</a>
+  <button class="chat" aria-label="Chat with us">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12Z"/><path d="M8 12h.01M12 12h.01M16 12h.01"/></svg>
+  </button>
+
+  <!-- ============ Receipt preview modal ============ -->
+  <div class="modal" id="receipt-modal" role="dialog" aria-modal="true" aria-labelledby="receipt-modal-title">
+    <div class="sheet-wrap">
+      <div class="toolbar">
+        <h3 id="receipt-modal-title">Your order receipt</h3>
+        <div class="btns">
+          <button class="btn btn-sm btn-primary" data-download-png>Download Image</button>
+          <button class="btn btn-sm btn-outline" data-download-pdf>Download PDF</button>
+          <button class="btn btn-sm btn-outline" data-share>Share</button>
+          <button class="btn-close" data-close aria-label="Close">✕</button>
+        </div>
+      </div>
+
+      <!-- The receipt: approved design -->
+      <article class="receipt" id="receipt">
+        <div class="r-logo">
+          <svg width="96" height="96" viewBox="0 0 100 100" aria-hidden="true">
+            <circle cx="50" cy="50" r="48" fill="#F7941D" />
+            <path d="M22 40 Q30 30 38 40" stroke="#B4400A" stroke-width="4" fill="none" stroke-linecap="round" />
+            <path d="M62 40 Q70 30 78 40" stroke="#B4400A" stroke-width="4" fill="none" stroke-linecap="round" />
+            <path d="M22 58 Q50 86 78 58" stroke="#B4400A" stroke-width="5" fill="none" stroke-linecap="round" />
+          </svg>
+          <span class="word">konga</span>
+        </div>
+        <p class="r-label">ORDER RECEIPT</p>
+        <p class="r-title">Thank you, <span data-first-name></span></p>
+
+        <div class="r-card">
+          <div class="r-row"><span class="k">Customer</span><span class="v" data-customer></span></div>
+          <div class="r-row"><span class="k">Delivery Method</span><span class="v"><span data-delivery></span><small data-area></small></span></div>
+          <div class="r-row"><span class="k">Ordered On</span><span class="v"><span data-date></span><small data-time></small></span></div>
+          <div class="r-items">
+            <span class="k">Items (<span data-item-count></span>)</span>
+            <div data-items></div>
+            <button class="r-more" data-more></button>
+          </div>
+          <div class="r-total">
+            <span class="k"><b>Total Paid</b><small>Payment Method (<span data-payment></span>)</small></span>
+            <span class="v"><b data-total></b><small data-incl></small><small class="saved" data-saved></small></span>
+          </div>
+        </div>
+
+        <div class="r-app">
+          <div class="qr" id="receipt-qr" aria-label="Scan to download the Konga app"></div>
+          <div><b>Shop smarter with the Konga app.</b><span>Download the Konga app: everything you need, delivered to your door.</span></div>
+        </div>
+
+        <p class="r-legal">
+          © <span data-year>2026</span> Konga Online Shopping Ltd. All rights reserved. Prices are VAT-inclusive.<br />
+          Questions? help@konga.com • 0708 063 5700. Konga will never ask you to pay into a personal account.
+        </p>
+      </article>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <!-- QR codes and image export (CDN) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.13/dist/html-to-image.js"></script>
+  <script>
+    /* =========================================================
+       Sample order. In production, fill this from the order API.
+       ========================================================= */
+    const ORDER = {
+      id: 'R081698457',
+      firstName: 'Augusta',
+      customer: 'Augusta Nnadi',
+      delivery: 'Standard Delivery',
+      area: 'Gbagada, Lagos',             // area only, so a shared image never shows the full address
+      placedAt: '2026-10-06T17:48:00+01:00',
+      paymentMethod: 'KongaPay',
+      shipping: 3000,
+      discount: 23265,
+      items: [
+        { name: 'Starlink Mini - Portable Satellite Internet Kit', qty: 1, price: 400000, oldPrice: 430000, seller: 'Starlink Official Store', icon: '🛰️' },
+        { name: 'Logitech G102 Wired Gaming Mouse RGB', qty: 1, price: 7500, seller: 'Slot Systems', icon: '🖱️' },
+        { name: 'Oraimo Traveler 4 27000mAh Power Bank', qty: 2, price: 28900, oldPrice: 35000, seller: 'Konga Mall Partner', icon: '🔋' },
+      ],
+      appLink: 'https://www.konga.com/app', // smart link: opens the app or the app store
+    };
+    const VISIBLE_ITEMS = 2; // the rest collapse behind "+ N more items"
+
+    const naira = (n) => '₦' + Math.round(n).toLocaleString('en-NG');
+    const $ = (sel) => document.querySelector(sel);
+    const $$ = (sel) => document.querySelectorAll(sel);
+    const set = (sel, text) => $$(sel).forEach((el) => (el.textContent = text));
+
+    function toast(msg) {
+      const t = $('#toast');
+      t.textContent = msg;
+      t.style.display = 'block';
+      clearTimeout(toast.timer);
+      toast.timer = setTimeout(() => (t.style.display = 'none'), 2400);
+    }
+
+    /* ---------- Fill the page and the receipt ---------- */
+    function renderReceipt() {
+      const units = ORDER.items.reduce((n, i) => n + i.qty, 0);
+      const subtotal = ORDER.items.reduce((n, i) => n + i.price * i.qty, 0);
+      const total = subtotal + ORDER.shipping - ORDER.discount;
+      const savings = ORDER.discount + ORDER.items.reduce((n, i) => n + (i.oldPrice ? (i.oldPrice - i.price) * i.qty : 0), 0);
+      const placed = new Date(ORDER.placedAt);
+
+      set('[data-order-id]', ORDER.id);
+      set('[data-first-name]', ORDER.firstName);
+      set('[data-customer]', ORDER.customer);
+      set('[data-delivery]', ORDER.delivery);
+      set('[data-area]', ORDER.area);
+      set('[data-date]', placed.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Africa/Lagos' }));
+      set('[data-time]', placed.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', timeZone: 'Africa/Lagos' }));
+      set('[data-item-count]', units);
+      set('[data-payment]', ORDER.paymentMethod);
+      set('[data-total]', naira(total));
+      set('[data-incl]', ORDER.shipping ? `Incl. ${naira(ORDER.shipping)} shipping` : 'Free shipping');
+      set('[data-saved]', savings > 0 ? `You saved ${naira(savings)}` : '');
+      set('[data-year]', placed.getFullYear());
+
+      const list = $('[data-items]');
+      const more = $('[data-more]');
+      const draw = (showAll) => {
+        const shown = showAll ? ORDER.items : ORDER.items.slice(0, VISIBLE_ITEMS);
+        list.innerHTML = shown
+          .map(
+            (i) => `
+            <div class="r-item">
+              <span class="img">${i.icon}</span>
+              <span><span class="name">${i.name}</span><span class="meta" style="display:block">Qty ${i.qty} - Sold by ${i.seller}</span></span>
+              <span class="price">${naira(i.price * i.qty)}</span>
+            </div>`
+          )
+          .join('');
+        const hidden = ORDER.items.length - shown.length;
+        more.style.display = ORDER.items.length > VISIBLE_ITEMS ? 'block' : 'none';
+        more.textContent = hidden > 0 ? `+ ${hidden} more item${hidden > 1 ? 's' : ''}` : 'Show less';
+        more.onclick = () => draw(hidden > 0);
+      };
+      draw(false);
+    }
+
+    function renderQRs() {
+      if (!window.QRCode) return; // offline: QR boxes stay blank
+      const opts = (size) => ({ text: ORDER.appLink, width: size, height: size, colorDark: '#111111', colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.M });
+      new QRCode($('#receipt-qr'), opts(96));
+      new QRCode($('#footer-qr'), opts(128));
+    }
+
+    /* ---------- Modal ---------- */
+    const modal = $('#receipt-modal');
+    const openModal = () => { modal.classList.add('open'); document.body.style.overflow = 'hidden'; };
+    const closeModal = () => { modal.classList.remove('open'); document.body.style.overflow = ''; };
+    $$('[data-open-receipt]').forEach((b) => b.addEventListener('click', openModal));
+    $$('[data-close]').forEach((b) => b.addEventListener('click', closeModal));
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+    /* ---------- Download & share ---------- */
+    const fileBase = () => `Konga-Receipt-${ORDER.id}`;
+
+    async function receiptPng() {
+      if (!window.htmlToImage) throw new Error('image library not loaded');
+      return htmlToImage.toPng($('#receipt'), { pixelRatio: 2, cacheBust: true });
+    }
+
+    $$('[data-download-png]').forEach((b) =>
+      b.addEventListener('click', async () => {
+        try {
+          const a = document.createElement('a');
+          a.href = await receiptPng();
+          a.download = fileBase() + '.png';
+          a.click();
+          toast('Receipt saved to your downloads');
+        } catch {
+          toast('Could not create the image. Use Download PDF instead.');
+        }
+      })
+    );
+
+    $$('[data-download-pdf]').forEach((b) =>
+      b.addEventListener('click', () => {
+        const title = document.title;
+        document.title = fileBase(); // becomes the suggested PDF file name
+        window.print();
+        document.title = title;
+      })
+    );
+
+    $$('[data-share]').forEach((b) =>
+      b.addEventListener('click', async () => {
+        const text = "I just shopped on Konga 🛍️ Here's my receipt.";
+        try {
+          const blob = await (await fetch(await receiptPng())).blob();
+          const file = new File([blob], fileBase() + '.png', { type: 'image/png' });
+          if (navigator.canShare && navigator.canShare({ files: [file] })) {
+            await navigator.share({ files: [file], title: 'My Konga receipt', text });
+            return;
+          }
+        } catch (e) {
+          if (e && e.name === 'AbortError') return; // user closed the share sheet
+        }
+        window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
+      })
+    );
+
+    /* ---------- Cookie banner ---------- */
+    $$('[data-cookie]').forEach((b) => b.addEventListener('click', () => ($('#cookie').style.display = 'none')));
+
+    renderReceipt();
+    renderQRs();
+  </script>
+</body>
+</html>
