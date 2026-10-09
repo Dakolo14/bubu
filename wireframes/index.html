@@ -184,6 +184,28 @@ section.opt.on{display:block}
 .tag-row span{color:var(--muted);font-size:12px}
 .who{display:flex;align-items:center;gap:10px;padding:6px 0}
 
+/* ---------- Hybrid ---------- */
+.shell2{display:grid;grid-template-columns:76px minmax(0,1fr)}
+.rail-ic{border-right:1px solid var(--line);padding:18px 0;display:flex;flex-direction:column;align-items:center;gap:6px;position:relative}
+.rail-ic .it{position:relative;width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--ink2)}
+.rail-ic .it.on{background:var(--ink);color:#fff}
+.rail-ic .dot{position:absolute;top:4px;right:2px;background:var(--accent);color:#fff;font-size:9px;border-radius:999px;padding:0 5px;line-height:15px}
+.rail-ic .sep{width:28px;height:1px;background:var(--line);margin:6px 0}
+.flyout{position:absolute;left:84px;top:340px;width:190px;background:var(--paper);border:1.5px dashed var(--fill3);border-radius:14px;padding:12px;z-index:8;box-shadow:0 12px 30px -18px rgba(0,0,0,.4)}
+.flyout .fi{display:flex;align-items:center;gap:10px;padding:7px 8px;border-radius:8px;font-size:13px;color:var(--ink2)}
+.flyout .fi.on{background:var(--fill);color:var(--ink);font-weight:600}
+.flyout .side{display:block;border:0;padding:0}
+.cbreak{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:14px}
+.resp{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.rcol{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:14px;font-size:13px;color:var(--ink2)}
+.rcol b{display:block;color:var(--ink);margin:12px 0 4px}
+.rframe{height:120px;border:1px solid var(--line);border-radius:10px;display:flex;gap:6px;padding:6px;background:#f7f7f5}
+.rframe.phonex{width:70px;margin:0 auto;flex-direction:column;border-radius:14px}
+.rb{background:var(--fill2);border-radius:6px;flex:none}
+.rfeed{flex:1;border-radius:6px;background:repeating-linear-gradient(90deg,var(--fill) 0 calc(20% - 4px),transparent calc(20% - 4px) 20%)}
+.rfeed.c2x{background:repeating-linear-gradient(90deg,var(--fill) 0 calc(50% - 3px),transparent calc(50% - 3px) 50%)}
+.rtab{height:14px;background:var(--fill2);border-radius:4px;flex:none}
+@media (max-width:900px){.resp{grid-template-columns:1fr}}
 /* ---------- Components ---------- */
 .comp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
 .comp{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:14px}
@@ -233,7 +255,8 @@ table.cmp td:first-child{color:var(--muted);font-weight:500;width:150px}
 </div>
 
 <nav class="doc-tabs"><div class="in">
-  <button data-tab="a" class="on">Option A<small>Feed-first masonry</small></button>
+  <button data-tab="ac" class="on">★ A × C Hybrid<small>Chosen direction</small></button>
+  <button data-tab="a">Option A<small>Feed-first masonry</small></button>
   <button data-tab="b">Option B<small>Editorial showcase</small></button>
   <button data-tab="c">Option C<small>Community hub</small></button>
   <button data-tab="comp">Card &amp; motion specs<small>Shared components</small></button>
@@ -242,8 +265,126 @@ table.cmp td:first-child{color:var(--muted);font-weight:500;width:150px}
 
 <main class="doc">
 
+<!-- ================= HYBRID A × C ================= -->
+<section class="opt on" id="ac">
+  <div class="opt-intro">
+    <div>
+      <h2>Direction: A × C hybrid</h2>
+      <p>The feed width and simple header of A, plus the sense of belonging from C. The sidebar becomes a slim icon rail, so the feed gets its full width back. Interest rings replace the chip row, so there is one way to switch topics instead of two. C's right-rail community modules move into the feed as breaks (A's pattern) and come back as a right rail only on very wide screens.</p>
+    </div>
+    <div class="kv">
+      <b>From A</b><span>5-column feed, header search + Upload, community breaks in the feed</span>
+      <b>From C</b><span>Navigation and collections, interest rings, feed tabs, challenge, activity</span>
+      <b>Dropped</b><span>Category chip row (rings do that job), always-on right rail below 1536px</span>
+      <b>Primary action</b><span>Save · Upload</span>
+    </div>
+  </div>
+
+  <div class="scroller"><div class="browser">
+    <div class="chrome"><i></i><i></i><i></i><span class="url">yoursite.com/home</span></div>
+    <div class="shell2">
+      <aside class="rail-ic aw"><span class="pin" style="left:6px;top:6px">1</span>
+        <div class="logo" style="padding:0 6px;font-size:9px;margin-bottom:18px">LOGO</div>
+        <span class="it on"><i data-i="home" data-s="20"></i></span>
+        <span class="it"><i data-i="users" data-s="20"></i></span>
+        <span class="it"><i data-i="film" data-s="20"></i></span>
+        <span class="it"><i data-i="folder" data-s="20"></i></span>
+        <span class="it"><i data-i="briefcase" data-s="20"></i></span>
+        <span class="sep"></span>
+        <span class="it aw"><span class="pin" style="left:auto;right:-14px;top:-6px">8</span><i data-i="bell" data-s="20"></i><b class="dot">3</b></span>
+        <span class="it"><i data-i="chat" data-s="20"></i></span>
+        <span class="grow"></span>
+        <span class="it"><i data-i="settings" data-s="20"></i></span>
+        <span class="av lg" style="margin-top:6px"></span>
+        <div class="flyout"><div class="label" style="margin:0 0 8px">Hover / pin → expands</div>
+          <div class="fi on"><i data-i="home" data-s="14"></i>Home</div><div class="fi"><i data-i="users" data-s="14"></i>Following</div><div class="fi"><i data-i="film" data-s="14"></i>Motion</div><div class="fi"><i data-i="folder" data-s="14"></i>Collections</div>
+          <div class="label" style="margin:10px 0 6px">Your collections</div>
+          <div class="side"><div class="coll" style="padding:4px 0"><span class="ph"></span><span class="ln" style="width:70%"></span></div><div class="coll" style="padding:4px 0"><span class="ph"></span><span class="ln" style="width:55%"></span></div></div>
+        </div>
+      </aside>
+
+      <div class="page" style="padding-top:0">
+        <div class="topbar" style="margin:0 -24px">
+          <div class="search grow aw"><span class="pin">2</span><i data-i="search"></i><span class="grow">Search designs, motion, creators…</span><span class="scope">All <i data-i="down" data-s="12"></i></span><span class="icon bare"><i data-i="camera"></i></span></div>
+          <button class="btn primary"><i data-i="plus" data-s="14"></i>Upload</button>
+        </div>
+
+        <div class="row" style="margin-top:18px"><div style="font-size:13px;color:var(--muted)">Good evening, Adam · <b style="color:var(--ink)">12 new pieces</b> from people you follow</div></div>
+        <div class="aw"><span class="pin" style="top:14px;left:-14px">3</span>
+          <div class="interests" style="padding-top:14px">
+            <div class="interest"><div class="ring add"><i data-i="plus" data-s="20"></i></div>Add</div>
+            <div class="interest"><div class="ring new" style="border-color:var(--ink);box-shadow:0 0 0 2px var(--ink)"><div class="ph"></div></div><b>All</b></div>
+            <div class="interest"><div class="ring new"><div class="ph"></div></div>UI / UX</div>
+            <div class="interest"><div class="ring new"><div class="ph"></div></div>Branding</div>
+            <div class="interest"><div class="ring new"><div class="ph"></div></div>3D</div>
+            <div class="interest"><div class="ring"><div class="ph"></div></div>Motion</div>
+            <div class="interest"><div class="ring new"><div class="ph"></div></div>Illustration</div>
+            <div class="interest"><div class="ring"><div class="ph"></div></div>Typography</div>
+            <div class="interest"><div class="ring"><div class="ph"></div></div>Photography</div>
+            <div class="interest"><div class="ring"><div class="ph"></div></div>Product</div>
+            <div class="interest"><div class="ring"><div class="ph"></div></div>Architecture</div>
+            <div class="interest"><div class="ring"><div class="ph"></div></div>Fashion</div>
+            <div class="interest"><div class="ring"><div class="ph"></div></div>Packaging</div>
+          </div>
+        </div>
+
+        <div class="subbar aw" style="padding:10px 0 14px"><span class="pin" style="left:-14px;top:8px">4</span>
+          <div class="tabs-line" style="margin:0;border:0;flex:1"><a class="on">For you</a><a>Following</a><a>Latest</a><a>Popular</a></div>
+          <div class="seg"><span class="on">All</span><span>Images</span><span><i data-i="play" data-s="10"></i>Motion</span></div>
+          <span class="icon"><i data-i="filter"></i></span>
+        </div>
+
+        <div class="masonry c5" data-gen="h1"></div>
+
+        <div class="strip aw" style="padding:16px"><span class="pin">7</span>
+          <div class="row" style="margin-bottom:12px"><b>From the community</b><span style="font-size:12px;color:var(--muted)">Rotates: challenge · rising creators · trending · collections</span><span class="grow"></span><a class="link">Hide for today</a></div>
+          <div class="cbreak">
+            <div class="box">
+              <h4>Weekly challenge <span class="label">#42 · 2d 14h left</span></h4>
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px"><div class="ph" style="height:78px;border-radius:8px"></div><div class="ph motion" style="height:78px;border-radius:8px"></div><div class="ph" style="height:78px;border-radius:8px"></div></div>
+              <div class="row" style="margin-top:10px"><b>"Retro futurism"</b><span style="font-size:12px;color:var(--muted)">432 entries</span><span class="grow"></span><button class="btn primary sm">Join</button></div>
+            </div>
+            <div class="box">
+              <h4>Rising creators <a class="link" style="font-weight:400">See all</a></h4>
+              <div class="who"><span class="av lg"></span><div class="grow"><span class="ln dk" style="width:70%;margin-bottom:6px"></span><span class="ln" style="width:45%"></span></div><button class="btn sm">Follow</button></div>
+              <div class="who"><span class="av lg"></span><div class="grow"><span class="ln dk" style="width:60%;margin-bottom:6px"></span><span class="ln" style="width:50%"></span></div><button class="btn sm">Follow</button></div>
+            </div>
+            <div class="box">
+              <h4>Trending tags <i data-i="chev"></i></h4>
+              <div class="tag-row">#brutalist-web <span>12.4k</span></div>
+              <div class="tag-row">#kinetic-type <span>8.1k</span></div>
+              <div class="tag-row">#3d-icons <span>6.9k</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="masonry c5" data-gen="h2"></div>
+        <div class="skel"><div class="ph" style="height:110px"></div><div class="ph" style="height:150px"></div><div class="ph" style="height:90px"></div><div class="ph" style="height:140px"></div><div class="ph" style="height:110px"></div></div>
+      </div>
+    </div>
+  </div></div>
+
+  <div class="notes">
+    <div class="note"><span class="pin">1</span><b>Icon rail, not a full sidebar</b>72px wide, so the feed keeps A's 5 columns. Hovering opens a flyout with labels and your collections (sketched on the right of the rail). Users can pin it open, which brings back C's full sidebar.</div>
+    <div class="note"><span class="pin">2</span><b>A's header</b>Wide search with scope and search by image, plus Upload as the only filled button. Notifications and messages move to the rail to keep the header quiet.</div>
+    <div class="note"><span class="pin">3</span><b>Rings replace chips</b>C's interest rings are now the only topic switcher. A dark ring means new work since your last visit, and "All" is selected by default. Users have one row to learn instead of two.</div>
+    <div class="note"><span class="pin">4</span><b>Sticky feed bar</b>C's tabs (Following is the community tab) and A's All / Images / Motion toggle on one line. This bar sticks on scroll and the rings scroll away.</div>
+    <div class="note"><span class="pin">5</span><b>Motion card</b>Plays muted and loops while in view, like a GIF. Click to open the full player with sound. Behaviour is in the specs tab.</div>
+    <div class="note"><span class="pin">6</span><b>Hover state</b>Save first, then like, share and the creator with a quick follow.</div>
+    <div class="note"><span class="pin">7</span><b>Community break</b>C's right rail, moved into the feed (A's pattern) about every 20 cards. Modules rotate so it never repeats. "Hide for today" respects users who only want to browse.</div>
+    <div class="note"><span class="pin">8</span><b>Activity lives in the rail</b>C's "Your activity" (saves, follows, milestones) opens as a drawer from the bell, so the reward loop is one click away without taking a column.</div>
+  </div>
+
+  <div class="label" style="margin:32px 0 10px">How it responds</div>
+  <div class="resp">
+    <div class="rcol"><div class="rframe"><div class="rb" style="width:46px"></div><div class="rfeed c5x"></div><div class="rb" style="width:70px"></div></div><b>≥ 1536px · Wide</b><span>Icon rail (or pinned open) + 5-column feed + C's community rail returns on the right. Community breaks are switched off.</span></div>
+    <div class="rcol"><div class="rframe"><div class="rb" style="width:18px"></div><div class="rfeed c5x"></div></div><b>1024 – 1535px · Default (shown above)</b><span>Icon rail + 4–5 columns. Community comes through breaks in the feed and the activity drawer.</span></div>
+    <div class="rcol"><div class="rframe phonex"><div class="rfeed c2x"></div><div class="rtab"></div></div><b>&lt; 768px · Mobile</b><span>2 columns, rings stay at the top, and the rail becomes a bottom tab bar with Upload in the centre (see the Compare tab).</span></div>
+  </div>
+</section>
+
 <!-- ================= OPTION A ================= -->
-<section class="opt on" id="a">
+<section class="opt" id="a">
   <div class="opt-intro">
     <div>
       <h2>Option A: Feed-first masonry</h2>
@@ -581,12 +722,12 @@ table.cmp td:first-child{color:var(--muted);font-weight:500;width:150px}
 
   <div class="rec">
     <div class="rec-card">
-      <h3>Recommendation: B for visitors, C for members, A on smaller screens</h3>
+      <h3>Chosen: A × C hybrid for members (B kept as the logged-out landing)</h3>
       <p>Show the homepage based on who is looking at it:</p>
       <ol>
         <li><b>Logged-out → Option B.</b> Its job is to explain the product, prove the quality of work on it, and turn visitors into members. It also gives search engines rich, crawlable sections.</li>
-        <li><b>Logged-in → Option C.</b> Your collections, the challenge and your activity keep the community feel the brief asks for, while the feed stays the main event.</li>
-        <li><b>Below 1280px, C becomes A.</b> The right rail drops into the feed as full-width "community break" modules and the sidebar shrinks to icons. This is one responsive system, not two products.</li>
+        <li><b>Logged-in → A × C hybrid.</b> The full-width feed from A with the navigation, interest rings, challenge and activity from C. See the first tab.</li>
+        <li><b>One responsive system.</b> The community rail appears only at 1536px and up. Below that it moves into the feed as breaks, and on mobile the rail becomes a bottom tab bar.</li>
         <li><b>Shared card and motion spec everywhere.</b> Motion is the feature that sets this apart, so it behaves the same on every surface.</li>
       </ol>
       <p style="margin-top:14px">Next steps: map the user flows (onboarding interest picker, upload, profile and portfolio), then a mid-fidelity pass on the chosen layout.</p>
@@ -636,6 +777,7 @@ const P = {
   sound:'<path d="M11 5L6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 010 7M18.5 5.5a9 9 0 010 13"/>',
   mute:'<path d="M11 5L6 9H3v6h3l5 4z"/><path d="M22 9l-6 6M16 9l6 6"/>',
   more:'<circle cx="5" cy="12" r="1.3" fill="currentColor"/><circle cx="12" cy="12" r="1.3" fill="currentColor"/><circle cx="19" cy="12" r="1.3" fill="currentColor"/>',
+  settings:'<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/>',
   layers:'<path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/>'
 };
 const ic=(n,s=16)=>`<svg viewBox="0 0 24 24" width="${s}" height="${s}" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${P[n]}</svg>`;
@@ -661,6 +803,8 @@ const gen = {
   trend:()=>Array.from({length:8},(_,k)=>`<div><div class="ph${k===2||k===5?' motion':''}">${k===2||k===5?motionBits():''}${k===0||k===6?`<span class="count">${ic('layers',11)}+${k?7:12}</span>`:''}</div><div style="margin-top:10px"><span class="ln dk" style="width:${W[k]+20}%;margin-bottom:8px"></span></div><div class="meta" style="margin-top:0"><span class="av sm"></span><span class="ln" style="width:35%"></span><span class="stat">${ic('heart',11)}${S[k]}</span></div></div>`).join(''),
   creators:()=>Array.from({length:4},(_,k)=>`<div class="creator"><div class="covers"><div class="ph${k===1?' motion':''}"></div><div class="ph"></div><div class="ph"></div></div><div class="body"><span class="av xl"></span><span class="ln dk t" style="width:55%;margin:0 auto 8px"></span><span class="ln" style="width:40%;margin:0 auto"></span>${k!==2?'<span class="hire"><i></i>Available for hire</span>':'<span class="hire" style="visibility:hidden"><i></i>-</span>'}<div class="row" style="justify-content:center;gap:8px"><button class="btn sm primary">Follow</button><button class="btn sm">View portfolio</button></div></div></div>`).join(''),
   colls:()=>Array.from({length:3},(_,k)=>`<div><div class="mosaic"><div class="ph"></div><div class="ph${k===1?' motion':''}"></div><div class="ph"></div></div><div class="row" style="margin-top:10px"><div class="grow"><span class="ln dk" style="width:${[50,62,44][k]}%;margin-bottom:6px"></span><span class="ln" style="width:35%"></span></div><span class="icon" style="width:30px;height:30px">${ic('bookmark',13)}</span></div></div>`).join(''),
+  h1:()=>feed([250,190,320,220,270,200,330,240,180,290],{motion:[2,7],hover:1,pins:{1:pin(6,'left:auto;right:-9px'),2:pin(5)}}),
+  h2:()=>feed([210,280,190,250,300,200,240,270,190,230],{motion:[3,8],off:3}),
   c1:()=>feed([240,300,200,280,220,330,260,190,310,230,270,210],{motion:[1,6,9]}),
   m1:()=>feed([170,120,140,190,110,160,150,130],{motion:[1,4],meta:false}),
   imgstates:()=>{
@@ -690,12 +834,12 @@ document.querySelectorAll('[data-i]').forEach(el=>{el.outerHTML=ic(el.dataset.i,
 
 const tabs=document.querySelectorAll('.doc-tabs button');
 function show(id){
-  if(!document.getElementById(id)) id='a';
+  if(!document.getElementById(id)) id='ac';
   tabs.forEach(b=>b.classList.toggle('on',b.dataset.tab===id));
   document.querySelectorAll('section.opt').forEach(s=>s.classList.toggle('on',s.id===id));
 }
 tabs.forEach(b=>b.addEventListener('click',()=>{history.replaceState(null,'','#'+b.dataset.tab);show(b.dataset.tab);window.scrollTo({top:0})}));
-show(location.hash.slice(1)||'a');
+show(location.hash.slice(1)||'ac');
 </script>
 </body>
 </html>
