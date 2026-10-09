@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #f2f2f2;
+  color: #2e2e2e;
+  -webkit-font-smoothing: antialiased;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 0;
+  }
+  html,
+  body {
+    min-height: 0 !important;
+    background: #ed017f !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  body > a,
+  header,
+  footer,
+  .no-print {
+    display: none !important;
+  }
+  body * {
+    visibility: hidden;
+  }
+  main,
+  main > div {
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: none !important;
+    min-height: 0 !important;
+  }
+  #receipt,
+  #receipt * {
+    visibility: visible;
+  }
+  /* Scale the receipt so a typical order fits on one A4 page */
+  #receipt {
+    max-width: 720px;
+    margin: 0 auto !important;
+    zoom: 0.66;
+  }
+  #receipt li,
+  #receipt .flex {
+    break-inside: avoid;
+  }
+}

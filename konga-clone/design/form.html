@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Request a Product | Konga</title>
+  <meta name="description" content="Request a product you can't find on Konga (design prototype)." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" crossorigin="anonymous" />
+  <style>
+    /* ===================== Brand tokens ===================== */
+    :root {
+      --konga: #ed017f;          /* Konga magenta (brand) */
+      --konga-dark: #c70069;
+      --konga-tint: #fff5fa;     /* receipt card background */
+      --konga-tint-line: #f9c6e0;
+      --orange: #f7941d;         /* search button / logo smiley */
+      --green: #22c55e;          /* success check */
+      --green-dark: #1f9d55;     /* "You saved" */
+      --ink: #111827;
+      --ink-2: #1f2937;
+      --body: #4b5563;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --page: #f3f4f6;
+      --slate: #4b5563;
+      --footer-top: #2e2e2e;
+      --footer: #111111;
+      --radius: 6px;
+      --shadow: 0 10px 30px rgba(17, 24, 39, 0.18);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: 'Poppins', 'Helvetica Neue', Arial, sans-serif;
+      color: var(--ink);
+      background: var(--page);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
+    svg { display: block; }
+    .container { width: 100%; max-width: 1312px; margin: 0 auto; padding: 0 16px; }
+
+    /* ===================== Top promo banner ===================== */
+    .promo {
+      height: 88px; background: #141a3a; display: flex; align-items: center; justify-content: center;
+      color: #fff; font-weight: 800; font-size: 32px; letter-spacing: -0.02em; text-transform: uppercase; text-align: center;
+    }
+    .promo span { color: #f4c35a; }
+
+    /* ===================== Header ===================== */
+    .header { position: sticky; top: 0; z-index: 40; }
+    .bar { background: var(--konga); color: #fff; }
+    .bar .container { height: 58px; display: flex; align-items: center; gap: 20px; }
+    .logo { display: inline-flex; align-items: center; font-weight: 800; font-size: 28px; letter-spacing: -0.04em; line-height: 1; }
+    .logo .dot { width: 0.62em; height: 0.62em; border-radius: 50%; margin-right: 1px; transform: translateY(-0.06em);
+      background: radial-gradient(circle at 35% 35%, #ffd25a, var(--orange) 70%); }
+    .bar-link { display: flex; align-items: center; gap: 6px; font-size: 13px; white-space: nowrap; }
+    .bar-link:hover { opacity: 0.85; }
+    .search { flex: 1; display: flex; height: 40px; border-radius: 4px; overflow: hidden; background: #fff; }
+    .search input { flex: 1; min-width: 0; border: 0; outline: 0; padding: 0 12px; font: inherit; font-size: 13px; color: var(--ink); }
+    .search button { width: 54px; background: var(--orange); color: #fff; display: flex; align-items: center; justify-content: center; }
+    .cart { position: relative; }
+    .cart .badge { position: absolute; top: -8px; right: -6px; min-width: 18px; height: 18px; padding: 0 4px; border-radius: 9px;
+      background: #22a447; color: #fff; font-size: 11px; font-weight: 600; display: flex; align-items: center; justify-content: center; }
+
+    .cats { background: #fff; border-bottom: 1px solid var(--line); }
+    .cats .container { height: 50px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .cats a { font-size: 13px; font-weight: 500; color: #333; white-space: nowrap; }
+    .cats a:hover { color: var(--konga); }
+    .all-cats { display: flex; align-items: center; gap: 8px; background: #f2f2f2; padding: 6px 12px; border-radius: 6px; }
+
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; border-radius: var(--radius);
+      font-weight: 500; transition: background 0.15s, color 0.15s; }
+    .btn-sm { padding: 8px 12px; font-size: 13px; }
+    .btn-lg { padding: 12px 24px; font-size: 16px; }
+    .btn-primary { background: var(--konga); color: #fff; }
+    .btn-primary:hover { background: var(--konga-dark); }
+    .btn-outline { border: 1px solid var(--konga); color: var(--konga); background: #fff; }
+    .btn-outline:hover { background: #fde6f2; }
+    .btn-ghost { border: 1px solid #d1d5db; color: var(--ink); background: #fff; }
+    .btn-ghost:hover { background: #f9fafb; }
+
+
+    /* ===================== Footer ===================== */
+    .support { background: var(--footer-top); color: #fff; }
+    .support .container { display: grid; grid-template-columns: repeat(3, 1fr) 1.2fr; gap: 24px; align-items: center; padding-top: 24px; padding-bottom: 24px; }
+    .support-item { display: flex; align-items: center; gap: 10px; }
+    .support-item .ic { width: 40px; height: 40px; border-radius: 50%; background: #fff; color: #2e2e2e; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .support-item small { display: block; font-size: 14px; font-weight: 500; text-transform: uppercase; }
+    .support-item span { font-size: 14px; color: #d1d5db; }
+    .support .container > * { min-width: 0; }
+    .newsletter small { display: block; font-size: 14px; font-weight: 500; margin-bottom: 6px; }
+    .newsletter form { display: flex; border-radius: 4px; overflow: hidden; }
+    .newsletter input { flex: 1; min-width: 0; border: 0; padding: 10px 12px; font: inherit; font-size: 14px; outline: 0; }
+    .newsletter button { background: var(--konga); color: #fff; padding: 0 14px; font-weight: 500; }
+
+    .footer { background: var(--footer); color: #d1d5db; }
+    .footer .container { display: grid; grid-template-columns: repeat(4, 1fr) 1.3fr; gap: 24px; padding-top: 48px; padding-bottom: 48px; }
+    .footer h4 { color: #fff; font-size: 14px; font-weight: 500; text-transform: uppercase; margin-bottom: 14px; }
+    .footer ul { list-style: none; display: grid; gap: 10px; font-size: 14px; }
+    .footer a:hover { color: #fff; }
+    .app-box { display: flex; gap: 10px; align-items: center; background: #fff; color: var(--ink); border-radius: 6px; padding: 8px; width: fit-content; }
+    .app-box b { display: block; font-size: 12px; font-weight: 600; }
+    .app-box small { font-size: 9px; color: var(--muted); }
+    #footer-qr img, #footer-qr canvas { width: 64px !important; height: 64px !important; }
+    .socials { display: flex; gap: 10px; margin-top: 10px; }
+    .socials a { width: 36px; height: 36px; border-radius: 50%; background: #1f2937; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 13px; font-weight: 700; }
+    .copyright { border-top: 1px solid #222; text-align: center; padding: 18px; font-size: 12px; color: #9ca3af; }
+
+    /* ===================== Cookie banner ===================== */
+    .cookie { position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; background: #fff; box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.12); }
+    .cookie .container { display: flex; align-items: center; gap: 24px; padding-top: 20px; padding-bottom: 20px; max-width: 1240px; }
+    .cookie h5 { font-size: 17px; font-weight: 600; }
+    .cookie p { margin-top: 4px; font-size: 14px; color: var(--body); }
+    .cookie p a { color: var(--konga); text-decoration: underline; }
+    .cookie .btns { display: flex; gap: 10px; flex-shrink: 0; }
+
+    /* ===================== Floating widgets ===================== */
+    .feedback { position: fixed; right: 0; top: 50%; transform: translateY(-50%); z-index: 30; background: var(--konga); color: #fff;
+      writing-mode: vertical-rl; padding: 12px 6px; border-radius: 6px 0 0 6px; font-size: 12px; font-weight: 600; }
+    .chat { position: fixed; right: 24px; bottom: 120px; z-index: 30; width: 60px; height: 60px; border-radius: 50%; background: #f0396e;
+      color: #fff; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow); }
+
+
+    /* ===================== Request a Product (Mikano test-drive layout) ===================== */
+    .page-head { background: #fff; }
+    .page-head .container { padding-top: 24px; padding-bottom: 28px; }
+    .crumbs { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--body); }
+    .crumbs a:hover { color: var(--konga); }
+    .crumbs .sep { color: #9ca3af; }
+    .crumbs b { color: var(--konga); font-weight: 400; }
+    .page-head h1 { margin-top: 18px; font-size: 28px; font-weight: 600; color: var(--ink); }
+    main { padding: 24px 0 96px; }
+    .card { background: #fff; border-radius: 4px; padding: 28px 24px 32px; }
+    .card h2 { font-size: 20px; font-weight: 600; color: var(--ink); }
+    .card .sub { margin-top: 4px; font-size: 15px; color: var(--body); }
+    .field { margin-top: 22px; }
+    .field label { display: block; margin-bottom: 10px; font-size: 15px; font-weight: 500; color: var(--ink); }
+    .field label small { font-size: 13px; font-weight: 400; color: var(--muted); }
+    .input, .select { width: 100%; height: 48px; padding: 0 14px; border: 1px solid #d1d5db; border-radius: 6px; background: #fff;
+      font: inherit; font-size: 15px; color: var(--ink); outline: 0; transition: border-color 0.15s; }
+    .select { appearance: none; -webkit-appearance: none; padding-right: 40px;
+      background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 14px center; }
+    .select:invalid { color: #9ca3af; }
+    .select option { color: var(--ink); }
+    .input::placeholder { color: #9ca3af; }
+    .input:focus, .select:focus { border-color: var(--konga); }
+    .field.invalid .input, .field.invalid .select { border-color: #dc2626; }
+    .error-msg { display: none; margin-top: 6px; font-size: 13px; color: #dc2626; }
+    .field.invalid .error-msg { display: block; }
+    .check-row { margin-top: 22px; display: flex; align-items: center; gap: 10px; font-size: 15px; color: var(--ink); cursor: pointer; }
+    .check-row input { width: 18px; height: 18px; accent-color: var(--konga); }
+    .submit { margin-top: 28px; width: 100%; height: 52px; border-radius: 6px; background: var(--konga); color: #fff; font-size: 17px; font-weight: 500; }
+    .submit:hover { background: var(--konga-dark); }
+
+    /* After submitting */
+    .done { display: none; text-align: center; padding: 24px 0 8px; }
+    .card.submitted form { display: none; }
+    .card.submitted .done { display: block; }
+    .check { width: 50px; height: 50px; margin: 0 auto; border: 3px solid var(--green); border-radius: 50%; color: var(--green);
+      display: flex; align-items: center; justify-content: center; }
+    .done h2 { margin-top: 20px; font-size: 22px; }
+    .done .sub strong { color: var(--ink); font-weight: 600; }
+    .next { max-width: 448px; margin: 24px auto 0; border: 1px solid var(--line); border-radius: 6px; padding: 20px 24px; text-align: left; }
+    .next h3 { font-size: 14px; font-weight: 600; color: var(--ink-2); }
+    .next ul { list-style: none; margin-top: 8px; display: grid; gap: 8px; }
+    .next li { display: flex; gap: 10px; font-size: 14px; line-height: 1.6; color: var(--body); }
+    .next li::before { content: ''; width: 5px; height: 5px; margin-top: 9px; border-radius: 50%; background: #9ca3af; flex-shrink: 0; }
+    .actions { max-width: 448px; margin: 28px auto 0; display: grid; grid-template-columns: auto 1fr; gap: 8px; }
+
+
+    /* ===================== Responsive ===================== */
+    @media (max-width: 1100px) {
+      .bar-link.hide-md, .cats a:not(.all-cats) { display: none; }
+      .footer .container { grid-template-columns: repeat(2, 1fr); }
+      .support .container { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .promo { height: auto; padding: 12px 16px; font-size: 16px; }
+      .bar .container { gap: 12px; }
+      .bar .search-wrap { display: none; }
+      .bar-link.hide-sm { display: none; }
+      .page-head h1 { font-size: 22px; }
+      main { padding: 12px 0 160px; }
+      .card { padding: 22px 16px 26px; }
+      .actions { grid-template-columns: 1fr; }
+      .support .container, .footer .container { grid-template-columns: 1fr; }
+      .cookie .container { flex-direction: column; align-items: stretch; }
+    }
+
+  </style>
+</head>
+<body>
+  <!-- ============ Top promo banner ============ -->
+  <div class="promo"><p><span>Konga Freedom Sales.</span>&nbsp;Up to 66% off everything.</p></div>
+
+  <!-- ============ Header ============ -->
+  <header class="header">
+    <div class="bar">
+      <div class="container">
+        <a href="#" class="logo" aria-label="Konga home"><i class="dot"></i>konga</a>
+        <a href="#" class="bar-link hide-md">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8Z"/><circle cx="7" cy="7" r="1.5"/></svg>
+          Sell on Konga
+        </a>
+        <a href="#" class="bar-link hide-md">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9 4.5 4h15L21 9M3 9v11h18V9M3 9h18M9 20v-6h6v6"/></svg>
+          Konga Outlets
+        </a>
+        <form class="search search-wrap" role="search" onsubmit="return false">
+          <input placeholder="Search for products, brands and categories..." aria-label="Search" />
+          <button aria-label="Search">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          </button>
+        </form>
+        <a href="#" class="bar-link hide-md">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM20 20h1M17 20h1M20 17h1"/></svg>
+          Download App ⌄
+        </a>
+        <a href="#" class="bar-link hide-sm">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6V14M12 17h.01"/></svg>
+          Help ⌄
+        </a>
+        <a href="#" class="bar-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+          <span class="hide-sm">Login/Sign Up ⌄</span>
+        </a>
+        <a href="#" class="cart" aria-label="Cart">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.7 12.4a1.5 1.5 0 0 0 1.5 1.1h8.6a1.5 1.5 0 0 0 1.5-1.2L21 7H6"/></svg>
+          <span class="badge">0</span>
+        </a>
+      </div>
+    </div>
+    <nav class="cats">
+      <div class="container">
+        <a href="#" class="all-cats">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+          All Categories
+        </a>
+        <a href="#">Computers and Accessories</a>
+        <a href="#">Phones and Tablets</a>
+        <a href="#">Electronics</a>
+        <a href="#">Konga Fashion</a>
+        <a href="#">Home and Kitchen</a>
+        <a href="#">Baby, Kids and Toys</a>
+        <a href="#">Beauty, Health &amp; Personal Care</a>
+      </div>
+    </nav>
+  </header>
+
+
+  <!-- ============ Page title ============ -->
+  <section class="page-head">
+    <div class="container">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="#">Home</a><span class="sep">›</span><b>Request a Product</b></nav>
+      <h1>Request a Product</h1>
+    </div>
+  </section>
+
+  <!-- ============ Form ============ -->
+  <main>
+    <div class="container">
+      <section class="card" id="card">
+        <form id="request-form" novalidate>
+          <h2>Can't find what you're looking for?</h2>
+          <p class="sub">Tell us what you need and we'll let you know as soon as it's available on Konga.</p>
+
+          <div class="field" data-field="product">
+            <label for="product">What product are you looking for?</label>
+            <input class="input" id="product" name="product" placeholder="e.g. PlayStation 5 Pro" maxlength="120" required />
+            <p class="error-msg">Enter the product you're looking for.</p>
+          </div>
+
+          <div class="field" data-field="category">
+            <label for="category">Category</label>
+            <select class="select" id="category" name="category" required>
+              <option value="" disabled selected hidden>Select a category</option>
+            </select>
+            <p class="error-msg">Select a category.</p>
+          </div>
+
+          <div class="field">
+            <label for="details">Brand, Model or Specs <small>(optional)</small></label>
+            <input class="input" id="details" name="details" placeholder="e.g. Sony, 2TB, White" maxlength="300" />
+          </div>
+
+          <div class="field" data-field="budget">
+            <label for="budget">Budget</label>
+            <select class="select" id="budget" name="budget" required>
+              <option value="" disabled selected hidden>Select your budget</option>
+              <option>Under ₦50,000</option>
+              <option>₦50,000 – ₦200,000</option>
+              <option>₦200,000 – ₦500,000</option>
+              <option>Above ₦500,000</option>
+              <option>Not sure</option>
+            </select>
+            <p class="error-msg">Select your budget.</p>
+          </div>
+
+          <div class="field" data-field="timing">
+            <label for="timing">When do you need it?</label>
+            <select class="select" id="timing" name="timing" required>
+              <option value="" disabled selected hidden>Select a timeframe</option>
+              <option>This week</option>
+              <option>This month</option>
+              <option>No rush</option>
+            </select>
+            <p class="error-msg">Select when you need it.</p>
+          </div>
+
+          <div class="field" data-field="state">
+            <label for="state">Delivery State</label>
+            <select class="select" id="state" name="state" required>
+              <option value="" disabled hidden>Select a state</option>
+            </select>
+            <p class="error-msg">Select a state.</p>
+          </div>
+
+          <div class="field" data-field="phone">
+            <label for="phone">Phone Number</label>
+            <input class="input" id="phone" name="phone" type="tel" placeholder="Enter Phone Number" />
+            <p class="error-msg">Enter a valid phone number.</p>
+          </div>
+
+          <label class="check-row"><input type="checkbox" name="seller" /> I sell this product</label>
+
+          <button type="submit" class="submit">Submit Request</button>
+        </form>
+
+        <div class="done" aria-live="polite">
+          <div class="check" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 12 5 5 9-10"/></svg>
+          </div>
+          <h2>Request Received!</h2>
+          <p class="sub">Your request ID is <strong id="req-id"></strong></p>
+          <div class="next">
+            <h3>What happens next?</h3>
+            <ul>
+              <li>Our team and sellers will start looking for your product.</li>
+              <li>We'll notify you as soon as it's available.</li>
+              <li>Track your request anytime from your account.</li>
+            </ul>
+          </div>
+          <div class="actions">
+            <a href="#" class="btn btn-lg btn-ghost">Track My Requests</a>
+            <a href="#" class="btn btn-lg btn-primary">Continue Shopping</a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+
+  <!-- ============ Footer ============ -->
+  <section class="support">
+    <div class="container">
+      <div class="support-item"><span class="ic">✉</span><div><small>Email Support</small><span>help@konga.com</span></div></div>
+      <div class="support-item"><span class="ic">☎</span><div><small>Phone Support</small><span>07080635700, 02018883435</span></div></div>
+      <div class="support-item"><span class="ic">💬</span><div><small>WhatsApp</small><span>09070038400</span></div></div>
+      <div class="newsletter">
+        <small>Get Latest Deals</small>
+        <form onsubmit="return false"><input type="email" placeholder="Email address" aria-label="Email address" /><button>Subscribe</button></form>
+      </div>
+    </div>
+  </section>
+  <footer class="footer">
+    <div class="container">
+      <div><h4>About Konga</h4><ul><li><a href="#">Contact Us</a></li><li><a href="#">About Us</a></li><li><a href="#">Careers</a></li><li><a href="#">Become an Affiliate</a></li><li><a href="#">Our Blog</a></li><li><a href="#">Terms of Use</a></li></ul></div>
+      <div><h4>Payment</h4><ul><li><a href="#">KongaPay</a></li><li><a href="#">Wallet</a></li><li><a href="#">Verve</a></li><li><a href="#">Mastercard</a></li><li><a href="#">Visa</a></li></ul></div>
+      <div><h4>Buying on Konga</h4><ul><li><a href="#">Buyer Safety Centre</a></li><li><a href="#">FAQs</a></li><li><a href="#">Delivery</a></li><li><a href="#">Konga Return Policy</a></li><li><a href="#">Bulk Purchase</a></li></ul></div>
+      <div><h4>More Info</h4><ul><li><a href="#">Site Map</a></li><li><a href="#">Track My Order</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Authentic Items Policy</a></li></ul></div>
+      <div>
+        <h4>Download &amp; Shop on the Go</h4>
+        <div class="app-box"><div id="footer-qr" style="width:64px;height:64px"></div><div><b>Download the Konga App</b><small>Scan the QR code to download</small></div></div>
+        <h4 style="margin-top:22px">Connect With Us</h4>
+        <div class="socials"><a href="#" aria-label="Facebook">f</a><a href="#" aria-label="LinkedIn">in</a><a href="#" aria-label="X">X</a><a href="#" aria-label="Instagram">◎</a><a href="#" aria-label="YouTube">▶</a></div>
+      </div>
+    </div>
+    <p class="copyright">Copyright © <span data-year>2026</span> Konga.com. All rights reserved.</p>
+  </footer>
+
+  <!-- ============ Cookie banner ============ -->
+  <div class="cookie" id="cookie">
+    <div class="container">
+      <div style="flex:1">
+        <h5>Allow Us Serve You Better</h5>
+        <p>We use cookies to enhance your browsing experience, analyze site traffic, and personalize content. By clicking "Accept All", you consent to our use of cookies. <a href="#">Learn more</a></p>
+      </div>
+      <div class="btns">
+        <button class="btn btn-sm btn-outline" data-cookie>Only Necessary</button>
+        <button class="btn btn-sm btn-primary" data-cookie>Accept All</button>
+      </div>
+    </div>
+  </div>
+
+  <a href="#" class="feedback">Feedback</a>
+  <button class="chat" aria-label="Chat with us">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12Z"/><path d="M8 12h.01M12 12h.01M16 12h.01"/></svg>
+  </button>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script>
+    /* Sample account data. In production these come from the signed-in account. */
+    const ACCOUNT = { phone: '0703 248 4145', defaultState: 'Lagos' };
+
+    // Category list, with keywords used to pre-select a category from the product name
+    const CATEGORIES = [
+      ['Computers and Accessories', ['laptop', 'macbook', 'computer', 'desktop', 'monitor', 'keyboard', 'mouse', 'printer', 'ssd', 'router']],
+      ['Phones and Tablets', ['phone', 'iphone', 'samsung', 'galaxy', 'tecno', 'infinix', 'itel', 'redmi', 'pixel', 'ipad', 'tablet', 'charger', 'earbuds', 'airpods']],
+      ['Electronics', ['tv', 'television', 'soundbar', 'speaker', 'generator', 'inverter', 'solar', 'battery', 'starlink', 'camera', 'cctv']],
+      ['Konga Fashion', ['shoe', 'sneaker', 'dress', 'shirt', 'bag', 'watch', 'ankara', 'jeans', 'perfume']],
+      ['Home and Kitchen', ['fridge', 'refrigerator', 'freezer', 'blender', 'air fryer', 'microwave', 'air conditioner', 'washing machine', 'cooker', 'mattress', 'fan', 'iron']],
+      ['Baby, Kids and Toys', ['baby', 'diaper', 'stroller', 'car seat', 'toy', 'kids']],
+      ['Beauty, Health & Personal Care', ['cream', 'lotion', 'makeup', 'hair', 'vitamin', 'supplement', 'toothpaste', 'serum']],
+      ['Gaming', ['playstation', 'ps5', 'xbox', 'nintendo', 'controller', 'gaming']],
+      ['Groceries', ['rice', 'oil', 'milk', 'noodles', 'drink', 'water']],
+      ['Other', []],
+    ];
+    const STATES = ['Abia', 'Adamawa', 'Akwa Ibom', 'Anambra', 'Bauchi', 'Bayelsa', 'Benue', 'Borno', 'Cross River', 'Delta', 'Ebonyi', 'Edo',
+      'Ekiti', 'Enugu', 'FCT (Abuja)', 'Gombe', 'Imo', 'Jigawa', 'Kaduna', 'Kano', 'Katsina', 'Kebbi', 'Kogi', 'Kwara', 'Lagos', 'Nasarawa',
+      'Niger', 'Ogun', 'Ondo', 'Osun', 'Oyo', 'Plateau', 'Rivers', 'Sokoto', 'Taraba', 'Yobe', 'Zamfara'];
+
+    const $ = (s) => document.querySelector(s);
+    const form = $('#request-form');
+    const product = $('#product'), category = $('#category'), state = $('#state'), phone = $('#phone');
+
+    category.insertAdjacentHTML('beforeend', CATEGORIES.map(([n]) => `<option>${n}</option>`).join(''));
+    state.insertAdjacentHTML('beforeend', STATES.map((s) => `<option>${s}</option>`).join(''));
+
+    // Prefill from the search (?q=) and the account
+    product.value = new URLSearchParams(location.search).get('q') || '';
+    state.value = ACCOUNT.defaultState;
+    phone.value = ACCOUNT.phone;
+
+    // Pre-select a category from the product name until the shopper picks one
+    let categoryTouched = false;
+    function guessCategory() {
+      if (categoryTouched) return;
+      const t = ` ${product.value.toLowerCase()} `;
+      const hit = CATEGORIES.find(([, words]) => words.some((w) => t.includes(` ${w}`)));
+      category.value = hit ? hit[0] : '';
+    }
+    product.addEventListener('input', guessCategory);
+    category.addEventListener('change', () => (categoryTouched = true));
+    guessCategory();
+
+    // Validation
+    const field = (k) => document.querySelector(`[data-field="${k}"]`);
+    form.addEventListener('input', (e) => e.target.closest('.field')?.classList.remove('invalid'));
+    form.addEventListener('change', (e) => e.target.closest('.field')?.classList.remove('invalid'));
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const bad = [];
+      if (!product.value.trim()) bad.push('product');
+      if (!category.value) bad.push('category');
+      if (!$('#budget').value) bad.push('budget');
+      if (!$('#timing').value) bad.push('timing');
+      if (!state.value) bad.push('state');
+      if (phone.value.replace(/\D/g, '').length < 10) bad.push('phone');
+      bad.forEach((k) => field(k).classList.add('invalid'));
+      if (bad.length) return field(bad[0]).scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      const id = 'REQ-' + Math.random().toString(36).slice(2, 8).toUpperCase();
+      console.log('Product request', { id, ...Object.fromEntries(new FormData(form)) });
+      $('#req-id').textContent = id;
+      $('#card').classList.add('submitted');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    document.querySelectorAll('[data-cookie]').forEach((b) => b.addEventListener('click', () => ($('#cookie').style.display = 'none')));
+    if (window.QRCode) new QRCode($('#footer-qr'), { text: 'https://www.konga.com/app', width: 128, height: 128, colorDark: '#111111', colorLight: '#ffffff' });
+  </script>
+
+</body>
+</html>
