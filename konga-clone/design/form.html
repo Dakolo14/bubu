@@ -73,6 +73,7 @@
     .cats a:hover { color: var(--konga); }
     .all-cats { display: flex; align-items: center; gap: 8px; background: #f2f2f2; padding: 6px 12px; border-radius: 6px; }
 
+
     .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; border-radius: var(--radius);
       font-weight: 500; transition: background 0.15s, color 0.15s; }
     .btn-sm { padding: 8px 12px; font-size: 13px; }
@@ -83,9 +84,8 @@
     .btn-outline:hover { background: #fde6f2; }
     .btn-ghost { border: 1px solid #d1d5db; color: var(--ink); background: #fff; }
     .btn-ghost:hover { background: #f9fafb; }
-    .actions { margin-top: 32px; display: grid; grid-template-columns: auto 1fr; gap: 8px; }
-    .help { margin-top: 24px; font-size: 12px; color: var(--muted); }
-    .help a { color: var(--konga); }
+
+
     /* ===================== Footer ===================== */
     .support { background: var(--footer-top); color: #fff; }
     .support .container { display: grid; grid-template-columns: repeat(3, 1fr) 1.2fr; gap: 24px; align-items: center; padding-top: 24px; padding-bottom: 24px; }
@@ -126,130 +126,52 @@
     .chat { position: fixed; right: 24px; bottom: 120px; z-index: 30; width: 60px; height: 60px; border-radius: 50%; background: #f0396e;
       color: #fff; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow); }
 
-    .toast { position: fixed; top: 16px; left: 50%; transform: translateX(-50%); z-index: 200; background: var(--green-dark); color: #fff;
-      padding: 10px 18px; border-radius: 6px; font-size: 13px; font-weight: 500; box-shadow: var(--shadow); display: none; max-width: calc(100% - 32px); text-align: center; }
-    /* ===================== Request a Product ===================== */
-    main { padding: 24px 16px 96px; }
-    .crumbs { max-width: 1120px; margin: 0 auto 16px; font-size: 12px; color: var(--muted); }
+
+    /* ===================== Request a Product (Mikano test-drive layout) ===================== */
+    .page-head { background: #fff; }
+    .page-head .container { padding-top: 24px; padding-bottom: 28px; }
+    .crumbs { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--body); }
     .crumbs a:hover { color: var(--konga); }
-    .crumbs b { color: var(--ink); font-weight: 500; }
-    .layout { max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: 380px 1fr; gap: 24px; align-items: start; }
-
-    /* Left: intro panel */
-    .intro { position: sticky; top: 132px; background: var(--konga); color: #fff; border-radius: var(--radius); padding: 32px 28px; overflow: hidden; }
-    .intro::after { content: ''; position: absolute; right: -60px; bottom: -60px; width: 200px; height: 200px; border-radius: 50%; background: rgba(255, 255, 255, 0.08); }
-    .intro .kicker { font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.85; }
-    .intro h1 { margin-top: 8px; font-size: 28px; line-height: 1.2; font-weight: 700; letter-spacing: -0.02em; }
-    .intro > p { margin-top: 10px; font-size: 14px; line-height: 1.6; opacity: 0.92; }
-    .steps { list-style: none; margin-top: 24px; display: grid; gap: 16px; position: relative; z-index: 1; }
-    .steps li { display: flex; gap: 12px; font-size: 14px; line-height: 1.5; }
-    .steps li b { display: block; font-weight: 600; }
-    .steps li span { opacity: 0.88; }
-    .steps .num { width: 28px; height: 28px; flex-shrink: 0; border-radius: 50%; background: #fff; color: var(--konga);
-      display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; }
-    .intro .free { margin-top: 24px; display: inline-flex; align-items: center; gap: 6px; background: rgba(255, 255, 255, 0.16);
-      padding: 8px 12px; border-radius: 999px; font-size: 12px; font-weight: 500; position: relative; z-index: 1; }
-
-    /* Right: form card */
-    .card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 32px; }
-    .card h2 { font-size: 22px; font-weight: 600; color: var(--ink-2); }
-    .card .sub { margin-top: 4px; font-size: 13px; color: var(--muted); }
-    .card .sub i { color: var(--konga); font-style: normal; }
-    .section { margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--line); }
-    .section:first-of-type { border-top: 0; padding-top: 0; }
-    .section-title { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
-    .section-title span { width: 22px; height: 22px; border-radius: 50%; background: #fde6f2; color: var(--konga); display: flex; align-items: center; justify-content: center; font-size: 12px; letter-spacing: 0; }
-    .field { margin-top: 18px; position: relative; }
-    .field > label, .field > .label { display: block; margin-bottom: 6px; font-size: 14px; font-weight: 500; color: var(--ink-2); }
-    .field .opt-tag { font-weight: 400; color: var(--muted); font-size: 12px; }
-    .req { color: var(--konga); }
-    .input, .select, .textarea { width: 100%; border: 1px solid #d1d5db; border-radius: var(--radius); background: #fff; font: inherit;
-      font-size: 14px; color: var(--ink); outline: 0; transition: border-color 0.15s, box-shadow 0.15s; }
-    .input, .select { height: 48px; padding: 0 14px; }
-    .textarea { min-height: 96px; padding: 12px 14px; resize: vertical; line-height: 1.5; }
-    .input:focus, .select:focus, .textarea:focus { border-color: var(--konga); box-shadow: 0 0 0 3px rgba(237, 1, 127, 0.12); }
-    .input::placeholder, .textarea::placeholder { color: #9ca3af; }
-    .with-icon { position: relative; }
-    .with-icon svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: #9ca3af; pointer-events: none; }
-    .with-icon .input { padding-left: 42px; }
-    .hint { margin-top: 6px; font-size: 12px; color: var(--muted); }
-    .error-msg { display: none; margin-top: 6px; font-size: 12px; color: #dc2626; }
+    .crumbs .sep { color: #9ca3af; }
+    .crumbs b { color: var(--konga); font-weight: 400; }
+    .page-head h1 { margin-top: 18px; font-size: 28px; font-weight: 600; color: var(--ink); }
+    main { padding: 24px 0 96px; }
+    .card { background: #fff; border-radius: 4px; padding: 28px 24px 32px; }
+    .card h2 { font-size: 20px; font-weight: 600; color: var(--ink); }
+    .card .sub { margin-top: 4px; font-size: 15px; color: var(--body); }
+    .field { margin-top: 22px; }
+    .field label { display: block; margin-bottom: 10px; font-size: 15px; font-weight: 500; color: var(--ink); }
+    .field label small { font-size: 13px; font-weight: 400; color: var(--muted); }
+    .input, .select { width: 100%; height: 48px; padding: 0 14px; border: 1px solid #d1d5db; border-radius: 6px; background: #fff;
+      font: inherit; font-size: 15px; color: var(--ink); outline: 0; transition: border-color 0.15s; }
+    .select { appearance: none; -webkit-appearance: none; padding-right: 40px;
+      background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 14px center; }
+    .select:invalid { color: #9ca3af; }
+    .select option { color: var(--ink); }
+    .input::placeholder { color: #9ca3af; }
+    .input:focus, .select:focus { border-color: var(--konga); }
     .field.invalid .input, .field.invalid .select { border-color: #dc2626; }
-    .field.invalid .pills .pill { border-color: #fca5a5; }
+    .error-msg { display: none; margin-top: 6px; font-size: 13px; color: #dc2626; }
     .field.invalid .error-msg { display: block; }
+    .check-row { margin-top: 22px; display: flex; align-items: center; gap: 10px; font-size: 15px; color: var(--ink); cursor: pointer; }
+    .check-row input { width: 18px; height: 18px; accent-color: var(--konga); }
+    .submit { margin-top: 28px; width: 100%; height: 52px; border-radius: 6px; background: var(--konga); color: #fff; font-size: 17px; font-weight: 500; }
+    .submit:hover { background: var(--konga-dark); }
 
-    /* "Me too" suggestions */
-    .suggest { position: absolute; left: 0; right: 0; top: calc(100% + 4px); z-index: 20; background: #fff; border: 1px solid var(--line);
-      border-radius: var(--radius); box-shadow: 0 12px 28px rgba(17, 24, 39, 0.12); display: none; overflow: hidden; }
-    .suggest.open { display: block; }
-    .suggest-head { padding: 10px 14px; font-size: 12px; color: var(--muted); background: #f9fafb; border-bottom: 1px solid var(--line); }
-    .suggest-row { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-bottom: 1px solid #f3f4f6; }
-    .suggest-row:last-child { border-bottom: 0; }
-    .suggest-row .t { flex: 1; min-width: 0; }
-    .suggest-row .t b { display: block; font-size: 14px; font-weight: 500; color: var(--ink); }
-    .suggest-row .t small { font-size: 12px; color: var(--muted); }
-    .metoo { flex-shrink: 0; border: 1px solid var(--konga); color: var(--konga); border-radius: 999px; padding: 6px 12px; font-size: 13px; font-weight: 500; background: #fff; }
-    .metoo:hover { background: #fde6f2; }
-    .metoo.done { background: var(--konga); color: #fff; }
-
-    /* Category chip */
-    .chip-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-    .chip { display: inline-flex; align-items: center; gap: 8px; background: #f3f4f6; border-radius: 999px; padding: 8px 14px; font-size: 14px; font-weight: 500; color: var(--ink); }
-    .chip.empty { color: var(--muted); font-weight: 400; }
-    .link-btn { font-size: 13px; font-weight: 500; color: var(--konga); }
-    .link-btn:hover { text-decoration: underline; text-underline-offset: 3px; }
-    .auto-tag { font-size: 11px; color: var(--muted); }
-
-    /* Pills (budget, timing, notify) */
-    .pills { display: flex; flex-wrap: wrap; gap: 8px; }
-    .pill { position: relative; }
-    .pill input { position: absolute; opacity: 0; pointer-events: none; }
-    .pill span { display: inline-flex; align-items: center; gap: 6px; border: 1px solid #d1d5db; border-radius: 999px; padding: 9px 16px;
-      font-size: 13px; font-weight: 500; color: var(--ink); background: #fff; cursor: pointer; transition: all 0.15s; user-select: none; }
-    .pill span:hover { border-color: var(--konga); }
-    .pill input:checked + span { border-color: var(--konga); background: #fde6f2; color: var(--konga); }
-    .pill input:focus-visible + span { box-shadow: 0 0 0 3px rgba(237, 1, 127, 0.2); }
-
-    /* Extras (link, photo) */
-    .extras { margin-top: 10px; display: flex; gap: 18px; flex-wrap: wrap; }
-    .extra { margin-top: 10px; display: none; }
-    .extra.open { display: block; }
-    .counter { position: absolute; right: 0; top: 2px; font-size: 12px; color: var(--muted); }
-    .photo-preview { margin-top: 10px; display: none; align-items: center; gap: 12px; }
-    .photo-preview.open { display: flex; }
-    .photo-preview img { width: 64px; height: 64px; object-fit: cover; border-radius: var(--radius); border: 1px solid var(--line); }
-    .photo-preview small { display: block; font-size: 12px; color: var(--muted); }
-
-    .two { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .phone-line { margin-top: 10px; font-size: 13px; color: var(--body); }
-    .phone-line b { color: var(--ink); font-weight: 600; }
-
-    .seller { margin-top: 24px; display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; border: 1px dashed #f9c6e0; border-radius: var(--radius); background: #fff8fb; cursor: pointer; }
-    .seller input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--konga); flex-shrink: 0; }
-    .seller b { display: block; font-size: 14px; font-weight: 500; color: var(--ink-2); }
-    .seller small { font-size: 12px; color: var(--muted); }
-
-    .submit { margin-top: 28px; width: 100%; padding: 14px 24px; font-size: 16px; }
-    .fine { margin-top: 12px; text-align: center; font-size: 12px; color: var(--muted); }
-
-    /* Success state (matches the order success page) */
-    .done-state { display: none; text-align: center; max-width: 448px; margin: 0 auto; padding: 8px 0; }
+    /* After submitting */
+    .done { display: none; text-align: center; padding: 24px 0 8px; }
     .card.submitted form { display: none; }
-    .card.submitted .done-state { display: block; }
+    .card.submitted .done { display: block; }
     .check { width: 50px; height: 50px; margin: 0 auto; border: 3px solid var(--green); border-radius: 50%; color: var(--green);
       display: flex; align-items: center; justify-content: center; }
-    .done-state h2 { margin-top: 24px; font-size: 24px; }
-    .req-id { margin-top: 8px; font-size: 14px; color: var(--body); display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: center; }
-    .req-id strong { color: var(--ink); font-weight: 600; }
-    .copy { font-size: 12px; font-weight: 500; color: var(--konga); border: 1px solid #f9c6e0; border-radius: 999px; padding: 3px 10px; }
-    .summary { margin-top: 20px; text-align: left; background: #f9fafb; border-radius: var(--radius); padding: 14px 16px; font-size: 13px; color: var(--body); display: grid; gap: 6px; }
-    .summary div { display: flex; justify-content: space-between; gap: 12px; }
-    .summary b { color: var(--ink); font-weight: 500; text-align: right; }
-    .next { margin-top: 16px; border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 24px; text-align: left; }
-    .next ol { list-style: none; margin-top: 10px; display: grid; gap: 12px; counter-reset: s; }
-    .next li { display: flex; gap: 12px; font-size: 14px; line-height: 1.55; color: var(--body); counter-increment: s; }
-    .next li::before { content: counter(s); width: 22px; height: 22px; flex-shrink: 0; border-radius: 50%; background: #fde6f2; color: var(--konga);
-      font-size: 12px; font-weight: 600; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+    .done h2 { margin-top: 20px; font-size: 22px; }
+    .done .sub strong { color: var(--ink); font-weight: 600; }
+    .next { max-width: 448px; margin: 24px auto 0; border: 1px solid var(--line); border-radius: 6px; padding: 20px 24px; text-align: left; }
+    .next h3 { font-size: 14px; font-weight: 600; color: var(--ink-2); }
+    .next ul { list-style: none; margin-top: 8px; display: grid; gap: 8px; }
+    .next li { display: flex; gap: 10px; font-size: 14px; line-height: 1.6; color: var(--body); }
+    .next li::before { content: ''; width: 5px; height: 5px; margin-top: 9px; border-radius: 50%; background: #9ca3af; flex-shrink: 0; }
+    .actions { max-width: 448px; margin: 28px auto 0; display: grid; grid-template-columns: auto 1fr; gap: 8px; }
 
 
     /* ===================== Responsive ===================== */
@@ -258,24 +180,19 @@
       .footer .container { grid-template-columns: repeat(2, 1fr); }
       .support .container { grid-template-columns: 1fr 1fr; }
     }
-    @media (max-width: 960px) {
-      .layout { grid-template-columns: 1fr; }
-      .intro { position: relative; top: auto; padding: 24px 20px; }
-      .intro h1 { font-size: 22px; }
-      .steps { grid-template-columns: 1fr; gap: 12px; margin-top: 18px; }
-    }
     @media (max-width: 640px) {
       .promo { height: auto; padding: 12px 16px; font-size: 16px; }
       .bar .container { gap: 12px; }
       .bar .search-wrap { display: none; }
       .bar-link.hide-sm { display: none; }
-      main { padding: 16px 12px 160px; }
-      .card { padding: 22px 16px; }
+      .page-head h1 { font-size: 22px; }
+      main { padding: 12px 0 160px; }
+      .card { padding: 22px 16px 26px; }
       .actions { grid-template-columns: 1fr; }
       .support .container, .footer .container { grid-template-columns: 1fr; }
       .cookie .container { flex-direction: column; align-items: stretch; }
-      .pill span { padding: 9px 14px; }
     }
+
   </style>
 </head>
 <body>
@@ -336,171 +253,103 @@
     </nav>
   </header>
 
-  <!-- ============ Request a Product ============ -->
+
+  <!-- ============ Page title ============ -->
+  <section class="page-head">
+    <div class="container">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="#">Home</a><span class="sep">›</span><b>Request a Product</b></nav>
+      <h1>Request a Product</h1>
+    </div>
+  </section>
+
+  <!-- ============ Form ============ -->
   <main>
-    <nav class="crumbs" aria-label="Breadcrumb"><a href="#">Home</a> / <b>Request a Product</b></nav>
-
-    <div class="layout">
-      <!-- Intro panel -->
-      <aside class="intro">
-        <p class="kicker">Konga Request</p>
-        <h1>Can't find what you're looking for?</h1>
-        <p>Tell us what you want and we'll find it from trusted sellers, then let you know the moment it's available.</p>
-        <ol class="steps">
-          <li><span class="num">1</span><div><b>Tell us what you need</b><span>It takes about a minute.</span></div></li>
-          <li><span class="num">2</span><div><b>We source it for you</b><span>Our team and sellers look for the best price.</span></div></li>
-          <li><span class="num">3</span><div><b>We'll let you know</b><span>On WhatsApp, SMS or email, so you can order it right away.</span></div></li>
-        </ol>
-        <span class="free">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 12 5 5 9-10"/></svg>
-          Free to request. No payment needed.
-        </span>
-      </aside>
-
-      <!-- Form card -->
-      <section class="card" id="card" aria-labelledby="form-title">
+    <div class="container">
+      <section class="card" id="card">
         <form id="request-form" novalidate>
-          <h2 id="form-title">Request a Product</h2>
-          <p class="sub">Fields marked <i>*</i> are required.</p>
+          <h2>Can't find what you're looking for?</h2>
+          <p class="sub">Tell us what you need and we'll let you know as soon as it's available on Konga.</p>
 
-          <!-- 1. The product -->
-          <div class="section">
-            <p class="section-title"><span>1</span> The product</p>
-
-            <!-- Field 1: product (prefilled from search, with "Me too" matches) -->
-            <div class="field" data-field="product">
-              <label for="product">What are you looking for? <span class="req">*</span></label>
-              <div class="with-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-                <input class="input" id="product" name="product" autocomplete="off" placeholder="e.g. PlayStation 5 Pro, Tecno Camon 40" maxlength="120" />
-              </div>
-              <div class="suggest" id="suggest" role="listbox" aria-label="Similar requests"></div>
-              <p class="error-msg">Tell us the product you want.</p>
-            </div>
-
-            <!-- Field 2: category (auto-detected, with Change) -->
-            <div class="field" data-field="category">
-              <span class="label">Category <span class="req">*</span></span>
-              <div class="chip-row" id="cat-view">
-                <span class="chip empty" id="cat-chip">We'll pick this from the product name</span>
-                <button type="button" class="link-btn" id="cat-change">Change</button>
-              </div>
-              <select class="select" id="category" name="category" style="display:none; margin-top:10px" aria-label="Category">
-                <option value="">Select a category</option>
-              </select>
-              <p class="error-msg">Choose a category.</p>
-            </div>
-
-            <!-- Field 3: brand, model or specs (+ optional link and photo) -->
-            <div class="field">
-              <label for="details">Brand, model or specs <span class="opt-tag">(optional)</span></label>
-              <span class="counter"><span id="count">0</span>/300</span>
-              <textarea class="textarea" id="details" name="details" maxlength="300" placeholder="e.g. Sony, 2TB, white. Or the size, colour and anything else that matters."></textarea>
-              <div class="extras">
-                <button type="button" class="link-btn" data-toggle="link-box">+ Seen it somewhere? Add a link</button>
-                <button type="button" class="link-btn" id="photo-btn">+ Add a photo</button>
-                <input type="file" id="photo" name="photo" accept="image/*" hidden />
-              </div>
-              <div class="extra" id="link-box">
-                <input class="input" type="url" name="link" placeholder="Paste a link to another store or a social post" />
-                <p class="hint">A link helps us source the exact item faster.</p>
-              </div>
-              <div class="photo-preview" id="photo-preview">
-                <img alt="Selected photo" id="photo-img" />
-                <div><span id="photo-name" style="font-size:13px"></span><small><button type="button" class="link-btn" id="photo-remove">Remove</button></small></div>
-              </div>
-            </div>
+          <div class="field" data-field="product">
+            <label for="product">What product are you looking for?</label>
+            <input class="input" id="product" name="product" placeholder="e.g. PlayStation 5 Pro" maxlength="120" required />
+            <p class="error-msg">Enter the product you're looking for.</p>
           </div>
 
-          <!-- 2. Budget and timing -->
-          <div class="section">
-            <p class="section-title"><span>2</span> Budget and timing</p>
-
-            <!-- Field 4: budget range -->
-            <div class="field" data-field="budget">
-              <span class="label">Budget range <span class="req">*</span></span>
-              <div class="pills" role="radiogroup" aria-label="Budget range">
-                <label class="pill"><input type="radio" name="budget" value="Under ₦50k" /><span>Under ₦50k</span></label>
-                <label class="pill"><input type="radio" name="budget" value="₦50k – ₦200k" /><span>₦50k – ₦200k</span></label>
-                <label class="pill"><input type="radio" name="budget" value="₦200k – ₦500k" /><span>₦200k – ₦500k</span></label>
-                <label class="pill"><input type="radio" name="budget" value="Above ₦500k" /><span>Above ₦500k</span></label>
-                <label class="pill"><input type="radio" name="budget" value="Not sure" /><span>Not sure</span></label>
-              </div>
-              <p class="error-msg">Pick a budget range so we know what to look for.</p>
-            </div>
-
-            <!-- Field 5: timing -->
-            <div class="field">
-              <span class="label">How soon do you need it?</span>
-              <div class="pills" role="radiogroup" aria-label="How soon">
-                <label class="pill"><input type="radio" name="timing" value="This week" /><span>This week</span></label>
-                <label class="pill"><input type="radio" name="timing" value="This month" checked /><span>This month</span></label>
-                <label class="pill"><input type="radio" name="timing" value="No rush" /><span>No rush</span></label>
-              </div>
-            </div>
+          <div class="field" data-field="category">
+            <label for="category">Category</label>
+            <select class="select" id="category" name="category" required>
+              <option value="" disabled selected hidden>Select a category</option>
+            </select>
+            <p class="error-msg">Select a category.</p>
           </div>
 
-          <!-- 3. Keep me posted -->
-          <div class="section">
-            <p class="section-title"><span>3</span> Keep me posted</p>
-
-            <!-- Field 6: deliver to (state, prefilled) -->
-            <div class="field" data-field="state">
-              <label for="state">Deliver to <span class="req">*</span></label>
-              <select class="select" id="state" name="state"></select>
-              <p class="hint">From your default address. We'll favour sellers near you.</p>
-              <p class="error-msg">Choose a state.</p>
-            </div>
-
-            <!-- Field 7: notify via (+ phone from account) -->
-            <div class="field" data-field="phone">
-              <span class="label">Notify me via</span>
-              <div class="pills" role="radiogroup" aria-label="Notify via">
-                <label class="pill"><input type="radio" name="notify" value="WhatsApp" checked /><span>
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-2 1-2.3.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.5-.3.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.1.1.6-.1 1.2Z"/></svg>
-                  WhatsApp</span></label>
-                <label class="pill"><input type="radio" name="notify" value="SMS" /><span>SMS</span></label>
-                <label class="pill"><input type="radio" name="notify" value="Email" /><span>Email</span></label>
-              </div>
-              <p class="phone-line" id="contact-line"></p>
-              <div class="extra" id="contact-box">
-                <input class="input" id="contact" name="contact" />
-              </div>
-              <p class="error-msg">Enter a valid phone number or email.</p>
-            </div>
+          <div class="field">
+            <label for="details">Brand, Model or Specs <small>(optional)</small></label>
+            <input class="input" id="details" name="details" placeholder="e.g. Sony, 2TB, White" maxlength="300" />
           </div>
 
-          <!-- Seller acquisition -->
-          <label class="seller">
-            <input type="checkbox" name="seller" />
-            <span><b>I sell this product</b><small>We'll invite you to list it on Konga and reach shoppers asking for it.</small></span>
-          </label>
+          <div class="field" data-field="budget">
+            <label for="budget">Budget</label>
+            <select class="select" id="budget" name="budget" required>
+              <option value="" disabled selected hidden>Select your budget</option>
+              <option>Under ₦50,000</option>
+              <option>₦50,000 – ₦200,000</option>
+              <option>₦200,000 – ₦500,000</option>
+              <option>Above ₦500,000</option>
+              <option>Not sure</option>
+            </select>
+            <p class="error-msg">Select your budget.</p>
+          </div>
 
-          <button type="submit" class="btn btn-primary submit">Submit Request</button>
-          <p class="fine">By submitting, you agree that Konga can contact you about this request.</p>
+          <div class="field" data-field="timing">
+            <label for="timing">When do you need it?</label>
+            <select class="select" id="timing" name="timing" required>
+              <option value="" disabled selected hidden>Select a timeframe</option>
+              <option>This week</option>
+              <option>This month</option>
+              <option>No rush</option>
+            </select>
+            <p class="error-msg">Select when you need it.</p>
+          </div>
+
+          <div class="field" data-field="state">
+            <label for="state">Delivery State</label>
+            <select class="select" id="state" name="state" required>
+              <option value="" disabled hidden>Select a state</option>
+            </select>
+            <p class="error-msg">Select a state.</p>
+          </div>
+
+          <div class="field" data-field="phone">
+            <label for="phone">Phone Number</label>
+            <input class="input" id="phone" name="phone" type="tel" placeholder="Enter Phone Number" />
+            <p class="error-msg">Enter a valid phone number.</p>
+          </div>
+
+          <label class="check-row"><input type="checkbox" name="seller" /> I sell this product</label>
+
+          <button type="submit" class="submit">Submit Request</button>
         </form>
 
-        <!-- After submitting -->
-        <div class="done-state" aria-live="polite">
+        <div class="done" aria-live="polite">
           <div class="check" aria-hidden="true">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 12 5 5 9-10"/></svg>
           </div>
           <h2>Request Received!</h2>
-          <p class="req-id">Your request ID is <strong id="req-id"></strong> <button type="button" class="copy" id="copy-id">Copy</button></p>
-          <div class="summary" id="summary"></div>
+          <p class="sub">Your request ID is <strong id="req-id"></strong></p>
           <div class="next">
-            <h3 style="font-size:14px;font-weight:600;color:var(--ink-2)">What happens next?</h3>
-            <ol>
-              <li>Our sourcing team and sellers start looking for your product.</li>
-              <li id="next-notify">We'll message you on WhatsApp as soon as it's available.</li>
-              <li>Order it on Konga and we'll deliver it to you.</li>
-            </ol>
+            <h3>What happens next?</h3>
+            <ul>
+              <li>Our team and sellers will start looking for your product.</li>
+              <li>We'll notify you as soon as it's available.</li>
+              <li>Track your request anytime from your account.</li>
+            </ul>
           </div>
           <div class="actions">
             <a href="#" class="btn btn-lg btn-ghost">Track My Requests</a>
             <a href="#" class="btn btn-lg btn-primary">Continue Shopping</a>
           </div>
-          <p class="help">Need help? <a href="#">Contact support</a></p>
         </div>
       </section>
     </div>
@@ -555,247 +404,77 @@
   </button>
 
 
-  <div class="toast" id="toast" role="status"></div>
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <script>
-    /* =========================================================
-       Sample data. In production these come from the account,
-       the search query and the requests API.
-       ========================================================= */
-    const ACCOUNT = { phone: '0703 248 4145', email: 'augusta@example.com', defaultState: 'Lagos' };
-    const DEFAULT_QUERY = 'PlayStation 5 Pro'; // used when the page is opened without ?q=
+    /* Sample account data. In production these come from the signed-in account. */
+    const ACCOUNT = { phone: '0703 248 4145', defaultState: 'Lagos' };
 
+    // Category list, with keywords used to pre-select a category from the product name
     const CATEGORIES = [
-      { name: 'Computers and Accessories', icon: '💻', words: ['laptop', 'macbook', 'computer', 'desktop', 'monitor', 'keyboard', 'mouse', 'printer', 'ssd', 'ram', 'hard drive', 'router'] },
-      { name: 'Phones and Tablets', icon: '📱', words: ['phone', 'iphone', 'samsung', 'galaxy', 'tecno', 'infinix', 'itel', 'redmi', 'pixel', 'camon', 'spark', 'ipad', 'tablet', 'screen guard', 'charger', 'airpods', 'earbuds', 'smart watch', 'smartwatch'] },
-      { name: 'Electronics', icon: '📺', words: ['tv', 'television', 'soundbar', 'speaker', 'generator', 'inverter', 'solar', 'battery', 'starlink', 'camera', 'cctv', 'drone', 'home theatre'] },
-      { name: 'Konga Fashion', icon: '👗', words: ['shoe', 'sneaker', 'dress', 'shirt', 'bag', 'watch', 'ankara', 'jeans', 'gown', 'perfume', 'wig'] },
-      { name: 'Home and Kitchen', icon: '🍳', words: ['fridge', 'refrigerator', 'freezer', 'blender', 'air fryer', 'microwave', 'ac', 'air conditioner', 'washing machine', 'cooker', 'pot', 'mattress', 'fan', 'iron'] },
-      { name: 'Baby, Kids and Toys', icon: '🧸', words: ['baby', 'diaper', 'stroller', 'car seat', 'toy', 'kids', 'lego', 'school'] },
-      { name: 'Beauty, Health & Personal Care', icon: '💄', words: ['cream', 'lotion', 'makeup', 'hair', 'vitamin', 'supplement', 'toothpaste', 'skincare', 'serum', 'shaver'] },
-      { name: 'Gaming', icon: '🎮', words: ['playstation', 'ps5', 'ps4', 'xbox', 'nintendo', 'switch', 'controller', 'gaming', 'fifa', 'fc 26'] },
-      { name: 'Groceries', icon: '🛒', words: ['rice', 'oil', 'milk', 'noodles', 'spaghetti', 'drink', 'water', 'beverage', 'garri', 'beans'] },
-      { name: 'Automobile', icon: '🚗', words: ['tyre', 'tire', 'car', 'engine oil', 'dashcam', 'wiper'] },
+      ['Computers and Accessories', ['laptop', 'macbook', 'computer', 'desktop', 'monitor', 'keyboard', 'mouse', 'printer', 'ssd', 'router']],
+      ['Phones and Tablets', ['phone', 'iphone', 'samsung', 'galaxy', 'tecno', 'infinix', 'itel', 'redmi', 'pixel', 'ipad', 'tablet', 'charger', 'earbuds', 'airpods']],
+      ['Electronics', ['tv', 'television', 'soundbar', 'speaker', 'generator', 'inverter', 'solar', 'battery', 'starlink', 'camera', 'cctv']],
+      ['Konga Fashion', ['shoe', 'sneaker', 'dress', 'shirt', 'bag', 'watch', 'ankara', 'jeans', 'perfume']],
+      ['Home and Kitchen', ['fridge', 'refrigerator', 'freezer', 'blender', 'air fryer', 'microwave', 'air conditioner', 'washing machine', 'cooker', 'mattress', 'fan', 'iron']],
+      ['Baby, Kids and Toys', ['baby', 'diaper', 'stroller', 'car seat', 'toy', 'kids']],
+      ['Beauty, Health & Personal Care', ['cream', 'lotion', 'makeup', 'hair', 'vitamin', 'supplement', 'toothpaste', 'serum']],
+      ['Gaming', ['playstation', 'ps5', 'xbox', 'nintendo', 'controller', 'gaming']],
+      ['Groceries', ['rice', 'oil', 'milk', 'noodles', 'drink', 'water']],
+      ['Other', []],
     ];
-
-    // Requests other shoppers already made (for "Me too")
-    const EXISTING = [
-      { title: 'PlayStation 5 Pro Digital Edition', category: 'Gaming', votes: 128 },
-      { title: 'PlayStation Portal Remote Player', category: 'Gaming', votes: 41 },
-      { title: 'Nintendo Switch 2', category: 'Gaming', votes: 96 },
-      { title: 'iPhone 17 Pro Max 256GB', category: 'Phones and Tablets', votes: 342 },
-      { title: 'Tecno Camon 40 Premier', category: 'Phones and Tablets', votes: 57 },
-      { title: 'Infinix Hot 50 Pro screen guard', category: 'Phones and Tablets', votes: 18 },
-      { title: 'Starlink Mini wall mount', category: 'Electronics', votes: 22 },
-      { title: 'Hisense 2HP inverter air conditioner', category: 'Home and Kitchen', votes: 41 },
-      { title: 'Baby car seat with ISOFIX', category: 'Baby, Kids and Toys', votes: 15 },
-      { title: 'Ankara fabric, 6 yards', category: 'Konga Fashion', votes: 33 },
-    ];
-
     const STATES = ['Abia', 'Adamawa', 'Akwa Ibom', 'Anambra', 'Bauchi', 'Bayelsa', 'Benue', 'Borno', 'Cross River', 'Delta', 'Ebonyi', 'Edo',
       'Ekiti', 'Enugu', 'FCT (Abuja)', 'Gombe', 'Imo', 'Jigawa', 'Kaduna', 'Kano', 'Katsina', 'Kebbi', 'Kogi', 'Kwara', 'Lagos', 'Nasarawa',
       'Niger', 'Ogun', 'Ondo', 'Osun', 'Oyo', 'Plateau', 'Rivers', 'Sokoto', 'Taraba', 'Yobe', 'Zamfara'];
 
     const $ = (s) => document.querySelector(s);
-    const $$ = (s) => document.querySelectorAll(s);
     const form = $('#request-form');
+    const product = $('#product'), category = $('#category'), state = $('#state'), phone = $('#phone');
 
-    function toast(msg) {
-      const t = $('#toast');
-      t.textContent = msg;
-      t.style.display = 'block';
-      clearTimeout(toast.timer);
-      toast.timer = setTimeout(() => (t.style.display = 'none'), 2600);
-    }
+    category.insertAdjacentHTML('beforeend', CATEGORIES.map(([n]) => `<option>${n}</option>`).join(''));
+    state.insertAdjacentHTML('beforeend', STATES.map((s) => `<option>${s}</option>`).join(''));
 
-    /* ---------- Product + "Me too" ---------- */
-    const product = $('#product');
-    const suggest = $('#suggest');
-    const voted = new Set();
-
-    function renderSuggestions() {
-      const q = product.value.trim().toLowerCase();
-      if (q.length < 2) return suggest.classList.remove('open');
-      const words = q.split(/\s+/);
-      const hits = EXISTING.filter((r) => words.some((w) => w.length > 1 && r.title.toLowerCase().includes(w))).slice(0, 4);
-      if (!hits.length) return suggest.classList.remove('open');
-      suggest.innerHTML =
-        `<div class="suggest-head">Others have asked for this. Add your vote instead of a new request:</div>` +
-        hits
-          .map((r) => {
-            const i = EXISTING.indexOf(r);
-            const done = voted.has(i);
-            return `<div class="suggest-row" role="option">
-              <div class="t"><b>${r.title}</b><small>${r.category} · ${r.votes + (done ? 1 : 0)} shoppers want this</small></div>
-              <button type="button" class="metoo ${done ? 'done' : ''}" data-vote="${i}">${done ? '✓ You\'re in' : '+ Me too'}</button>
-            </div>`;
-          })
-          .join('');
-      suggest.classList.add('open');
-    }
-
-    suggest.addEventListener('click', (e) => {
-      e.stopPropagation(); // keep the list open after voting
-      const b = e.target.closest('[data-vote]');
-      if (!b) return;
-      const i = Number(b.dataset.vote);
-      if (voted.has(i)) return;
-      voted.add(i);
-      renderSuggestions();
-      toast(`Vote added. We'll notify you on ${selected('notify')} when it's available.`);
-    });
-    document.addEventListener('click', (e) => { if (!e.target.closest('[data-field="product"]')) suggest.classList.remove('open'); });
-    product.addEventListener('focus', renderSuggestions);
-
-    /* ---------- Category: auto-detected, with Change ---------- */
-    const catSelect = $('#category');
-    const catChip = $('#cat-chip');
-    let catManual = false;
-    catSelect.innerHTML += CATEGORIES.map((c) => `<option>${c.name}</option>`).join('');
-
-    function detectCategory(text) {
-      const t = ` ${text.toLowerCase()} `;
-      let best = null, score = 0;
-      for (const c of CATEGORIES) {
-        const s = c.words.filter((w) => t.includes(w.includes(' ') ? w : ` ${w}`) || t.includes(`${w} `)).length;
-        if (s > score) { best = c; score = s; }
-      }
-      return best;
-    }
-    function showCategory() {
-      const c = CATEGORIES.find((x) => x.name === catSelect.value);
-      if (c) {
-        catChip.textContent = `${c.icon}  ${c.name}`;
-        catChip.classList.remove('empty');
-      } else {
-        catChip.textContent = "We'll pick this from the product name";
-        catChip.classList.add('empty');
-      }
-    }
-    function autoCategory() {
-      if (catManual) return;
-      const c = detectCategory(product.value);
-      catSelect.value = c ? c.name : '';
-      showCategory();
-    }
-    $('#cat-change').addEventListener('click', () => {
-      const open = catSelect.style.display === 'none';
-      catSelect.style.display = open ? 'block' : 'none';
-      $('#cat-change').textContent = open ? 'Done' : 'Change';
-      if (open) catSelect.focus();
-    });
-    catSelect.addEventListener('change', () => { catManual = true; showCategory(); clearError('category'); });
-
-    product.addEventListener('input', () => { renderSuggestions(); autoCategory(); clearError('product'); });
-
-    /* ---------- Details: counter, link, photo ---------- */
-    const details = $('#details');
-    details.addEventListener('input', () => ($('#count').textContent = details.value.length));
-    $$('[data-toggle]').forEach((b) =>
-      b.addEventListener('click', () => {
-        const box = document.getElementById(b.dataset.toggle);
-        box.classList.toggle('open');
-        if (box.classList.contains('open')) box.querySelector('input').focus();
-      })
-    );
-    const photo = $('#photo');
-    $('#photo-btn').addEventListener('click', () => photo.click());
-    photo.addEventListener('change', () => {
-      const f = photo.files[0];
-      if (!f) return;
-      if (f.size > 5 * 1024 * 1024) { photo.value = ''; return toast('Please choose a photo under 5MB.'); }
-      $('#photo-img').src = URL.createObjectURL(f);
-      $('#photo-name').textContent = f.name;
-      $('#photo-preview').classList.add('open');
-    });
-    $('#photo-remove').addEventListener('click', () => { photo.value = ''; $('#photo-preview').classList.remove('open'); });
-
-    /* ---------- Deliver to ---------- */
-    const state = $('#state');
-    state.innerHTML = `<option value="">Select a state</option>` + STATES.map((s) => `<option>${s}</option>`).join('');
+    // Prefill from the search (?q=) and the account
+    product.value = new URLSearchParams(location.search).get('q') || '';
     state.value = ACCOUNT.defaultState;
-    state.addEventListener('change', () => clearError('state'));
+    phone.value = ACCOUNT.phone;
 
-    /* ---------- Notify via + contact ---------- */
-    const contact = $('#contact');
-    const selected = (name) => (form.querySelector(`input[name="${name}"]:checked`) || {}).value || '';
-    const mask = (v) => (v.includes('@') ? v.replace(/^(.).*(@.*)$/, '$1•••$2') : v.replace(/^(\d{4})\s?\d{3}\s?(\d{4})$/, '$1 *** $2'));
-    let customContact = { phone: ACCOUNT.phone, email: ACCOUNT.email };
-
-    function renderContact() {
-      const via = selected('notify');
-      const isEmail = via === 'Email';
-      const value = isEmail ? customContact.email : customContact.phone;
-      $('#contact-line').innerHTML = `We'll reach you ${isEmail ? 'at' : 'on'} <b>${mask(value)}</b> · <button type="button" class="link-btn" id="contact-change">Change</button>`;
-      contact.type = isEmail ? 'email' : 'tel';
-      contact.placeholder = isEmail ? 'you@example.com' : '0803 000 0000';
-      contact.value = value;
-      $('#contact-change').addEventListener('click', () => { $('#contact-box').classList.add('open'); contact.focus(); });
+    // Pre-select a category from the product name until the shopper picks one
+    let categoryTouched = false;
+    function guessCategory() {
+      if (categoryTouched) return;
+      const t = ` ${product.value.toLowerCase()} `;
+      const hit = CATEGORIES.find(([, words]) => words.some((w) => t.includes(` ${w}`)));
+      category.value = hit ? hit[0] : '';
     }
-    form.querySelectorAll('input[name="notify"]').forEach((r) => r.addEventListener('change', () => { $('#contact-box').classList.remove('open'); clearError('phone'); renderContact(); }));
-    contact.addEventListener('input', () => {
-      if (selected('notify') === 'Email') customContact.email = contact.value;
-      else customContact.phone = contact.value;
-      clearError('phone');
-    });
-    contact.addEventListener('blur', () => { if (contactValid()) { $('#contact-box').classList.remove('open'); renderContact(); } });
-    function contactValid() {
-      const v = contact.value.trim();
-      return selected('notify') === 'Email' ? /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) : v.replace(/\D/g, '').length >= 10;
-    }
+    product.addEventListener('input', guessCategory);
+    category.addEventListener('change', () => (categoryTouched = true));
+    guessCategory();
 
-    /* ---------- Validation + submit ---------- */
-    const setError = (k) => document.querySelector(`[data-field="${k}"]`).classList.add('invalid');
-    const clearError = (k) => document.querySelector(`[data-field="${k}"]`).classList.remove('invalid');
-    form.querySelectorAll('input[name="budget"]').forEach((r) => r.addEventListener('change', () => clearError('budget')));
+    // Validation
+    const field = (k) => document.querySelector(`[data-field="${k}"]`);
+    form.addEventListener('input', (e) => e.target.closest('.field')?.classList.remove('invalid'));
+    form.addEventListener('change', (e) => e.target.closest('.field')?.classList.remove('invalid'));
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      const errors = [];
-      if (!product.value.trim()) errors.push('product');
-      if (!catSelect.value) errors.push('category');
-      if (!selected('budget')) errors.push('budget');
-      if (!state.value) errors.push('state');
-      if (!contactValid()) { errors.push('phone'); $('#contact-box').classList.add('open'); }
-      errors.forEach(setError);
-      if (errors.length) {
-        if (errors.includes('category')) { catSelect.style.display = 'block'; $('#cat-change').textContent = 'Done'; }
-        document.querySelector(`[data-field="${errors[0]}"]`).scrollIntoView({ behavior: 'smooth', block: 'center' });
-        return;
-      }
+      const bad = [];
+      if (!product.value.trim()) bad.push('product');
+      if (!category.value) bad.push('category');
+      if (!$('#budget').value) bad.push('budget');
+      if (!$('#timing').value) bad.push('timing');
+      if (!state.value) bad.push('state');
+      if (phone.value.replace(/\D/g, '').length < 10) bad.push('phone');
+      bad.forEach((k) => field(k).classList.add('invalid'));
+      if (bad.length) return field(bad[0]).scrollIntoView({ behavior: 'smooth', block: 'center' });
 
       const id = 'REQ-' + Math.random().toString(36).slice(2, 8).toUpperCase();
-      const data = Object.fromEntries(new FormData(form));
-      console.log('Product request', { id, ...data, contact: contact.value, photo: photo.files[0]?.name || null });
-
+      console.log('Product request', { id, ...Object.fromEntries(new FormData(form)) });
       $('#req-id').textContent = id;
-      $('#summary').innerHTML = [
-        ['Product', product.value.trim()],
-        ['Category', catSelect.value],
-        ['Budget', selected('budget')],
-        ['Needed', selected('timing') || 'No rush'],
-        ['Deliver to', state.value],
-      ].map(([k, v]) => `<div><span>${k}</span><b>${v}</b></div>`).join('');
-      const via = selected('notify');
-      $('#next-notify').textContent = via === 'Email'
-        ? "We'll email you as soon as it's available."
-        : `We'll message you on ${via} as soon as it's available.`;
       $('#card').classList.add('submitted');
-      window.scrollTo({ top: $('#card').getBoundingClientRect().top + window.scrollY - 130, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    $('#copy-id').addEventListener('click', async () => {
-      try { await navigator.clipboard.writeText($('#req-id').textContent); toast('Request ID copied'); } catch { toast($('#req-id').textContent); }
-    });
-
-    /* ---------- Start: prefill from the search ---------- */
-    const q = new URLSearchParams(location.search).get('q');
-    product.value = q || DEFAULT_QUERY;
-    autoCategory();
-    renderContact();
-    $('[data-cookie]') && $$('[data-cookie]').forEach((b) => b.addEventListener('click', () => ($('#cookie').style.display = 'none')));
-
+    document.querySelectorAll('[data-cookie]').forEach((b) => b.addEventListener('click', () => ($('#cookie').style.display = 'none')));
     if (window.QRCode) new QRCode($('#footer-qr'), { text: 'https://www.konga.com/app', width: 128, height: 128, colorDark: '#111111', colorLight: '#ffffff' });
   </script>
 
