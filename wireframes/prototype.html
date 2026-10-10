@@ -509,6 +509,35 @@ body.noauto .media.motion:not(.playing) .ppbig{display:flex}
 .mobbar .up{width:46px;height:46px;border-radius:15px;background:var(--ink);color:#fff;justify-content:center;padding:0}
 .mobbar .bdg{position:absolute;top:2px;right:8px;width:8px;height:8px;border-radius:50%;background:var(--accent)}
 
+/* ---------- projects & sections ---------- */
+.wbar{position:absolute;top:0;left:0;right:0;height:18px;display:flex;gap:4px;align-items:center;padding:0 9px;z-index:2;background:rgba(255,255,255,.92);border-bottom:1px solid var(--line);pointer-events:none}
+.wbar i{width:6px;height:6px;border-radius:50%;background:var(--fill3)}
+.media.web .count,.media.web .badge,.media.web .stag,.media.web .pinb,.media.web .adtag.on-media{top:26px}
+.pscroll{flex:1;min-height:0;overflow-y:auto;padding:22px 26px 28px;display:flex;flex-direction:column;gap:30px}
+.psec-h{display:flex;align-items:center;gap:8px;margin:0 auto 10px;color:#e8e8e4;width:min(100%,calc(74vh / var(--r,1)))}
+.psec-h{width:100%;max-width:900px}
+.psec-t{font-size:11.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+.psec-s{font-size:11px;color:#bbb;border:1px solid #555;border-radius:999px;padding:1px 8px}
+.psec .savegrp{margin-left:0}.psec .scoll{color:var(--ink)}.psec .scoll{height:30px}.psec .sbtn{height:30px;padding:0 13px}.psec .hic{width:30px;height:30px}
+.dstage .psec .frame{width:min(100%,900px,calc(74vh / var(--r)));margin:0 auto;max-height:none;cursor:default}
+.dstage .psec .frame[data-act]{cursor:pointer}
+.psec.focus .frame{box-shadow:0 0 0 2px #fff}
+.dstage .frame.web{padding-top:22px}
+.dstage .wbar{background:#2e2e2b;border-color:#444;height:22px}
+.dstage .wbar i{background:#666;width:7px;height:7px}
+.secplay{position:absolute;left:12px;bottom:12px;z-index:2;background:rgba(255,255,255,.94);color:var(--ink);border-radius:999px;padding:5px 10px;font-size:11.5px;font-weight:700;display:flex;gap:5px;align-items:center;pointer-events:none}
+.pend{display:flex;flex-direction:column;align-items:center;gap:10px;color:#bbb;font-size:13px;padding:10px 0 4px}
+.secnow{font-size:12px;color:var(--muted);margin-top:12px;padding:8px 10px;background:var(--surface);border-radius:10px}
+.sidx{display:flex;flex-direction:column;gap:2px}
+.sidx button{display:flex;align-items:center;gap:10px;border:0;background:none;padding:6px 8px;border-radius:10px;text-align:left;font-size:13px;width:100%}
+.sidx button:hover{background:var(--surface)}
+.sidx button.on{background:var(--fill);font-weight:600}
+.sidx .ph{width:36px;height:26px;border-radius:6px;flex:none}
+.secedit{display:flex;flex-direction:column}
+.secrow{display:flex;gap:12px;align-items:center;padding:8px 0;border-bottom:1px dashed var(--line)}
+.secrow select{margin-top:4px;padding:8px 10px}
+.secrow .uth{aspect-ratio:1}
+@media (max-width:900px){.pscroll{overflow:visible;padding:14px}.dstage .psec .frame{width:100%}}
 /* ---------- monetization ---------- */
 .adtag{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2);background:var(--fill);border-radius:6px;padding:3px 7px;flex:none}
 .adtag.on-media{position:absolute;top:10px;left:10px;z-index:2;background:rgba(255,255,255,.95);pointer-events:none}
@@ -786,8 +815,8 @@ const store={get(k,d){try{const v=localStorage.getItem('wfp_'+k);return v==null?
 /* =========================================================
    Data
    ========================================================= */
-const CATS=['UI/UX','Branding','3D','Motion','Illustration','Typography','Photography','Product','Architecture','Fashion','Packaging'];
-const CAT_W={'UI/UX':4,'Branding':3,'3D':3,'Motion':4,'Illustration':3,'Typography':1,'Photography':2,'Product':1,'Architecture':1,'Fashion':1,'Packaging':1};
+const CATS=['UI/UX','Web design','Branding','3D','Motion','Illustration','Typography','Photography','Product','Architecture','Fashion','Interior','Hair & makeup','Packaging'];
+const CAT_W={'Web design':3,'Interior':2,'Hair & makeup':1,'UI/UX':4,'Branding':3,'3D':3,'Motion':4,'Illustration':3,'Typography':1,'Photography':2,'Product':1,'Architecture':1,'Fashion':2,'Packaging':1};
 const TITLES={
  'UI/UX':['Fintech dashboard','Banking app onboarding','Travel booking flow','Music player UI','Health tracker app','SaaS analytics panel','Food delivery app','Crypto wallet screens','Smart home controls','E-commerce checkout','Ride-hailing app','Habit tracker'],
  'Branding':['Coffee roaster identity','Fintech rebrand','Bakery visual identity','Studio logo system','Festival branding','Skincare brand book','Bookshop identity','Agency rebrand','Juice bar identity'],
@@ -798,7 +827,10 @@ const TITLES={
  'Photography':['Lagos street portraits','Studio product shoot','Architecture in fog','Golden hour portraits','Food still life'],
  'Product':['Ceramic lamp','Wireless speaker concept','Desk organiser','Bicycle helmet'],
  'Architecture':['Brutalist house','Coastal pavilion','Loft interior concept','Floor plan study'],
- 'Fashion':['SS27 lookbook','Streetwear capsule','Textile print study','Editorial styling'],
+ 'Fashion':['SS27 lookbook','Streetwear capsule','Textile print study','Editorial styling','Ankara evening wear','Menswear AW26','Bridal couture'],
+ 'Web design':['SaaS landing page','Portfolio website','E-commerce storefront','Agency website','Restaurant website','Event microsite','Course landing page'],
+ 'Interior':['Japandi living room','Boutique hotel lobby','Small kitchen makeover','Café interior','Studio apartment'],
+ 'Hair & makeup':['Editorial makeup','Natural hair styling','Runway beauty look','Bridal hair'],
  'Packaging':['Tea packaging','Craft beer labels','Cosmetics boxes','Chocolate bar wrappers']
 };
 const TAGS={
@@ -811,15 +843,18 @@ const TAGS={
  'Photography':['portrait','product','street','still-life'],
  'Product':['industrial-design','render','concept'],
  'Architecture':['brutalist-web','interior','floor-plan'],
- 'Fashion':['lookbook','streetwear','textile'],
+ 'Fashion':['lookbook','streetwear','textile','denim','stylist'],
+ 'Web design':['landing-page','saas','responsive','webflow','framer','dark-mode'],
+ 'Interior':['interior','japandi','kitchen','living-room','renovation'],
+ 'Hair & makeup':['makeup','bridal','editorial','hair'],
  'Packaging':['packaging','labels','print']
 };
-const TOOLS={'UI/UX':['Figma','Framer'],'Branding':['Illustrator','Figma'],'3D':['Blender','Cinema 4D'],'Motion':['After Effects','Cinema 4D','Rive'],'Illustration':['Procreate','Photoshop'],'Typography':['Glyphs','Illustrator'],'Photography':['Lightroom'],'Product':['KeyShot','Rhino'],'Architecture':['Rhino','V-Ray'],'Fashion':['CLO 3D','Photoshop'],'Packaging':['Illustrator']};
-const ALLTOOLS=['Figma','Blender','After Effects','Cinema 4D','Procreate','Illustrator','Photoshop','Rive'];
+const TOOLS={'UI/UX':['Figma','Framer'],'Branding':['Illustrator','Figma'],'3D':['Blender','Cinema 4D'],'Motion':['After Effects','Cinema 4D','Rive'],'Illustration':['Procreate','Photoshop'],'Typography':['Glyphs','Illustrator'],'Photography':['Lightroom'],'Product':['KeyShot','Rhino'],'Architecture':['Rhino','V-Ray'],'Fashion':['CLO 3D','Photoshop'],'Packaging':['Illustrator'],'Web design':['Figma','Framer','Webflow'],'Interior':['SketchUp','V-Ray'],'Hair & makeup':['Lightroom']};
+const ALLTOOLS=['Figma','Framer','Webflow','Blender','After Effects','Cinema 4D','Procreate','Illustrator','Photoshop','Rive','SketchUp','CLO 3D'];
 
 const CREATORS=[
  {id:'me',name:'Adam Ojo',role:'Product & motion designer',loc:'Lagos, NG',cats:['UI/UX','Motion'],hire:true,bio:'I design calm interfaces and the motion that makes them feel alive. Currently freelancing; previously at a fintech in Lagos.'},
- {id:'tolu',name:'Tolu Adebayo',role:'Product designer',loc:'Lagos, NG',cats:['UI/UX','Branding'],hire:true},
+ {id:'tolu',name:'Tolu Adebayo',role:'Product designer',loc:'Lagos, NG',cats:['UI/UX','Web design','Branding'],hire:true},
  {id:'mira',name:'Mira Chen',role:'Motion designer',loc:'Toronto, CA',cats:['Motion','3D'],hire:false},
  {id:'kofi',name:'Kofi Mensah',role:'Brand designer',loc:'Accra, GH',cats:['Branding','Typography','Packaging'],hire:true},
  {id:'sara',name:'Sara Lindqvist',role:'3D artist',loc:'Stockholm, SE',cats:['3D','Product'],hire:false},
@@ -830,9 +865,13 @@ const CREATORS=[
  {id:'zara',name:'Zara Okafor',role:'Fashion designer',loc:'London, UK',cats:['Fashion','Illustration'],hire:true},
  {id:'noah',name:'Noah Becker',role:'Packaging designer',loc:'Hamburg, DE',cats:['Packaging','Product'],hire:false},
  {id:'ife',name:'Ife Balogun',role:'Motion designer',loc:'Abuja, NG',cats:['Motion','Illustration'],hire:true},
- {id:'priya',name:'Priya Nair',role:'UI designer',loc:'Bengaluru, IN',cats:['UI/UX','3D'],hire:true},
+ {id:'priya',name:'Priya Nair',role:'UI designer & developer',loc:'Bengaluru, IN',cats:['UI/UX','Web design'],hire:true},
  {id:'lucas',name:'Lucas Moreau',role:'3D & motion artist',loc:'Paris, FR',cats:['3D','Motion'],hire:false},
- {id:'amara',name:'Amara Diallo',role:'Illustrator',loc:'Dakar, SN',cats:['Illustration','Branding'],hire:true}
+ {id:'amara',name:'Amara Diallo',role:'Illustrator',loc:'Dakar, SN',cats:['Illustration','Branding'],hire:true},
+ {id:'jonas',name:'Jonas Weber',role:'Web designer',loc:'Berlin, DE',cats:['Web design','UI/UX'],hire:true},
+ {id:'kemi',name:'Kemi Adeyemi',role:'Fashion designer',loc:'Lagos, NG',cats:['Fashion'],hire:true},
+ {id:'hana',name:'Hana Kim',role:'Interior designer',loc:'Seoul, KR',cats:['Interior','Architecture'],hire:true},
+ {id:'bisi',name:'Bisi Lawal',role:'Makeup artist',loc:'Lagos, NG',cats:['Hair & makeup','Fashion'],hire:true}
 ];
 const CR={};CREATORS.forEach((c,i)=>{c.followers=c.id==='me'?2140:Math.floor(400+R()*48000);c.followingN=Math.floor(60+R()*400);c.tone=i%4;CR[c.id]=c;});
 const initials=c=>c.name.split(' ').map(w=>w[0]).join('').slice(0,2);
@@ -874,6 +913,62 @@ const MY=[['Fintech dashboard','UI/UX','image'],['Logo reveal','Motion','motion'
 MY.forEach(([t,c,ty],k)=>{const it=mkItem(300+k,{id:'m'+k,creator:'me',cat:c,type:ty,title:t,days:3+k*6});it.likes=120+k*90;it.views=it.likes*14;ITEMS.push(it);});
 ITEMS.forEach(it=>IT[it.id]=it);
 
+/* ---------- projects: every post is a project made of sections ---------- */
+// Sections are the card unit: each one can be saved, searched, boosted and shared on its own.
+const SECTION_TYPES={
+ 'Web design':['Hero','Navigation','Features','Pricing','Testimonials','FAQ','Footer','Mobile view','404'],
+ 'UI/UX':['Dashboard','Onboarding','Mobile screens','Settings','Checkout','Components'],
+ 'Branding':['Logo','Colour palette','Typography','Stationery','Packaging','Mockup','Brand guidelines'],
+ '3D':['Final render','Close-up','Wireframe','Turntable','Process'],
+ 'Motion':['Final cut','Styleframes','Storyboard','Breakdown'],
+ 'Illustration':['Final piece','Detail','Sketch','Character sheet','Process'],
+ 'Typography':['Specimen','Glyphs','In use','Poster'],
+ 'Photography':['Portrait','Editorial','Product','Behind the scenes'],
+ 'Product':['Hero render','Exploded view','Sketch','Prototype','In use'],
+ 'Architecture':['Exterior','Interior','Floor plan','Section','Material board'],
+ 'Fashion':['Look','Lookbook','Sketch','Fabric & texture','Detail shot','Runway','Moodboard','Tech pack'],
+ 'Packaging':['Front','Dieline','Shelf shot','Unboxing'],
+ 'Interior':['Living room','Kitchen','Bedroom','Floor plan','Material board','Lighting'],
+ 'Hair & makeup':['Final look','Close-up','Before & after','Hair','Products','Behind the scenes']
+};
+const ALLSECS=[...new Set(Object.values(SECTION_TYPES).flat())];
+const STYLES=['dark','light','minimal','bold','editorial','playful','monochrome','colourful'];
+const SEC_RATIO={'Hero':.62,'Navigation':.32,'Features':.8,'Pricing':.72,'Testimonials':.55,'FAQ':.7,'Footer':.38,'Mobile view':1.9,'404':.62,'Look':1.5,'Lookbook':1.3,'Runway':1.5,'Fabric & texture':1,'Detail shot':1.2,'Sketch':1.35,'Moodboard':.8,'Tech pack':1.3,'Floor plan':.8,'Colour palette':.6,'Logo':.8,'Brand guidelines':1.3,'Storyboard':.6,'Styleframes':.6,'Final look':1.4,'Close-up':1,'Before & after':.6,'Living room':.7,'Kitchen':.75,'Bedroom':.75,'Exterior':.7};
+const CREDIT_ROLES={'Fashion':[['Photography','lena'],['Makeup','bisi'],['Styling','zara']],'Web design':[['Development','priya'],['Copywriting','tolu']],'UI/UX':[['Development','priya']],'Branding':[['Strategy','kofi']],'Motion':[['Sound design','ife']],'3D':[['Lighting','lucas']],'Interior':[['Photography','lena']],'Hair & makeup':[['Photography','lena'],['Styling','zara']],'Photography':[['Styling','zara'],['Makeup','bisi']],'Architecture':[['Visualisation','omar']],'Illustration':[['Art direction','amara']]};
+const PROJECTS=[];const PJ={};
+const isCover=i=>!i.proj||PJ[i.proj]?.sections[0]===i.id;
+const secTypes=cat=>SECTION_TYPES[cat]||['Cover','Detail','Process','Final'];
+function projectify(it,o={}){
+  const types=secTypes(it.cat);
+  const pj={id:'pj_'+it.id,title:it.title,creator:it.creator,cat:it.cat,desc:it.desc,sections:[it.id],credits:[{who:it.creator,role:CR[it.creator]?.role||'Design'}]};
+  if(o.credits)o.credits.forEach(c=>{if(CR[c.who]&&c.who!==it.creator)pj.credits.push(c);});
+  else{const pool=(CREDIT_ROLES[it.cat]||[]).filter(([,w])=>w!==it.creator&&CR[w]);shuffle(pool).slice(0,Math.floor(R()*(pool.length+1))).forEach(([role,who])=>pj.credits.push({who,role}));}
+  PROJECTS.push(pj);PJ[pj.id]=pj;
+  it.proj=pj.id;it.sec=o.secs?o.secs[0]:types[0];it.style=o.styles?o.styles[0]:pick(STYLES);
+  if(SEC_RATIO[it.sec]&&!it.src)it.ratio=SEC_RATIO[it.sec];
+  const n=o.secs?o.secs.length:(it.type==='motion'?(R()<.45?2:1):Math.min(Math.max(1,it.imgs),5));
+  it.imgs=1;
+  for(let k=1;k<n;k++){
+    const sec=o.secs?o.secs[k]:types[k%types.length];
+    const s={...it,id:it.id+'_s'+k,sec,style:o.styles?o.styles[k%o.styles.length]:pick(STYLES),type:'image',ratio:SEC_RATIO[sec]||pick([.75,1,1.25,1.33]),tone:Math.floor(R()*4),
+      likes:Math.floor(it.likes*(.15+R()*.4)),views:Math.floor(it.views*.3),comments:[],challenge:false,feed:k<=2,src:null,kind:null,dur:0,poster:0};
+    ITEMS.push(s);IT[s.id]=s;pj.sections.push(s.id);
+  }
+  return pj;
+}
+// hand-made showcase projects so web, fashion and interior read properly in the prototype
+function showcase(o){
+  const it=mkItem(0,{id:o.id,creator:o.creator,cat:o.cat,type:'image',title:o.title,days:o.days??1});
+  Object.assign(it,{likes:o.likes||2400,views:(o.likes||2400)*18,tags:o.tags,desc:o.desc,imgs:1});
+  ITEMS.splice(Math.min(o.at||8,ITEMS.length),0,it);IT[it.id]=it;projectify(it,{secs:o.secs,styles:o.styles,credits:o.credits||[]});return it;
+}
+ITEMS.slice().forEach(it=>projectify(it));
+showcase({id:'w1',creator:'jonas',cat:'Web design',title:'Fintech marketing site',at:6,likes:3800,tags:['landing-page','fintech','dark-mode'],desc:'Marketing site for a Lagos fintech: a dark hero, simple pricing and social proof that converts. Built in Framer.',secs:['Hero','Features','Pricing','Testimonials','Footer'],styles:['dark','light','dark','light','dark'],credits:[{who:'priya',role:'Development'},{who:'tolu',role:'Copywriting'}]});
+showcase({id:'fa1',creator:'kemi',cat:'Fashion',title:'Denim capsule SS27',at:13,likes:4100,tags:['denim','lookbook','streetwear'],desc:'Twelve looks built from deadstock denim and hand-dyed adire panels. Shot on location in Lagos Island.',secs:['Look','Look','Lookbook','Fabric & texture','Sketch','Detail shot'],styles:['editorial','editorial','minimal','monochrome','minimal','editorial'],credits:[{who:'lena',role:'Photography'},{who:'bisi',role:'Makeup'},{who:'zara',role:'Styling'}]});
+showcase({id:'in1',creator:'hana',cat:'Interior',title:'Lagos apartment refresh',at:21,likes:2600,tags:['interior','japandi','renovation'],desc:'A two-bed apartment reworked around natural light, warm timber and local textiles.',secs:['Living room','Kitchen','Floor plan','Material board'],styles:['light','minimal','minimal','colourful'],credits:[{who:'lena',role:'Photography'}]});
+showcase({id:'hm1',creator:'bisi',cat:'Hair & makeup',title:'Bridal glam',at:29,likes:1900,tags:['makeup','bridal','editorial'],desc:'Soft glam for a Lagos wedding: long-wear base, warm bronze eyes and a sleek low bun.',secs:['Final look','Close-up','Before & after','Products'],styles:['editorial','minimal','light','minimal'],credits:[{who:'lena',role:'Photography'},{who:'zara',role:'Styling'}]});
+
+
 const COLLS=[
   {id:'c1',name:'3D refs',secret:false,items:[]},
   {id:'c2',name:'Motion inspo',secret:false,items:[]},
@@ -901,8 +996,8 @@ const S={
   filters:{time:'any',hire:false,multi:false,tools:[]},
   saved:{},liked:new Set(),following:new Set(['mira','kofi','priya']),
   hidden:new Set(),sound:new Set(),lastColl:'c1',
-  interests:['UI/UX','Branding','3D','Motion','Illustration','Typography','Photography','Product','Architecture','Fashion','Packaging'],
-  newTopics:new Set(['UI/UX','Branding','3D','Illustration']),
+  interests:CATS.slice(),
+  newTopics:new Set(['Web design','Fashion','Branding','3D','Illustration']),
   recent:['dashboard ui','kinetic type','packaging'],
   hideBreaks:false,
   set:Object.assign({autoplay:true,breaks:true,reduce:false,personalAds:true},store.get('set',{})),
@@ -937,7 +1032,7 @@ const reduced=()=>S.set.reduce||matchMedia('(prefers-reduced-motion: reduce)').m
 const isWide=()=>matchMedia('(min-width:1536px)').matches;
 const isMobile=()=>matchMedia('(max-width:767px)').matches;
 const unreadN=()=>NOTIFS.filter(n=>n.unread).length;
-const newFromFollowing=()=>ITEMS.filter(i=>S.following.has(i.creator)&&i.days<=1&&!S.hidden.has(i.id)).length;
+const newFromFollowing=()=>ITEMS.filter(i=>S.following.has(i.creator)&&i.days<=1&&i.feed!==false&&!S.hidden.has(i.id)).length;
 const visible=list=>list.filter(i=>!S.hidden.has(i.id));
 function greeting(){const h=new Date().getHours();return h<12?'Good morning':h<18?'Good afternoon':'Good evening'}
 
@@ -1042,13 +1137,13 @@ function cardHTML(it,o={}){
   const c=CR[it.creator],liked=S.liked.has(it.id),m=it.type==='motion';
   const pinned=!!(FC&&FC.opt&&FC.opt.profile&&S.pinnedPosts.includes(it.id));
   return `<article class="card ${S.saved[it.id]?'saved':''} ${it.fresh&&Date.now()-it.fresh<8000?'new-up':''} ${o.promo?'promo':''}" data-id="${it.id}" ${o.promo?`data-promo="${o.promo.pid}"`:''}>
-  <div class="media ph t${it.tone} ${m?'motion':''}" style="aspect-ratio:1/${it.ratio}" data-act="open" data-id="${it.id}" tabindex="0" role="button" aria-label="${esc(it.title)} by ${esc(c.name)}">
-    ${mediaInner(it)}
-    ${m?`<span class="badge">${ic('play',9)} ${dur(it.dur)}</span><span class="ppbig"><span>${ic('play',16)}</span></span>`:it.imgs>1?`<span class="count">${ic('layers',11)} ${it.imgs}</span>`:''}
+  <div class="media ph t${it.tone} ${m?'motion':''} ${it.cat==='Web design'?'web':''}" style="aspect-ratio:1/${it.ratio}" data-act="open" data-id="${it.id}" tabindex="0" role="button" aria-label="${esc(it.sec?it.sec+' · ':'')}${esc(it.title)} by ${esc(c.name)}">
+    ${it.cat==='Web design'?'<span class="wbar"><i></i><i></i><i></i></span>':''}${mediaInner(it)}
+    ${m?`<span class="badge">${ic('play',9)} ${dur(it.dur)}</span><span class="ppbig"><span>${ic('play',16)}</span></span>`:secBadgeHTML(it)}
     ${pinned?`<span class="pinb">${ic('pin',11)} Pinned</span>`:''}<span class="stag">${ic('bookmark',13)}</span>
     <div class="hov">
       <div class="hov-top">${m?`<button class="hic" data-act="sound" data-id="${it.id}" title="Preview sound">${ic(S.sound.has(it.id)?'sound':'mute',14)}</button>`:''}${saveGrp(it)}</div>
-      <div class="hov-bot"><span class="t">${esc(it.title)}</span><span class="grow"></span>
+      <div class="hov-bot"><span class="t">${it.sec?`<span style="font-weight:500;opacity:.85">${esc(it.sec)} · </span>`:''}${esc(it.title)}</span><span class="grow"></span>
         <button class="hic ${liked?'on':''}" data-act="like" data-id="${it.id}" title="Like">${ic('heart',14)}</button>
         <button class="hic" data-act="share" data-id="${it.id}" title="Copy link">${ic('share',14)}</button>
         <button class="hic" data-act="more" data-id="${it.id}" title="More">${ic('more',14)}</button>
@@ -1068,6 +1163,7 @@ function refreshItem(id){
     card.querySelectorAll('[data-act="like"]').forEach(b=>b.classList.toggle('on',liked));
     const n=card.querySelector('.likes span');if(n)n.textContent=fmt(it.likes+(liked?1:0));
   });
+  $$(`.psec[data-sid="${id}"] .savegrp`).forEach(g=>g.outerHTML=saveGrp(it));
   const d=$('.detail');if(d&&d.dataset.id===id){
     const g=d.querySelector('.dact .savegrp');if(g)g.outerHTML=saveGrp(it);
     const lb=d.querySelector('[data-act="like"].ibtn');if(lb)lb.classList.toggle('liked',liked);
@@ -1187,7 +1283,7 @@ function applyFilters(list){
   const f=S.filters;
   if(f.time!=='any'){const max={day:1,week:7,month:30}[f.time];list=list.filter(i=>i.days<=max);}
   if(f.hire)list=list.filter(i=>CR[i.creator].hire);
-  if(f.multi)list=list.filter(i=>i.imgs>1);
+  if(f.multi)list=list.filter(i=>(PJ[i.proj]?.sections.length||1)>1);
   if(f.tools.length)list=list.filter(i=>i.tools.some(t=>f.tools.includes(t)));
   return list;
 }
@@ -1199,8 +1295,8 @@ function order(list,tab){
   return list.slice().sort((a,b)=>sc.get(b.id)-sc.get(a.id));
 }
 function homeList(){
-  let l=ITEMS.filter(i=>(i.creator!=='me'||i.fresh)&&!i.unlisted);
-  if(S.tab==='following')l=ITEMS.filter(i=>S.following.has(i.creator));
+  let l=ITEMS.filter(i=>(i.creator!=='me'||i.fresh)&&!i.unlisted&&i.feed!==false);
+  if(S.tab==='following')l=ITEMS.filter(i=>S.following.has(i.creator)&&i.feed!==false);
   if(S.topic!=='all')l=l.filter(i=>i.cat===S.topic);
   if(S.format!=='all')l=l.filter(i=>S.format==='motion'?i.type==='motion':i.type!=='motion');
   return order(applyFilters(l),S.tab==='following'?'latest':S.tab);
@@ -1230,7 +1326,7 @@ function ctxHTML(){
   const f=S.filters;
   if(f.time!=='any')bits.push(`<button class="chip sm" data-act="clear-filter" data-k="time">Past ${f.time} ${ic('x',12)}</button>`);
   if(f.hire)bits.push(`<button class="chip sm" data-act="clear-filter" data-k="hire">Available for hire ${ic('x',12)}</button>`);
-  if(f.multi)bits.push(`<button class="chip sm" data-act="clear-filter" data-k="multi">Multi-image projects ${ic('x',12)}</button>`);
+  if(f.multi)bits.push(`<button class="chip sm" data-act="clear-filter" data-k="multi">Multi-section projects ${ic('x',12)}</button>`);
   f.tools.forEach(t=>bits.push(`<button class="chip sm" data-act="clear-filter" data-k="tool" data-v="${esc(t)}">${esc(t)} ${ic('x',12)}</button>`));
   if(!bits.length)return '';
   return `<div class="ctx">${bits.join('')}<button class="lnk muted" style="font-size:12px;font-weight:500" data-act="clear-filter" data-k="all">Clear all</button></div>`;
@@ -1247,7 +1343,7 @@ function viewHome(){
 }
 function viewMotion(){
   const saveTab=S.tab;if(!['foryou','latest','popular'].includes(S.tab))S.tab='foryou';
-  let l=ITEMS.filter(i=>i.type==='motion'&&(i.creator!=='me'||i.fresh));if(S.topic!=='all')l=l.filter(i=>i.cat===S.topic);
+  let l=ITEMS.filter(i=>i.type==='motion'&&i.feed!==false&&(i.creator!=='me'||i.fresh));if(S.topic!=='all')l=l.filter(i=>i.cat===S.topic);
   V.innerHTML=`<div class="wrap"><div class="vh"><div><h1>Motion</h1><p>Loops play as you scroll. Click any piece for full length with sound.</p></div></div>
   <div class="ctx" style="margin:14px 0 4px">${['all',...CATS.filter(c=>ITEMS.some(i=>i.cat===c&&i.type==='motion'))].map(c=>`<button class="chip ${S.topic===c?'on':''}" data-act="topic" data-topic="${esc(c)}">${c==='all'?'All motion':esc(c)}</button>`).join('')}</div>
   ${fbarHTML({tabs:[['foryou','For you'],['latest','Latest'],['popular','Popular']],noFormat:true})}${ctxHTML().replace(/<button class="chip on sm" data-act="topic"[^]*?<\/button>/,'')}${takeoverHTML()}<div id="feed"></div></div>`;
@@ -1256,17 +1352,20 @@ function viewMotion(){
 }
 function viewSearch(r){
   const q=(r.q.get('q')||'').trim();const scope=r.q.get('scope')||S.scope;S.scope=scope;syncSearchUI();
-  const words=q.toLowerCase().split(/\s+/).filter(Boolean);
-  const match=i=>{const hay=(i.title+' '+i.tags.join(' ')+' '+i.cat+' '+CR[i.creator].name+' '+i.tools.join(' ')).toLowerCase();return words.every(w=>hay.includes(w.replace(/^#/,'')))};
+  const words=q.toLowerCase().split(/\s+/).filter(w=>w&&!STOPWORDS.has(w));
+  const match=i=>{const hay=(i.title+' '+i.tags.join(' ')+' '+i.cat+' '+CR[i.creator].name+' '+i.tools.join(' ')+' '+(i.sec||'')+' '+(i.style||'')).toLowerCase();return words.every(w=>hay.includes(w.replace(/^#/,'')))};
   let items=q==='trending'?ITEMS.filter(i=>i.tags.some(t=>TREND.some(x=>x[1]===t))):ITEMS.filter(match);
   if(scope==='image')items=items.filter(i=>i.type!=='motion');if(scope==='motion')items=items.filter(i=>i.type==='motion');
+  const secF=r.q.get('sec')||'',discF=r.q.get('disc')||'';
+  const discCounts=countBy(items,i=>i.cat);if(discF)items=items.filter(i=>i.cat===discF);
+  const secCounts=countBy(items,i=>i.sec);if(secF)items=items.filter(i=>i.sec===secF);
   const crs=CREATORS.filter(c=>c.id!=='me'&&(!words.length||words.every(w=>(c.name+' '+c.role+' '+c.cats.join(' ')).toLowerCase().includes(w))||ITEMS.some(i=>i.creator===c.id&&match(i))));
   const related=[...new Set(items.flatMap(i=>i.tags))].slice(0,8);
   const label=q==='trending'?'Trending now':q?`“${esc(q)}”`:'Creators';
-  V.innerHTML=`<div class="wrap"><div class="vh"><div><div class="label">Search results</div><h1>${label}</h1><p>${scope==='creators'?crs.length+' creators':items.length+' pieces'}</p></div></div>
+  V.innerHTML=`<div class="wrap"><div class="vh"><div><div class="label">Search results</div><h1>${label}</h1><p>${scope==='creators'?crs.length+' creators':`${items.length} sections from ${new Set(items.map(i=>i.proj)).size} projects`}</p></div></div>
   <div class="fbar"><div class="tabs">${[['all','All'],['image','Images'],['motion','Motion'],['creators','Creators']].map(([k,l])=>`<button class="${scope===k?'on':''}" data-act="search-scope" data-scope="${k}">${l}</button>`).join('')}</div>${scope==='creators'?'':`<button class="ibtn ${filterCount()?'on':''}" data-act="filter" title="Filters">${ic('filter',18)}${filterCount()?`<span class="dotn">${filterCount()}</span>`:''}</button>`}</div>
   ${searchTopHTML(q)}${related.length&&scope!=='creators'?`<div class="ctx"><span class="muted" style="font-size:12px">Related:</span>${related.map(t=>`<button class="chip sm" data-act="search-q" data-q="${t}">#${t}</button>`).join('')}</div>`:''}
-  ${scope==='creators'?'':ctxHTML()}<div id="feed"></div></div>`;
+  ${scope==='creators'?'':secFiltersHTML(secCounts,discCounts,secF,discF)}${scope==='creators'?'':ctxHTML()}<div id="feed"></div></div>`;
   if(scope==='creators'){$('#feed').innerHTML=crs.length?`<div class="crgrid">${crs.map(creatorCard).join('')}</div>`:emptyHTML('users','No creators found','Try a different name or skill.');}
   else mountFeed($('#feed'),order(applyFilters(items),'popular'),{breaks:false,ads:'search',q,empty:emptyHTML('search',`No results for “${esc(q)}”`,'Check the spelling or try a broader term.',`<div class="ctx" style="justify-content:center">${TREND.map(t=>`<button class="chip" data-act="search-q" data-q="${t[1]}">${t[0]}</button>`).join('')}</div>`)});
 }
@@ -1274,7 +1373,7 @@ function creatorCard(c){const f=S.following.has(c.id);const its=ITEMS.filter(i=>
 function viewSimilar(){
   if(!S.similarSrc){go('home');return;}
   V.innerHTML=`<div class="wrap"><div class="vh" style="align-items:center"><img src="${S.similarSrc}" alt="" style="width:76px;height:76px;object-fit:cover;border-radius:14px"><div class="grow"><div class="label">Visual search</div><h1>Visually similar</h1><p>Matched on colour, composition and subject.</p></div><button class="btn" data-act="camera">Try another image</button></div><div id="feed" style="margin-top:16px"></div></div>`;
-  mountFeed($('#feed'),shuffle(ITEMS.filter(i=>i.creator!=='me'),rng(S.similarSrc.length)).slice(0,36),{breaks:false});
+  mountFeed($('#feed'),shuffle(ITEMS.filter(i=>i.creator!=='me'&&i.feed!==false),rng(S.similarSrc.length)).slice(0,36),{breaks:false});
 }
 function viewCollections(r){
   if(r.arg){
@@ -1301,7 +1400,7 @@ function viewProfile(r){
   const me=c.id==='me',f=S.following.has(c.id);
   const work=ITEMS.filter(i=>i.creator===c.id);
   const likes=work.reduce((a,i)=>a+i.likes,0),views=work.reduce((a,i)=>a+i.views,0);
-  const tabs=[['work',`Work · ${work.length}`],...(me?[['collections',`Collections · ${COLLS.length}`]]:[]),['about','About']];
+  const tabs=[['work',`Projects · ${work.filter(isCover).length}`],...(me?[['collections',`Collections · ${COLLS.length}`]]:[]),['about','About']];
   if(!tabs.some(t=>t[0]===S.ptab))S.ptab='work';
   V.innerHTML=`<div class="wrap"><div class="pcover ph t${c.tone}"></div>
   <div class="phead">${avHTML(c,'s96')}<div class="info"><h1>${esc(c.name)}${me&&isPro()?' '+proBadge():''}${c.studio?'<span class="ftag" style="font-size:11px">Studio</span>':''}</h1><div class="role">${esc(c.role)} <span class="muted" style="display:inline-flex;gap:4px;align-items:center">${ic('mappin',13)} ${esc(c.loc)}</span>${c.hire?'<span class="hire"><i></i>Available for hire</span>':''}${me&&isPro()&&S.domain?`<span class="chip sm">${ic('link',12)} ${esc(S.domain)}</span>`:''}</div></div>
@@ -1309,7 +1408,7 @@ function viewProfile(r){
   <div class="pstats"><div><b id="pfol">${fmt(c.followers+(f?1:0))}</b><span>followers</span></div><div><b>${fmt(c.followingN)}</b><span>following</span></div><div><b>${fmt(likes)}</b><span>appreciations</span></div><div><b>${fmt(views)}</b><span>views</span></div></div>
   <div class="ptabs">${tabs.map(([k,l])=>`<button class="${S.ptab===k?'on':''}" data-act="ptab" data-v="${k}">${l}</button>`).join('')}</div><div id="feed"></div></div>`;
   const el=$('#feed');
-  if(S.ptab==='work')mountFeed(el,profileOrder(work),{breaks:false,profile:true,empty:emptyHTML('image','No work yet',me?'Upload your first piece — it becomes your portfolio.':'Nothing posted yet.',me?`<button class="btn primary" data-act="upload">Upload</button>`:'')});
+  if(S.ptab==='work')mountFeed(el,profileOrder(work.filter(isCover)),{breaks:false,profile:true,empty:emptyHTML('image','No work yet',me?'Upload your first piece — it becomes your portfolio.':'Nothing posted yet.',me?`<button class="btn primary" data-act="upload">Upload</button>`:'')});
   else if(S.ptab==='collections'){el.innerHTML=`<div class="cgrid2" style="margin-top:0">${COLLS.map(cl=>`<button class="coll-card" data-act="nav" data-nav="collections/${cl.id}"><div class="mosaic">${[0,1,2].map(k=>`<div class="ph t${IT[cl.items[k]]?.tone??k}"></div>`).join('')}</div><b>${esc(cl.name)}</b><span>${cl.items.length} pieces</span></button>`).join('')}</div>`;}
   else el.innerHTML=`<div class="about"><div><div class="label" style="margin-bottom:8px">Bio</div><p>${esc(c.bio||`${c.role} based in ${c.loc}. Working across ${c.cats.join(', ').toLowerCase()}. Open to collaborations and good coffee.`)}</p><div class="label" style="margin:18px 0 8px">Focus</div><div class="ctx">${c.cats.map(x=>`<button class="chip" data-act="search-q" data-q="${esc(x)}">${esc(x)}</button>`).join('')}</div></div><div class="box"><h4>Tools</h4><div class="ctx">${[...new Set(work.flatMap(i=>i.tools))].map(t=>`<span class="chip sm">${t}</span>`).join('')||'<span class="muted">—</span>'}</div><h4 style="margin-top:14px">Links</h4><div style="display:flex;flex-direction:column;gap:6px;font-size:13px">${['Website','Instagram','LinkedIn'].map(x=>`<button class="lnk" style="text-align:left;font-weight:500" data-act="proto" data-what="${x} link">${x} ↗</button>`).join('')}</div></div></div>`;
 }
@@ -1336,6 +1435,8 @@ function renderSdrop(){
     h+=`<div class="sgroup"><button class="sopt" data-act="search-q" data-q="${esc(q)}">${ic('search',16)}<span>Search for “<b>${esc(q)}</b>” in ${{all:'everything',image:'images',motion:'motion',creators:'creators'}[S.scope]}</span><span class="sub"><span class="kbd">↵</span></span></button></div>`;
     h+=sugAdHTML(q);
     if(its.length)h+=`<div class="sgroup"><div class="label">Work</div>${its.map(i=>`<button class="sopt" data-act="search-q" data-q="${esc(i.title)}"><span class="ph t${i.tone}"></span><span>${hlText(i.title,q)}</span><span class="sub">${esc(i.cat)}${i.type==='motion'?' · motion':''}</span></button>`).join('')}</div>`;
+    const sts=ALLSECS.filter(t=>t.toLowerCase().startsWith(ql)).slice(0,4);
+    if(sts.length)h+=`<div class="sgroup"><div class="label">Sections</div>${sts.map(t=>`<button class="sopt" data-act="search-q" data-q="${esc(t.toLowerCase())}">${ic('layers',16)}<span>${hlText(t,q)} sections</span><span class="sub">from ${ITEMS.filter(i=>i.sec===t).length} projects</span></button>`).join('')}</div>`;
     if(tags.length)h+=`<div class="sgroup"><div class="label">Tags</div>${tags.map(t=>`<button class="sopt" data-act="search-q" data-q="${t}"><span>#${hlText(t,ql.replace(/^#/,''))}</span></button>`).join('')}</div>`;
     if(crs.length)h+=`<div class="sgroup"><div class="label">Creators</div>${crs.map(c=>`<button class="sopt" data-act="creator" data-creator="${c.id}">${avHTML(c,'s36')}<span>${hlText(c.name,q)}</span><span class="sub">${esc(c.role)}</span></button>`).join('')}</div>`;
   }
@@ -1373,27 +1474,29 @@ function openDetail(id){
 function renderDetail(l,id){
   stopPlayer();
   const it=IT[id],c=CR[it.creator],f=S.following.has(c.id),liked=S.liked.has(id),m=it.type==='motion';
+  const pj=PJ[it.proj];const secs=pj?pj.sections.map(x=>IT[x]).filter(Boolean):[it];const k0=Math.max(0,secs.indexOf(it));
   const idx=l._nav.indexOf(id);
-  const more=ITEMS.filter(i=>i.creator===c.id&&i.id!==id).slice(0,6);
+  const more=ITEMS.filter(i=>i.creator===c.id&&isCover(i)&&i.proj!==it.proj).slice(0,6);
   const d=l.querySelector('.detail');d.dataset.id=id;l._img=0;
-  const frame=it.src?(it.kind==='video'?`<video src="${it.src}" playsinline loop></video>`:`<img src="${it.src}" alt="">`):(m?'<span class="blob" style="animation-duration:'+(it.dur/2)+'s"></span><span class="blob b2" style="animation-duration:'+(it.dur/2)+'s"></span>':'');
   d.innerHTML=`
    <button class="ibtn mclose" data-act="close-modal" title="Close (Esc)">${ic('x',18)}</button>
    <div class="dstage">
-     <div class="canvas">
-       <div class="frame ${m?'playing':''}" id="dframe" style="aspect-ratio:1/${it.ratio};${it.ratio>=1?'height:100%':'width:100%'}" ${m?'data-act="player-toggle"':''}>${frame}${m?`<span class="bigplay"><span>${ic('play',26)}</span></span>`:''}</div>
-       ${!m&&it.imgs>1?`<button class="car-nav l" data-act="img-prev" disabled>${ic('left',18)}</button><button class="car-nav r" data-act="img-next">${ic('chev',18)}</button>`:''}
+     <div class="pscroll" id="pscroll">${secs.map((s,k)=>secBlockHTML(s,k,secs.length,s.id===id)).join('')}
+       <div class="pend">${ic('check',16)}<span>End of “${esc(pj?pj.title:it.title)}” · ${secs.length} section${secs.length>1?'s':''}</span><button class="btn sm" data-act="creator" data-creator="${c.id}">More from ${esc(c.name.split(' ')[0])}</button></div>
      </div>
-     ${m?`<div class="ctrl"><button data-act="player-toggle" id="ppBtn" title="Play/pause (Space)">${ic('pause',18)}</button><span id="ptime">0:00 / ${dur(it.dur)}</span><div class="bar" id="pbar" data-act="player-seek"><i></i><b></b></div><button class="speed" data-act="player-speed" id="pspeed">1x</button><button data-act="player-mute" id="pmute" title="Sound">${ic('sound',18)}</button><button data-act="player-full" title="Fullscreen">${ic('expand',18)}</button></div>`
-       :it.imgs>1?`<div class="thumbs" id="dthumbs">${Array.from({length:it.imgs},(_,k)=>`<button class="${k===0?'on':''}" data-act="img-go" data-k="${k}"><span class="ph" style="display:block"></span></button>`).join('')}</div>`:''}
+     ${m?`<div class="ctrl"><button data-act="player-toggle" id="ppBtn" title="Play/pause (Space)">${ic('pause',18)}</button><span id="ptime">0:00 / ${dur(it.dur)}</span><div class="bar" id="pbar" data-act="player-seek"><i></i><b></b></div><button class="speed" data-act="player-speed" id="pspeed">1x</button><button data-act="player-mute" id="pmute" title="Sound">${ic('sound',18)}</button><button data-act="player-full" title="Fullscreen">${ic('expand',18)}</button></div>`:''}
    </div>
    <div class="dpanel"><div class="scroll">
      <div class="wrow" style="padding:0;padding-right:44px">${avHTML(c,'s44')}<div class="tx"><b data-act="creator" data-creator="${c.id}">${esc(c.name)}</b><span>${esc(c.role)} · ${fmt(c.followers+(f?1:0))} followers</span></div>${c.id==='me'?'':`<button class="btn sm follow ${f?'on':''}" data-act="follow" data-creator="${c.id}">${f?'Following':'Follow'}</button>`}</div>
-     <h2>${esc(it.title)}</h2><p class="desc">${esc(it.desc)}</p>
-     <div class="stats"><span>${ic('clock',13).replace('<svg','<svg style="display:inline;vertical-align:-2px"')} ${it.days===0?'Posted today':'Posted '+ago(it.days)}</span>·<span>${fmt(it.views)} views</span>·<span><b id="dLikes">${fmt(it.likes+(liked?1:0))}</b> likes</span>${!m&&it.imgs>1?`·<span id="dImgN">1 / ${it.imgs}</span>`:''}${it.tips?`·<span id="dTips">${it.tips} tip${it.tips>1?'s':''}</span>`:''}</div>
+     <div class="label" style="margin-top:16px">${esc(it.cat)} · project</div>
+     <h2 style="margin-top:4px">${esc(pj?pj.title:it.title)}</h2><p class="desc">${esc(pj?pj.desc:it.desc)}</p>
+     <div class="stats"><span>${ic('clock',13).replace('<svg','<svg style="display:inline;vertical-align:-2px"')} ${it.days===0?'Posted today':'Posted '+ago(it.days)}</span>·<span>${fmt(it.views)} views</span>·<span><b id="dLikes">${fmt(it.likes+(liked?1:0))}</b> likes</span>·<span>${secs.length} section${secs.length>1?'s':''}</span>${it.tips?`·<span id="dTips">${it.tips} tip${it.tips>1?'s':''}</span>`:''}</div>
      ${it.challenge?`<button class="chbadge" data-act="challenge">${ic('trophy',14)} Entry · Weekly challenge #42</button>`:''}
+     <div class="secnow">Opened at <b>${esc(it.sec||'Cover')}</b> (${k0+1} of ${secs.length}). Save and like below apply to this section.</div>
      <div class="dact">${saveGrp(it)}<button class="ibtn ${liked?'liked':''}" data-act="like" data-id="${id}" title="Like">${ic('heart',18)}</button><button class="ibtn" data-act="share" data-id="${id}" title="Copy link">${ic('share',18)}</button><button class="ibtn" data-act="more" data-id="${id}" title="More">${ic('more',18)}</button>${dactExtra(it)}</div>
      <div class="ctx">${it.tags.map(t=>`<button class="chip sm" data-act="search-q" data-q="${t}">#${t}</button>`).join('')}${it.tools.map(t=>`<span class="chip sm" style="background:none;border:1px solid var(--line2)">${t}</span>`).join('')}</div>
+     ${secs.length>1?`<div class="sect"><div class="label">Sections · ${secs.length}</div><div class="sidx" id="sidx">${secs.map((s,k)=>`<button class="${s.id===id?'on':''}" data-act="sec-jump" data-id="${s.id}"><span class="ph t${s.tone}"></span><span class="grow">${k+1}. ${esc(s.sec||'Section')}${s.style?` <span class="muted">· ${esc(s.style)}</span>`:''}</span>${S.saved[s.id]?ic('bookmark',12):''}</button>`).join('')}</div></div>`:''}
+     ${creditsHTML(pj)}
      ${insightsHTML(it)}${more.length?`<div class="sect"><div class="label">More by ${esc(c.name.split(' ')[0])}<button class="lnk" style="font-size:12px;text-transform:none;letter-spacing:0" data-act="creator" data-creator="${c.id}">View profile</button></div><div class="more3">${more.slice(0,3).map(i=>`<div class="ph t${i.tone}" data-act="detail-go" data-id="${i.id}" title="${esc(i.title)}"></div>`).join('')}</div></div>`:''}
      <div class="sect"><div class="label" id="cmtN">Comments · ${it.comments.length}</div><div id="cmts">${it.comments.length?it.comments.map((cm,k)=>cmtHTML(cm,k)).join(''):'<p class="muted" style="font-size:13px;margin:0" id="noCmt">No comments yet. Say something nice.</p>'}</div></div>
    </div>
@@ -1403,6 +1506,9 @@ function renderDetail(l,id){
   const cin=$('#cin',d),cpost=$('#cpost',d);
   cin.oninput=()=>cpost.disabled=!cin.value.trim();
   $('#cform',d).onsubmit=e=>{e.preventDefault();const t=cin.value.trim();if(!t)return;it.comments.push({by:'me',text:t,days:0,likes:0,liked:false});$('#noCmt',d)?.remove();$('#cmts',d).insertAdjacentHTML('beforeend',cmtHTML(it.comments.at(-1),it.comments.length-1));$('#cmtN',d).textContent=`Comments · ${it.comments.length}`;cin.value='';cpost.disabled=true;const sc=$('.dpanel .scroll',d);sc.scrollTop=sc.scrollHeight;};
+  const ps=$('#pscroll',d);
+  if(k0>0){const fe=ps.querySelector(`[data-sid="${id}"]`);if(fe){if(ps.scrollHeight>ps.clientHeight+4)ps.scrollTop=fe.offsetTop-14;else setTimeout(()=>fe.scrollIntoView({block:'start'}),30);}}
+  ps.onscroll=()=>{const top=ps.scrollTop+90;let cur=null;$$('.psec',ps).forEach(s=>{if(s.offsetTop<=top)cur=s.dataset.sid;});$$('#sidx button',d).forEach(b=>b.classList.toggle('on',b.dataset.id===cur));};
   if(m)startPlayer(it,d);
 }
 function cmtHTML(cm,k){const a=CR[cm.by];return `<div class="cmt">${avHTML(a,'s36')}<div class="tx"><b data-act="creator" data-creator="${a.id}">${esc(a.name)}</b> ${esc(cm.text)}<div class="t"><span>${cm.days===0?'just now':ago(cm.days)}</span><button class="${cm.liked?'on':''}" data-act="cmt-like" data-k="${k}">${cm.likes+(cm.liked?1:0)?`${cm.likes+(cm.liked?1:0)} `:''}Like</button><button data-act="cmt-reply" data-name="${esc(a.name.split(' ')[0])}">Reply</button></div></div></div>`;}
@@ -1528,7 +1634,7 @@ function applyPinned(){$('#app').classList.toggle('pinned',S.pinned);$('#pinBtn'
    ========================================================= */
 let U=null;
 function openUpload(o={}){
-  U={step:1,files:[],cover:0,title:'',desc:'',cat:'',tags:[],tools:'',challenge:!!o.challenge,hire:CR.me.hire,vis:'public',poster:0,loopStart:0,loopLen:8,vdur:0};
+  U={step:1,files:[],secs:[],credits:[],cover:0,title:'',desc:'',cat:'',tags:[],tools:'',challenge:!!o.challenge,hire:CR.me.hire,vis:'public',poster:0,loopStart:0,loopLen:8,vdur:0};
   const l=openModal('<div class="modal upload"></div>',{kind:'upload',guard:async()=>{if(!U||U.step===3||!U.files.length)return true;return confirmBox('Discard this upload?','Your files and details will be lost.');},onClose:()=>{U=null;}});
   renderUpload(l);
 }
@@ -1539,10 +1645,10 @@ function uthHTML(f,i){const media=f.kind==='image'?`<img src="${f.url}" alt="">`
 function renderUpload(l=$('.layer[data-kind="upload"]')){
   if(!l||!U)return;const m=l.querySelector('.modal');
   if(U.step===1){
-    m.innerHTML=`<div class="mhead"><h2>Upload work</h2>${stepsHTML()}<button class="ibtn bare" data-uact="close" title="Close">${ic('x',18)}</button></div>
+    m.innerHTML=`<div class="mhead"><h2>Create a project</h2>${stepsHTML()}<button class="ibtn bare" data-uact="close" title="Close">${ic('x',18)}</button></div>
     <div class="mbody">${U.files.length?`<div class="ugrid">${U.files.map(uthHTML).join('')}${isMotionUp()?'':`<div class="uth add" data-uact="browse">${ic('plus',20)}Add more</div>`}</div>
       <p class="muted" style="font-size:12px;margin:14px 0 0">${isMotionUp()?'Motion posts are a single video. We’ll make a 6–8s muted loop for the feed; you pick the poster frame next.':`Click an image to make it the cover. ${U.files.length}/20 images.`}</p>`
-    :`<div class="drop" data-uact="browse" id="drop"><span class="ic">${ic('upload',26)}</span><h3>Drag and drop images or a video</h3><p>JPG, PNG, GIF, WebP up to 20 MB each · MP4, MOV, WebM up to 200 MB</p><button class="btn primary" style="margin-top:8px" data-uact="browse">Browse files</button></div>
+    :`<div class="drop" data-uact="browse" id="drop"><span class="ic">${ic('upload',26)}</span><h3>Drag and drop images or a video</h3><p style="margin:0">Each file becomes a section of your project</p><p>JPG, PNG, GIF, WebP up to 20 MB each · MP4, MOV, WebM up to 200 MB</p><button class="btn primary" style="margin-top:8px" data-uact="browse">Browse files</button></div>
       <div style="display:flex;align-items:center;gap:10px;justify-content:center;margin-top:16px;font-size:13px;flex-wrap:wrap" class="muted">No files handy? <button class="btn sm" data-uact="sample-img">${ic('image',14)} Sample image project</button><button class="btn sm" data-uact="sample-mo">${ic('film',14)} Sample motion</button></div>`}
     <p class="muted" style="font-size:12px;text-align:center;margin:12px 0 0">Motion up to ${isPro()?'60s (Pro)':'30s · 60s with <button type="button" class="lnk" data-act="pro">Pro</button>'}</p>
     ${U.challenge?`<div class="chbadge" style="cursor:default">${ic('trophy',14)} This upload will be entered into Weekly challenge #42 · Retro futurism</div>`:''}</div>
@@ -1559,7 +1665,7 @@ function renderUpload(l=$('.layer[data-kind="upload"]')){
       ${mo?`<div class="rng"><label>Poster frame <span id="pfv">${dur(U.poster)}</span></label><input type="range" id="pfr" min="0" max="${Math.max(1,U.vdur||20)}" step="0.1" value="${U.poster}"><p class="muted" style="font-size:12px;margin:4px 0 0">This still shows when the loop isn’t playing (and for people with reduced motion on).</p></div>
         <div class="rng"><label>Feed preview loop <span id="lpv">${dur(U.loopStart)}–${dur(U.loopStart+U.loopLen)}</span></label><input type="range" id="lpr" min="0" max="${Math.max(0,(U.vdur||20)-U.loopLen)}" step="0.1" value="${U.loopStart}">
         <div style="display:flex;gap:8px;align-items:center;margin-top:8px"><div class="seg">${[6,8].map(s=>`<button type="button" class="${U.loopLen===s?'on':''}" data-uact="looplen" data-v="${s}">${s}s</button>`).join('')}</div><button type="button" class="btn sm" data-uact="loopplay">${ic('play',10)} Preview loop</button></div></div>`
-      :U.files.length>1?`<div class="label" style="margin:14px 0 8px">Cover image</div><div class="ugrid" style="grid-template-columns:repeat(auto-fill,minmax(64px,1fr));gap:8px">${U.files.map(uthHTML).join('')}</div>`:''}
+      :''}${sectionsEditorHTML()}
     </div><div>
       <label class="field"><span>Title <em class="muted" style="font-style:normal;font-weight:400" id="tcount">${U.title.length}/80</em></span><input type="text" id="ut" maxlength="80" placeholder="Give your work a name" value="${esc(U.title)}"></label>
       <label class="field"><span>Description</span><textarea id="ud" placeholder="What was the brief? What did you explore?">${esc(U.desc)}</textarea></label>
@@ -1596,7 +1702,7 @@ function bindDetails(m){
   $('#tagin',m).onclick=e=>{if(e.target.id==='tagin')$('#utag',m).focus();};
   m._addTag=addTag;m._redrawTags=redrawTags;
   const sugg=()=>{const s=(TAGS[U.cat]||[]).filter(t=>!U.tags.includes(t)).slice(0,5);$('#tsugg',m).innerHTML=s.length?'Suggested: '+s.map(t=>`<button type="button" class="chip sm" data-uact="tagadd" data-v="${t}">+ ${t}</button>`).join(''):'';};
-  sugg();val();
+  sugg();val();bindSections(m);
   // motion controls
   const v=$('#upv',m),pfr=$('#pfr',m),lpr=$('#lpr',m);
   if(v){const onMeta=()=>{U.vdur=v.duration||20;if(pfr){pfr.max=U.vdur;}if(lpr){lpr.max=Math.max(0,U.vdur-U.loopLen);}try{v.currentTime=U.poster||0.01}catch{}};if(v.readyState>=1)onMeta();else v.addEventListener('loadedmetadata',onMeta);
@@ -1634,7 +1740,7 @@ function finishPublish(l){
   Object.assign(it,{likes:0,views:0,comments:[],fresh:Date.now(),imgs:mo?1:U.files.length,tags:U.tags.length?U.tags.slice():it.tags,tools:U.tools?U.tools.split(',').map(s=>s.trim()).filter(Boolean):it.tools,desc:U.desc.trim()||`New ${U.cat.toLowerCase()} work by Adam.`,challenge:U.challenge,poster:U.poster,loopStart:U.loopStart,loopLen:U.loopLen});
   if(cv.kind==='image'||cv.kind==='video'){it.src=cv.url;it.kind=cv.kind;}
   if(cv.kind==='video'){it.dur=Math.round(U.vdur||12);}
-  const finalize=()=>{ITEMS.unshift(it);IT[it.id]=it;
+  const finalize=()=>{ITEMS.unshift(it);IT[it.id]=it;projectFromUpload(it);
     if(U.hire)CR.me.hire=true;
     const mb=$('.modal',l);mb.innerHTML=`<div class="mhead"><h2>Published</h2>${(U.step=4,stepsHTML()).replace(/class="on"/g,'class="done"')}<button class="ibtn bare" data-uact="close" title="Close">${ic('x',18)}</button></div>
     <div class="mbody" style="text-align:center;padding:44px 30px"><div class="done-ic">${ic('check',34)}</div><h2 style="margin:0 0 6px;font-size:22px">Your work is live</h2><p class="muted" style="margin:0 0 22px">“${esc(it.title)}” is on your profile${U.vis==='public'?' and in the Latest feed':' (unlisted)'}${U.challenge?' and entered into challenge #42':''}.</p>
@@ -1744,7 +1850,7 @@ function openFilter(anchor){
    <div class="label" style="margin:6px 4px 8px">Posted</div><div class="ctx" style="margin:0 0 6px" id="ftime">${[['any','Any time'],['day','24 hours'],['week','Week'],['month','Month']].map(([k,l])=>`<button class="chip sm ${f.time===k?'on':''}" data-v="${k}">${l}</button>`).join('')}</div>
    <div class="label" style="margin:14px 4px 4px">Show only</div>
    <label class="check" style="padding:6px 4px"><input type="checkbox" id="fhire" ${f.hire?'checked':''}><span>Creators available for hire</span></label>
-   <label class="check" style="padding:6px 4px"><input type="checkbox" id="fmulti" ${f.multi?'checked':''}><span>Multi-image projects</span></label>
+   <label class="check" style="padding:6px 4px"><input type="checkbox" id="fmulti" ${f.multi?'checked':''}><span>Multi-section projects</span></label>
    <div class="label" style="margin:14px 4px 8px">Made with</div><div class="ctx" style="margin:0" id="ftools">${ALLTOOLS.map(t=>`<button class="chip sm ${f.tools.includes(t)?'on':''}" data-v="${t}">${t}</button>`).join('')}</div>
    <div style="display:flex;gap:8px;margin-top:16px"><button class="btn sm grow" id="freset">Reset</button><button class="btn sm primary grow" id="fapply">Show results</button></div></div>`,{cls:'keep',onOpen:p=>{
     $$('#ftime button',p).forEach(b=>b.onclick=()=>{f.time=b.dataset.v;$$('#ftime button',p).forEach(x=>x.classList.toggle('on',x===b));});
@@ -1879,6 +1985,75 @@ document.addEventListener('mouseover',e=>{
 document.addEventListener('mouseout',e=>{const w=e.target.closest?.('.card .who');if(w&&!w.contains(e.relatedTarget)&&!pop.contains(e.relatedTarget)){clearTimeout(hcT);setTimeout(()=>{if(pop.classList.contains('hovercard')&&!pop.matches(':hover')){closePop();hcEl=null;}},120);}});
 
 /* =========================================================
+   Projects & sections UI
+   ========================================================= */
+const STOPWORDS=new Set(['page','pages','section','sections','ideas','idea','inspiration','the','a','an','for','of','and','with','example','examples']);
+function secBadgeHTML(it){
+  const pj=PJ[it.proj];if(!pj)return '';const n=pj.sections.length;
+  if(FC&&FC.opt&&FC.opt.profile&&isCover(it))return n>1?`<span class="count">${ic('layers',11)} ${n} sections</span>`:'';
+  return it.sec?`<span class="count">${n>1?ic('layers',11)+' ':''}${esc(it.sec)}</span>`:'';
+}
+function secBlockHTML(s,k,n,focused){
+  const mo=s.type==='motion',web=s.cat==='Web design';
+  const inner=s.src?(s.kind==='video'?`<video src="${s.src}" playsinline loop ${focused?'':'muted autoplay'}></video>`:`<img src="${s.src}" alt="">`):(mo?`<span class="blob" style="animation-duration:${(s.dur||12)/2}s"></span><span class="blob b2" style="animation-duration:${(s.dur||12)/2}s"></span>`:'');
+  const act=mo?(focused?'data-act="player-toggle"':`data-act="detail-go" data-id="${s.id}"`):'';
+  return `<section class="psec ${focused?'focus':''}" data-sid="${s.id}">
+   <div class="psec-h"><span class="psec-t">${k+1}/${n} · ${esc(s.sec||'Section')}</span>${s.style?`<span class="psec-s">${esc(s.style)}</span>`:''}<span class="grow"></span>${saveGrp(s)}<button class="hic" data-act="share" data-id="${s.id}" title="Copy link to this section">${ic('link',14)}</button></div>
+   <div class="frame ${mo?'playing':''} ${web?'web':''}" ${focused?'id="dframe"':''} style="--r:${s.ratio};aspect-ratio:1/${s.ratio}" ${act}>${web?'<span class="wbar"><i></i><i></i><i></i></span>':''}${inner}${mo&&focused?`<span class="bigplay"><span>${ic('play',26)}</span></span>`:''}${mo&&!focused?`<span class="secplay">${ic('sound',12)} Play with sound</span>`:''}</div>
+  </section>`;
+}
+function creditsHTML(pj){
+  if(!pj||!pj.credits.length)return '';
+  return `<div class="sect"><div class="label">Credits · ${pj.credits.length}</div>${pj.credits.map(cr=>{const p=CR[cr.who];if(!p)return '';
+    return `<div class="wrow">${avHTML(p,'s36')}<div class="tx"><b data-act="creator" data-creator="${p.id}">${esc(p.name)}</b><span>${esc(cr.role)}</span></div>${p.id!=='me'&&p.hire?`<button class="btn sm" data-act="credit-hire" data-creator="${p.id}">Hire</button>`:''}</div>`}).join('')}</div>`;
+}
+function secFiltersHTML(secCounts,discCounts,secF,discF){
+  const row=(label,k,counts,cur)=>{const keys=Object.keys(counts).sort((a,b)=>counts[b]-counts[a]).slice(0,10);if(keys.length<2&&!cur)return '';
+    return `<div class="ctx"><span class="muted" style="font-size:12px;min-width:66px">${label}</span>${cur?`<button class="chip sm on" data-act="search-filter" data-k="${k}" data-v="">${esc(cur)} ${ic('x',12)}</button>`:keys.map(x=>`<button class="chip sm" data-act="search-filter" data-k="${k}" data-v="${esc(x)}">${esc(x)} <span class="muted">${counts[x]}</span></button>`).join('')}</div>`;};
+  return row('Section','sec',secCounts,secF)+row('Discipline','disc',discCounts,discF);
+}
+const countBy=(list,fn)=>list.reduce((o,i)=>{const k=fn(i);if(k)o[k]=(o[k]||0)+1;return o;},{});
+function sectionsEditorHTML(){
+  const types=secTypes(U.cat||'');
+  const mine=U.files.length;
+  return `<div class="label" style="margin:18px 0 6px">Sections · ${mine}</div><p class="muted" style="font-size:12px;margin:0 0 6px">Each file becomes a section people can save and search on its own.${mine>1?' Click a thumbnail to make it the cover.':''}</p>
+  <div class="secedit">${U.files.map((f,i)=>`<div class="secrow"><div style="width:58px;flex:none">${uthHTML(f,i)}</div><div class="grow"><b style="font-size:13px">${i===U.cover?'Cover':'Section'} · file ${i+1}</b><select data-secsel="${i}" aria-label="Section type for file ${i+1}">${types.map(t=>`<option ${(U.secs[i]||'')===t?'selected':''}>${esc(t)}</option>`).join('')}</select></div></div>`).join('')}</div>
+  <div class="label" style="margin:18px 0 6px">Credits</div><p class="muted" style="font-size:12px;margin:0 0 8px">Tag the people you made this with. They get credit and can be hired from your project.</p><div id="credlist" class="ctx" style="margin:0 0 8px">${credChipsHTML()}</div>
+  <div style="display:flex;gap:6px;flex-wrap:wrap"><select id="credwho" style="flex:1;min-width:160px"><option value="">Add a collaborator…</option>${CREATORS.filter(c=>c.id!=='me').map(c=>`<option value="${c.id}">${esc(c.name)} · ${esc(c.role)}</option>`).join('')}</select><input type="text" id="credrole" placeholder="Role, e.g. Photography" maxlength="30" style="flex:1;min-width:140px"><button type="button" class="btn" id="credadd" style="height:44px">Add</button></div>`;
+}
+const credChipsHTML=()=>U.credits.length?U.credits.map((c,i)=>`<span class="chip sm">${esc(CR[c.who].name)} · ${esc(c.role)}<button type="button" class="x" style="border:0;background:none;padding:0;display:flex" data-credrm="${i}" aria-label="Remove">${ic('x',12)}</button></span>`).join(''):'<span class="muted" style="font-size:12px">No collaborators yet.</span>';
+function bindSections(m){
+  const fill=()=>{const types=secTypes(U.cat);U.files.forEach((_,i)=>{if(!types.includes(U.secs[i]))U.secs[i]=types[Math.min(i,types.length-1)];});};
+  fill();$$('[data-secsel]',m).forEach(s=>{s.value=U.secs[+s.dataset.secsel];s.onchange=()=>{U.secs[+s.dataset.secsel]=s.value;};});
+  $('#uc',m)?.addEventListener('change',()=>{fill();renderUpload();});
+  const redraw=()=>{$('#credlist',m).innerHTML=credChipsHTML();$$('[data-credrm]',m).forEach(b=>b.onclick=()=>{U.credits.splice(+b.dataset.credrm,1);redraw();});};
+  redraw();
+  $('#credadd',m).onclick=()=>{const who=$('#credwho',m).value;if(!who){toast('Pick a collaborator first');return;}const role=$('#credrole',m).value.trim()||'Collaborator';if(!U.credits.some(c=>c.who===who&&c.role===role))U.credits.push({who,role});$('#credwho',m).value='';$('#credrole',m).value='';redraw();};
+}
+function projectFromUpload(it){
+  const order=[U.cover,...U.files.map((_,i)=>i).filter(i=>i!==U.cover)];
+  const types=secTypes(it.cat);const secs=order.map(i=>U.secs[i]||types[0]);
+  const pj=projectify(it,{secs:[secs[0]],styles:[''],credits:U.credits.slice()});
+  order.slice(1).forEach((fi,k)=>{
+    const f=U.files[fi];
+    const s={...it,id:it.id+'_s'+(k+1),sec:secs[k+1],style:'',type:'image',ratio:SEC_RATIO[secs[k+1]]||1.25,tone:k%4,likes:0,views:0,comments:[],challenge:false,feed:k<2,src:f.kind==='image'?f.url:null,kind:f.kind==='image'?'image':null,imgs:1,dur:0};
+    if(s.src){const im=new Image();im.onload=()=>{s.ratio=Math.max(.5,Math.min(1.9,im.naturalHeight/im.naturalWidth));};im.src=s.src;}
+    ITEMS.splice(ITEMS.indexOf(it)+1+k,0,s);IT[s.id]=s;pj.sections.push(s.id);
+  });
+  return pj;
+}
+document.addEventListener('click',e=>{
+  const b=e.target.closest('[data-act]');if(!b)return;
+  switch(b.dataset.act){
+    case 'sec-jump':{const ps=$('#pscroll');const el=ps&&ps.querySelector(`[data-sid="${b.dataset.id}"]`);if(!el)break;
+      if(ps.scrollHeight>ps.clientHeight+4)ps.scrollTo({top:el.offsetTop-14,behavior:reduced()?'auto':'smooth'});else el.scrollIntoView({block:'start',behavior:reduced()?'auto':'smooth'});
+      $$('#sidx button').forEach(x=>x.classList.toggle('on',x===b));break;}
+    case 'credit-hire':{const cid=b.dataset.creator;closeAllModals();openMessages(cid);setTimeout(()=>{const i=$('#min');if(i){i.value=`Hi ${CR[cid].name.split(' ')[0]}! I saw your credit on a project and would love to work together.`;i.focus();}},50);break;}
+    case 'search-filter':{const r=route();const p=new URLSearchParams(r.q);if(b.dataset.v)p.set(b.dataset.k,b.dataset.v);else p.delete(b.dataset.k);go('search?'+p.toString());break;}
+  }
+});
+
+/* =========================================================
    Monetization: boosts, search ads, sponsored posts, featured
    spots, challenge sponsorship, featured jobs, talent search,
    Pro, tips and one shared checkout. Everything paid is
@@ -1904,11 +2079,15 @@ Object.assign(S,{pro:false,proPlan:'month',boostCredits:0,studio:false,credits:2
 
 /* ---------- studio accounts (agencies can advertise and be hired) ---------- */
 [{id:'paperkite',name:'Paper Kite Studio',role:'Illustration agency',loc:'London, UK',cats:['Illustration','Branding'],hire:true,studio:true,bio:'An independent illustration agency representing 40+ artists across editorial, publishing and brand work.'},
- {id:'orbit',name:'Orbit Motion',role:'Motion design studio',loc:'Lagos, NG',cats:['Motion','3D'],hire:true,studio:true,bio:'Brand motion, product launches and Lottie systems for apps. Small team, fast turnarounds.'}
-].forEach((c,i)=>{c.followers=[12400,8900][i];c.followingN=[120,64][i];c.tone=[2,3][i];CREATORS.push(c);CR[c.id]=c;
-  for(let k=0;k<6;k++){const it=mkItem(500+i*10+k,{id:'st'+i+k,creator:c.id,cat:c.cats[k%c.cats.length]});ITEMS.push(it);IT[it.id]=it;}});
+ {id:'orbit',name:'Orbit Motion',role:'Motion design studio',loc:'Lagos, NG',cats:['Motion','3D'],hire:true,studio:true,bio:'Brand motion, product launches and Lottie systems for apps. Small team, fast turnarounds.'},
+ {id:'northwind',name:'Northwind Studio',role:'Web design agency',loc:'Remote · Africa / EU',cats:['Web design','UI/UX'],hire:true,studio:true,bio:'Landing pages and marketing sites for startups. Strategy, design and build in Framer or Webflow.'},
+ {id:'ndani',name:'Atelier Ndani',role:'Fashion studio',loc:'Nairobi, KE',cats:['Fashion','Photography'],hire:true,studio:true,bio:'Womenswear label and creative studio: lookbooks, styling and campaign production.'}
+].forEach((c,i)=>{c.followers=[12400,8900,6100,7300][i];c.followingN=[120,64,88,140][i];c.tone=[2,3,1,0][i];CREATORS.push(c);CR[c.id]=c;
+  for(let k=0;k<6;k++){const it=mkItem(500+i*10+k,{id:'st'+i+k,creator:c.id,cat:c.cats[k%c.cats.length]});ITEMS.push(it);IT[it.id]=it;projectify(it);}});
 
 /* ---------- advertisers & inventory ---------- */
+showcase({id:'w2',creator:'northwind',cat:'Web design',title:'SaaS landing page',at:10,likes:3100,tags:['landing-page','saas','dark-mode'],desc:'Launch site for an analytics startup: a bold dark hero, clear pricing tiers and a friendly FAQ.',secs:['Hero','Navigation','Features','Pricing','FAQ','Footer'],styles:['dark','dark','light','light','minimal','dark'],credits:[{who:'priya',role:'Development'}]});
+showcase({id:'fa2',creator:'ndani',cat:'Fashion',title:'Ankara evening wear',at:17,likes:2900,tags:['lookbook','ankara','editorial'],desc:'Evening silhouettes in hand-printed Ankara, styled for a Nairobi gallery night.',secs:['Lookbook','Look','Runway','Moodboard','Tech pack'],styles:['editorial','bold','editorial','colourful','minimal'],credits:[{who:'lena',role:'Photography'},{who:'bisi',role:'Makeup'}]});
 const BRANDS={
   framewise:{name:'Framewise',what:'Prototyping tool',url:'framewise.app'},
   polyform:{name:'Polyform 3D',what:'3D rendering software',url:'polyform3d.com'},
@@ -1932,10 +2111,12 @@ const KWADS=[
   {id:'k5',adv:{type:'brand',id:'inkwell'},headline:'Brushes made for illustrators',desc:'Grain, ink and gouache packs for Procreate. Free starter pack.',cta:'Shop brushes',kws:[['illustration','broad'],['procreate','exact'],['brushes','broad']],bid:.8,q:.8},
   {id:'k2',adv:{type:'creator',id:'orbit'},headline:'Motion studio · logo reveals to launch films',desc:'Brand motion, product launches and Lottie systems for apps.',cta:'See showreel',kws:[['motion','broad'],['logo reveal','phrase'],['animation','broad'],['lottie','exact']],bid:1.05,q:.85},
   {id:'k3',adv:{type:'brand',id:'framewise'},headline:'Design dashboards faster with Framewise',desc:'Real data, live components, one-click handoff to developers.',cta:'Try Framewise free',kws:[['dashboard','broad'],['ui','exact'],['prototype','broad'],['app','broad']],bid:.9,q:.8},
+  {id:'k6',adv:{type:'creator',id:'northwind'},headline:'Landing pages that convert, built in 3 weeks',desc:'Strategy, design and build in Framer or Webflow for startups and scale-ups.',cta:'Hire us',kws:[['landing page','phrase'],['website','broad'],['web design','phrase'],['saas','broad'],['pricing page','phrase']],bid:1.25,q:.88},
+  {id:'k7',adv:{type:'creator',id:'ndani'},headline:'Lookbooks, styling and campaign shoots',desc:'Fashion studio in Nairobi. Concept to final edit for labels across Africa.',cta:'Hire us',kws:[['lookbook','broad'],['streetwear','broad'],['stylist','broad'],['fashion','broad']],bid:1.1,q:.85},
   {id:'k4',adv:{type:'brand',id:'polyform'},headline:'Polyform 3D: render in real time',desc:'Free for students. Plugins for Blender and Cinema 4D.',cta:'Download free',kws:[['3d','broad'],['blender','exact'],['render','broad']],bid:1.4,q:.82}
 ];
 const PTREND={tag:'kinetic-type',brand:'kinetic',line:'Learn kinetic type in 4 weeks',cta:'Learn more'};
-const TOPIC_SPONSORS={'3D':{brand:'polyform',line:'Render 10× faster. Free for 30 days.',cta:'Try free'},'Typography':{brand:'kinetic',line:'Kinetic type in 4 weeks, taught by working designers.',cta:'See course'},'UI/UX':{brand:'framewise',line:'Prototype with real data and live components.',cta:'Try free'},'Illustration':{brand:'inkwell',line:'120 grain brushes for Procreate.',cta:'Shop'}};
+const TOPIC_SPONSORS={'Web design':{brand:'framewise',line:'Turn your designs into live sites with Framewise.',cta:'Try free'},'3D':{brand:'polyform',line:'Render 10× faster. Free for 30 days.',cta:'Try free'},'Typography':{brand:'kinetic',line:'Kinetic type in 4 weeks, taught by working designers.',cta:'See course'},'UI/UX':{brand:'framewise',line:'Prototype with real data and live components.',cta:'Try free'},'Illustration':{brand:'inkwell',line:'120 grain brushes for Procreate.',cta:'Shop'}};
 const FEAT_POOL=['lucas','amara','paperkite'];
 const CHAL={sponsor:'polyform',prize:'$2,000 + a year of Polyform Pro',upcoming:[{n:43,theme:'Brutalist web',week:'Oct 13–19',sponsor:'Framewise'}]};
 JOBS.forEach(j=>{if(j.id==='j2'||j.id==='j5')j.featured=true;});
@@ -2232,7 +2413,7 @@ const chipToggle=(arr,v)=>{const i=arr.indexOf(v);i>=0?arr.splice(i,1):arr.push(
 /* ---------- 1 · Boost a post ---------- */
 function openBoost(id){
   const ul=$('.layer[data-kind="upload"]');if(ul){ul.remove();U=null;}
-  const mine=ITEMS.filter(i=>i.creator==='me');
+  const mine=ITEMS.filter(i=>i.creator==='me'&&isCover(i));
   if(!id||!IT[id]){
     const l=openModal(`<div class="modal" style="width:min(640px,100%)"><div class="mhead"><h2>Choose a post to boost</h2><button class="ibtn bare" data-act="close-modal">${ic('x',18)}</button></div><div class="mbody">${mine.length?`<div class="ugrid">${mine.map(i=>`<button class="uth" style="padding:0;border-color:var(--line)" data-pickboost="${i.id}">${thumbHTML(i)}<span class="cv" style="background:rgba(0,0,0,.72);max-width:calc(100% - 12px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(i.title)}</span></button>`).join('')}</div>`:emptyHTML('image','Nothing to boost yet','Upload a piece first, then boost it.',`<button class="btn primary" data-act="upload">Upload</button>`)}</div></div>`,{kind:'boostpick'});
     $$('[data-pickboost]',l).forEach(b=>b.onclick=()=>{l.remove();openBoost(b.dataset.pickboost);});return;
@@ -2279,7 +2460,7 @@ function openBoost(id){
 
 /* ---------- 2 · Search ads (keywords, auction, placements) ---------- */
 function openSearchAd(kw){
-  const mine=ITEMS.filter(i=>i.creator==='me');
+  const mine=ITEMS.filter(i=>i.creator==='me'&&isCover(i));
   const A={step:1,kws:kw?[[normQ(kw),'broad']]:[],neg:[],as:'me',brand:'',site:'',headline:`${CR.me.name} · ${CR.me.role}`,desc:'Product and motion design for fintech and consumer apps. Booking projects for next month.',cta:'Hire me',posts:mine.slice(0,3).map(i=>i.id),place:{top:true,sug:true},bid:0,daily:20,days:14};
   const sugBid=()=>Math.max(PRICE.minCPC,...A.kws.map(([k])=>kwStats(k)[2]));
   const l=openModal('<div class="modal" style="width:min(1000px,100%)"></div>',{kind:'searchad',guard:async()=>A.step===1&&!A.kws.length?true:confirmBox('Discard this campaign?','Your keywords and ad will be lost.')});
