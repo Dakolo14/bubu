@@ -509,6 +509,112 @@ body.noauto .media.motion:not(.playing) .ppbig{display:flex}
 .mobbar .up{width:46px;height:46px;border-radius:15px;background:var(--ink);color:#fff;justify-content:center;padding:0}
 .mobbar .bdg{position:absolute;top:2px;right:8px;width:8px;height:8px;border-radius:50%;background:var(--accent)}
 
+/* ---------- monetization ---------- */
+.adtag{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2);background:var(--fill);border-radius:6px;padding:3px 7px;flex:none}
+.adtag.on-media{position:absolute;top:10px;left:10px;z-index:2;background:rgba(255,255,255,.95);pointer-events:none}
+.media:hover .adtag.on-media{display:none}
+.plabel{border:0;background:none;padding:2px 6px;font-size:11.5px;font-weight:600;color:var(--muted);border-radius:6px;flex:none;white-space:nowrap}
+button.plabel:hover{color:var(--ink);background:var(--surface)}
+.adcta{margin-top:8px;justify-content:space-between;height:34px}
+.pinb{position:absolute;top:10px;right:10px;z-index:2;background:var(--ink);color:#fff;font-size:10.5px;font-weight:700;padding:4px 8px;border-radius:20px;display:flex;gap:4px;align-items:center;pointer-events:none}
+.media:hover .pinb{display:none}
+.jobad{border:1px solid var(--line2);border-radius:var(--r);padding:16px;background:var(--surface);display:flex;flex-direction:column;gap:8px}
+.jobad .lg{width:44px;height:44px;border-radius:12px}
+.jobad b{font-size:15px;line-height:1.25}
+.ftag{display:inline-flex;align-items:center;font-size:9.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2);background:var(--fill);border:0;border-radius:5px;padding:2px 6px;margin-left:6px;vertical-align:2px;cursor:pointer}
+.av.sq{border-radius:9px;background:var(--ink);color:#fff}
+.probadge{display:inline-flex;align-items:center;font-size:9.5px;font-weight:800;letter-spacing:.08em;background:var(--ink);color:#fff;border-radius:5px;padding:2px 6px;vertical-align:3px;border:0;margin-left:4px}
+.sad{border:1px solid var(--line2);border-radius:18px;padding:14px 18px 16px;background:#fff;margin:0 0 12px}
+.sad-top{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.sad-body{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;gap:16px;align-items:center}
+.sad-tx .nm{border:0;background:none;padding:0;font-weight:700;font-size:14px}
+.sad-tx .nm:hover{text-decoration:underline}
+.sad-tx h3{margin:3px 0 3px;font-size:17px;letter-spacing:-.01em;line-height:1.25;cursor:pointer}
+.sad-tx p{margin:0;color:var(--ink2);font-size:13px}
+.sad-th{display:grid;grid-template-columns:repeat(3,72px);gap:6px}
+.sad-th .ph,.sad-th img{width:72px;height:72px;border-radius:10px;cursor:pointer;object-fit:cover;display:block}
+.sad-cta{display:flex;flex-direction:column;gap:6px}
+.sad-foot{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);margin:-2px 0 16px}
+.sad.preview{pointer-events:none;margin:0}
+.sad{container-type:inline-size}
+@container (max-width:700px){.sad-body{grid-template-columns:auto minmax(0,1fr)}.sad-th{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr)}.sad-th .ph,.sad-th img{width:100%;height:auto;aspect-ratio:1}.sad-cta{grid-column:1/-1;flex-direction:row}}
+.tko{display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid var(--line);border-radius:16px;background:var(--surface);margin:0 0 16px;font-size:13px;flex-wrap:wrap}
+.tko .grow{min-width:180px}
+.sopt .adtag{margin-left:auto}
+/* hub */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:20px 0}
+.kpi{border:1px solid var(--line);border-radius:16px;padding:16px;background:#fff}
+.kpi span{font-size:12px;color:var(--muted);display:block}
+.kpi b{display:block;font-size:26px;letter-spacing:-.02em;margin:4px 0 2px;font-variant-numeric:tabular-nums;line-height:1.15}
+.kpi em{font-style:normal;font-size:12px;color:var(--muted)}
+.kpis.mini{grid-template-columns:1fr 1fr;gap:8px;margin:0 0 12px}
+.kpis.mini .kpi{padding:10px 12px;border-radius:12px}
+.kpis.mini .kpi b{font-size:18px}
+.prods{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.prod{border:1px solid var(--line);border-radius:16px;padding:16px;background:#fff;display:flex;flex-direction:column;gap:6px;text-align:left;transition:border-color .12s,transform .12s}
+.prod:hover{border-color:var(--ink2);transform:translateY(-1px)}
+.prod .pi{width:40px;height:40px;border-radius:12px;background:var(--fill);display:flex;align-items:center;justify-content:center;margin-bottom:6px}
+.prod b{font-size:15px}
+.prod p{margin:0;font-size:13px;color:var(--muted);flex:1}
+.prod .pr{font-size:12px;font-weight:700;color:var(--ink2);margin-top:6px}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px;background:#fff}
+.ctable{width:100%;border-collapse:collapse;font-size:13px;min-width:760px}
+.ctable th{text-align:left;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600;padding:12px 14px;border-bottom:1px solid var(--line);background:var(--surface)}
+.ctable td{padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:middle;font-variant-numeric:tabular-nums}
+.ctable tr:last-child td{border-bottom:0}
+.spill{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:600;padding:3px 10px;border-radius:999px;background:var(--fill);white-space:nowrap}
+.spill i{width:7px;height:7px;border-radius:50%;background:var(--fill3)}
+.spill.active i{background:#2a9d5c}.spill.paused i{background:#d29a0c}.spill.scheduled i{background:var(--ink2)}.spill.trial i{background:#2a9d5c}
+.pbar.sm{height:4px;margin:6px 0 0;width:120px}
+.sect-h{display:flex;align-items:center;justify-content:space-between;margin:28px 0 12px}
+.sect-h h3{margin:0;font-size:17px}
+.bars .brow{display:grid;grid-template-columns:96px 1fr 40px;gap:10px;align-items:center;font-size:12px;margin:7px 0}
+.bars .track{height:8px;border-radius:4px;background:var(--fill)}
+.bars .fill{height:100%;border-radius:4px;background:var(--ink2);min-width:2px}
+.bars .v{text-align:right;color:var(--ink2);font-variant-numeric:tabular-nums}
+.locked{position:relative;border-radius:14px;overflow:hidden}
+.locked>.blur{filter:blur(5px);pointer-events:none;user-select:none}
+.locked>.lock{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;background:rgba(255,255,255,.6);padding:14px}
+/* builders & checkout */
+.bgrid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:24px}
+.radio.col{flex-direction:column}
+.radio button[disabled]{opacity:.45;cursor:not-allowed}
+.est{border:1px solid var(--line);border-radius:14px;padding:14px;background:var(--surface);font-size:13px;color:var(--ink2)}
+.est b{font-size:18px;display:block;color:var(--ink);font-variant-numeric:tabular-nums}
+.kwhead,.kwrow{display:grid;grid-template-columns:minmax(0,1.3fr) 104px 96px 84px 84px 30px;gap:8px;align-items:center}
+.kwhead{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;font-weight:600;padding:0 0 6px;border-bottom:1px solid var(--line)}
+.kwrow{padding:8px 0;border-bottom:1px dashed var(--line);font-size:13px;font-variant-numeric:tabular-nums}
+.kwrow select{padding:6px 8px;border-radius:8px;font-size:12px}
+.prevbox{border:1px dashed var(--line2);border-radius:16px;padding:14px;background:var(--surface)}
+.sumrow{display:flex;justify-content:space-between;gap:12px;padding:7px 0;font-size:14px;font-variant-numeric:tabular-nums}
+.sumrow.total{border-top:1px solid var(--line);margin-top:6px;padding-top:12px;font-weight:700;font-size:16px}
+.paym{border:1px solid var(--line2);border-radius:12px;padding:12px;display:flex;align-items:center;gap:12px;cursor:pointer}
+.paym .ck{display:none}
+.paym.on{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.paym.on .ck{display:flex}
+.spin{width:14px;height:14px;border-radius:50%;border:2px solid rgba(255,255,255,.35);border-top-color:#fff;animation:spin .7s linear infinite;display:inline-block}
+@keyframes spin{to{transform:rotate(360deg)}}
+.tipamts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.tipamts button{height:54px;border-radius:12px;border:1px solid var(--line2);background:#fff;font-weight:700;font-size:16px}
+.tipamts button.on{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.perk{display:flex;gap:12px;align-items:flex-start;padding:7px 0;font-size:13.5px}
+.perk .pi{width:30px;height:30px;border-radius:9px;background:var(--fill);display:flex;align-items:center;justify-content:center;flex:none}
+.dact{flex-wrap:wrap}
+.job.featured{border-color:var(--ink2);box-shadow:inset 0 0 0 1px var(--ink2)}
+.job.flash{animation:flash 1.6s ease}
+@keyframes flash{0%,40%{background:var(--fill)}100%{background:#fff}}
+/* talent */
+.tgrid{display:grid;grid-template-columns:250px minmax(0,1fr);gap:24px;margin-top:18px}
+.tfil{position:sticky;top:calc(var(--hh) + 16px);align-self:start;display:flex;flex-direction:column;gap:18px}
+.tfil .ctx{margin:0}
+.tlist{display:flex;flex-direction:column;gap:12px}
+.trow2{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:6px 14px;align-items:center;padding:16px;border:1px solid var(--line);border-radius:16px;background:#fff}
+.trow2 .th4{grid-column:2/-1;display:grid;grid-template-columns:repeat(4,64px);gap:6px}
+.th4 .ph{height:64px;border-radius:10px;cursor:pointer}
+.trow2 .ctx{margin:8px 0 0}
+@media (max-width:1100px){.kpis{grid-template-columns:1fr 1fr}}
+@media (max-width:900px){.bgrid,.tgrid{grid-template-columns:1fr}.tfil{position:static}}
+@media (max-width:767px){.kwhead,.kwrow{grid-template-columns:minmax(0,1fr) 92px 30px}.kwhead .hm,.kwrow .hm{display:none}.trow2{grid-template-columns:auto minmax(0,1fr)}.trow2 .acts{grid-column:1/-1}.trow2 .th4{grid-column:1/-1;grid-template-columns:repeat(4,1fr)}.tipamts button{height:46px}}
 @media (max-width:1100px){.cgrid{grid-template-columns:1fr 1fr}.cgrid>.box:first-child{grid-column:span 2}.ccards{grid-template-columns:1fr 1fr}.colgrid{grid-template-columns:1fr 1fr}}
 @media (max-width:900px){
   .detail{grid-template-columns:1fr;height:auto;max-height:calc(100vh - 24px)}
@@ -538,6 +644,9 @@ body.noauto .media.motion:not(.playing) .ppbig{display:flex}
   .totop{bottom:76px;right:14px}
   .pcover{margin:0 -12px}
   .job{flex-wrap:wrap}
+  .job .tx{flex-basis:calc(100% - 68px)}
+  .vh>.grow{flex-basis:100%}
+  .job>.btn{flex:1}
   #toasts{bottom:76px}
   #slashHint{display:none!important}
   .steps>span:not(.on),.steps .sl{display:none}
@@ -561,6 +670,7 @@ body.noauto .media.motion:not(.playing) .ppbig{display:flex}
     <button class="ri" data-act="nav" data-nav="motion"><i data-i="film" data-s="20"></i><span class="lbl">Motion</span></button>
     <button class="ri" data-act="nav" data-nav="collections"><i data-i="folder" data-s="20"></i><span class="lbl">Collections</span></button>
     <button class="ri" data-act="nav" data-nav="jobs"><i data-i="briefcase" data-s="20"></i><span class="lbl">Jobs</span></button>
+    <button class="ri" data-act="nav" data-nav="ads"><i data-i="chart" data-s="20"></i><span class="lbl">Promote &amp; earn</span></button>
     <div class="rsep"></div>
     <button class="ri" data-act="activity" id="riAct"><i data-i="bell" data-s="20"></i><span class="lbl">Activity</span></button>
     <button class="ri" data-act="messages" id="riMsg"><i data-i="chat" data-s="20"></i><span class="lbl">Messages</span></button>
@@ -795,7 +905,7 @@ const S={
   newTopics:new Set(['UI/UX','Branding','3D','Illustration']),
   recent:['dashboard ui','kinetic type','packaging'],
   hideBreaks:false,
-  set:Object.assign({autoplay:true,breaks:true,reduce:false},store.get('set',{})),
+  set:Object.assign({autoplay:true,breaks:true,reduce:false,personalAds:true},store.get('set',{})),
   pinned:store.get('pinned',false),
   remind:false,applied:new Set(),savedJobs:new Set(),followedColls:new Set(),
   similarSrc:null,ptab:'work',jobf:'All',
@@ -928,13 +1038,14 @@ function saveGrp(it){
   const sv=S.saved[it.id];const cname=sv?CO[sv]?.name:CO[S.lastColl]?.name||'Collections';
   return `<div class="savegrp ${sv?'on':''}"><button class="scoll" data-act="save-menu" data-id="${it.id}" title="Choose collection"><span>${esc(cname)}</span>${ic('down',12)}</button><button class="sbtn" data-act="save" data-id="${it.id}">${sv?'Saved':'Save'}</button></div>`;
 }
-function cardHTML(it){
+function cardHTML(it,o={}){
   const c=CR[it.creator],liked=S.liked.has(it.id),m=it.type==='motion';
-  return `<article class="card ${S.saved[it.id]?'saved':''} ${it.fresh&&Date.now()-it.fresh<8000?'new-up':''}" data-id="${it.id}">
+  const pinned=!!(FC&&FC.opt&&FC.opt.profile&&S.pinnedPosts.includes(it.id));
+  return `<article class="card ${S.saved[it.id]?'saved':''} ${it.fresh&&Date.now()-it.fresh<8000?'new-up':''} ${o.promo?'promo':''}" data-id="${it.id}" ${o.promo?`data-promo="${o.promo.pid}"`:''}>
   <div class="media ph t${it.tone} ${m?'motion':''}" style="aspect-ratio:1/${it.ratio}" data-act="open" data-id="${it.id}" tabindex="0" role="button" aria-label="${esc(it.title)} by ${esc(c.name)}">
     ${mediaInner(it)}
     ${m?`<span class="badge">${ic('play',9)} ${dur(it.dur)}</span><span class="ppbig"><span>${ic('play',16)}</span></span>`:it.imgs>1?`<span class="count">${ic('layers',11)} ${it.imgs}</span>`:''}
-    <span class="stag">${ic('bookmark',13)}</span>
+    ${pinned?`<span class="pinb">${ic('pin',11)} Pinned</span>`:''}<span class="stag">${ic('bookmark',13)}</span>
     <div class="hov">
       <div class="hov-top">${m?`<button class="hic" data-act="sound" data-id="${it.id}" title="Preview sound">${ic(S.sound.has(it.id)?'sound':'mute',14)}</button>`:''}${saveGrp(it)}</div>
       <div class="hov-bot"><span class="t">${esc(it.title)}</span><span class="grow"></span>
@@ -946,7 +1057,7 @@ function cardHTML(it){
     ${m?'<span class="prog"><i></i></span>':''}
   </div>
   <div class="meta"><button class="who" data-act="creator" data-creator="${c.id}">${avHTML(c,'s20')}<span class="nm">${esc(c.name)}</span></button>
-  <button class="likes ${liked?'on':''}" data-act="like" data-id="${it.id}" title="Like">${ic('heart',12)}<span>${fmt(it.likes+(liked?1:0))}</span></button></div>
+  ${o.promo?`<button class="plabel" data-act="ad-why" data-kind="promo" data-ad="${o.promo.pid}">${o.promo.mine?'Promoted · your boost':'Promoted'}</button>`:`<button class="likes ${liked?'on':''}" data-act="like" data-id="${it.id}" title="Like">${ic('heart',12)}<span>${fmt(it.likes+(liked?1:0))}</span></button>`}</div>
 </article>`;
 }
 function refreshItem(id){
@@ -971,7 +1082,7 @@ let FC=null;const PAGE=20;
 function colCount(el){const w=el.clientWidth||900;return Math.max(2,Math.min(6,Math.floor((w+16)/(230+16))));}
 function masonryHTML(items,cols,w){
   const cw=(w-(cols-1)*16)/cols;const hs=Array(cols).fill(0);const cs=Array.from({length:cols},()=>[]);
-  items.forEach(it=>{let k=hs.indexOf(Math.min(...hs));cs[k].push(cardHTML(it));hs[k]+=cw*it.ratio+52;});
+  items.forEach(it=>{let k=hs.indexOf(Math.min(...hs));cs[k].push(it._ad?adCardHTML(it._ad):cardHTML(it));hs[k]+=cw*it.ratio+52;});
   return `<div class="mas">${cs.map(c=>`<div class="mcol">${c.join('')}</div>`).join('')}</div>`;
 }
 function skeletonHTML(cols){const hs=[260,190,320,220,280,200];return `<div class="skel">${Array.from({length:cols},(_,i)=>`<div><div class="sk" style="height:${hs[i%6]}px"></div><div class="sk" style="height:${hs[(i+3)%6]}px"></div></div>`).join('')}</div>`;}
@@ -984,7 +1095,7 @@ function mountFeed(el,list,opt={}){
 }
 const loadedCount=()=>FC?FC.slices.reduce((a,s)=>a+s.items.length,0):0;
 function showBreaks(){return FC.opt.breaks&&S.set.breaks&&!S.hideBreaks&&!isWide();}
-function chunkHTML(s){return masonryHTML(s.items,FC.cols,$('.chunks',FC.el).clientWidth)+(s.brk!=null&&showBreaks()?breakHTML(s.brk):'');}
+function chunkHTML(s){return masonryHTML(withAds(s),FC.cols,$('.chunks',FC.el).clientWidth)+(s.brk!=null&&showBreaks()?breakHTML(s.brk):'');}
 function loadMore(now){
   if(!FC||FC.loading)return;const n=loadedCount();if(n>=FC.list.length)return;
   FC.loading=true;const end=$('.feed-end',FC.el);
@@ -992,9 +1103,9 @@ function loadMore(now){
   setTimeout(()=>{
     if(!FC||!FC.el.isConnected)return;
     const items=FC.list.slice(n,n+PAGE);const more=n+PAGE<FC.list.length;
-    const s={items,brk:FC.opt.breaks&&more?FC.breakN++:null};FC.slices.push(s);
+    const s={items,brk:FC.opt.breaks&&more?FC.breakN++:null};s.ads=feedAdsFor(FC.slices.length,items);FC.slices.push(s);
     const box=$('.chunks',FC.el);box.insertAdjacentHTML('beforeend',chunkHTML(s));
-    observeMotion(box);
+    observeMotion(box);observeAds(box);
     FC.loading=false;
     end.innerHTML=loadedCount()>=FC.list.length?`<div class="caught"><span class="ic">${ic('check',20)}</span>You’re all caught up · ${FC.list.length} pieces<button class="btn sm" data-act="top">Back to top</button></div>`:'';
     checkEnd();
@@ -1005,7 +1116,7 @@ addEventListener('scroll',()=>{checkEnd();$('#totop').classList.toggle('on',scro
 function relayout(){
   if(!FC||!FC.el.isConnected||!FC.slices.length)return;
   const c=colCount(FC.el);FC.cols=c;
-  const box=$('.chunks',FC.el);box.innerHTML=FC.slices.map(chunkHTML).join('');observeMotion(box);
+  const box=$('.chunks',FC.el);box.innerHTML=FC.slices.map(chunkHTML).join('');observeMotion(box);observeAds(box);
 }
 let rzT;let lastW=innerWidth;
 addEventListener('resize',()=>{clearTimeout(rzT);rzT=setTimeout(()=>{if(FC&&FC.el.isConnected&&colCount(FC.el)!==FC.cols)relayout();if((lastW>=1536)!==(innerWidth>=1536)){relayout();renderCrail();}lastW=innerWidth;updateRingArrows();},120)});
@@ -1016,18 +1127,18 @@ function challengeBox(compact){
   const entries=ITEMS.filter(i=>i.challenge).slice(0,3);
   return `<div class="box"><h4><span style="display:flex;gap:8px;align-items:center">${ic('trophy',16)} Weekly challenge</span><span class="label" data-countdown="short">${countdown(true)}</span></h4>
   <div class="chal-th">${entries.map(e=>`<div class="ph t${e.tone}" data-act="open" data-id="${e.id}" title="${esc(e.title)}"></div>`).join('')}</div>
-  <div class="chal-row" style="display:flex;align-items:center;gap:10px;margin-top:12px;flex-wrap:wrap"><div class="grow"><b>“Retro futurism”</b><div class="muted" style="font-size:12px">#42 · ${ITEMS.filter(i=>i.challenge).length+418} entries</div></div><button class="btn sm" data-act="challenge">Details</button><button class="btn sm primary" data-act="challenge-enter">Enter</button></div></div>`;
+  <div class="chal-row" style="display:flex;align-items:center;gap:10px;margin-top:12px;flex-wrap:wrap"><div class="grow"><b>“Retro futurism”</b><div class="muted" style="font-size:12px">#42 · ${ITEMS.filter(i=>i.challenge).length+418} entries · by ${esc(BRANDS[CHAL.sponsor].name)}</div></div><button class="btn sm" data-act="challenge">Details</button><button class="btn sm primary" data-act="challenge-enter">Enter</button></div></div>`;
 }
 function followRow(c){const f=S.following.has(c.id);return `<div class="wrow">${avHTML(c,'s36')}<div class="tx"><b data-act="creator" data-creator="${c.id}">${esc(c.name)}</b><span>${esc(c.role)}</span></div><button class="btn sm follow ${f?'on':''}" data-act="follow" data-creator="${c.id}">${f?'Following':'Follow'}</button></div>`;}
 function suggested(n,offset=0){const pool=CREATORS.filter(c=>c.id!=='me'&&!S.following.has(c.id));return (pool.length?pool:CREATORS.slice(1)).slice(offset,offset+n);}
 const TREND=[['#brutalist-web','brutalist-web',12400],['#kinetic-type','kinetic-type',8100],['#3d-icons','3d-icons',6900],['#retro-futurism','retro-futurism',5200],['#lottie','lottie',3800]];
-function trendBox(n=3){return `<div class="box"><h4>Trending tags <button class="ibtn bare" style="width:28px;height:28px" data-act="search-q" data-q="trending" title="See all">${ic('chev',14)}</button></h4>${TREND.slice(0,n).map(t=>`<button class="trow" data-act="search-q" data-q="${t[1]}">${t[0]}<span>${fmt(t[2])} posts</span></button>`).join('')}</div>`;}
+function trendBox(n=3){return `<div class="box"><h4>Trending tags <button class="ibtn bare" style="width:28px;height:28px" data-act="search-q" data-q="trending" title="See all">${ic('chev',14)}</button></h4>${trendRows('trow',n)}</div>`;}
 function breakHTML(k){
   const kind=k%3;let inner='';
-  if(kind===0)inner=`<div class="cgrid">${challengeBox()}<div class="box"><h4>Rising creators <button class="lnk" style="font-size:12px" data-act="search-q" data-q="" data-scope="creators">See all</button></h4>${suggested(2,k).map(followRow).join('')}</div>${trendBox(3)}</div>`;
+  if(kind===0)inner=`<div class="cgrid">${challengeBox()}<div class="box"><h4>Rising creators <button class="lnk" style="font-size:12px" data-act="search-q" data-q="" data-scope="creators">See all</button></h4>${creatorRows('feed',2,k)}</div>${trendBox(3)}</div>`;
   else if(kind===1){
-    const cs=suggested(4,k%3);
-    inner=`<div class="ccards">${cs.map(c=>{const f=S.following.has(c.id);const its=ITEMS.filter(i=>i.creator===c.id).slice(0,3);return `<div class="ccard"><div class="wrow" style="padding:0">${avHTML(c,'s36')}<div class="tx"><b data-act="creator" data-creator="${c.id}">${esc(c.name)}</b><span>${esc(c.role)}</span></div></div><div class="th">${its.map(i=>`<div class="ph t${i.tone}" data-act="open" data-id="${i.id}" title="${esc(i.title)}"></div>`).join('')}</div><button class="btn sm block follow ${f?'on':''}" style="margin-top:12px" data-act="follow" data-creator="${c.id}">${f?'Following':'Follow'}</button></div>`}).join('')}</div>`;
+    const fc=featuredFor('feed',k);const cs=[...(fc?[fc]:[]),...suggested(5,k%3).filter(c=>!fc||c.id!==fc.id)].slice(0,4);
+    inner=`<div class="ccards">${cs.map(c=>{const f=S.following.has(c.id);const its=ITEMS.filter(i=>i.creator===c.id).slice(0,3);return `<div class="ccard" ${fc&&c.id===fc.id&&c.id==='me'?'data-feat="me"':''}><div class="wrow" style="padding:0">${avHTML(c,'s36')}<div class="tx"><b data-act="creator" data-creator="${c.id}">${esc(c.name)}${fc&&c.id===fc.id?`<span class="ftag" data-act="ad-why" data-kind="featured" data-ad="${c.id}">Featured</span>`:''}</b><span>${esc(c.role)}</span></div></div><div class="th">${its.map(i=>`<div class="ph t${i.tone}" data-act="open" data-id="${i.id}" title="${esc(i.title)}"></div>`).join('')}</div>${c.id==='me'?`<button class="btn sm block" style="margin-top:12px" data-act="creator" data-creator="me">View your profile</button>`:`<button class="btn sm block follow ${f?'on':''}" style="margin-top:12px" data-act="follow" data-creator="${c.id}">${f?'Following':'Follow'}</button>`}</div>`}).join('')}</div>`;
   } else {
     const cl=[['Soft 3D everything','3d-icons'],['Kinetic type that slaps','kinetic-type'],['Calm dashboards','dashboard']];
     inner=`<div class="colgrid">${cl.map(([n,q],i)=>{const on=S.followedColls.has(n);return `<div><div class="mosaic" data-act="search-q" data-q="${q}"><div class="ph t${i}"></div><div class="ph t${(i+1)%4}"></div><div class="ph t${(i+2)%4}"></div></div><div style="display:flex;align-items:center;gap:8px;margin-top:10px"><div class="grow"><b style="font-size:14px">${n}</b><div class="muted" style="font-size:12px">by ${esc(CREATORS[i+3].name)} · ${40+i*17} pieces</div></div><button class="btn sm follow ${on?'on':''}" data-act="follow-coll" data-name="${esc(n)}">${on?'Following':'Follow'}</button></div></div>`}).join('')}</div>`;
@@ -1046,7 +1157,7 @@ function renderCrail(){
   const el=$('#crail');if(!isWide()){el.innerHTML='';return;}
   const latest=NOTIFS.slice(0,3);
   el.innerHTML=`${challengeBox()}${trendBox(5)}
-  <div class="box"><h4>Who to follow <button class="lnk" style="font-size:12px" data-act="search-q" data-q="" data-scope="creators">More</button></h4>${suggested(3).map(followRow).join('')}</div>
+  <div class="box"><h4>Who to follow <button class="lnk" style="font-size:12px" data-act="search-q" data-q="" data-scope="creators">More</button></h4>${creatorRows('rail',3,0)}</div>
   <div class="box"><h4>Your activity <button class="lnk" style="font-size:12px" data-act="activity">See all</button></h4>${latest.map(notifRow).join('')}</div>
   <div class="foot">${['About','Guidelines','Help','Privacy','Terms'].map(x=>`<button data-act="proto" data-what="${x}">${x}</button>`).join('·')}</div>`;
 }
@@ -1067,8 +1178,8 @@ function render(keepScroll){
   $$('#mobbar [data-nav]').forEach(b=>b.classList.toggle('on',b.dataset.nav===(nav==='me'?'profile/me':nav)||(b.dataset.nav==='home'&&nav==='following')));
   if(r.name!=='search')S.scope='all';
   $('#sq').value=r.name==='search'?(r.q.get('q')||''):'';syncSearchUI();
-  ({home:viewHome,motion:viewMotion,collections:viewCollections,jobs:viewJobs,profile:viewProfile,search:viewSearch,similar:viewSimilar}[r.name]||viewHome)(r);
-  hydrate(V);updateRingArrows();renderCrail();schedulePlay();
+  ({home:viewHome,motion:viewMotion,collections:viewCollections,jobs:viewJobs,profile:viewProfile,search:viewSearch,similar:viewSimilar,ads:viewAds,talent:viewTalent}[r.name]||viewHome)(r);
+  hydrate(V);updateRingArrows();renderCrail();schedulePlay();observeAds(V);observeAds($('#crail'));
 }
 
 /* ---------- list builders ---------- */
@@ -1130,17 +1241,17 @@ function viewHome(){
   const n=newFromFollowing();
   V.innerHTML=`<div class="wrap">
     <div class="greet">${greeting()}, Adam${n?` · <button class="lnk" data-act="see-new">${n} new pieces</button> from people you follow`:''}</div>
-    ${ringsHTML()}${fbarHTML()}${ctxHTML()}<div id="feed"></div></div>`;
+    ${ringsHTML()}${fbarHTML()}${ctxHTML()}${takeoverHTML()}<div id="feed"></div></div>`;
   const followEmpty=`<div class="empty"><span class="ic">${ic('users',26)}</span><h3>${S.following.size?'Nothing new matches these filters':'Follow creators to fill this tab'}</h3><p>${S.following.size?'Try another topic or format.':'Work from people you follow shows up here, newest first.'}</p><div style="width:min(420px,100%);text-align:left">${suggested(4).map(followRow).join('')}</div></div>`;
-  mountFeed($('#feed'),homeList(),{breaks:S.tab!=='following',empty:S.tab==='following'?followEmpty:emptyHTML('search','No work matches these filters','Try another topic, format or clear your filters.',`<button class="btn" data-act="clear-filter" data-k="all">Clear filters</button>`)});
+  mountFeed($('#feed'),homeList(),{breaks:S.tab!=='following',ads:S.tab!=='following'?'feed':null,empty:S.tab==='following'?followEmpty:emptyHTML('search','No work matches these filters','Try another topic, format or clear your filters.',`<button class="btn" data-act="clear-filter" data-k="all">Clear filters</button>`)});
 }
 function viewMotion(){
   const saveTab=S.tab;if(!['foryou','latest','popular'].includes(S.tab))S.tab='foryou';
   let l=ITEMS.filter(i=>i.type==='motion'&&(i.creator!=='me'||i.fresh));if(S.topic!=='all')l=l.filter(i=>i.cat===S.topic);
   V.innerHTML=`<div class="wrap"><div class="vh"><div><h1>Motion</h1><p>Loops play as you scroll. Click any piece for full length with sound.</p></div></div>
   <div class="ctx" style="margin:14px 0 4px">${['all',...CATS.filter(c=>ITEMS.some(i=>i.cat===c&&i.type==='motion'))].map(c=>`<button class="chip ${S.topic===c?'on':''}" data-act="topic" data-topic="${esc(c)}">${c==='all'?'All motion':esc(c)}</button>`).join('')}</div>
-  ${fbarHTML({tabs:[['foryou','For you'],['latest','Latest'],['popular','Popular']],noFormat:true})}${ctxHTML().replace(/<button class="chip on sm" data-act="topic"[^]*?<\/button>/,'')}<div id="feed"></div></div>`;
-  mountFeed($('#feed'),order(applyFilters(l),S.tab),{breaks:true});
+  ${fbarHTML({tabs:[['foryou','For you'],['latest','Latest'],['popular','Popular']],noFormat:true})}${ctxHTML().replace(/<button class="chip on sm" data-act="topic"[^]*?<\/button>/,'')}${takeoverHTML()}<div id="feed"></div></div>`;
+  mountFeed($('#feed'),order(applyFilters(l),S.tab),{breaks:true,ads:'feed'});
   if(saveTab==='following')S.tab=saveTab;
 }
 function viewSearch(r){
@@ -1154,10 +1265,10 @@ function viewSearch(r){
   const label=q==='trending'?'Trending now':q?`“${esc(q)}”`:'Creators';
   V.innerHTML=`<div class="wrap"><div class="vh"><div><div class="label">Search results</div><h1>${label}</h1><p>${scope==='creators'?crs.length+' creators':items.length+' pieces'}</p></div></div>
   <div class="fbar"><div class="tabs">${[['all','All'],['image','Images'],['motion','Motion'],['creators','Creators']].map(([k,l])=>`<button class="${scope===k?'on':''}" data-act="search-scope" data-scope="${k}">${l}</button>`).join('')}</div>${scope==='creators'?'':`<button class="ibtn ${filterCount()?'on':''}" data-act="filter" title="Filters">${ic('filter',18)}${filterCount()?`<span class="dotn">${filterCount()}</span>`:''}</button>`}</div>
-  ${related.length&&scope!=='creators'?`<div class="ctx"><span class="muted" style="font-size:12px">Related:</span>${related.map(t=>`<button class="chip sm" data-act="search-q" data-q="${t}">#${t}</button>`).join('')}</div>`:''}
+  ${searchTopHTML(q)}${related.length&&scope!=='creators'?`<div class="ctx"><span class="muted" style="font-size:12px">Related:</span>${related.map(t=>`<button class="chip sm" data-act="search-q" data-q="${t}">#${t}</button>`).join('')}</div>`:''}
   ${scope==='creators'?'':ctxHTML()}<div id="feed"></div></div>`;
   if(scope==='creators'){$('#feed').innerHTML=crs.length?`<div class="crgrid">${crs.map(creatorCard).join('')}</div>`:emptyHTML('users','No creators found','Try a different name or skill.');}
-  else mountFeed($('#feed'),order(applyFilters(items),'popular'),{breaks:false,empty:emptyHTML('search',`No results for “${esc(q)}”`,'Check the spelling or try a broader term.',`<div class="ctx" style="justify-content:center">${TREND.map(t=>`<button class="chip" data-act="search-q" data-q="${t[1]}">${t[0]}</button>`).join('')}</div>`)});
+  else mountFeed($('#feed'),order(applyFilters(items),'popular'),{breaks:false,ads:'search',q,empty:emptyHTML('search',`No results for “${esc(q)}”`,'Check the spelling or try a broader term.',`<div class="ctx" style="justify-content:center">${TREND.map(t=>`<button class="chip" data-act="search-q" data-q="${t[1]}">${t[0]}</button>`).join('')}</div>`)});
 }
 function creatorCard(c){const f=S.following.has(c.id);const its=ITEMS.filter(i=>i.creator===c.id).slice(0,3);return `<div class="ccard"><div class="wrow" style="padding:0">${avHTML(c,'s44')}<div class="tx"><b data-act="creator" data-creator="${c.id}">${esc(c.name)}</b><span>${esc(c.role)} · ${esc(c.loc)}</span></div></div>${c.hire?'<span class="hire" style="margin-top:10px"><i></i>Available for hire</span>':''}<div class="th">${its.map(i=>`<div class="ph t${i.tone}" data-act="open" data-id="${i.id}"></div>`).join('')}</div><div style="display:flex;gap:8px;margin-top:12px"><button class="btn sm follow ${f?'on':''} grow" data-act="follow" data-creator="${c.id}">${f?'Following':'Follow'}</button><button class="btn sm" data-act="creator" data-creator="${c.id}">Portfolio</button></div></div>`;}
 function viewSimilar(){
@@ -1179,10 +1290,11 @@ function viewCollections(r){
   <button class="coll-card coll-new" data-act="coll-new"><div class="mosaic">${ic('plus',24)}<span>New collection</span></div></button></div></div>`;
 }
 function viewJobs(){
-  const f=S.jobf;const list=JOBS.filter(j=>f==='All'||(f==='Remote'?j.remote:j.type===f));
-  V.innerHTML=`<div class="wrap"><div class="vh"><div class="grow"><h1>Jobs</h1><p>Studios hiring from the community. Your profile is your portfolio when you apply.</p></div><button class="btn" data-act="proto" data-what="Post a job">Post a job</button></div>
+  const f=S.jobf;const list=JOBS.filter(j=>f==='All'||(f==='Remote'?j.remote:j.type===f)).sort((a,b)=>(b.featured?1:0)-(a.featured?1:0));
+  V.innerHTML=`<div class="wrap"><div class="vh"><div class="grow"><h1>Jobs</h1><p>Studios hiring from the community. Your profile is your portfolio when you apply.</p></div><button class="btn" data-act="nav" data-nav="talent">${ic('users',14)} Find talent</button><button class="btn primary" data-act="post-job">${ic('plus',14)} Post a job</button></div>
   <div class="ctx" style="margin-top:14px">${['All','Full-time','Freelance','Contract','Remote'].map(x=>`<button class="chip ${f===x?'on':''}" data-act="jobf" data-v="${x}">${x}</button>`).join('')}</div>
-  <div class="jobs">${list.map(j=>{const ap=S.applied.has(j.id),sv=S.savedJobs.has(j.id);return `<div class="job"><div class="lg ph t${j.id.charCodeAt(1)%4}"></div><div class="tx"><b>${j.title}</b><div class="m">${j.studio} · ${j.loc} · ${j.type} · ${ago(j.days)}</div><div class="tags">${j.tags.map(t=>`<span class="chip sm">${t}</span>`).join('')}</div></div><button class="ibtn ${sv?'on':''}" data-act="job-save" data-id="${j.id}" title="${sv?'Saved':'Save job'}">${ic('bookmark',16)}</button><button class="btn ${ap?'':'primary'}" data-act="job-apply" data-id="${j.id}" ${ap?'disabled':''}>${ap?ic('check',14)+' Applied':'Apply with profile'}</button></div>`}).join('')||emptyHTML('briefcase','No jobs in this filter','Try another filter.')}</div></div>`;
+  <div class="jobs">${list.map(j=>{const ap=S.applied.has(j.id),sv=S.savedJobs.has(j.id);return `<div class="job ${j.featured?'featured':''} ${S.jobHl===j.id?'flash':''}" id="job-${j.id}" ${j.camp?`data-jad="${j.id}"`:''}><div class="lg ph t${j.id.charCodeAt(1)%4}"></div><div class="tx"><b>${esc(j.title)}</b>${j.featured?'<span class="ftag">Featured</span>':''}${j.mine?'<span class="ftag">Your listing</span>':''}<div class="m">${esc(j.studio)} · ${esc(j.loc)} · ${j.type} · ${ago(j.days)}</div><div class="tags">${j.tags.map(t=>`<span class="chip sm">${esc(t)}</span>`).join('')}</div></div><button class="ibtn ${sv?'on':''}" data-act="job-save" data-id="${j.id}" title="${sv?'Saved':'Save job'}">${ic('bookmark',16)}</button><button class="btn ${ap?'':'primary'}" data-act="job-apply" data-id="${j.id}" ${ap?'disabled':''}>${ap?ic('check',14)+' Applied':'Apply with profile'}</button></div>`}).join('')||emptyHTML('briefcase','No jobs in this filter','Try another filter.')}</div></div>`;
+  if(S.jobHl){const el=$('#job-'+S.jobHl);S.jobHl=null;if(el)setTimeout(()=>el.scrollIntoView({block:'center',behavior:reduced()?'auto':'smooth'}),60);}
 }
 function viewProfile(r){
   const c=CR[r.arg];if(!c){go('home');return;}
@@ -1192,12 +1304,12 @@ function viewProfile(r){
   const tabs=[['work',`Work · ${work.length}`],...(me?[['collections',`Collections · ${COLLS.length}`]]:[]),['about','About']];
   if(!tabs.some(t=>t[0]===S.ptab))S.ptab='work';
   V.innerHTML=`<div class="wrap"><div class="pcover ph t${c.tone}"></div>
-  <div class="phead">${avHTML(c,'s96')}<div class="info"><h1>${esc(c.name)}</h1><div class="role">${esc(c.role)} <span class="muted" style="display:inline-flex;gap:4px;align-items:center">${ic('mappin',13)} ${esc(c.loc)}</span>${c.hire?'<span class="hire"><i></i>Available for hire</span>':''}</div></div>
-  <div style="display:flex;gap:8px;padding-bottom:4px">${me?`<button class="btn" data-act="edit-profile">${ic('edit',14)} Edit profile</button><button class="btn primary" data-act="upload">${ic('plus',14)} Upload</button>`:`<button class="btn follow ${f?'on':''} ${f?'':'primary'}" data-act="follow" data-creator="${c.id}">${f?'Following':'Follow'}</button><button class="btn" data-act="message" data-creator="${c.id}">${ic('chat',14)} Message</button>${c.hire?`<button class="btn" data-act="hire" data-creator="${c.id}">Hire</button>`:''}`}<button class="ibtn" data-act="share-profile" data-creator="${c.id}" title="Share profile">${ic('share',16)}</button></div></div>
+  <div class="phead">${avHTML(c,'s96')}<div class="info"><h1>${esc(c.name)}${me&&isPro()?' '+proBadge():''}${c.studio?'<span class="ftag" style="font-size:11px">Studio</span>':''}</h1><div class="role">${esc(c.role)} <span class="muted" style="display:inline-flex;gap:4px;align-items:center">${ic('mappin',13)} ${esc(c.loc)}</span>${c.hire?'<span class="hire"><i></i>Available for hire</span>':''}${me&&isPro()&&S.domain?`<span class="chip sm">${ic('link',12)} ${esc(S.domain)}</span>`:''}</div></div>
+  <div style="display:flex;gap:8px;padding-bottom:4px;flex-wrap:wrap">${me?`<button class="btn" data-act="nav" data-nav="ads">${ic('chart',14)} Promote &amp; earn</button>${isPro()?'':`<button class="btn" data-act="pro">${ic('star',14)} Go Pro</button>`}<button class="btn" data-act="edit-profile">${ic('edit',14)} Edit profile</button><button class="btn primary" data-act="upload">${ic('plus',14)} Upload</button>`:`<button class="btn follow ${f?'on':''} ${f?'':'primary'}" data-act="follow" data-creator="${c.id}">${f?'Following':'Follow'}</button><button class="btn" data-act="message" data-creator="${c.id}">${ic('chat',14)} Message</button>${c.hire?`<button class="btn" data-act="hire" data-creator="${c.id}">Hire</button>`:''}`}<button class="ibtn" data-act="share-profile" data-creator="${c.id}" title="Share profile">${ic('share',16)}</button></div></div>
   <div class="pstats"><div><b id="pfol">${fmt(c.followers+(f?1:0))}</b><span>followers</span></div><div><b>${fmt(c.followingN)}</b><span>following</span></div><div><b>${fmt(likes)}</b><span>appreciations</span></div><div><b>${fmt(views)}</b><span>views</span></div></div>
   <div class="ptabs">${tabs.map(([k,l])=>`<button class="${S.ptab===k?'on':''}" data-act="ptab" data-v="${k}">${l}</button>`).join('')}</div><div id="feed"></div></div>`;
   const el=$('#feed');
-  if(S.ptab==='work')mountFeed(el,work.slice().sort((a,b)=>a.days-b.days),{breaks:false,empty:emptyHTML('image','No work yet',me?'Upload your first piece — it becomes your portfolio.':'Nothing posted yet.',me?`<button class="btn primary" data-act="upload">Upload</button>`:'')});
+  if(S.ptab==='work')mountFeed(el,profileOrder(work),{breaks:false,profile:true,empty:emptyHTML('image','No work yet',me?'Upload your first piece — it becomes your portfolio.':'Nothing posted yet.',me?`<button class="btn primary" data-act="upload">Upload</button>`:'')});
   else if(S.ptab==='collections'){el.innerHTML=`<div class="cgrid2" style="margin-top:0">${COLLS.map(cl=>`<button class="coll-card" data-act="nav" data-nav="collections/${cl.id}"><div class="mosaic">${[0,1,2].map(k=>`<div class="ph t${IT[cl.items[k]]?.tone??k}"></div>`).join('')}</div><b>${esc(cl.name)}</b><span>${cl.items.length} pieces</span></button>`).join('')}</div>`;}
   else el.innerHTML=`<div class="about"><div><div class="label" style="margin-bottom:8px">Bio</div><p>${esc(c.bio||`${c.role} based in ${c.loc}. Working across ${c.cats.join(', ').toLowerCase()}. Open to collaborations and good coffee.`)}</p><div class="label" style="margin:18px 0 8px">Focus</div><div class="ctx">${c.cats.map(x=>`<button class="chip" data-act="search-q" data-q="${esc(x)}">${esc(x)}</button>`).join('')}</div></div><div class="box"><h4>Tools</h4><div class="ctx">${[...new Set(work.flatMap(i=>i.tools))].map(t=>`<span class="chip sm">${t}</span>`).join('')||'<span class="muted">—</span>'}</div><h4 style="margin-top:14px">Links</h4><div style="display:flex;flex-direction:column;gap:6px;font-size:13px">${['Website','Instagram','LinkedIn'].map(x=>`<button class="lnk" style="text-align:left;font-weight:500" data-act="proto" data-what="${x} link">${x} ↗</button>`).join('')}</div></div></div>`;
 }
@@ -1214,7 +1326,7 @@ function renderSdrop(){
   const q=sq.value.trim();let h='';
   if(!q){
     h+=S.recent.length?`<div class="sgroup"><div class="label">Recent <button class="lnk muted" style="font-size:11px;font-weight:500;text-transform:none;letter-spacing:0" data-act="recent-clear">Clear</button></div><div class="recent">${S.recent.map(r=>`<span class="chip"><button class="lnk" style="text-decoration:none;font-weight:500;color:var(--ink2)" data-act="search-q" data-q="${esc(r)}">${esc(r)}</button><span class="x" role="button" data-act="recent-rm" data-q="${esc(r)}">${ic('x',12)}</span></span>`).join('')}</div></div>`:'';
-    h+=`<div class="sgroup"><div class="label">Trending</div>${TREND.map(t=>`<button class="sopt" data-act="search-q" data-q="${t[1]}">${ic('sparkle',16)} ${t[0]}<span class="sub">${fmt(t[2])} posts</span></button>`).join('')}</div>`;
+    h+=`<div class="sgroup"><div class="label">Trending</div>${trendRows('sopt',5)}</div>`;
     h+=`<div class="sgroup"><div class="label">Creators you might like</div>${suggested(3).map(c=>`<button class="sopt" data-act="creator" data-creator="${c.id}">${avHTML(c,'s36')}<span><b>${esc(c.name)}</b><br><span class="muted" style="font-size:12px">${esc(c.role)}</span></span></button>`).join('')}</div>`;
   } else {
     const ql=q.toLowerCase();
@@ -1222,6 +1334,7 @@ function renderSdrop(){
     const crs=CREATORS.filter(c=>c.id!=='me'&&c.name.toLowerCase().includes(ql)).slice(0,3);
     const its=ITEMS.filter(i=>i.title.toLowerCase().includes(ql)).filter((v,i,a)=>a.findIndex(x=>x.title===v.title)===i).slice(0,4);
     h+=`<div class="sgroup"><button class="sopt" data-act="search-q" data-q="${esc(q)}">${ic('search',16)}<span>Search for “<b>${esc(q)}</b>” in ${{all:'everything',image:'images',motion:'motion',creators:'creators'}[S.scope]}</span><span class="sub"><span class="kbd">↵</span></span></button></div>`;
+    h+=sugAdHTML(q);
     if(its.length)h+=`<div class="sgroup"><div class="label">Work</div>${its.map(i=>`<button class="sopt" data-act="search-q" data-q="${esc(i.title)}"><span class="ph t${i.tone}"></span><span>${hlText(i.title,q)}</span><span class="sub">${esc(i.cat)}${i.type==='motion'?' · motion':''}</span></button>`).join('')}</div>`;
     if(tags.length)h+=`<div class="sgroup"><div class="label">Tags</div>${tags.map(t=>`<button class="sopt" data-act="search-q" data-q="${t}"><span>#${hlText(t,ql.replace(/^#/,''))}</span></button>`).join('')}</div>`;
     if(crs.length)h+=`<div class="sgroup"><div class="label">Creators</div>${crs.map(c=>`<button class="sopt" data-act="creator" data-creator="${c.id}">${avHTML(c,'s36')}<span>${hlText(c.name,q)}</span><span class="sub">${esc(c.role)}</span></button>`).join('')}</div>`;
@@ -1277,11 +1390,11 @@ function renderDetail(l,id){
    <div class="dpanel"><div class="scroll">
      <div class="wrow" style="padding:0;padding-right:44px">${avHTML(c,'s44')}<div class="tx"><b data-act="creator" data-creator="${c.id}">${esc(c.name)}</b><span>${esc(c.role)} · ${fmt(c.followers+(f?1:0))} followers</span></div>${c.id==='me'?'':`<button class="btn sm follow ${f?'on':''}" data-act="follow" data-creator="${c.id}">${f?'Following':'Follow'}</button>`}</div>
      <h2>${esc(it.title)}</h2><p class="desc">${esc(it.desc)}</p>
-     <div class="stats"><span>${ic('clock',13).replace('<svg','<svg style="display:inline;vertical-align:-2px"')} ${it.days===0?'Posted today':'Posted '+ago(it.days)}</span>·<span>${fmt(it.views)} views</span>·<span><b id="dLikes">${fmt(it.likes+(liked?1:0))}</b> likes</span>${!m&&it.imgs>1?`·<span id="dImgN">1 / ${it.imgs}</span>`:''}</div>
+     <div class="stats"><span>${ic('clock',13).replace('<svg','<svg style="display:inline;vertical-align:-2px"')} ${it.days===0?'Posted today':'Posted '+ago(it.days)}</span>·<span>${fmt(it.views)} views</span>·<span><b id="dLikes">${fmt(it.likes+(liked?1:0))}</b> likes</span>${!m&&it.imgs>1?`·<span id="dImgN">1 / ${it.imgs}</span>`:''}${it.tips?`·<span id="dTips">${it.tips} tip${it.tips>1?'s':''}</span>`:''}</div>
      ${it.challenge?`<button class="chbadge" data-act="challenge">${ic('trophy',14)} Entry · Weekly challenge #42</button>`:''}
-     <div class="dact">${saveGrp(it)}<button class="ibtn ${liked?'liked':''}" data-act="like" data-id="${id}" title="Like">${ic('heart',18)}</button><button class="ibtn" data-act="share" data-id="${id}" title="Copy link">${ic('share',18)}</button><button class="ibtn" data-act="more" data-id="${id}" title="More">${ic('more',18)}</button></div>
+     <div class="dact">${saveGrp(it)}<button class="ibtn ${liked?'liked':''}" data-act="like" data-id="${id}" title="Like">${ic('heart',18)}</button><button class="ibtn" data-act="share" data-id="${id}" title="Copy link">${ic('share',18)}</button><button class="ibtn" data-act="more" data-id="${id}" title="More">${ic('more',18)}</button>${dactExtra(it)}</div>
      <div class="ctx">${it.tags.map(t=>`<button class="chip sm" data-act="search-q" data-q="${t}">#${t}</button>`).join('')}${it.tools.map(t=>`<span class="chip sm" style="background:none;border:1px solid var(--line2)">${t}</span>`).join('')}</div>
-     ${more.length?`<div class="sect"><div class="label">More by ${esc(c.name.split(' ')[0])}<button class="lnk" style="font-size:12px;text-transform:none;letter-spacing:0" data-act="creator" data-creator="${c.id}">View profile</button></div><div class="more3">${more.slice(0,3).map(i=>`<div class="ph t${i.tone}" data-act="detail-go" data-id="${i.id}" title="${esc(i.title)}"></div>`).join('')}</div></div>`:''}
+     ${insightsHTML(it)}${more.length?`<div class="sect"><div class="label">More by ${esc(c.name.split(' ')[0])}<button class="lnk" style="font-size:12px;text-transform:none;letter-spacing:0" data-act="creator" data-creator="${c.id}">View profile</button></div><div class="more3">${more.slice(0,3).map(i=>`<div class="ph t${i.tone}" data-act="detail-go" data-id="${i.id}" title="${esc(i.title)}"></div>`).join('')}</div></div>`:''}
      <div class="sect"><div class="label" id="cmtN">Comments · ${it.comments.length}</div><div id="cmts">${it.comments.length?it.comments.map((cm,k)=>cmtHTML(cm,k)).join(''):'<p class="muted" style="font-size:13px;margin:0" id="noCmt">No comments yet. Say something nice.</p>'}</div></div>
    </div>
    <form class="cform" id="cform">${avHTML(CR.me,'s36')}<input type="text" id="cin" placeholder="Add a comment…" maxlength="300" aria-label="Add a comment"><button class="btn sm primary" id="cpost" disabled>Post</button></form></div>`;
@@ -1407,7 +1520,7 @@ function updateBadges(){
 function renderRailColls(){
   $('#railColls').innerHTML=`<div class="label">Your collections</div>${COLLS.slice(0,5).map(c=>`<button class="rc" data-act="nav" data-nav="collections/${c.id}"><span class="ph t${IT[c.items[0]]?.tone??0}"></span><span>${esc(c.name)}</span><span class="n">${c.items.length}</span></button>`).join('')}<button class="rc" data-act="coll-new"><span class="ph" style="display:flex;align-items:center;justify-content:center;background:#fff;border:1.5px dashed var(--line2)">${ic('plus',14)}</span><span>New collection</span></button>`;
 }
-function renderMe(){$('#meBtn').innerHTML=`${avHTML(CR.me)}<span class="lbl" style="display:flex;flex-direction:column;line-height:1.2"><b style="font-size:13px">${esc(CR.me.name)}</b><span style="font-size:11px;color:var(--muted);font-weight:400">View profile & more</span></span>`;}
+function renderMe(){$('#meBtn').innerHTML=`${avHTML(CR.me)}<span class="lbl" style="display:flex;flex-direction:column;line-height:1.2"><b style="font-size:13px">${esc(CR.me.name)}${isPro()?' '+proBadge():''}</b><span style="font-size:11px;color:var(--muted);font-weight:400">View profile & more</span></span>`;}
 function applyPinned(){$('#app').classList.toggle('pinned',S.pinned);$('#pinBtn').innerHTML=ic('pin',16);$('#pinBtn').title=S.pinned?'Unpin sidebar':'Pin sidebar open';$('#pinBtn').classList.toggle('on',S.pinned);setTimeout(relayout,220);}
 
 /* =========================================================
@@ -1431,6 +1544,7 @@ function renderUpload(l=$('.layer[data-kind="upload"]')){
       <p class="muted" style="font-size:12px;margin:14px 0 0">${isMotionUp()?'Motion posts are a single video. We’ll make a 6–8s muted loop for the feed; you pick the poster frame next.':`Click an image to make it the cover. ${U.files.length}/20 images.`}</p>`
     :`<div class="drop" data-uact="browse" id="drop"><span class="ic">${ic('upload',26)}</span><h3>Drag and drop images or a video</h3><p>JPG, PNG, GIF, WebP up to 20 MB each · MP4, MOV, WebM up to 200 MB</p><button class="btn primary" style="margin-top:8px" data-uact="browse">Browse files</button></div>
       <div style="display:flex;align-items:center;gap:10px;justify-content:center;margin-top:16px;font-size:13px;flex-wrap:wrap" class="muted">No files handy? <button class="btn sm" data-uact="sample-img">${ic('image',14)} Sample image project</button><button class="btn sm" data-uact="sample-mo">${ic('film',14)} Sample motion</button></div>`}
+    <p class="muted" style="font-size:12px;text-align:center;margin:12px 0 0">Motion up to ${isPro()?'60s (Pro)':'30s · 60s with <button type="button" class="lnk" data-act="pro">Pro</button>'}</p>
     ${U.challenge?`<div class="chbadge" style="cursor:default">${ic('trophy',14)} This upload will be entered into Weekly challenge #42 · Retro futurism</div>`:''}</div>
     <div class="mfoot"><span class="muted" style="font-size:12px">By uploading you confirm you own this work.</span><span class="grow"></span><button class="btn" data-uact="close">Cancel</button><button class="btn primary" data-uact="next" ${U.files.length?'':'disabled'}>Continue</button></div>`;
     const drop=$('#drop',m);if(drop){['dragenter','dragover'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add('over')}));['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.remove('over')}));drop.addEventListener('drop',e=>addFiles(e.dataTransfer.files));}
@@ -1524,7 +1638,7 @@ function finishPublish(l){
     if(U.hire)CR.me.hire=true;
     const mb=$('.modal',l);mb.innerHTML=`<div class="mhead"><h2>Published</h2>${(U.step=4,stepsHTML()).replace(/class="on"/g,'class="done"')}<button class="ibtn bare" data-uact="close" title="Close">${ic('x',18)}</button></div>
     <div class="mbody" style="text-align:center;padding:44px 30px"><div class="done-ic">${ic('check',34)}</div><h2 style="margin:0 0 6px;font-size:22px">Your work is live</h2><p class="muted" style="margin:0 0 22px">“${esc(it.title)}” is on your profile${U.vis==='public'?' and in the Latest feed':' (unlisted)'}${U.challenge?' and entered into challenge #42':''}.</p>
-    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button class="btn" data-uact="again">Upload another</button><button class="btn" data-uact="profile">Go to profile</button><button class="btn primary" data-uact="view" data-id="${it.id}">View post</button></div></div>`;
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button class="btn" data-uact="again">Upload another</button><button class="btn" data-act="boost" data-id="${it.id}">${ic('zap',14)} Boost this post</button><button class="btn" data-uact="profile">Go to profile</button><button class="btn primary" data-uact="view" data-id="${it.id}">View post</button></div></div>`;
     U.step=3;U.done=it.id;
     if(U.vis==='unlisted')it.unlisted=true;
     const r=route();if(['home','profile','motion'].includes(r.name))render(true);
@@ -1573,10 +1687,11 @@ function openVisual(){
 }
 function openChallenge(){
   const entries=ITEMS.filter(i=>i.challenge);const n=entries.length+418;
-  const l=openModal(`<div class="modal" style="width:min(760px,100%)"><div class="chal-hero ph t3"><span class="hire" style="background:#fff">${ic('trophy',14)} Weekly challenge #42</span></div><button class="ibtn mclose" data-act="close-modal">${ic('x',18)}</button>
+  const l=openModal(`<div class="modal" style="width:min(760px,100%)"><div class="chal-hero ph t3"><span class="hire" style="background:#fff">${ic('trophy',14)} Weekly challenge #42</span><span class="hire" style="background:#fff;margin-left:8px">Presented by ${esc(BRANDS[CHAL.sponsor].name)}</span></div><button class="ibtn mclose" data-act="close-modal">${ic('x',18)}</button>
   <div class="mbody"><h2 style="margin:0;font-size:26px;letter-spacing:-.02em">Retro futurism</h2><p class="muted" style="margin:6px 0 0">Imagine the future the way the past did: chrome, optimism, big type, soft gradients. Any discipline: UI, brand, 3D, motion or illustration.</p>
   <div class="timer" id="ctimer"></div>
   <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn primary" data-act="challenge-enter">${ic('upload',14)} Submit your entry</button><button class="btn ${S.remind?'follow on':''}" data-act="remind" id="remindBtn">${S.remind?ic('check',14)+' Reminder set':ic('bell',14)+' Remind me'}</button><button class="btn ghost" data-act="search-q" data-q="retro-futurism">See all ${n} entries</button></div>
+  ${challengeSponsorHTML()}
   <div class="label" style="margin:22px 0 10px">Rules</div><ul style="margin:0;padding-left:18px;color:var(--ink2);font-size:13px;line-height:1.7"><li>New work only, made this week.</li><li>One entry per person. Motion entries up to 30s.</li><li>Top 3 by community saves get featured on the homepage for a week.</li></ul>
   <div class="label" style="margin:22px 0 10px">Latest entries</div><div class="egrid">${entries.slice(0,8).map(e=>`<div class="media ph t${e.tone} ${e.type==='motion'?'motion playing':''}" data-act="open" data-id="${e.id}" title="${esc(e.title)}">${e.type==='motion'?'<span class="blob"></span><span class="badge">'+ic('play',9)+'</span>':''}</div>`).join('')}</div></div></div>`,{kind:'challenge'});
   const c=countdown();$('#ctimer',l).innerHTML=['d','h','m','s'].map(k=>`<div><b>${String(c[k]).padStart(2,'0')}</b><span>${{d:'days',h:'hrs',m:'min',s:'sec'}[k]}</span></div>`).join('');
@@ -1597,11 +1712,13 @@ function openSettings(){
    ${row('autoplay','Autoplay motion previews','Loops play muted as you scroll. Off: posters only, hover to play.')}
    ${row('reduce','Reduce motion','No autoplay or animated transitions. Also on when your OS asks for it.')}
    ${row('breaks','Community modules in feed','Challenge, rising creators and collections between posts.')}
+   ${row('personalAds','Personalised ads','Use your interests to pick promoted and sponsored posts. Off: based on the page only.')}
+   <div class="srow"><div class="tx"><b>Pro membership ${isPro()?proBadge():''}</b><span>${isPro()?'Active. No sponsored posts, insights, pinned projects.':'Badge, insights, no sponsored posts, 60s motion and more.'}</span></div><button class="btn sm ${isPro()?'':'primary'}" data-act="pro">${isPro()?'Manage':'Go Pro'}</button></div>
    <div class="srow"><div class="tx"><b>Pin sidebar open</b><span>Show labels and your collections all the time.</span></div><button class="switch ${S.pinned?'on':''}" data-set="pinned" role="switch" aria-label="Pin sidebar"></button></div>
   </div></div>`,{kind:'settings'});
   $$('[data-set]',l).forEach(sw=>sw.onclick=()=>{const k=sw.dataset.set;if(k==='pinned'){S.pinned=!S.pinned;store.set('pinned',S.pinned);applyPinned();sw.classList.toggle('on',S.pinned);return;}
     S.set[k]=!S.set[k];store.set('set',S.set);sw.classList.toggle('on',S.set[k]);sw.setAttribute('aria-checked',S.set[k]);
-    if(k==='breaks'){S.hideBreaks=false;relayout();}schedulePlay();toast(`${sw.closest('.srow').querySelector('b').textContent}: ${S.set[k]?'on':'off'}`);});
+    if(k==='breaks'){S.hideBreaks=false;relayout();}if(k==='personalAds'&&FC&&FC.el.isConnected)render(true);schedulePlay();toast(`${sw.closest('.srow').querySelector('b').textContent}: ${S.set[k]?'on':'off'}`);});
 }
 function promptBox(title,label,val,ok,cb,extra=''){
   const l=openModal(`<div class="modal" style="width:min(440px,100%)"><form id="pform"><div class="mhead"><h2>${title}</h2><button type="button" class="ibtn bare" data-act="close-modal">${ic('x',18)}</button></div><div class="mbody"><label class="field"><span>${label}</span><input type="text" id="pval" maxlength="40" value="${esc(val)}" required></label>${extra}</div><div class="mfoot" style="justify-content:flex-end"><button type="button" class="btn" data-act="close-modal">Cancel</button><button class="btn primary">${ok}</button></div></form></div>`,{kind:'prompt'});
@@ -1616,9 +1733,10 @@ function openEditProfile(){
   <label class="field"><span>Headline</span><input type="text" id="epr" value="${esc(c.role)}" maxlength="60"></label>
   <label class="field"><span>Location</span><input type="text" id="epl" value="${esc(c.loc)}" maxlength="40"></label>
   <label class="field"><span>Bio</span><textarea id="epb">${esc(c.bio)}</textarea></label>
+  ${isPro()?`<label class="field"><span>Portfolio domain</span><input type="text" id="epd" placeholder="adamojo.design" value="${esc(S.domain)}" maxlength="60"></label>`:`<div class="srow" style="border:1px dashed var(--line2);border-radius:12px;padding:10px 12px;margin-bottom:8px"><div class="tx"><b>Use your own domain</b><span>Show your portfolio at adamojo.design</span></div><button type="button" class="btn sm" data-act="pro">Pro</button></div>`}
   <label class="check"><input type="checkbox" id="eph" ${c.hire?'checked':''}><span><b>Available for hire</b><br><span class="muted">Shows a badge on your profile and posts.</span></span></label>
   </div><div class="mfoot" style="justify-content:flex-end"><button type="button" class="btn" data-act="close-modal">Cancel</button><button class="btn primary">Save profile</button></div></form></div>`,{kind:'edit'});
-  $('#epf',l).onsubmit=e=>{e.preventDefault();c.name=$('#epn',l).value.trim()||c.name;c.role=$('#epr',l).value.trim()||c.role;c.loc=$('#epl',l).value.trim()||c.loc;c.bio=$('#epb',l).value.trim();c.hire=$('#eph',l).checked;closeModal(l);renderMe();toast('Profile saved');render(true);};
+  $('#epf',l).onsubmit=e=>{e.preventDefault();c.name=$('#epn',l).value.trim()||c.name;c.role=$('#epr',l).value.trim()||c.role;c.loc=$('#epl',l).value.trim()||c.loc;c.bio=$('#epb',l).value.trim();c.hire=$('#eph',l).checked;if($('#epd',l))S.domain=$('#epd',l).value.trim();closeModal(l);renderMe();toast('Profile saved');render(true);};
 }
 function openFilter(anchor){
   const f=JSON.parse(JSON.stringify(S.filters));
@@ -1661,7 +1779,7 @@ document.addEventListener('click',e=>{
     case 'save-menu':e.stopPropagation();openSaveMenu(b,id);break;
     case 'like':e.stopPropagation();toggleLike(id);break;
     case 'share':e.stopPropagation();copyLink('pin/'+id);break;
-    case 'more':{e.stopPropagation();const it=IT[id];openPop(b,`<button class="mi" data-m="similar">${ic('sparkle',16)} More like this</button><button class="mi" data-m="link">${ic('link',16)} Copy link</button>${it.creator==='me'?`<button class="mi" data-m="del">${ic('trash',16)} Delete post</button>`:`<button class="mi" data-m="hide">${ic('eyeoff',16)} Hide this pin</button><button class="mi" data-m="report">${ic('flag',16)} Report</button>`}`,{onOpen:p=>$$('[data-m]',p).forEach(x=>x.onclick=async()=>{closePop();const m=x.dataset.m;
+    case 'more':{e.stopPropagation();const it=IT[id];openPop(b,`<button class="mi" data-m="similar">${ic('sparkle',16)} More like this</button><button class="mi" data-m="link">${ic('link',16)} Copy link</button>${monetMoreItems(it,b)}${it.creator==='me'?`<button class="mi" data-m="del">${ic('trash',16)} Delete post</button>`:`<button class="mi" data-m="hide">${ic('eyeoff',16)} Hide this pin</button><button class="mi" data-m="report">${ic('flag',16)} Report</button>`}`,{onOpen:p=>$$('[data-m]',p).forEach(x=>x.onclick=async()=>{closePop();const m=x.dataset.m;if(monetMore(m,it,b))return;
       if(m==='similar'){closeAllModals();doSearch(it.tags[0]);}else if(m==='link')copyLink('pin/'+id);else if(m==='hide')hideItem(id);else if(m==='report')toast('Thanks — our team will review this pin.');
       else if(m==='del'&&await confirmBox('Delete this post?','It will be removed from your profile, collections and feeds.','Delete')){const i=ITEMS.indexOf(it);ITEMS.splice(i,1);delete IT[id];COLLS.forEach(c=>c.items=c.items.filter(x=>x!==id));delete S.saved[id];closeAllModals();render(true);toast('Post deleted');}})});break;}
     case 'sound':{e.stopPropagation();const on=!S.sound.has(id);on?S.sound.add(id):S.sound.delete(id);b.innerHTML=ic(on?'sound':'mute',14);const v=b.closest('.media').querySelector('video');if(v)v.muted=!on;toast(on?'Preview sound on for this piece':'Preview muted');break;}
@@ -1695,7 +1813,7 @@ document.addEventListener('click',e=>{
     case 'hire':openMessages(cid);setTimeout(()=>{const i=$('#min');if(i){i.value=`Hi ${CR[cid].name.split(' ')[0]}! I’d love to hire you for a project.`;i.focus();}},50);break;
     case 'settings':openSettings();break;
     case 'me-menu':openPop(b,`<div class="wrow" style="padding:8px 10px">${avHTML(CR.me,'s44')}<div class="tx"><b>${esc(CR.me.name)}</b><span>${esc(CR.me.role)}</span></div></div><div class="msep"></div>
-      <button class="mi" data-g="profile/me">${ic('user',16)} Your profile</button><button class="mi" data-g="collections">${ic('folder',16)} Your collections</button><button class="mi" data-g="settings">${ic('settings',16)} Settings</button><div class="msep"></div><button class="mi" data-g="logout">${ic('logout',16)} Log out</button>`,{align:'left',onOpen:p=>{const r=b.getBoundingClientRect();p.style.left=(r.right+8)+'px';p.style.top=Math.max(10,r.bottom-p.offsetHeight)+'px';$$('[data-g]',p).forEach(x=>x.onclick=()=>{closePop();const g=x.dataset.g;if(g==='settings')openSettings();else if(g==='logout')toast('This prototype keeps you signed in as Adam.');else{S.ptab='work';go(g);}})}});break;
+      <button class="mi" data-g="profile/me">${ic('user',16)} Your profile</button><button class="mi" data-g="collections">${ic('folder',16)} Your collections</button><button class="mi" data-g="ads">${ic('chart',16)} Promote &amp; earn</button><button class="mi" data-g="talent">${ic('users',16)} Talent search</button><button class="mi" data-g="pro">${ic('star',16)} ${isPro()?'Manage Pro':'Go Pro'}</button><button class="mi" data-g="settings">${ic('settings',16)} Settings</button><div class="msep"></div><button class="mi" data-g="logout">${ic('logout',16)} Log out</button>`,{align:'left',onOpen:p=>{const r=b.getBoundingClientRect();p.style.left=(r.right+8)+'px';p.style.top=Math.max(10,r.bottom-p.offsetHeight)+'px';$$('[data-g]',p).forEach(x=>x.onclick=()=>{closePop();const g=x.dataset.g;if(g==='settings')openSettings();else if(g==='pro')openPro();else if(g==='logout')toast('This prototype keeps you signed in as Adam.');else{S.ptab='work';go(g);}})}});break;
     case 'pin-rail':S.pinned=!S.pinned;store.set('pinned',S.pinned);applyPinned();toast(S.pinned?'Sidebar pinned open':'Sidebar collapsed to icons');break;
     case 'hide-breaks':S.hideBreaks=true;$$('.cbreak').forEach(x=>x.remove());toast('Community modules hidden for today',{action:'Undo',fn:()=>{S.hideBreaks=false;relayout();}});break;
     case 'challenge':closeDrawer();if(inLayer&&inLayer.dataset.kind==='detail')closeModal(inLayer);openChallenge();break;
@@ -1759,6 +1877,798 @@ document.addEventListener('mouseover',e=>{
   },550);
 });
 document.addEventListener('mouseout',e=>{const w=e.target.closest?.('.card .who');if(w&&!w.contains(e.relatedTarget)&&!pop.contains(e.relatedTarget)){clearTimeout(hcT);setTimeout(()=>{if(pop.classList.contains('hovercard')&&!pop.matches(':hover')){closePop();hcEl=null;}},120);}});
+
+/* =========================================================
+   Monetization: boosts, search ads, sponsored posts, featured
+   spots, challenge sponsorship, featured jobs, talent search,
+   Pro, tips and one shared checkout. Everything paid is
+   labelled, capped and kept out of Following and profiles.
+   ========================================================= */
+Object.assign(P,{
+  megaphone:'<path d="M3 10v4h3l9 5V5L6 10z"/><path d="M6 14l1.2 5h3L9 14.5"/><path d="M18.5 9a3 3 0 010 6"/>',
+  zap:'<path d="M13 2L4 14h7l-1 8 9-12h-7z"/>',
+  dollar:'<circle cx="12" cy="12" r="9"/><path d="M15 9.4c-.5-.9-1.6-1.4-3-1.4-1.7 0-3 .8-3 2s1.3 1.7 3 2 3 .8 3 2-1.3 2-3 2c-1.4 0-2.5-.5-3-1.4M12 6v2M12 16v2"/>',
+  chart:'<path d="M4 20V11M10 20V5M16 20v-6M21 20H3"/>',
+  star:'<path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/>',
+  target:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/>',
+  card:'<rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/>',
+  external:'<path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5"/>'
+});
+const PRICE={boostCPM:4,spCPM:6,featured:{feed:49,rail:39,both:79},chFee:1500,featJob:99,talent:49,pro:{month:8,year:72},tipFee:.10,tipFeePro:.05,credit:10,minCPC:.3};
+const money=n=>'$'+(+n).toLocaleString('en-US',{minimumFractionDigits:Number.isInteger(Math.round(n*100)/100)?0:2,maximumFractionDigits:2});
+const cap=s=>s.charAt(0).toUpperCase()+s.slice(1);
+const isPro=()=>!!S.pro;
+const proBadge=()=>`<span class="probadge" title="Pro member">PRO</span>`;
+Object.assign(S,{pro:false,proPlan:'month',boostCredits:0,studio:false,credits:25,shortlist:new Set(),hiddenAds:new Set(),adsTab:'overview',pinnedPosts:[],withdrawn:0,domain:'',card:{brand:'Visa',last4:'4242',exp:'08/28'},
+  talent:{cats:[],tools:[],loc:'',hire:true,sort:'match',tab:'all'}});
+
+/* ---------- studio accounts (agencies can advertise and be hired) ---------- */
+[{id:'paperkite',name:'Paper Kite Studio',role:'Illustration agency',loc:'London, UK',cats:['Illustration','Branding'],hire:true,studio:true,bio:'An independent illustration agency representing 40+ artists across editorial, publishing and brand work.'},
+ {id:'orbit',name:'Orbit Motion',role:'Motion design studio',loc:'Lagos, NG',cats:['Motion','3D'],hire:true,studio:true,bio:'Brand motion, product launches and Lottie systems for apps. Small team, fast turnarounds.'}
+].forEach((c,i)=>{c.followers=[12400,8900][i];c.followingN=[120,64][i];c.tone=[2,3][i];CREATORS.push(c);CR[c.id]=c;
+  for(let k=0;k<6;k++){const it=mkItem(500+i*10+k,{id:'st'+i+k,creator:c.id,cat:c.cats[k%c.cats.length]});ITEMS.push(it);IT[it.id]=it;}});
+
+/* ---------- advertisers & inventory ---------- */
+const BRANDS={
+  framewise:{name:'Framewise',what:'Prototyping tool',url:'framewise.app'},
+  polyform:{name:'Polyform 3D',what:'3D rendering software',url:'polyform3d.com'},
+  kinetic:{name:'Kinetic School',what:'Online motion & type courses',url:'kinetic.school'},
+  inkwell:{name:'Inkwell Brushes',what:'Brush packs for Procreate',url:'inkwell.studio'}
+};
+const brandAv=(b,cls='')=>`<span class="av sq ${cls}">${esc(b.name.split(/\s+/).map(w=>w[0]).join('').slice(0,2).toUpperCase())}</span>`;
+const SPONSORED=[
+  {id:'ad1',brand:'framewise',headline:'Prototype motion right in the browser',cta:'Try free',cats:['UI/UX','Motion'],ratio:1.1,tone:1},
+  {id:'ad2',brand:'polyform',headline:'Render 10× faster. Free for 30 days',cta:'Start free trial',cats:['3D','Product'],ratio:1.25,tone:3},
+  {id:'ad3',brand:'kinetic',headline:'Learn kinetic type in 4 weeks',cta:'Enrol now',cats:['Typography','Motion'],ratio:.9,tone:2},
+  {id:'ad4',brand:'inkwell',headline:'120 grain brushes for Procreate',cta:'Shop brushes',cats:['Illustration','Branding'],ratio:1.2,tone:0}
+];
+const SPMAP={};SPONSORED.forEach(s=>SPMAP[s.id]=s);
+// boosted posts from other creators (Promoted), plus the user's own boosts once bought
+const PROMOS=[...new Set([...ITEMS.filter(i=>i.creator!=='me'&&i.type!=='motion').filter((_,k)=>k%9===4).slice(0,12),...ITEMS.filter(i=>i.creator!=='me'&&i.type==='motion').filter((_,k)=>k%5===2).slice(0,6)])]
+  .map(i=>({pid:'pr_'+i.id,itemId:i.id,kw:[...i.tags,i.cat.toLowerCase()]}));
+// keyword (search) ads: advertisers bid on keywords; rank = bid × quality
+const KWADS=[
+  {id:'k1',adv:{type:'creator',id:'paperkite'},headline:'Illustration agency for brands & publishers',desc:'40+ illustrators for editorial, packaging and children’s books. Briefs answered within 24h.',cta:'Hire us',kws:[['illustration','broad'],['editorial','phrase'],['character design','phrase'],['childrens book','broad']],bid:1.2,q:.9},
+  {id:'k5',adv:{type:'brand',id:'inkwell'},headline:'Brushes made for illustrators',desc:'Grain, ink and gouache packs for Procreate. Free starter pack.',cta:'Shop brushes',kws:[['illustration','broad'],['procreate','exact'],['brushes','broad']],bid:.8,q:.8},
+  {id:'k2',adv:{type:'creator',id:'orbit'},headline:'Motion studio · logo reveals to launch films',desc:'Brand motion, product launches and Lottie systems for apps.',cta:'See showreel',kws:[['motion','broad'],['logo reveal','phrase'],['animation','broad'],['lottie','exact']],bid:1.05,q:.85},
+  {id:'k3',adv:{type:'brand',id:'framewise'},headline:'Design dashboards faster with Framewise',desc:'Real data, live components, one-click handoff to developers.',cta:'Try Framewise free',kws:[['dashboard','broad'],['ui','exact'],['prototype','broad'],['app','broad']],bid:.9,q:.8},
+  {id:'k4',adv:{type:'brand',id:'polyform'},headline:'Polyform 3D: render in real time',desc:'Free for students. Plugins for Blender and Cinema 4D.',cta:'Download free',kws:[['3d','broad'],['blender','exact'],['render','broad']],bid:1.4,q:.82}
+];
+const PTREND={tag:'kinetic-type',brand:'kinetic',line:'Learn kinetic type in 4 weeks',cta:'Learn more'};
+const TOPIC_SPONSORS={'3D':{brand:'polyform',line:'Render 10× faster. Free for 30 days.',cta:'Try free'},'Typography':{brand:'kinetic',line:'Kinetic type in 4 weeks, taught by working designers.',cta:'See course'},'UI/UX':{brand:'framewise',line:'Prototype with real data and live components.',cta:'Try free'},'Illustration':{brand:'inkwell',line:'120 grain brushes for Procreate.',cta:'Shop'}};
+const FEAT_POOL=['lucas','amara','paperkite'];
+const CHAL={sponsor:'polyform',prize:'$2,000 + a year of Polyform Pro',upcoming:[{n:43,theme:'Brutalist web',week:'Oct 13–19',sponsor:'Framewise'}]};
+JOBS.forEach(j=>{if(j.id==='j2'||j.id==='j5')j.featured=true;});
+
+/* ---------- the user's own campaigns, invoices and earnings ---------- */
+const CAMPS=[{id:'cmp1',type:'boost',name:'Boost · Logo reveal',detail:'More views · 7 days',status:'ended',budget:25,spent:25,imps:6250,clicks:212,saves:48,follows:9,itemId:'m1'}];
+const INVOICES=[{id:'INV-1042',date:'Sep 19',desc:'Boost · Logo reveal',amount:25}];
+const TIPS_IN=[{by:'mira',amt:5,item:'m1',days:1,note:'That loop is unreal',fee:.1},{by:'tolu',amt:10,item:'m0',days:3,note:'Used this as reference for our app!',fee:.1},{by:'ife',amt:2,item:'m3',days:5,note:'',fee:.1},{by:'priya',amt:5,item:'m0',days:8,note:'Thanks for the breakdown',fee:.1},{by:'lucas',amt:20,item:'m5',days:12,note:'Hire-worthy work',fee:.1},{by:'zara',amt:2,item:'m1',days:20,note:'',fee:.1}];
+NOTIFS.splice(3,0,{id:'n0',type:'tip',by:'mira',item:'m1',text:'tipped you <b>$5</b> on',days:1});
+const TYPE_LABEL={boost:'Boosted post',search:'Search ads',sponsored:'Sponsored post',featured:'Featured creator',challenge:'Challenge sponsorship',job:'Featured job'};
+
+/* ---------- keyword matching & auction ---------- */
+function normQ(q){return String(q||'').toLowerCase().trim().replace(/^#/,'').replace(/[-_]/g,' ').replace(/\s+/g,' ');}
+function kwMatch(q,kw,type){
+  q=normQ(q);kw=normQ(kw);if(!q||!kw)return false;
+  if(type==='exact')return q===kw||q===kw+'s'||q+'s'===kw;
+  if(type==='phrase')return q.includes(kw);
+  const stem=w=>w.length>5?w.slice(0,w.length-3):w;
+  const qw=q.split(' '),kws=kw.split(' ');
+  return kws.some(k=>qw.some(w=>w===k||(w.length>=4&&k.length>=4&&(w.startsWith(stem(k))||k.startsWith(stem(w))))));
+}
+const adLive=a=>a.status!=='paused'&&a.status!=='ended'&&!S.hiddenAds.has(a.id);
+function searchAdsFor(q){
+  if(!q||q==='trending')return [];
+  const nq=normQ(q);
+  return KWADS.filter(a=>adLive(a)&&(a.place?a.place.top:true)&&a.kws.some(([k,t])=>kwMatch(q,k,t))&&!(a.neg||[]).some(n=>nq.includes(normQ(n))))
+    .sort((x,y)=>y.bid*y.q-x.bid*x.q).slice(0,2);
+}
+const KWKNOWN={illustration:[38200,'High',1.35],motion:[29400,'High',1.2],'logo reveal':[6100,'Medium',.85],dashboard:[21800,'High',1.1],branding:[24500,'High',1.25],'3d':[19800,'Medium',.95],'kinetic type':[5200,'Medium',.7],ui:[33100,'High',1.15],typography:[9600,'Medium',.65],lottie:[7400,'Low',.55],'motion designer':[4800,'Medium',.9],'product designer':[5600,'Medium',.95]};
+function kwStats(kw){kw=normQ(kw);if(KWKNOWN[kw])return KWKNOWN[kw];let h=7;for(const ch of kw)h=(h*31+ch.charCodeAt(0))>>>0;return [Math.round((400+h%12000)/10)*10,['Low','Medium','High'][h%3],+(.3+(h%110)/100).toFixed(2)];}
+function competitors(kw){return KWADS.filter(a=>!a.mine&&adLive(a)&&a.kws.some(([k,t])=>kwMatch(kw,k,t))).sort((x,y)=>y.bid*y.q-x.bid*x.q);}
+function advInfo(a){
+  const v=a.adv;
+  if(v.type==='creator'){const c=CR[v.id];return {name:c.name,sub:c.role,av:avHTML(c,'s56'),creator:c};}
+  const b=v.type==='brand'?BRANDS[v.id]:v;return {name:b.name,sub:b.what||b.url,av:brandAv(b,'s56'),url:b.url,brand:b};
+}
+
+/* ---------- feed ad slots: max 2 per 20 posts, never adjacent, relevant only ---------- */
+function promoFits(p,items){
+  const it=IT[p.itemId];if(!it||S.hidden.has(it.id)||S.hiddenAds.has(p.pid)||!adLive(p))return false;
+  if(items&&items.some(i=>i.id===it.id))return false;
+  const r=route().name;
+  if(r==='motion'&&it.type!=='motion')return false;
+  if((r==='home'||r==='motion')&&S.topic!=='all'&&it.cat!==S.topic)return false;
+  if(r==='home'&&S.format!=='all'&&(S.format==='motion')!==(it.type==='motion'))return false;
+  if(r!=='search'&&S.set.personalAds&&S.topic==='all'&&!S.interests.includes(it.cat))return false;
+  return true;
+}
+function pickPromo(items,extra){
+  const pool=PROMOS.filter(p=>promoFits(p,items)&&(!extra||extra(p)));if(!pool.length)return null;
+  FC.usedMine=FC.usedMine||new Set();
+  const mine=pool.find(p=>p.mine&&!FC.usedMine.has(p.pid));
+  if(mine){FC.usedMine.add(mine.pid);return {kind:'promo',...mine};}
+  FC.promoN=(FC.promoN||0)+1;return {kind:'promo',...pool[FC.promoN%pool.length]};
+}
+function pickSponsored(){
+  if(isPro())return null;
+  const r=route().name;
+  const pool=SPONSORED.filter(s=>adLive(s)&&(r!=='motion'||s.cats.includes('Motion'))&&(S.topic==='all'||r==='search'||s.cats.includes(S.topic))&&!(r==='home'&&S.format==='motion')&&(!S.set.personalAds||s.cats.some(c=>S.interests.includes(c))));
+  if(!pool.length)return null;FC.spN=(FC.spN||0)+1;return {kind:'sponsored',id:pool[FC.spN%pool.length].id};
+}
+function pickJobAd(){const j=JOBS.find(j=>j.featured&&!S.applied.has(j.id)&&!S.hiddenAds.has(j.id));return j?{kind:'job',id:j.id}:null;}
+function feedAdsFor(chunkIdx,items){
+  const o=FC.opt;if(!o.ads)return null;
+  if(o.ads==='search'){if(chunkIdx>0)return null;const p=pickPromo(null,x=>x.kw.some(k=>kwMatch(o.q,k,'broad')));return p&&items.length>2?[{pos:2,ad:p}]:null;}
+  const out=[];
+  [3,13].forEach((pos,si)=>{
+    if(pos>items.length)return;
+    let kind=(chunkIdx+si)%2===0?'promo':'sponsored';
+    if(chunkIdx===1&&si===0&&route().name==='home'&&S.topic==='all'&&S.format!=='motion')kind='job';
+    let ad=kind==='job'?pickJobAd():kind==='sponsored'?pickSponsored():null;
+    if(!ad)ad=pickPromo(items);
+    if(ad)out.push({pos,ad});
+  });
+  return out.length?out:null;
+}
+function withAds(s){if(!s.ads)return s.items;const dup=new Set(s.ads.filter(x=>x.ad.kind==='promo').map(x=>x.ad.itemId));const d=s.items.filter(i=>!dup.has(i.id));s.ads.slice().sort((a,b)=>b.pos-a.pos).forEach(x=>d.splice(x.pos,0,{_ad:x.ad,ratio:adRatio(x.ad)}));return d;}
+function adRatio(a){return a.kind==='promo'?(IT[a.itemId]?.ratio||1):a.kind==='sponsored'?(SPMAP[a.id]?.ratio||1)+.2:1.05;}
+function adCardHTML(a){
+  if(a.kind==='promo'){const it=IT[a.itemId];return it?cardHTML(it,{promo:a}):'';}
+  if(a.kind==='sponsored')return SPMAP[a.id]?spCardHTML(SPMAP[a.id]):'';
+  if(a.kind==='job')return jobAdHTML(a.id);
+  return '';
+}
+function spCardHTML(s,preview){
+  const b=s.brandObj||BRANDS[s.brand];
+  return `<article class="card adcard" ${preview?'':`data-sp="${s.id}"`}>
+  <div class="media ph t${s.tone||0}" style="aspect-ratio:1/${s.ratio}" ${preview?'':`data-act="sp-open" data-ad="${s.id}" role="button" tabindex="0"`} aria-label="Sponsored: ${esc(s.headline)}">
+    ${s.src?`<img src="${s.src}" alt="">`:''}<span class="adtag on-media">Sponsored</span>
+    <div class="hov"><div class="hov-top"><span class="grow"></span>${preview?'':`<button class="hic" data-act="ad-why" data-kind="sponsored" data-ad="${s.id}" title="Why this ad?">${ic('more',14)}</button>`}</div><div class="hov-bot"><span class="t">${esc(s.headline||'Your headline')}</span></div></div>
+  </div>
+  <div class="meta"><button class="who" ${preview?'':`data-act="sp-open" data-ad="${s.id}"`}>${brandAv(b,'s20')}<span class="nm">${esc(b.name||'Your brand')}</span></button><span class="plabel">Sponsored</span></div>
+  <button class="btn sm block adcta" ${preview?'':`data-act="sp-open" data-ad="${s.id}"`}>${esc(s.cta)} ${ic('external',12)}</button>
+</article>`;
+}
+function jobAdHTML(id){
+  const j=JOBS.find(x=>x.id===id);if(!j)return '';
+  return `<article class="card jobad" data-jad="${j.id}"><div style="display:flex;align-items:center;justify-content:space-between"><span class="label">Featured job</span><button class="plabel" data-act="ad-why" data-kind="job" data-ad="${j.id}">Sponsored</button></div>
+  <div class="lg ph t${j.id.charCodeAt(1)%4}"></div><b>${esc(j.title)}</b><span class="muted" style="font-size:12.5px">${esc(j.studio)} · ${esc(j.loc)}</span>
+  <div class="ctx" style="margin:0">${j.tags.slice(0,3).map(t=>`<span class="chip sm">${esc(t)}</span>`).join('')}</div>
+  <button class="btn sm primary block" data-act="jad-open" data-id="${j.id}">View job</button></article>`;
+}
+
+/* ---------- impressions & clicks for the user's own campaigns ---------- */
+const adIO=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){adIO.unobserve(e.target);countAd(e.target,'imp');}}),{threshold:.5});
+function observeAds(root){$$('[data-promo],[data-sp],[data-jad],[data-kad],[data-feat]',root).forEach(el=>{if(!el.dataset.aobs){el.dataset.aobs=1;adIO.observe(el);}});}
+function adCampOf(el){
+  const d=el.dataset;
+  if(d.promo)return PROMOS.find(x=>x.pid===d.promo)?.camp;
+  if(d.sp)return SPMAP[d.sp]?.camp;
+  if(d.kad)return KWADS.find(x=>x.id===d.kad)?.camp;
+  if(d.jad)return JOBS.find(x=>x.id===d.jad)?.camp;
+  if(d.feat==='me')return CAMPS.find(c=>c.type==='featured'&&c.status==='active')?.id;
+  return null;
+}
+function countAd(el,kind){const id=adCampOf(el);const c=id&&CAMPS.find(x=>x.id===id);if(!c||c.status!=='active')return;kind==='imp'?c.imps++:c.clicks++;}
+document.addEventListener('click',e=>{const el=e.target.closest('[data-promo],[data-sp],[data-jad],[data-kad],[data-feat]');if(el&&!e.target.closest('[data-act="ad-why"],[data-act="more"]'))countAd(el,'click');},true);
+function setCampStatus(c,st){c.status=st;[...PROMOS,...KWADS,...SPONSORED].forEach(a=>{if(a.camp===c.id)a.status=st;});}
+setInterval(()=>{
+  let changed=false;
+  CAMPS.forEach(c=>{
+    if(c.status!=='active'||!['boost','search','sponsored','featured'].includes(c.type))return;
+    const [base,ctr]={boost:[55,.028],search:[16,.07],sponsored:[130,.012],featured:[40,.05]}[c.type];
+    const imps=Math.round(base*(.6+Math.random()*.8)*Math.max(.5,Math.min(3,c.budget/60)));
+    c.imps+=imps;c.clicks+=Math.round(imps*ctr*(.6+Math.random()*.8));
+    if(c.type==='boost'){c.spent=c.imps/1000*PRICE.boostCPM;c.saves=Math.round(c.clicks*.22);c.follows=Math.round(c.clicks*.05);}
+    else if(c.type==='sponsored')c.spent=c.imps/1000*PRICE.spCPM;
+    else if(c.type==='search')c.spent=c.clicks*c.cpc;
+    if(c.type!=='featured'&&c.spent>=c.budget){c.spent=c.budget;setCampStatus(c,'ended');toast(`Campaign finished: <b>${esc(c.name)}</b>`,{action:'Results',fn:()=>{S.adsTab='campaigns';go('ads');}});}
+    changed=true;
+  });
+  if(changed&&route().name==='ads'){const el=$('#adsLive');if(el)el.innerHTML=adsLiveHTML();}
+},2500);
+
+/* ---------- search: sponsored results, typeahead, promoted trend ---------- */
+function sadHTML(a,preview){
+  const v=advInfo(a);
+  const its=v.creator?(a.posts&&a.posts.length?a.posts.map(id=>IT[id]).filter(Boolean):ITEMS.filter(i=>i.creator===v.creator.id).slice(0,3)):[];
+  const th=v.creator?its.slice(0,3).map(i=>i.src&&i.kind==='image'?`<img src="${i.src}" alt="" data-act="open" data-id="${i.id}">`:`<div class="ph t${i.tone}" data-act="open" data-id="${i.id}" title="${esc(i.title)}"></div>`).join(''):[0,1,2].map(k=>`<div class="ph t${(k+1)%4}" data-act="kad-open" data-ad="${a.id}"></div>`).join('');
+  return `<article class="sad ${preview?'preview':''}" ${preview?'':`data-kad="${a.id}"`}>
+   <div class="sad-top"><span class="adtag">Sponsored</span><span class="grow"></span>${preview?'':`<button class="plabel" data-act="ad-why" data-kind="search" data-ad="${a.id}">Why this ad?</button>`}</div>
+   <div class="sad-body"><span>${v.av}</span>
+    <div class="sad-tx"><button class="nm" data-act="kad-open" data-ad="${a.id}">${esc(v.name)}</button>${v.creator&&v.creator.studio?'<span class="ftag">Studio</span>':''} <span class="muted" style="font-size:12.5px">· ${esc(v.sub)}</span><h3 data-act="kad-open" data-ad="${a.id}">${esc(a.headline||'Your headline')}</h3><p>${esc(a.desc||'')}</p></div>
+    <div class="sad-th">${th}</div>
+    <div class="sad-cta"><button class="btn primary" data-act="kad-open" data-ad="${a.id}">${esc(a.cta)}</button>${v.creator&&v.creator.id!=='me'?`<button class="btn" data-act="creator" data-creator="${v.creator.id}">View profile</button>`:''}</div>
+   </div></article>`;
+}
+function searchTopHTML(q){
+  if(!q||q==='trending')return '';
+  let h='';
+  if(normQ(q)===normQ(PTREND.tag)&&!isPro()&&!S.hiddenAds.has('ptrend')){const b=BRANDS[PTREND.brand];h+=`<div class="tko">${brandAv(b,'s36')}<div class="grow"><b>#${esc(PTREND.tag)}</b> is presented by <b>${esc(b.name)}</b><div class="muted" style="font-size:12px">${esc(PTREND.line)}</div></div><button class="btn sm" data-act="brand-open" data-brand="${PTREND.brand}">${esc(PTREND.cta)}</button><span class="adtag">Sponsored</span><button class="ibtn bare" style="width:30px;height:30px" data-act="ad-hide" data-ad="ptrend" title="Hide">${ic('x',14)}</button></div>`;}
+  const ads=searchAdsFor(q);
+  h+=ads.map(a=>sadHTML(a)).join('');
+  h+=`<div class="sad-foot">${ads.length?`${ads.length} sponsored result${ads.length>1?'s':''} · `:''}<button class="lnk muted" style="font-weight:500" data-act="search-ad" data-kw="${esc(normQ(q))}">Advertise on “${esc(q)}” →</button></div>`;
+  return h;
+}
+function sugAdHTML(q){
+  if(normQ(q).length<3)return '';
+  const nq=normQ(q);
+  const a=KWADS.filter(a=>adLive(a)&&(a.place?a.place.sug:true)&&a.kws.some(([k,t])=>normQ(k).startsWith(nq)||kwMatch(q,k,t))).sort((x,y)=>y.bid*y.q-x.bid*x.q)[0];
+  if(!a)return '';const v=advInfo(a);
+  return `<div class="sgroup"><button class="sopt" data-act="kad-open" data-ad="${a.id}" data-kad="${a.id}">${v.av.replace(/s56/,'s36')}<span><b>${esc(v.name)}</b><br><span class="muted" style="font-size:12px">${esc(a.headline)}</span></span><span class="adtag">Sponsored</span></button></div>`;
+}
+function trendRows(kind,n){
+  let rows=TREND.map(t=>({t,p:false}));
+  if(!isPro()&&!S.hiddenAds.has('ptrend')){const i=rows.findIndex(r=>r.t[1]===PTREND.tag);if(i>=0){const [r]=rows.splice(i,1);r.p=true;rows.unshift(r);}}
+  return rows.slice(0,n).map(({t,p})=>kind==='sopt'
+    ?`<button class="sopt" data-act="search-q" data-q="${t[1]}">${ic('sparkle',16)}<span>${t[0]}</span><span class="sub">${p?`Promoted · ${BRANDS[PTREND.brand].name}`:fmt(t[2])+' posts'}</span></button>`
+    :`<button class="trow" data-act="search-q" data-q="${t[1]}">${t[0]}<span>${p?'Promoted':fmt(t[2])+' posts'}</span></button>`).join('');
+}
+function takeoverHTML(){
+  const t=S.topic,sp=TOPIC_SPONSORS[t];if(!sp||isPro()||S.hiddenAds.has('tko_'+t))return '';
+  const b=BRANDS[sp.brand];
+  return `<div class="tko">${brandAv(b,'s36')}<div class="grow"><b>${esc(t)}</b> is presented by <b>${esc(b.name)}</b><div class="muted" style="font-size:12px">${esc(sp.line)}</div></div><button class="btn sm" data-act="brand-open" data-brand="${sp.brand}">${esc(sp.cta)}</button><span class="adtag">Sponsored</span><button class="ibtn bare" style="width:30px;height:30px" data-act="ad-hide" data-ad="tko_${esc(t)}" title="Hide">${ic('x',14)}</button></div>`;
+}
+
+/* ---------- featured creators ---------- */
+function featuredFor(place,k=0){
+  if(CAMPS.some(c=>c.type==='featured'&&c.status==='active'&&(c.place===place||c.place==='both')))return CR.me;
+  const pool=FEAT_POOL.map(id=>CR[id]).filter(c=>c&&!S.following.has(c.id));return pool.length?pool[k%pool.length]:null;
+}
+function featRowHTML(c){
+  const me=c.id==='me',f=S.following.has(c.id);
+  return `<div class="wrow" ${me?'data-feat="me"':''}>${avHTML(c,'s36')}<div class="tx"><b data-act="creator" data-creator="${c.id}">${esc(c.name)}</b><span><span class="ftag" style="margin:0 6px 0 0" data-act="ad-why" data-kind="featured" data-ad="${c.id}">Featured</span>${esc(c.role)}</span></div>${me?`<button class="btn sm" data-act="creator" data-creator="me">View</button>`:`<button class="btn sm follow ${f?'on':''}" data-act="follow" data-creator="${c.id}">${f?'Following':'Follow'}</button>`}</div>`;
+}
+function creatorRows(place,n,k=0){
+  const fc=featuredFor(place,k);
+  const rest=suggested(n+1,k).filter(c=>!fc||c.id!==fc.id).slice(0,fc?n-1:n);
+  return (fc?featRowHTML(fc):'')+rest.map(c=>followRow(c)).join('');
+}
+
+/* ---------- challenge sponsorship ---------- */
+function challengeSponsorHTML(){
+  const b=BRANDS[CHAL.sponsor];
+  return `<div class="tko" style="margin:18px 0 0">${brandAv(b,'s44')}<div class="grow"><b>Prize pool: ${esc(CHAL.prize)}</b><div class="muted" style="font-size:12px">Sponsored by ${esc(b.name)}. Sponsors fund the prizes; the community picks the winners by saves.</div></div><button class="btn sm" data-act="brand-open" data-brand="${CHAL.sponsor}">Visit sponsor</button></div>
+  <div class="label" style="margin:22px 0 8px;display:flex;justify-content:space-between;align-items:center">Coming up<button class="lnk" style="font-size:12px;text-transform:none;letter-spacing:0" data-act="sponsor-challenge">Sponsor a future challenge →</button></div>
+  ${CHAL.upcoming.map(u=>`<div class="tag-row" style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-bottom:1px dashed var(--line)"><span><b>#${u.n} · ${esc(u.theme)}</b> <span class="muted">· ${esc(u.week)}</span></span><span class="muted">presented by ${esc(u.sponsor)}${u.mine?' (you)':''}</span></div>`).join('')}`;
+}
+
+/* ---------- post page additions: boost, tip, insights ---------- */
+function dactExtra(it){return it.creator==='me'
+  ?`<button class="btn" style="height:40px" data-act="boost" data-id="${it.id}">${ic('zap',14)} Boost</button>`
+  :`<button class="btn" style="height:40px" data-act="tip" data-id="${it.id}">${ic('dollar',14)} Tip</button>`;}
+function insightsHTML(it){
+  if(it.creator!=='me')return '';
+  const boosted=CAMPS.some(c=>c.type==='boost'&&c.itemId===it.id);
+  const raw=[['Home feed',46],['Search',21],['Your profile',17],['Promoted',boosted?14:0],['Other sites',6]];
+  const tot=raw.reduce((s,r)=>s+r[1],0);const views=Math.max(it.views,1);
+  const tips=TIPS_IN.filter(t=>t.item===it.id);
+  const body=`<div class="kpis mini"><div class="kpi"><span>Views</span><b>${fmt(it.views)}</b></div><div class="kpi"><span>Saves</span><b>${fmt(Math.round(it.likes*.31))}</b></div><div class="kpi"><span>Profile visits</span><b>${fmt(Math.round(it.views*.04))}</b></div><div class="kpi"><span>Tips</span><b>${money(tips.reduce((s,t)=>s+t.amt,0))}</b></div></div>
+   <div class="bars" role="list" aria-label="Where views came from">${raw.map(([k,v])=>{const p=Math.round(v/tot*100);return `<div class="brow" role="listitem" title="${k}: ${fmt(Math.round(views*p/100))} views (${p}%)"><span>${k}</span><span class="track"><span class="fill" style="display:block;width:${p}%"></span></span><span class="v">${p}%</span></div>`}).join('')}</div>`;
+  return `<div class="sect"><div class="label">Insights${isPro()?'':' '+proBadge()}</div>${isPro()?body:`<div class="locked"><div class="blur">${body}</div><div class="lock">${ic('lock',18)}<b>See where your views come from</b><button class="btn sm primary" data-act="pro">Unlock with Pro</button></div></div>`}</div>`;
+}
+function monetMoreItems(it,b){
+  let h='';
+  if(it.creator==='me'){const pinned=S.pinnedPosts.includes(it.id);h+=`<button class="mi" data-m="boost">${ic('zap',16)} Boost post</button><button class="mi" data-m="pin">${ic('pin',16)} ${pinned?'Unpin from profile':'Pin to profile'}${isPro()?'':' '+proBadge()}</button>`;}
+  if(b&&b.closest('.card.promo'))h+=`<button class="mi" data-m="why">${ic('target',16)} Why am I seeing this?</button><button class="mi" data-m="hidead">${ic('eyeoff',16)} Hide this ad</button>`;
+  return h;
+}
+function monetMore(m,it,b){
+  if(m==='boost'){openBoost(it.id);return true;}
+  if(m==='pin'){togglePinPost(it.id);return true;}
+  if(m==='why'){const pid=b.closest('.card.promo')?.dataset.promo;if(pid)showWhy(b,'promo',pid);return true;}
+  if(m==='hidead'){const pid=b.closest('.card.promo')?.dataset.promo;if(pid)hideAd(pid);return true;}
+  return false;
+}
+function togglePinPost(id){
+  if(!isPro()){toast('Pinning projects is a Pro feature',{action:'See Pro',fn:openPro});return;}
+  const i=S.pinnedPosts.indexOf(id);
+  if(i>=0)S.pinnedPosts.splice(i,1);else{if(S.pinnedPosts.length>=3){toast('You can pin up to 3 projects. Unpin one first.');return;}S.pinnedPosts.unshift(id);}
+  toast(i>=0?'Unpinned from your profile':'Pinned to the top of your profile');
+  if(route().name==='profile')render(true);
+}
+const profileOrder=work=>work.slice().sort((a,b)=>{const pa=S.pinnedPosts.indexOf(a.id),pb=S.pinnedPosts.indexOf(b.id);if(pa>=0||pb>=0)return (pa<0?99:pa)-(pb<0?99:pb);return a.days-b.days;});
+
+/* ---------- ad transparency ---------- */
+function showWhy(anchor,kind,id){
+  let who='',why='',adv='';
+  if(kind==='promo'){const p=PROMOS.find(x=>x.pid===id);const it=p&&IT[p.itemId];if(!it)return;who=CR[it.creator].name;why=p.mine?'This is your own boost. Only matching audiences see it.':S.set.personalAds?`You’re interested in <b>${esc(it.cat)}</b>.`:'It matches what’s on this page.';adv='Boosted posts are labelled “Promoted” and capped at 1 in every 10 posts.';}
+  else if(kind==='sponsored'){const s=SPMAP[id];if(!s)return;who=(s.brandObj||BRANDS[s.brand]).name;why=S.set.personalAds?`You’re interested in <b>${esc(s.cats.filter(c=>S.interests.includes(c)).join(', ')||s.cats[0])}</b>.`:'It matches what’s on this page.';adv='Pro members don’t see sponsored posts.';}
+  else if(kind==='search'){const a=KWADS.find(x=>x.id===id);if(!a)return;who=advInfo(a).name;why=`They bid on a keyword that matches your search.`;adv='Up to 2 sponsored results show above the organic results, ranked by bid and relevance.';}
+  else if(kind==='featured'){const c=CR[id];who=c.name;why='This is a paid Featured creator spot.';adv='One featured creator per module, rotated weekly.';}
+  else if(kind==='job'){const j=JOBS.find(x=>x.id===id);who=j.studio;why='Studios pay to feature jobs. This one matches your interests.';adv='Featured jobs show at most once per feed session.';}
+  openPop(anchor,`<div style="width:290px;padding:8px 6px"><div class="ptitle" style="padding-left:4px">Why you’re seeing this</div><p style="margin:0 4px 8px;font-size:13px">Paid for by <b>${esc(who)}</b>. ${why}</p><p class="muted" style="margin:0 4px 12px;font-size:12px">${adv}</p>
+   <div style="display:flex;gap:8px">${kind==='featured'?'':`<button class="btn sm grow" data-whyhide="1">Hide this ad</button>`}<button class="btn sm grow" data-whyset="1">Ad settings</button></div></div>`,{align:'left',onOpen:p=>{
+     p.querySelector('[data-whyhide]')?.addEventListener('click',()=>{closePop();hideAd(kind==='promo'?id:id);});
+     p.querySelector('[data-whyset]').addEventListener('click',()=>{closePop();openSettings();});
+   }});
+}
+function hideAd(id){
+  S.hiddenAds.add(id);
+  const sel=`[data-promo="${id}"],[data-sp="${id}"],[data-kad="${id}"],[data-jad="${id}"]`;
+  $$(sel).forEach(el=>el.style.display='none');
+  toast('Ad hidden. You’ll see fewer like it.',{action:'Undo',fn:()=>{S.hiddenAds.delete(id);$$(sel).forEach(el=>el.style.display='');}});
+}
+
+/* ---------- shared checkout ---------- */
+function openCheckout(o){
+  const sub=o.lines.reduce((s,l)=>s+l[1],0);const credit=o.credit?Math.min(o.credit[1],sub):0;const total=Math.max(0,Math.round((sub-credit)*100)/100);
+  const l=openModal(`<div class="modal" style="width:min(480px,100%)"><div class="mhead"><h2>${esc(o.title||'Checkout')}</h2><button class="ibtn bare" data-act="close-modal" title="Close">${ic('x',18)}</button></div>
+  <div class="mbody" id="cobody">
+   ${o.lines.map(([k,v])=>`<div class="sumrow"><span>${esc(k)}</span><span>${money(v)}</span></div>`).join('')}
+   ${credit?`<div class="sumrow"><span>${esc(o.credit[0])}</span><span>−${money(credit)}</span></div>`:''}
+   <div class="sumrow total"><span>${o.recurring?'Due today':'Total'}</span><span>${money(total)}</span></div>
+   ${o.recurring?`<p class="muted" style="font-size:12px;margin:2px 0 0">Then ${money(sub)} / ${o.recurring}. Cancel anytime in Billing.</p>`:''}
+   ${o.note?`<p class="muted" style="font-size:12px;margin:6px 0 0">${o.note}</p>`:''}
+   ${total>0?`<div class="label" style="margin:18px 0 8px">Pay with</div>
+    <div class="paym on" data-pm="saved" role="button" tabindex="0">${ic('card',20)}<div class="grow"><b>${esc(S.card.brand)} •••• ${esc(S.card.last4)}</b><div class="muted" style="font-size:12px">Expires ${esc(S.card.exp)}</div></div><span class="ck">${ic('check',16)}</span></div>
+    <div class="paym" data-pm="new" role="button" tabindex="0" style="margin-top:8px">${ic('plus',18)}<div class="grow"><b>Use a new card</b></div><span class="ck">${ic('check',16)}</span></div>
+    <div id="newcard" style="display:none;margin-top:12px"><label class="field"><span>Card number</span><input type="text" id="ccn" inputmode="numeric" placeholder="1234 1234 1234 1234" maxlength="19"></label><div style="display:flex;gap:10px"><label class="field grow"><span>Expiry</span><input type="text" id="cce" placeholder="MM/YY" maxlength="5"></label><label class="field grow"><span>CVC</span><input type="text" id="ccc" inputmode="numeric" placeholder="123" maxlength="4"></label></div></div>`:''}
+   <p class="muted" style="font-size:11.5px;margin:14px 0 0;display:flex;gap:6px;align-items:center">${ic('lock',12)} Prototype checkout. No real payment is taken.</p>
+  </div>
+  <div class="mfoot"><button class="btn" data-act="close-modal">Cancel</button><span class="grow"></span><button class="btn primary" id="copay">${total>0?`Pay ${money(total)}`:esc(o.zeroCta||'Confirm')}</button></div></div>`,{kind:'checkout'});
+  let pm='saved';
+  $$('[data-pm]',l).forEach(x=>x.onclick=()=>{pm=x.dataset.pm;$$('[data-pm]',l).forEach(y=>y.classList.toggle('on',y===x));$('#newcard',l).style.display=pm==='new'?'':'none';if(pm==='new')$('#ccn',l).focus();});
+  $('#copay',l).onclick=()=>{
+    if(total>0&&pm==='new'){const n=$('#ccn',l).value.replace(/\D/g,'');if(n.length<15||!/^\d\d\/\d\d$/.test($('#cce',l).value.trim())||$('#ccc',l).value.trim().length<3){toast('Check the card number, expiry (MM/YY) and CVC');return;}S.card={brand:'Card',last4:n.slice(-4),exp:$('#cce',l).value.trim()};}
+    const btn=$('#copay',l);btn.disabled=true;btn.innerHTML='<span class="spin"></span> Processing…';
+    setTimeout(()=>{
+      if(!l.isConnected)return;
+      if(total>0)INVOICES.unshift({id:'INV-'+(1043+INVOICES.length),date:'Today',desc:o.invoice||o.title,amount:total});
+      o.onPaid&&o.onPaid(total);
+      $('#cobody',l).innerHTML=`<div style="text-align:center;padding:18px 0 6px"><div class="done-ic">${ic('check',30)}</div><h2 style="margin:0 0 6px;font-size:20px">${esc(o.successTitle||'Payment complete')}</h2><p class="muted" style="margin:0">${o.successText||''}</p>${total>0?`<p class="muted" style="font-size:12px;margin:10px 0 0">Receipt ${INVOICES[0].id} · ${money(total)} · saved to Billing</p>`:''}</div>`;
+      $('.mfoot',l).innerHTML=`${o.after?`<button class="btn" id="coafter">${esc(o.after[0])}</button>`:''}<span class="grow"></span><button class="btn primary" data-act="close-modal">Done</button>`;
+      if(o.after)$('#coafter',l).onclick=()=>{closeAllModals();closeDrawer();o.after[1]();};
+    },900);
+  };
+  return l;
+}
+function stepper(names,step){return `<div class="steps">${names.map((x,i)=>`<span class="${step===i+1?'on':step>i+1?'done':''}"><i>${step>i+1?ic('check',11):i+1}</i>${x}</span>${i<names.length-1?'<span class="sl"></span>':''}`).join('')}</div>`;}
+const thumbHTML=i=>i.src&&i.kind==='image'?`<img src="${i.src}" alt="">`:`<div class="ph t${i.tone}" style="width:100%;height:100%"></div>`;
+const chipToggle=(arr,v)=>{const i=arr.indexOf(v);i>=0?arr.splice(i,1):arr.push(v);};
+
+/* ---------- 1 · Boost a post ---------- */
+function openBoost(id){
+  const ul=$('.layer[data-kind="upload"]');if(ul){ul.remove();U=null;}
+  const mine=ITEMS.filter(i=>i.creator==='me');
+  if(!id||!IT[id]){
+    const l=openModal(`<div class="modal" style="width:min(640px,100%)"><div class="mhead"><h2>Choose a post to boost</h2><button class="ibtn bare" data-act="close-modal">${ic('x',18)}</button></div><div class="mbody">${mine.length?`<div class="ugrid">${mine.map(i=>`<button class="uth" style="padding:0;border-color:var(--line)" data-pickboost="${i.id}">${thumbHTML(i)}<span class="cv" style="background:rgba(0,0,0,.72);max-width:calc(100% - 12px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(i.title)}</span></button>`).join('')}</div>`:emptyHTML('image','Nothing to boost yet','Upload a piece first, then boost it.',`<button class="btn primary" data-act="upload">Upload</button>`)}</div></div>`,{kind:'boostpick'});
+    $$('[data-pickboost]',l).forEach(b=>b.onclick=()=>{l.remove();openBoost(b.dataset.pickboost);});return;
+  }
+  const it=IT[id];
+  const B={goal:'views',aud:'auto',cats:[it.cat],kw:it.tags.slice(0,3),budget:40,days:7};
+  const l=openModal('<div class="modal" style="width:min(940px,100%)"></div>',{kind:'boost'});
+  const est=()=>{const imps=B.budget/PRICE.boostCPM*1000;const k={views:[1,.028],visits:[.8,.04],followers:[.7,.006]}[B.goal];return {lo:Math.round(imps*.85*k[0]),hi:Math.round(imps*1.15*k[0]),act:Math.round(imps*k[1])};};
+  const estHTML=()=>{const e=est();return `<b>${fmt(e.lo)}–${fmt(e.hi)} impressions</b>~${fmt(e.act)} ${B.goal==='followers'?'new followers':B.goal==='visits'?'profile visits':'clicks'} over ${B.days} days · ${money(PRICE.boostCPM)} per 1,000 impressions`;};
+  const draw=()=>{
+    const m=$('.modal',l);const credit=S.boostCredits>0;
+    m.innerHTML=`<div class="mhead"><h2>Boost “${esc(it.title)}”</h2><button class="ibtn bare" data-act="close-modal">${ic('x',18)}</button></div>
+    <div class="mbody"><div class="bgrid"><div>
+      <div class="field"><span>Goal</span><div class="radio">${[['views','More views','Reach new people'],['visits','Profile visits','Grow your portfolio traffic'],['followers','Followers','Build an audience']].map(([k,t,s])=>`<button type="button" class="${B.goal===k?'on':''}" data-bg="${k}"><b>${t}</b><span>${s}</span></button>`).join('')}</div></div>
+      <div class="field"><span>Audience</span><div class="radio">${[['auto','Automatic',`People into ${it.cat} and similar work`],['custom','Choose interests','Pick the topics yourself']].map(([k,t,s])=>`<button type="button" class="${B.aud===k?'on':''}" data-ba="${k}"><b>${t}</b><span>${s}</span></button>`).join('')}</div>
+       ${B.aud==='custom'?`<div class="ctx" style="margin:10px 0 0">${CATS.map(c=>`<button type="button" class="chip sm ${B.cats.includes(c)?'on':''}" data-bc="${esc(c)}">${esc(c)}</button>`).join('')}</div>`:''}</div>
+      <div class="field"><span>Also show in search for <em class="muted" style="font-style:normal;font-weight:400">Enter to add</em></span><div class="tagin" id="bkw">${B.kw.map((t,i)=>`<span class="chip">${esc(t)}<button type="button" data-bkrm="${i}">${ic('x',12)}</button></span>`).join('')}<input id="bkin" placeholder="${B.kw.length?'':'e.g. dashboard'}"></div></div>
+      <div class="field"><span>Total budget <em class="muted" style="font-style:normal;font-weight:400" id="bbv">${money(B.budget)}</em></span><input type="range" id="bbud" min="10" max="500" step="5" value="${B.budget}" style="accent-color:var(--ink)"></div>
+      <div class="field"><span>Duration</span><div class="seg">${[3,7,14,30].map(d=>`<button type="button" class="${B.days===d?'on':''}" data-bd="${d}">${d} days</button>`).join('')}</div></div>
+    </div><div>
+      <div class="label" style="margin-bottom:8px">Preview in feed</div>
+      <div class="prevbox" style="max-width:260px">${cardHTML(it,{promo:{pid:'preview',mine:false}}).replace(/data-act="[^"]*"/g,'')}</div>
+      <div class="est" style="margin-top:14px" id="best">${estHTML()}</div>
+      <p class="muted" style="font-size:12px;margin:10px 0 0">Shows as “Promoted” in matching feeds (max 1 in every 10 posts) and in search for your keywords. Never in Following tabs or on profiles.</p>
+    </div></div></div>
+    <div class="mfoot"><span><b id="btot">${money(B.budget)}</b> <span class="muted" style="font-size:12px">${credit?`· $${PRICE.credit} Pro credit applied at checkout`:'total'}</span></span><span class="grow"></span><button class="btn" data-act="close-modal">Cancel</button><button class="btn primary" id="bgo">Continue to payment</button></div>`;
+    $$('[data-bg]',m).forEach(b=>b.onclick=()=>{B.goal=b.dataset.bg;draw();});
+    $$('[data-ba]',m).forEach(b=>b.onclick=()=>{B.aud=b.dataset.ba;draw();});
+    $$('[data-bc]',m).forEach(b=>b.onclick=()=>{chipToggle(B.cats,b.dataset.bc);if(!B.cats.length)B.cats.push(it.cat);draw();});
+    $$('[data-bd]',m).forEach(b=>b.onclick=()=>{B.days=+b.dataset.bd;draw();});
+    $$('[data-bkrm]',m).forEach(b=>b.onclick=()=>{B.kw.splice(+b.dataset.bkrm,1);draw();$('#bkin',l).focus();});
+    const kin=$('#bkin',m);kin.onkeydown=e=>{if((e.key==='Enter'||e.key===',')&&kin.value.trim()){e.preventDefault();const v=normQ(kin.value);if(v&&!B.kw.includes(v)&&B.kw.length<10)B.kw.push(v);draw();$('#bkin',l).focus();}};
+    $('#bbud',m).oninput=e=>{B.budget=+e.target.value;$('#bbv',m).textContent=money(B.budget);$('#btot',m).textContent=money(B.budget);$('#best',m).innerHTML=estHTML();};
+    $('#bgo',m).onclick=()=>{
+      const useCredit=S.boostCredits>0;const goalLbl={views:'More views',visits:'Profile visits',followers:'Followers'}[B.goal];
+      openCheckout({title:'Boost post',lines:[[`Boost · ${B.days} days · “${it.title}”`,B.budget]],credit:useCredit?['Pro monthly boost credit',PRICE.credit]:null,invoice:`Boost · ${it.title}`,
+        successTitle:'Your boost is live',successText:'It appears as “Promoted” in matching feeds and searches. Results update live in Promote & earn.',after:['See results',()=>{S.adsTab='campaigns';go('ads');}],
+        onPaid:()=>{if(useCredit)S.boostCredits--;const c={id:'c'+Date.now(),type:'boost',name:`Boost · ${it.title}`,detail:`${goalLbl} · ${B.days} days · ${B.aud==='auto'?it.cat:B.cats.join(', ')}`,status:'active',budget:B.budget,spent:0,imps:0,clicks:0,saves:0,follows:0,itemId:it.id};
+          CAMPS.unshift(c);PROMOS.unshift({pid:'pr_'+c.id,itemId:it.id,camp:c.id,mine:true,kw:B.kw.slice(),status:'active'});l.remove();if(['home','motion','ads'].includes(route().name))render(true);}});
+    };
+  };
+  draw();
+}
+
+/* ---------- 2 · Search ads (keywords, auction, placements) ---------- */
+function openSearchAd(kw){
+  const mine=ITEMS.filter(i=>i.creator==='me');
+  const A={step:1,kws:kw?[[normQ(kw),'broad']]:[],neg:[],as:'me',brand:'',site:'',headline:`${CR.me.name} · ${CR.me.role}`,desc:'Product and motion design for fintech and consumer apps. Booking projects for next month.',cta:'Hire me',posts:mine.slice(0,3).map(i=>i.id),place:{top:true,sug:true},bid:0,daily:20,days:14};
+  const sugBid=()=>Math.max(PRICE.minCPC,...A.kws.map(([k])=>kwStats(k)[2]));
+  const l=openModal('<div class="modal" style="width:min(1000px,100%)"></div>',{kind:'searchad',guard:async()=>A.step===1&&!A.kws.length?true:confirmBox('Discard this campaign?','Your keywords and ad will be lost.')});
+  const preview=()=>({id:'preview',adv:A.as==='me'?{type:'creator',id:'me'}:{type:'custom',name:A.brand||'Your studio',url:A.site||'yoursite.com',what:A.site||'yoursite.com'},headline:A.headline,desc:A.desc,cta:A.cta,posts:A.posts,kws:A.kws});
+  const position=k=>{const comp=competitors(k);const mine=A.bid*.9;const above=comp.filter(a=>a.bid*a.q>mine).length;return {pos:above+1,top:comp[0]};};
+  const draw=()=>{
+    const m=$('.modal',l);if(!A.bid)A.bid=+sugBid().toFixed(2);
+    let body='';
+    if(A.step===1){
+      const sugg=['illustration','motion','logo reveal','dashboard','ui','branding','kinetic type','3d','motion designer','product designer'].filter(s=>!A.kws.some(k=>k[0]===s));
+      body=`<p class="muted" style="margin:0 0 14px">Pick the searches you want to show up for. Example: an agency bidding on <b>illustration</b> appears first when someone searches it.</p>
+      <form id="kwf" style="display:flex;gap:8px"><input type="text" id="kwin" placeholder="Add a keyword, e.g. illustration" maxlength="40"><button class="btn primary">Add</button></form>
+      <div class="sugg" style="margin:10px 0 18px">Suggestions: ${sugg.slice(0,8).map(s=>`<button type="button" class="chip sm" data-kwadd="${s}">+ ${s}</button>`).join('')}</div>
+      ${A.kws.length?`<div class="kwhead"><span>Keyword</span><span>Match</span><span class="hm">Searches / mo</span><span class="hm">Competition</span><span class="hm">Suggested bid</span><span></span></div>
+      ${A.kws.map(([k,t],i)=>{const s=kwStats(k);return `<div class="kwrow"><b>${esc(k)}</b><select data-kwt="${i}">${[['broad','Broad'],['phrase','Phrase'],['exact','Exact']].map(([v,lb])=>`<option value="${v}" ${t===v?'selected':''}>${lb}</option>`).join('')}</select><span class="hm">${fmt(s[0])}</span><span class="hm">${s[1]}</span><span class="hm">${money(s[2])}</span><button type="button" class="ibtn bare" style="width:30px;height:30px" data-kwrm="${i}" title="Remove">${ic('x',14)}</button></div>`}).join('')}
+      <p class="muted" style="font-size:12px;margin:10px 0 0"><b>Broad</b> also matches related searches (illustrator, illustrations). <b>Phrase</b> matches searches containing the phrase. <b>Exact</b> matches that search only.</p>`:emptyHTML('search','No keywords yet','Add at least one keyword to continue.')}
+      <div class="field" style="margin-top:18px"><span>Negative keywords <em class="muted" style="font-style:normal;font-weight:400">Never show for searches containing these</em></span><div class="tagin">${A.neg.map((t,i)=>`<span class="chip">${esc(t)}<button type="button" data-negrm="${i}">${ic('x',12)}</button></span>`).join('')}<input id="negin" placeholder="${A.neg.length?'':'e.g. free, tutorial'}"></div></div>`;
+    } else if(A.step===2){
+      body=`<div class="bgrid"><div>
+        <div class="field"><span>Advertise as</span><div class="radio">${[['me','Your profile',CR.me.name],['brand','A studio or brand','Use a different name']].map(([k,t,s])=>`<button type="button" class="${A.as===k?'on':''}" data-as="${k}"><b>${t}</b><span>${esc(s)}</span></button>`).join('')}</div></div>
+        ${A.as==='brand'?`<div style="display:flex;gap:10px"><label class="field grow"><span>Name</span><input type="text" id="sabr" value="${esc(A.brand)}" placeholder="Northwind Studio" maxlength="40"></label><label class="field grow"><span>Website</span><input type="text" id="sasi" value="${esc(A.site)}" placeholder="northwind.studio" maxlength="60"></label></div>`:''}
+        <label class="field"><span>Headline <em class="muted" style="font-style:normal;font-weight:400" id="sahc">${A.headline.length}/60</em></span><input type="text" id="sah" value="${esc(A.headline)}" maxlength="60"></label>
+        <label class="field"><span>Description</span><textarea id="sad" maxlength="140" style="min-height:64px">${esc(A.desc)}</textarea></label>
+        <label class="field"><span>Button</span><select id="sac">${['Hire me','Hire us','View portfolio','Contact','See showreel','Learn more'].map(x=>`<option ${A.cta===x?'selected':''}>${x}</option>`).join('')}</select></label>
+        ${A.as==='me'?`<div class="field"><span>Showcase (pick up to 3)</span><div class="ugrid" style="grid-template-columns:repeat(auto-fill,minmax(70px,1fr));gap:8px">${mine.map(i=>`<div class="uth ${A.posts.includes(i.id)?'cover':''}" data-sapost="${i.id}" style="background:none" title="${esc(i.title)}">${thumbHTML(i)}</div>`).join('')}</div></div>`:''}
+        <div class="field"><span>Placements</span>
+          <label class="check" style="padding:4px 0"><input type="checkbox" id="pltop" ${A.place.top?'checked':''}><span><b>Top of search results</b><br><span class="muted">A sponsored card above the results, up to 2 per search.</span></span></label>
+          <label class="check" style="padding:4px 0"><input type="checkbox" id="plsug" ${A.place.sug?'checked':''}><span><b>Search suggestions</b><br><span class="muted">One sponsored row while people type a matching word.</span></span></label></div>
+      </div><div><div class="label" style="margin-bottom:8px">Preview</div><div class="prevbox" id="saprev">${sadHTML(preview(),true)}</div></div></div>`;
+    } else {
+      const total=A.daily*A.days;
+      const vol=A.kws.reduce((s,[k])=>s+kwStats(k)[0],0);
+      const clicksDay=Math.max(1,Math.min(Math.round(A.daily/A.bid),Math.round(vol/30*.06)));
+      body=`<div class="bgrid"><div>
+        <label class="field"><span>Max cost per click <em class="muted" style="font-style:normal;font-weight:400">Suggested ${money(sugBid())} · minimum ${money(PRICE.minCPC)}</em></span><div style="display:flex;align-items:center;gap:8px"><b>$</b><input type="number" id="sabid" min="${PRICE.minCPC}" step="0.05" value="${A.bid.toFixed(2)}" style="max-width:140px"></div></label>
+        <div class="field"><span>Where you’d rank</span><div id="sarank">${rankHTML()}</div></div>
+        <div class="field"><span>Daily budget <em class="muted" style="font-style:normal;font-weight:400" id="sadv">${money(A.daily)} / day</em></span><input type="range" id="sadaily" min="5" max="200" step="5" value="${A.daily}" style="accent-color:var(--ink)"></div>
+        <div class="field"><span>Run for</span><div class="seg">${[7,14,30].map(d=>`<button type="button" class="${A.days===d?'on':''}" data-sadays="${d}">${d} days</button>`).join('')}</div></div>
+      </div><div>
+        <div class="est" id="saest"><b>~${fmt(clicksDay)} clicks / day</b>${fmt(vol)} monthly searches across ${A.kws.length} keyword${A.kws.length>1?'s':''}. You pay per click, never more than your max bid. Unspent budget is refunded.</div>
+        <div class="label" style="margin:16px 0 8px">Summary</div>
+        <div class="sumrow"><span>Keywords</span><span style="text-align:right">${A.kws.map(k=>esc(k[0])).join(', ')}</span></div>
+        <div class="sumrow"><span>Placements</span><span>${[A.place.top&&'Top of results',A.place.sug&&'Suggestions'].filter(Boolean).join(' + ')||'None'}</span></div>
+        <div class="sumrow total"><span>Budget (${A.days} days)</span><span id="satot">${money(total)}</span></div>
+      </div></div>`;
+    }
+    m.innerHTML=`<div class="mhead"><h2>Search ads</h2>${stepper(['Keywords','Ad','Bid & budget'],A.step)}<button class="ibtn bare" data-act="close-modal">${ic('x',18)}</button></div>
+     <div class="mbody">${body}</div>
+     <div class="mfoot">${A.step>1?`<button class="btn" id="saback">${ic('left',14)} Back</button>`:''}<span class="grow"></span><span class="muted" style="font-size:12px" id="sahint"></span><button class="btn primary" id="sanext">${A.step<3?'Continue':'Continue to payment'}</button></div>`;
+    bind(m);
+  };
+  function rankHTML(){return A.kws.map(([k])=>{const r=position(k);return `<div class="sumrow" style="font-size:13px"><span><b>${esc(k)}</b>${r.top?` <span class="muted">· top bid ${money(r.top.bid)} by ${esc(advInfo(r.top).name)}</span>`:' <span class="muted">· no competing bids</span>'}</span><span>${r.pos<=2?`Position ${r.pos} of 2`:'Not shown, raise bid'}</span></div>`}).join('');}
+  function bind(m){
+    const next=$('#sanext',m),hint=$('#sahint',m);
+    const valid=()=>{let ok=true,msg='';if(A.step===1&&!A.kws.length){ok=false;msg='Add a keyword';}if(A.step===2){if(!A.headline.trim()){ok=false;msg='Add a headline';}else if(A.as==='brand'&&!A.brand.trim()){ok=false;msg='Add a studio or brand name';}else if(!A.place.top&&!A.place.sug){ok=false;msg='Pick at least one placement';}}if(A.step===3&&!(A.bid>=PRICE.minCPC)){ok=false;msg=`Minimum bid is ${money(PRICE.minCPC)}`;}next.disabled=!ok;hint.textContent=msg;};
+    $('#saback',m)?.addEventListener('click',()=>{A.step--;draw();});
+    next.onclick=()=>{
+      if(A.step<3){A.step++;draw();return;}
+      const total=A.daily*A.days;const comp=Math.max(0,...A.kws.map(([k])=>{const c=competitors(k).find(a=>a.bid*a.q<A.bid*.9);return c?c.bid*c.q/.9:0;}));const cpc=+Math.min(A.bid,Math.max(PRICE.minCPC,comp+.01)).toFixed(2);
+      openCheckout({title:'Search ads',lines:[[`Search ads · ${A.days} days · ${money(A.daily)}/day`,total]],note:`You’re charged per click (est. ${money(cpc)}), up to your ${money(A.bid)} max bid. Unspent budget is refunded when the campaign ends.`,invoice:`Search ads · ${A.kws.map(k=>k[0]).join(', ')}`,
+        successTitle:'Your search ad is live',successText:`Try searching “${esc(A.kws[0][0])}” to see it.`,after:['Search now',()=>{sq.value=A.kws[0][0];doSearch(A.kws[0][0]);}],
+        onPaid:()=>{const c={id:'c'+Date.now(),type:'search',name:`Search · ${A.kws.map(k=>k[0]).join(', ')}`,detail:`Max ${money(A.bid)} CPC · ${money(A.daily)}/day · ${A.days} days`,status:'active',budget:total,spent:0,imps:0,clicks:0,cpc};
+          CAMPS.unshift(c);const ad={...preview(),id:'k'+Date.now(),mine:true,camp:c.id,kws:A.kws.map(k=>k.slice()),neg:A.neg.slice(),bid:A.bid,q:.9,place:{...A.place},status:'active'};if(A.as!=='me')ad.adv.what=A.site||'Studio';KWADS.unshift(ad);l._guard=null;l.remove();}});
+    };
+    if(A.step===1){
+      $('#kwf',m).onsubmit=e=>{e.preventDefault();const v=normQ($('#kwin',m).value);if(v&&!A.kws.some(k=>k[0]===v)&&A.kws.length<20)A.kws.push([v,'broad']);draw();$('#kwin',l).focus();};
+      $$('[data-kwadd]',m).forEach(b=>b.onclick=()=>{A.kws.push([b.dataset.kwadd,'broad']);draw();});
+      $$('[data-kwrm]',m).forEach(b=>b.onclick=()=>{A.kws.splice(+b.dataset.kwrm,1);draw();});
+      $$('[data-kwt]',m).forEach(s=>s.onchange=()=>{A.kws[+s.dataset.kwt][1]=s.value;});
+      $$('[data-negrm]',m).forEach(b=>b.onclick=()=>{A.neg.splice(+b.dataset.negrm,1);draw();});
+      const ni=$('#negin',m);ni.onkeydown=e=>{if((e.key==='Enter'||e.key===',')&&ni.value.trim()){e.preventDefault();A.neg.push(normQ(ni.value));draw();$('#negin',l).focus();}};
+    }
+    if(A.step===2){
+      const upd=()=>{$('#saprev',m).innerHTML=sadHTML(preview(),true);valid();};
+      $$('[data-as]',m).forEach(b=>b.onclick=()=>{A.as=b.dataset.as;if(A.as==='brand'&&A.cta==='Hire me')A.cta='Hire us';draw();});
+      $('#sah',m).oninput=e=>{A.headline=e.target.value;$('#sahc',m).textContent=`${A.headline.length}/60`;upd();};
+      $('#sad',m).oninput=e=>{A.desc=e.target.value;upd();};
+      $('#sac',m).onchange=e=>{A.cta=e.target.value;upd();};
+      $('#sabr',m)&&($('#sabr',m).oninput=e=>{A.brand=e.target.value;upd();});
+      $('#sasi',m)&&($('#sasi',m).oninput=e=>{A.site=e.target.value;upd();});
+      $$('[data-sapost]',m).forEach(t=>t.onclick=()=>{const id=t.dataset.sapost;if(A.posts.includes(id))A.posts=A.posts.filter(x=>x!==id);else if(A.posts.length<3)A.posts.push(id);else{toast('Pick up to 3 posts');return;}t.classList.toggle('cover',A.posts.includes(id));upd();});
+      $('#pltop',m).onchange=e=>{A.place.top=e.target.checked;valid();};
+      $('#plsug',m).onchange=e=>{A.place.sug=e.target.checked;valid();};
+    }
+    if(A.step===3){
+      $('#sabid',m).oninput=e=>{A.bid=Math.round((+e.target.value||0)*100)/100;$('#sarank',m).innerHTML=rankHTML();valid();};
+      $('#sabid',m).onchange=()=>draw();
+      $('#sadaily',m).oninput=e=>{A.daily=+e.target.value;$('#sadv',m).textContent=`${money(A.daily)} / day`;$('#satot',m).textContent=money(A.daily*A.days);};
+      $('#sadaily',m).onchange=()=>draw();
+      $$('[data-sadays]',m).forEach(b=>b.onclick=()=>{A.days=+b.dataset.sadays;draw();});
+    }
+    valid();
+  }
+  draw();
+}
+
+/* ---------- 3 · Featured creator spot ---------- */
+function openFeatured(){
+  const W=[['This week · Oct 12–18',2],['Oct 19–25',4],['Oct 26–Nov 1',0],['Nov 2–8',5]];
+  const F={place:'both',week:0};
+  const l=openModal('<div class="modal" style="width:min(820px,100%)"></div>',{kind:'featured'});
+  const draw=()=>{const m=$('.modal',l);const price=PRICE.featured[F.place];
+    m.innerHTML=`<div class="mhead"><h2>Featured creator spot</h2><button class="ibtn bare" data-act="close-modal">${ic('x',18)}</button></div>
+    <div class="mbody"><div class="bgrid"><div>
+      <div class="field"><span>Placement</span><div class="radio col">${[['feed','Rising creators in the feed',`${money(PRICE.featured.feed)} / week`],['rail','Who to follow (wide screens)',`${money(PRICE.featured.rail)} / week`],['both','Both placements',`${money(PRICE.featured.both)} / week · save $9`]].map(([k,t,s])=>`<button type="button" class="${F.place===k?'on':''}" data-fp="${k}"><b>${t}</b><span>${s}</span></button>`).join('')}</div></div>
+      <div class="field"><span>Week</span><div class="radio" style="display:grid;grid-template-columns:1fr 1fr">${W.map(([w,left],k)=>`<button type="button" class="${F.week===k?'on':''}" data-fw="${k}" ${left?'':'disabled'}><b>${w}</b><span>${left?`${left} of 5 spots left`:'Sold out'}</span></button>`).join('')}</div></div>
+    </div><div>
+      <div class="label" style="margin-bottom:8px">Preview</div>
+      <div class="prevbox"><div class="box" style="pointer-events:none"><h4>Rising creators</h4>${featRowHTML(CR.me)}${suggested(2).map(c=>followRow(c)).join('')}</div></div>
+      <p class="muted" style="font-size:12px;margin:10px 0 0">One featured creator per module. Spots are limited to 5 a week so they stay valuable.</p>
+    </div></div></div>
+    <div class="mfoot"><b>${money(price)}</b><span class="muted" style="font-size:12px">flat, for 7 days</span><span class="grow"></span><button class="btn" data-act="close-modal">Cancel</button><button class="btn primary" id="fgo">Continue to payment</button></div>`;
+    $$('[data-fp]',m).forEach(b=>b.onclick=()=>{F.place=b.dataset.fp;draw();});
+    $$('[data-fw]',m).forEach(b=>b.onclick=()=>{F.week=+b.dataset.fw;draw();});
+    $('#fgo',m).onclick=()=>{const lbl={feed:'Rising creators',rail:'Who to follow',both:'Both placements'}[F.place];
+      openCheckout({title:'Featured creator spot',lines:[[`${lbl} · ${W[F.week][0]}`,price]],invoice:`Featured creator · ${W[F.week][0]}`,successTitle:F.week===0?'You’re featured this week':'Spot booked',successText:F.week===0?'You now appear first in Rising creators'+(F.place!=='feed'?' and Who to follow':'')+'.':`Your spot starts ${W[F.week][0]}.`,
+        onPaid:()=>{CAMPS.unshift({id:'c'+Date.now(),type:'featured',name:`Featured · ${lbl}`,detail:W[F.week][0],place:F.place,status:F.week===0?'active':'scheduled',budget:price,spent:price,imps:0,clicks:0});W[F.week][1]--;l.remove();if(F.week===0)render(true);}});};
+  };
+  draw();
+}
+
+/* ---------- 4 · Sponsored post (brands) ---------- */
+function openSponsored(){
+  const T={brand:'',site:'',headline:'',cta:'Learn more',cats:['UI/UX'],budget:300,days:14,src:null};
+  const l=openModal('<div class="modal" style="width:min(900px,100%)"></div>',{kind:'sponsored'});
+  const card=()=>({id:'preview',brandObj:{name:T.brand||'Your brand',what:T.site,url:T.site},headline:T.headline,cta:T.cta,ratio:1.1,tone:1,src:T.src});
+  const draw=()=>{const m=$('.modal',l);const imps=T.budget/PRICE.spCPM*1000;
+    m.innerHTML=`<div class="mhead"><h2>Sponsored post</h2><button class="ibtn bare" data-act="close-modal">${ic('x',18)}</button></div>
+    <div class="mbody"><div class="bgrid"><div>
+      <div style="display:flex;gap:10px"><label class="field grow"><span>Brand name</span><input type="text" id="spb" value="${esc(T.brand)}" placeholder="Framewise" maxlength="40"></label><label class="field grow"><span>Website</span><input type="text" id="sps" value="${esc(T.site)}" placeholder="framewise.app" maxlength="60"></label></div>
+      <label class="field"><span>Headline</span><input type="text" id="sph" value="${esc(T.headline)}" placeholder="Prototype motion right in the browser" maxlength="60"></label>
+      <label class="field"><span>Button</span><select id="spc">${['Learn more','Try free','Start free trial','Shop now','Enrol now','Download'].map(x=>`<option ${T.cta===x?'selected':''}>${x}</option>`).join('')}</select></label>
+      <div class="field"><span>Creative</span><div style="display:flex;gap:8px;align-items:center"><button type="button" class="btn sm" id="spimg">${ic('image',14)} ${T.src?'Replace image':'Upload image'}</button><span class="muted" style="font-size:12px">${T.src?'Image added':'Or keep the placeholder'}</span></div></div>
+      <div class="field"><span>Show to people interested in</span><div class="ctx" style="margin:0">${CATS.map(c=>`<button type="button" class="chip sm ${T.cats.includes(c)?'on':''}" data-spc="${esc(c)}">${esc(c)}</button>`).join('')}</div></div>
+      <div class="field"><span>Budget <em class="muted" style="font-style:normal;font-weight:400" id="spbv">${money(T.budget)}</em></span><input type="range" id="spbud" min="100" max="5000" step="50" value="${T.budget}" style="accent-color:var(--ink)"></div>
+      <div class="field"><span>Duration</span><div class="seg">${[7,14,30].map(d=>`<button type="button" class="${T.days===d?'on':''}" data-spd="${d}">${d} days</button>`).join('')}</div></div>
+    </div><div>
+      <div class="label" style="margin-bottom:8px">Preview in feed</div><div class="prevbox" style="max-width:260px" id="spprev">${spCardHTML(card(),true)}</div>
+      <div class="est" style="margin-top:14px" id="spest"><b>~${fmt(Math.round(imps))} impressions</b>${money(PRICE.spCPM)} per 1,000 · labelled “Sponsored” · max 1 in every 10 posts. Pro members don’t see sponsored posts.</div>
+    </div></div></div>
+    <div class="mfoot"><span class="muted" style="font-size:12px" id="sphint"></span><span class="grow"></span><button class="btn" data-act="close-modal">Cancel</button><button class="btn primary" id="spgo">Continue to payment</button></div>`;
+    const upd=()=>{$('#spprev',m).innerHTML=spCardHTML(card(),true);const ok=T.brand.trim()&&T.headline.trim()&&T.cats.length;$('#spgo',m).disabled=!ok;$('#sphint',m).textContent=ok?'':!T.brand.trim()?'Add a brand name':!T.headline.trim()?'Add a headline':'Pick at least one interest';};
+    $('#spb',m).oninput=e=>{T.brand=e.target.value;upd();};$('#sps',m).oninput=e=>{T.site=e.target.value;};
+    $('#sph',m).oninput=e=>{T.headline=e.target.value;upd();};$('#spc',m).onchange=e=>{T.cta=e.target.value;upd();};
+    $$('[data-spc]',m).forEach(b=>b.onclick=()=>{chipToggle(T.cats,b.dataset.spc);b.classList.toggle('on');upd();});
+    $$('[data-spd]',m).forEach(b=>b.onclick=()=>{T.days=+b.dataset.spd;draw();});
+    $('#spbud',m).oninput=e=>{T.budget=+e.target.value;$('#spbv',m).textContent=money(T.budget);$('#spest b',m).textContent=`~${fmt(Math.round(T.budget/PRICE.spCPM*1000))} impressions`;};
+    $('#spimg',m).onclick=()=>{const f=document.createElement('input');f.type='file';f.accept='image/*';f.onchange=()=>{const x=f.files[0];if(x&&x.type.startsWith('image/')){T.src=URL.createObjectURL(x);draw();}else if(x)toast('Please choose an image');};f.click();};
+    $('#spgo',m).onclick=()=>openCheckout({title:'Sponsored post',lines:[[`Sponsored post · ${T.days} days`,T.budget]],invoice:`Sponsored post · ${T.brand}`,successTitle:'Your sponsored post is live',successText:isPro()?'You’re on Pro, so you won’t see it in your own feed. Track it in Promote & earn.':'It appears as “Sponsored” in matching feeds.',after:['See results',()=>{S.adsTab='campaigns';go('ads');}],
+      onPaid:()=>{const c={id:'c'+Date.now(),type:'sponsored',name:`Sponsored · ${T.brand}`,detail:`${T.cats.join(', ')} · ${T.days} days`,status:'active',budget:T.budget,spent:0,imps:0,clicks:0};CAMPS.unshift(c);
+        const s={id:'sp'+Date.now(),brandObj:{name:T.brand,what:T.site||'Sponsored',url:T.site||'example.com'},headline:T.headline,cta:T.cta,cats:T.cats.slice(),ratio:1.1,tone:1,src:T.src,mine:true,camp:c.id,status:'active'};SPONSORED.unshift(s);SPMAP[s.id]=s;l.remove();if(['home','motion'].includes(route().name))render(true);}});
+    upd();
+  };
+  draw();
+}
+
+/* ---------- 5 · Sponsor a challenge ---------- */
+function openSponsorChallenge(){
+  const WK=[[43,'Oct 13–19',true],[44,'Oct 20–26',false],[45,'Oct 27–Nov 2',false],[46,'Nov 3–9',false]];
+  const C={brand:'',site:'',theme:'',brief:'',prize:2500,week:1};
+  const l=openModal('<div class="modal" style="width:min(720px,100%)"></div>',{kind:'sponsorch'});
+  const draw=()=>{const m=$('.modal',l);
+    m.innerHTML=`<div class="mhead"><h2>Sponsor a weekly challenge</h2><button class="ibtn bare" data-act="close-modal">${ic('x',18)}</button></div>
+    <div class="mbody"><p class="muted" style="margin:0 0 14px">Your brand on the challenge card, the challenge page and every entry for a week. You fund the prize pool; the community picks winners.</p>
+      <div style="display:flex;gap:10px"><label class="field grow"><span>Brand</span><input type="text" id="chb" value="${esc(C.brand)}" placeholder="Polyform 3D" maxlength="40"></label><label class="field grow"><span>Website</span><input type="text" id="chs" value="${esc(C.site)}" placeholder="polyform3d.com" maxlength="60"></label></div>
+      <label class="field"><span>Theme</span><input type="text" id="cht" value="${esc(C.theme)}" placeholder="e.g. Soft brutalism" maxlength="40"></label>
+      <label class="field"><span>Brief</span><textarea id="chr" placeholder="What should people make?" style="min-height:64px">${esc(C.brief)}</textarea></label>
+      <div class="field"><span>Prize pool</span><div class="seg">${[1000,2500,5000].map(p=>`<button type="button" class="${C.prize===p?'on':''}" data-chp="${p}">${money(p)}</button>`).join('')}</div></div>
+      <div class="field"><span>Week</span><div class="radio" style="display:grid;grid-template-columns:1fr 1fr">${WK.map(([n,w,sold],k)=>`<button type="button" class="${C.week===k?'on':''}" data-chw="${k}" ${sold?'disabled':''}><b>#${n} · ${w}</b><span>${sold?'Sold to Framewise':'Available'}</span></button>`).join('')}</div></div>
+    </div>
+    <div class="mfoot"><span><b>${money(PRICE.chFee+C.prize)}</b> <span class="muted" style="font-size:12px">${money(PRICE.chFee)} placement + ${money(C.prize)} prizes</span></span><span class="grow"></span><span class="muted" style="font-size:12px" id="chhint"></span><button class="btn" data-act="close-modal">Cancel</button><button class="btn primary" id="chgo">Continue to payment</button></div>`;
+    const val=()=>{const ok=C.brand.trim()&&C.theme.trim();$('#chgo',m).disabled=!ok;$('#chhint',m).textContent=ok?'':!C.brand.trim()?'Add your brand':'Add a theme';};
+    $('#chb',m).oninput=e=>{C.brand=e.target.value;val();};$('#chs',m).oninput=e=>C.site=e.target.value;$('#cht',m).oninput=e=>{C.theme=e.target.value;val();};$('#chr',m).oninput=e=>C.brief=e.target.value;
+    $$('[data-chp]',m).forEach(b=>b.onclick=()=>{C.prize=+b.dataset.chp;draw();});$$('[data-chw]',m).forEach(b=>b.onclick=()=>{C.week=+b.dataset.chw;draw();});
+    $('#chgo',m).onclick=()=>{const [n,w]=WK[C.week];openCheckout({title:'Challenge sponsorship',lines:[[`Challenge #${n} placement · ${w}`,PRICE.chFee],['Prize pool (paid to winners)',C.prize]],invoice:`Challenge #${n} · ${C.brand}`,successTitle:`Challenge #${n} is booked`,successText:`“${esc(C.theme)}” goes live ${w}, presented by ${esc(C.brand)}.`,
+      onPaid:()=>{CHAL.upcoming.push({n,theme:C.theme,week:w,sponsor:C.brand,mine:true});CHAL.upcoming.sort((a,b)=>a.n-b.n);CAMPS.unshift({id:'c'+Date.now(),type:'challenge',name:`Challenge #${n} · ${C.theme}`,detail:`${C.brand} · ${w} · ${money(C.prize)} prizes`,status:'scheduled',budget:PRICE.chFee+C.prize,spent:PRICE.chFee+C.prize,imps:0,clicks:0});l.remove();}});};
+    val();
+  };
+  draw();
+}
+
+/* ---------- 6 · Post a job (standard or featured) ---------- */
+function openPostJob(){
+  const J={title:'',studio:CR.me.name,loc:'',type:'Full-time',tags:'',remote:false,plan:'featured'};
+  const l=openModal(`<div class="modal" style="width:min(640px,100%)"><form id="pjf"><div class="mhead"><h2>Post a job</h2><button type="button" class="ibtn bare" data-act="close-modal">${ic('x',18)}</button></div><div class="mbody">
+    <label class="field"><span>Job title</span><input type="text" id="pjt" placeholder="Senior Motion Designer" maxlength="60" required></label>
+    <div style="display:flex;gap:10px"><label class="field grow"><span>Studio / company</span><input type="text" id="pjs" value="${esc(J.studio)}" maxlength="40" required></label><label class="field grow"><span>Location</span><input type="text" id="pjl" placeholder="Lagos, NG · Hybrid" maxlength="40" required></label></div>
+    <div style="display:flex;gap:10px"><label class="field grow"><span>Type</span><select id="pjy">${['Full-time','Freelance','Contract'].map(x=>`<option>${x}</option>`).join('')}</select></label><label class="field grow"><span>Skills (comma separated)</span><input type="text" id="pjg" placeholder="After Effects, Lottie" maxlength="80"></label></div>
+    <label class="check"><input type="checkbox" id="pjr"><span><b>Remote OK</b></span></label>
+    <div class="field" style="margin-top:6px"><span>Listing</span><div class="radio">${[['standard','Standard','Free · listed by date'],['featured','Featured · $99','Pinned to the top for 30 days, badge, shown in matching feeds. ~5× more applicants']].map(([k,t,s])=>`<button type="button" class="${J.plan===k?'on':''}" data-pjp="${k}"><b>${t}</b><span>${s}</span></button>`).join('')}</div></div>
+  </div><div class="mfoot"><span class="grow"></span><button type="button" class="btn" data-act="close-modal">Cancel</button><button class="btn primary" id="pjgo">Continue</button></div></form></div>`,{kind:'postjob'});
+  $$('[data-pjp]',l).forEach(b=>b.onclick=()=>{J.plan=b.dataset.pjp;$$('[data-pjp]',l).forEach(x=>x.classList.toggle('on',x===b));$('#pjgo',l).textContent=J.plan==='featured'?'Continue to payment':'Post job';});
+  $('#pjf',l).onsubmit=e=>{e.preventDefault();
+    const job={id:'j'+Date.now(),title:$('#pjt',l).value.trim(),studio:$('#pjs',l).value.trim(),loc:$('#pjl',l).value.trim(),type:$('#pjy',l).value,tags:$('#pjg',l).value.split(',').map(s=>s.trim()).filter(Boolean).slice(0,4),days:0,remote:$('#pjr',l).checked,mine:true};
+    if(!job.title||!job.studio||!job.loc)return;if(!job.tags.length)job.tags=[job.type];
+    const publish=()=>{JOBS.unshift(job);l.remove();S.jobf='All';S.jobHl=job.id;if(route().name==='jobs')render(true);else go('jobs');};
+    if(J.plan==='standard'){publish();document.body.classList.remove('locked');toast(`Job posted: <b>${esc(job.title)}</b>`);return;}
+    openCheckout({title:'Featured job',lines:[[`Featured listing · 30 days · ${job.title}`,PRICE.featJob]],invoice:`Featured job · ${job.title}`,successTitle:'Your job is featured',successText:'Pinned to the top of Jobs and shown in matching feeds for 30 days.',
+      onPaid:()=>{const c={id:'c'+Date.now(),type:'job',name:`Featured job · ${job.title}`,detail:`${job.studio} · 30 days`,status:'active',budget:PRICE.featJob,spent:PRICE.featJob,imps:0,clicks:0};CAMPS.unshift(c);job.featured=true;job.camp=c.id;publish();}});
+  };
+}
+
+/* ---------- 7 · Pro ---------- */
+function openPro(){
+  if(isPro()){
+    const l=openModal(`<div class="modal" style="width:min(460px,100%)"><div class="mhead"><h2>Pro ${proBadge()}</h2><button class="ibtn bare" data-act="close-modal">${ic('x',18)}</button></div><div class="mbody">
+      <div class="sumrow"><span>Plan</span><b>${S.proPlan==='year'?'Yearly · $72':'Monthly · $8'}</b></div><div class="sumrow"><span>Next payment</span><span>${S.proPlan==='year'?'Oct 10, 2027':'Nov 10'}</span></div><div class="sumrow"><span>Boost credit this month</span><span>${S.boostCredits?money(PRICE.credit)+' available':'Used'}</span></div><div class="sumrow"><span>Tip fee</span><span>${PRICE.tipFeePro*100}%</span></div>
+    </div><div class="mfoot"><button class="btn ghost" id="procancel">Cancel Pro</button><span class="grow"></span><button class="btn primary" data-act="close-modal">Done</button></div></div>`,{kind:'pro'});
+    $('#procancel',l).onclick=async()=>{if(await confirmBox('Cancel Pro?','You’ll lose insights, pinned projects and your monthly boost credit, and sponsored posts will show again.','Cancel Pro')){S.pro=false;S.boostCredits=0;S.pinnedPosts=[];closeModal(l);renderMe();render(true);toast('Pro cancelled');}};
+    return;
+  }
+  let plan='month';
+  const perks=[['star','Pro badge on your profile and posts'],['chart','Insights: where your views, saves and followers come from'],['film','Motion uploads up to 60s (Free: 30s)'],['pin','Pin up to 3 projects to the top of your profile'],['link','Your own domain for your portfolio'],['eyeoff','No sponsored posts or brand takeovers'],['dollar','Keep 95% of tips (Free: 90%)'],['zap',`${money(PRICE.credit)} boost credit every month`]];
+  const l=openModal(`<div class="modal" style="width:min(520px,100%)"><div class="mhead"><h2>Go Pro</h2><button class="ibtn bare" data-act="close-modal">${ic('x',18)}</button></div><div class="mbody">
+    <div class="radio" id="proplans">${[['month','Monthly','$8 / month'],['year','Yearly','$72 / year · save 25%']].map(([k,t,s])=>`<button type="button" class="${plan===k?'on':''}" data-pp="${k}"><b>${t}</b><span>${s}</span></button>`).join('')}</div>
+    <div style="margin-top:14px">${perks.map(([i,t])=>`<div class="perk"><span class="pi">${ic(i,15)}</span><span>${t}</span></div>`).join('')}</div>
+  </div><div class="mfoot"><span class="grow"></span><button class="btn" data-act="close-modal">Not now</button><button class="btn primary" id="progo">Continue</button></div></div>`,{kind:'pro'});
+  $$('[data-pp]',l).forEach(b=>b.onclick=()=>{plan=b.dataset.pp;$$('[data-pp]',l).forEach(x=>x.classList.toggle('on',x===b));});
+  $('#progo',l).onclick=()=>openCheckout({title:'Pro membership',lines:[[plan==='year'?'Pro · yearly':'Pro · monthly',PRICE.pro[plan]]],recurring:plan==='year'?'year':'month',invoice:`Pro · ${plan==='year'?'yearly':'monthly'}`,successTitle:'Welcome to Pro',successText:'Your badge is live, sponsored posts are gone and a $10 boost credit is waiting.',
+    onPaid:()=>{S.pro=true;S.proPlan=plan;S.boostCredits=1;l.remove();renderMe();render(true);}});
+}
+
+/* ---------- 8 · Tips ---------- */
+function openTip(id){
+  const it=IT[id],c=CR[it.creator];let amt=5;
+  const fee=()=>Math.round(amt*PRICE.tipFee*100)/100;
+  const l=openModal(`<div class="modal" style="width:min(460px,100%)"><div class="mhead"><h2>Tip ${esc(c.name.split(' ')[0])}</h2><button class="ibtn bare" data-act="close-modal">${ic('x',18)}</button></div><div class="mbody">
+    <div class="wrow" style="padding:0 0 14px">${avHTML(c,'s44')}<div class="tx"><b>${esc(c.name)}</b><span>for “${esc(it.title)}”</span></div></div>
+    <div class="tipamts">${[2,5,10,20].map(a=>`<button type="button" class="${a===amt?'on':''}" data-ta="${a}">$${a}</button>`).join('')}</div>
+    <label class="field" style="margin-top:12px"><span>Or another amount</span><div style="display:flex;align-items:center;gap:8px"><b>$</b><input type="number" id="tcust" min="1" max="500" step="1" placeholder="15"></div></label>
+    <label class="field"><span>Add a note (optional)</span><input type="text" id="tnote" maxlength="140" placeholder="This saved my project!"></label>
+    <p class="muted" style="font-size:12px;margin:0" id="tsplit"></p>
+  </div><div class="mfoot"><span class="grow"></span><button class="btn" data-act="close-modal">Cancel</button><button class="btn primary" id="tgo"></button></div></div>`,{kind:'tip'});
+  const upd=()=>{$('#tsplit',l).textContent=`${c.name.split(' ')[0]} receives ${money(amt-fee())} · ${PRICE.tipFee*100}% platform fee`;$('#tgo',l).textContent=`Send ${money(amt)} tip`;$('#tgo',l).disabled=!(amt>=1&&amt<=500);};
+  $$('[data-ta]',l).forEach(b=>b.onclick=()=>{amt=+b.dataset.ta;$('#tcust',l).value='';$$('[data-ta]',l).forEach(x=>x.classList.toggle('on',x===b));upd();});
+  $('#tcust',l).oninput=e=>{amt=Math.round(+e.target.value||0);$$('[data-ta]',l).forEach(x=>x.classList.toggle('on',+x.dataset.ta===amt));upd();};
+  $('#tgo',l).onclick=()=>openCheckout({title:'Send a tip',lines:[[`Tip for ${c.name}`,amt]],invoice:`Tip · ${c.name}`,successTitle:`You tipped ${esc(c.name.split(' ')[0])} ${money(amt)}`,successText:'They’ll get a notification with your note.',
+    onPaid:()=>{it.tips=(it.tips||0)+1;l.remove();const s=$('.detail')?.dataset.id===id&&$('#dTips');if(s)s.textContent=`${it.tips} tip${it.tips>1?'s':''}`;else if($('.detail')?.dataset.id===id){const st=$('.detail .stats');st&&st.insertAdjacentHTML('beforeend',`·<span id="dTips">${it.tips} tip</span>`);}}});
+  upd();
+}
+
+/* ---------- leaving to an advertiser's site ---------- */
+function openLeave(name,url,logo){
+  const l=openModal(`<div class="modal" style="width:min(420px,100%)"><div class="mbody" style="text-align:center;padding:30px 24px 10px">${logo||''}<h2 style="margin:12px 0 6px;font-size:18px">You’re leaving for ${esc(name)}</h2><p class="muted" style="margin:0">${esc(url)}</p></div><div class="mfoot" style="border:0;justify-content:center"><button class="btn" data-act="close-modal">Stay here</button><button class="btn primary" id="lvgo">${ic('external',14)} Continue</button></div></div>`,{kind:'leave'});
+  $('#lvgo',l).onclick=()=>{closeModal(l);toast(`Would open ${esc(url)} in a new tab (prototype)`);};
+}
+
+function openCardUpdate(){
+  const l=openModal(`<div class="modal" style="width:min(420px,100%)"><form id="cuf"><div class="mhead"><h2>Update card</h2><button type="button" class="ibtn bare" data-act="close-modal">${ic('x',18)}</button></div><div class="mbody"><label class="field"><span>Card number</span><input type="text" id="cun" inputmode="numeric" placeholder="1234 1234 1234 1234" maxlength="19"></label><div style="display:flex;gap:10px"><label class="field grow"><span>Expiry</span><input type="text" id="cue" placeholder="MM/YY" maxlength="5"></label><label class="field grow"><span>CVC</span><input type="text" id="cuc" inputmode="numeric" placeholder="123" maxlength="4"></label></div><p class="muted" style="font-size:11.5px;margin:0">Prototype: only the last 4 digits are kept, in memory.</p></div><div class="mfoot"><span class="grow"></span><button type="button" class="btn" data-act="close-modal">Cancel</button><button class="btn primary">Save card</button></div></form></div>`,{kind:'card'});
+  $('#cun',l).focus();
+  $('#cuf',l).onsubmit=e=>{e.preventDefault();const n=$('#cun',l).value.replace(/\D/g,'');if(n.length<15||!/^\d\d\/\d\d$/.test($('#cue',l).value.trim())||$('#cuc',l).value.trim().length<3){toast('Check the card number, expiry (MM/YY) and CVC');return;}S.card={brand:'Card',last4:n.slice(-4),exp:$('#cue',l).value.trim()};closeModal(l);render(true);toast('Card updated');};
+}
+
+/* ---------- Promote & earn hub ---------- */
+const PRODUCTS=[['boost','zap','Boost a post','Show your post to more people as “Promoted” in feeds and search.','From $10 · $4 per 1,000 views'],
+ ['search-ad','search','Search ads','Own a keyword. You show up first when people search it.','Pay per click · from $0.30'],
+ ['featured-buy','star','Featured creator spot','Be the featured pick in Rising creators and Who to follow.','From $39 / week'],
+ ['sponsored-new','megaphone','Sponsored post','For brands and tools: a labelled feed post with a button.','$6 per 1,000 views'],
+ ['sponsor-challenge','trophy','Sponsor a challenge','Your brand on a weekly challenge. You fund the prizes.','$1,500 / week + prizes'],
+ ['post-job','briefcase','Featured job','Pin your job to the top and show it in matching feeds.','$99 / 30 days · standard free'],
+ ['talent-go','users','Talent search','Search creators by skill, tools and availability.','$49 / seat / month'],
+ ['pro','star','Pro','Insights, no ads, pinned projects, lower tip fee, boost credit.','$8 / month']];
+function totals(){const perf=CAMPS.filter(c=>['boost','search','sponsored','featured'].includes(c.type));const imps=perf.reduce((s,c)=>s+c.imps,0),clicks=perf.reduce((s,c)=>s+c.clicks,0);return {spend:CAMPS.reduce((s,c)=>s+(c.spent||0),0),imps,clicks,ctr:imps?clicks/imps*100:0,active:CAMPS.filter(c=>c.status==='active').length};}
+function campTable(list){
+  if(!list.length)return emptyHTML('chart','No campaigns yet','Boost a post or run a search ad to see results here.',`<button class="btn primary" data-act="boost">Boost a post</button>`);
+  return `<div class="tablewrap"><table class="ctable"><thead><tr><th>Campaign</th><th>Status</th><th>Spent</th><th>Impressions</th><th>Clicks</th><th>CTR</th><th></th></tr></thead><tbody>${list.map(c=>{const pct=c.budget?Math.min(100,c.spent/c.budget*100):0;const ctrl=['boost','search','sponsored'].includes(c.type)&&['active','paused'].includes(c.status);
+    return `<tr><td><button class="lnk" style="text-decoration:none;text-align:left;font-weight:700" data-act="camp-open" data-id="${c.id}">${esc(c.name)}</button><div class="muted" style="font-size:12px">${TYPE_LABEL[c.type]} · ${esc(c.detail||'')}</div></td>
+    <td><span class="spill ${c.status}"><i></i>${cap(c.status)}</span></td><td>${money(Math.round(c.spent*100)/100)} <span class="muted">/ ${money(c.budget)}</span><div class="pbar sm"><i style="width:${pct}%"></i></div></td>
+    <td>${['challenge','job'].includes(c.type)?'—':fmt(c.imps)}</td><td>${['challenge','job'].includes(c.type)?'—':fmt(c.clicks)}</td><td>${c.imps&&!['challenge','job'].includes(c.type)?(c.clicks/c.imps*100).toFixed(1)+'%':'—'}</td>
+    <td style="white-space:nowrap;text-align:right">${ctrl?`<button class="btn sm" data-act="camp-toggle" data-id="${c.id}">${c.status==='active'?'Pause':'Resume'}</button> <button class="btn sm ghost" data-act="camp-stop" data-id="${c.id}">Stop</button>`:''}</td></tr>`}).join('')}</tbody></table></div>`;
+}
+function adsLiveHTML(){
+  const t=totals();
+  if(S.adsTab==='campaigns')return campTable(CAMPS);
+  return `<div class="kpis"><div class="kpi"><span>Spent</span><b>${money(Math.round(t.spend*100)/100)}</b><em>${CAMPS.length} campaigns · ${t.active} active</em></div><div class="kpi"><span>Impressions</span><b>${fmt(t.imps)}</b><em>boosts, search, sponsored, featured</em></div><div class="kpi"><span>Clicks</span><b>${fmt(t.clicks)}</b><em>post opens, profile visits, site clicks</em></div><div class="kpi"><span>Click-through rate</span><b>${t.ctr.toFixed(1)}%</b><em>clicks ÷ impressions</em></div></div>
+  ${CAMPS.some(c=>c.status==='active')?`<div class="sect-h"><h3>Running now</h3><button class="lnk" data-act="ads-tab" data-v="campaigns">All campaigns</button></div>${campTable(CAMPS.filter(c=>c.status==='active').slice(0,4))}`:''}`;
+}
+function viewAds(){
+  const t=S.adsTab;const e=(()=>{const gross=TIPS_IN.reduce((s,x)=>s+x.amt,0),net=TIPS_IN.reduce((s,x)=>s+x.amt*(1-x.fee),0);return {gross,net,bal:Math.max(0,net-S.withdrawn)};})();
+  let body='';
+  if(t==='overview')body=`<div id="adsLive">${adsLiveHTML()}</div><div class="sect-h"><h3>Grow your reach</h3><span class="muted" style="font-size:12px">Everything paid is labelled and capped</span></div><div class="prods">${PRODUCTS.map(([k,i,n,d,p])=>`<button class="prod" data-act="${k}"><span class="pi">${ic(i,18)}</span><b>${n}${k==='pro'&&isPro()?' '+proBadge():''}</b><p>${d}</p><span class="pr">${k==='pro'&&isPro()?'You’re on Pro · manage':k==='talent-go'&&S.studio?'Active · open search':p}</span></button>`).join('')}</div>`;
+  else if(t==='campaigns')body=`<div style="display:flex;gap:8px;margin:18px 0 14px;flex-wrap:wrap"><button class="btn primary" data-act="boost">${ic('zap',14)} Boost a post</button><button class="btn" data-act="search-ad">${ic('search',14)} New search ad</button><button class="btn" data-act="sponsored-new">${ic('megaphone',14)} Sponsored post</button></div><div id="adsLive">${adsLiveHTML()}</div>`;
+  else if(t==='earnings')body=`<div class="kpis"><div class="kpi"><span>Available to withdraw</span><b>${money(Math.round(e.bal*100)/100)}</b><em>after ${isPro()?'5':'10'}% platform fee</em></div><div class="kpi"><span>Tips received</span><b>${TIPS_IN.length}</b><em>${money(e.gross)} gross, all time</em></div><div class="kpi"><span>Paid out</span><b>${money(Math.round(S.withdrawn*100)/100)}</b><em>to bank •••• 1234</em></div><div class="kpi"><span>Tip fee</span><b>${isPro()?'5%':'10%'}</b><em>${isPro()?'Pro rate':'5% with Pro'}</em></div></div>
+    <div style="display:flex;gap:8px;margin-bottom:18px"><button class="btn primary" data-act="withdraw" ${e.bal<1?'disabled':''}>Withdraw ${money(Math.round(e.bal*100)/100)}</button>${isPro()?'':`<button class="btn" data-act="pro">Lower my fee with Pro</button>`}</div>
+    <div class="tablewrap"><table class="ctable" style="min-width:560px"><thead><tr><th>From</th><th>Post</th><th>Note</th><th>Amount</th><th>When</th></tr></thead><tbody>${TIPS_IN.map(x=>{const c=CR[x.by],it=IT[x.item];return `<tr><td><button class="who" data-act="creator" data-creator="${c.id}">${avHTML(c,'s20')}<span class="nm">${esc(c.name)}</span></button></td><td>${it?`<button class="lnk" style="text-decoration:none" data-act="open" data-id="${it.id}">${esc(it.title)}</button>`:'—'}</td><td class="muted">${esc(x.note)||'—'}</td><td><b>${money(x.amt)}</b></td><td class="muted">${ago(x.days)}</td></tr>`}).join('')}</tbody></table></div>`;
+  else body=`<div class="bgrid" style="margin-top:18px"><div>
+     <div class="sect-h" style="margin-top:0"><h3>Invoices</h3></div>
+     <div class="tablewrap"><table class="ctable" style="min-width:480px"><thead><tr><th>Invoice</th><th>Date</th><th>Description</th><th>Amount</th></tr></thead><tbody>${INVOICES.map(v=>`<tr><td>${v.id}</td><td>${v.date}</td><td>${esc(v.desc)}</td><td><b>${money(v.amount)}</b></td></tr>`).join('')}</tbody></table></div>
+    </div><div>
+     <div class="box"><h4>Payment method</h4><div class="paym on" style="cursor:default">${ic('card',20)}<div class="grow"><b>${esc(S.card.brand)} •••• ${esc(S.card.last4)}</b><div class="muted" style="font-size:12px">Expires ${esc(S.card.exp)}</div></div></div><button class="btn sm" style="margin-top:10px" data-act="card-update">Update card</button></div>
+     <div class="box" style="margin-top:14px"><h4>Subscriptions</h4>
+      <div class="srow"><div class="tx"><b>Pro</b><span>${isPro()?(S.proPlan==='year'?'$72 / year':'$8 / month'):'Not subscribed'}</span></div>${isPro()?`<span class="spill active"><i></i>Active</span>`:''}<button class="btn sm" data-act="pro">${isPro()?'Manage':'Go Pro'}</button></div>
+      <div class="srow"><div class="tx"><b>Studio plan · Talent search</b><span>${S.studio==='trial'?'Free trial · then $49 / month':S.studio?'$49 / seat / month':'Not subscribed'}</span></div>${S.studio?`<span class="spill trial"><i></i>${S.studio==='trial'?'Trial':'Active'}</span><button class="btn sm" data-act="studio-cancel">Cancel</button>`:`<button class="btn sm" data-act="talent-go">Start trial</button>`}</div>
+     </div></div></div>`;
+  V.innerHTML=`<div class="wrap"><div class="vh"><div class="grow"><div class="label">For creators, studios & brands</div><h1>Promote & earn</h1><p>Reach more people, hire talent and get paid. Every paid placement is labelled and capped so the feed stays yours.</p></div>${isPro()?`<span class="spill active"><i></i>Pro member</span>`:`<button class="btn" data-act="pro">${ic('star',14)} Go Pro</button>`}</div>
+   <div class="ptabs" style="margin-bottom:0">${[['overview','Overview'],['campaigns',`Campaigns · ${CAMPS.length}`],['earnings','Earnings'],['billing','Billing']].map(([k,lb])=>`<button class="${t===k?'on':''}" data-act="ads-tab" data-v="${k}">${lb}</button>`).join('')}</div>${body}</div>`;
+}
+
+/* ---------- Talent search (studio plan) ---------- */
+function talentPool(){
+  const f=S.talent;const loc=f.loc.trim().toLowerCase();
+  let list=CREATORS.filter(c=>c.id!=='me'&&!c.studio);
+  if(f.tab==='short')list=list.filter(c=>S.shortlist.has(c.id));
+  if(f.cats.length)list=list.filter(c=>c.cats.some(x=>f.cats.includes(x)));
+  if(f.tools.length)list=list.filter(c=>ITEMS.some(i=>i.creator===c.id&&i.tools.some(t=>f.tools.includes(t))));
+  if(loc)list=list.filter(c=>c.loc.toLowerCase().includes(loc));
+  if(f.hire)list=list.filter(c=>c.hire);
+  const score=c=>c.cats.filter(x=>f.cats.includes(x)).length*1e6+c.followers;
+  const recent=c=>Math.min(...ITEMS.filter(i=>i.creator===c.id).map(i=>i.days),999);
+  return list.sort((a,b)=>f.sort==='followers'?b.followers-a.followers:f.sort==='recent'?recent(a)-recent(b):score(b)-score(a));
+}
+function talentRowHTML(c){
+  const its=ITEMS.filter(i=>i.creator===c.id).slice(0,4);const tools=[...new Set(ITEMS.filter(i=>i.creator===c.id).flatMap(i=>i.tools))].slice(0,3);const sl=S.shortlist.has(c.id);
+  return `<div class="trow2">${avHTML(c,'s56')}<div><b data-act="creator" data-creator="${c.id}" style="cursor:pointer">${esc(c.name)}</b> <span class="muted" style="font-size:12.5px">· ${fmt(c.followers)} followers</span><div class="muted" style="font-size:13px">${esc(c.role)} · ${esc(c.loc)}</div>
+   <div class="ctx">${c.hire?'<span class="hire"><i></i>Available</span>':''}${c.cats.map(x=>`<span class="chip sm">${esc(x)}</span>`).join('')}${tools.map(t=>`<span class="chip sm" style="background:none;border:1px solid var(--line2)">${esc(t)}</span>`).join('')}</div></div>
+   <div class="acts" style="display:flex;gap:8px"><button class="ibtn ${sl?'on':''}" data-act="shortlist" data-creator="${c.id}" title="${sl?'Remove from shortlist':'Add to shortlist'}">${ic('bookmark',16)}</button><button class="btn sm primary" data-act="talent-msg" data-creator="${c.id}">${ic('chat',14)} Message</button></div>
+   <div class="th4">${its.map(i=>`<div class="ph t${i.tone}" data-act="open" data-id="${i.id}" title="${esc(i.title)}"></div>`).join('')}</div></div>`;
+}
+function renderTalentRes(){
+  const el=$('#tres');if(!el)return;const list=talentPool();
+  $('#tcount')&&($('#tcount').textContent=`${list.length} creator${list.length===1?'':'s'}`);
+  $$('[data-act="talent-tab"]').forEach(b=>{b.classList.toggle('on',b.dataset.v===S.talent.tab);if(b.dataset.v==='short')b.textContent=`Shortlist · ${S.shortlist.size}`;});
+  el.innerHTML=list.length?list.map(talentRowHTML).join(''):emptyHTML('users',S.talent.tab==='short'?'Your shortlist is empty':'No creators match','Bookmark creators to compare them here, or loosen your filters.');
+}
+function viewTalent(){
+  if(!S.studio){
+    const fake=CREATORS.filter(c=>c.id!=='me'&&!c.studio).slice(0,3).map(talentRowHTML).join('');
+    V.innerHTML=`<div class="wrap"><div class="vh"><div class="grow"><div class="label">Studio plan</div><h1>Talent search</h1><p>Search every creator on the platform by discipline, tools, location and availability.</p></div></div>
+    <div class="bgrid" style="margin-top:20px"><div class="locked"><div class="blur tlist">${fake}</div><div class="lock">${ic('lock',22)}<b>Unlock talent search</b><span class="muted" style="font-size:13px">Filters, shortlists and direct messages</span><button class="btn primary" data-act="studio-trial">Start 7-day free trial</button></div></div>
+    <div class="box" style="align-self:start"><h4>Studio plan</h4><div><b style="font-size:30px;letter-spacing:-.02em">$49</b> <span class="muted">/ seat / month</span></div>
+     <div style="margin:12px 0">${[['search','Search by discipline, tools, location and availability'],['bookmark','Shortlist and compare creators'],['chat','25 direct messages a month to people who don’t follow you'],['briefcase','1 featured job credit each month']].map(([i,t])=>`<div class="perk"><span class="pi">${ic(i,15)}</span><span>${t}</span></div>`).join('')}</div>
+     <button class="btn primary block" data-act="studio-trial">Start 7-day free trial</button><p class="muted" style="font-size:12px;margin:8px 0 0;text-align:center">Then $49 / month. Cancel anytime in Billing.</p></div></div></div>`;
+    return;
+  }
+  const f=S.talent;
+  V.innerHTML=`<div class="wrap"><div class="vh"><div class="grow"><div class="label">Studio plan</div><h1>Talent search</h1><p>Find creators by skill, tools and availability.</p></div><span class="spill trial"><i></i>${S.studio==='trial'?'Free trial · 7 days left':'Active'}</span><span class="chip" id="tcred">${S.credits} message credits</span></div>
+   <div class="tgrid"><aside class="tfil">
+     <div><div class="label" style="margin-bottom:8px">Discipline</div><div class="ctx">${CATS.map(c=>`<button class="chip sm ${f.cats.includes(c)?'on':''}" data-act="talent-cat" data-v="${esc(c)}">${esc(c)}</button>`).join('')}</div></div>
+     <div><div class="label" style="margin-bottom:8px">Tools</div><div class="ctx">${ALLTOOLS.map(t=>`<button class="chip sm ${f.tools.includes(t)?'on':''}" data-act="talent-tool" data-v="${esc(t)}">${esc(t)}</button>`).join('')}</div></div>
+     <label class="field" style="margin:0"><span>Location</span><input type="text" id="tloc" placeholder="City or country" value="${esc(f.loc)}"></label>
+     <div class="srow" style="padding:0;border:0"><div class="tx"><b>Available for hire</b><span>Only open to work</span></div><button class="switch ${f.hire?'on':''}" id="thire" role="switch" aria-label="Available for hire only"></button></div>
+     <button class="lnk muted" style="align-self:flex-start;font-weight:500" data-act="talent-reset">Reset filters</button>
+   </aside><div>
+     <div class="fbar" style="position:static;margin-bottom:12px"><div class="tabs"><button class="${f.tab==='all'?'on':''}" data-act="talent-tab" data-v="all">All creators</button><button class="${f.tab==='short'?'on':''}" data-act="talent-tab" data-v="short">Shortlist · ${S.shortlist.size}</button></div><span class="muted" style="font-size:12px" id="tcount"></span><select id="tsort" style="width:auto;padding:8px 10px">${[['match','Best match'],['followers','Most followed'],['recent','Recently active']].map(([k,lb])=>`<option value="${k}" ${f.sort===k?'selected':''}>${lb}</option>`).join('')}</select></div>
+     <div class="tlist" id="tres"></div></div></div></div>`;
+  $('#tloc').oninput=e=>{f.loc=e.target.value;renderTalentRes();};
+  $('#thire').onclick=e=>{f.hire=!f.hire;e.currentTarget.classList.toggle('on',f.hire);renderTalentRes();};
+  $('#tsort').onchange=e=>{f.sort=e.target.value;renderTalentRes();};
+  renderTalentRes();
+}
+
+/* ---------- click handling for everything above ---------- */
+document.addEventListener('click',async e=>{
+  const b=e.target.closest('[data-act]');if(!b)return;
+  const id=b.dataset.id,cid=b.dataset.creator;
+  switch(b.dataset.act){
+    case 'boost':closePop();openBoost(id);break;
+    case 'search-ad':openSearchAd(b.dataset.kw);break;
+    case 'featured-buy':openFeatured();break;
+    case 'sponsored-new':openSponsored();break;
+    case 'sponsor-challenge':{const ch=$('.layer[data-kind="challenge"]');if(ch)closeModal(ch);openSponsorChallenge();break;}
+    case 'post-job':openPostJob();break;
+    case 'talent-go':go('talent');break;
+    case 'pro':closePop();openPro();break;
+    case 'tip':openTip(id);break;
+    case 'ads-tab':S.adsTab=b.dataset.v;render(true);break;
+    case 'camp-toggle':{const c=CAMPS.find(x=>x.id===id);setCampStatus(c,c.status==='active'?'paused':'active');toast(c.status==='paused'?`Paused <b>${esc(c.name)}</b>`:`Resumed <b>${esc(c.name)}</b>`);render(true);break;}
+    case 'camp-stop':{const c=CAMPS.find(x=>x.id===id);if(await confirmBox('Stop this campaign?',`“${esc(c.name)}” stops now. Unspent budget (${money(Math.max(0,Math.round((c.budget-c.spent)*100)/100))}) is refunded to your card.`,'Stop campaign')){setCampStatus(c,'ended');c.budget=Math.round(c.spent*100)/100;render(true);toast('Campaign stopped. Refund on its way.');}break;}
+    case 'camp-open':{const c=CAMPS.find(x=>x.id===id);if(c.itemId&&IT[c.itemId])openDetail(c.itemId);else if(c.type==='search'){const k=KWADS.find(a=>a.camp===c.id);if(k){sq.value=k.kws[0][0];doSearch(k.kws[0][0]);}}else if(c.type==='job')go('jobs');else if(c.type==='featured')go('home');else if(c.type==='challenge')openChallenge();else if(c.type==='sponsored'){toast('Sponsored posts show in matching feeds'+(isPro()?' (hidden for you on Pro)':''));}break;}
+    case 'withdraw':{const net=TIPS_IN.reduce((s,x)=>s+x.amt*(1-x.fee),0);const bal=Math.round(Math.max(0,net-S.withdrawn)*100)/100;if(await confirmBox(`Withdraw ${money(bal)}?`,'It arrives in your bank •••• 1234 in 1–3 business days.','Withdraw',false)){S.withdrawn+=bal;render(true);toast(`Transfer of <b>${money(bal)}</b> started`);}break;}
+    case 'card-update':openCardUpdate();break;
+    case 'studio-trial':openCheckout({title:'Studio plan',lines:[['Studio plan · 1 seat',PRICE.talent]],credit:['7-day free trial',PRICE.talent],recurring:'month',zeroCta:'Start free trial',note:'You won’t be charged until Oct 17.',successTitle:'Your trial has started',successText:'Talent search is unlocked for 7 days.',onPaid:()=>{S.studio='trial';if(route().name==='talent')render(true);}});break;
+    case 'studio-cancel':if(await confirmBox('Cancel the Studio plan?','Talent search, shortlists and message credits will stop working.','Cancel plan')){S.studio=false;render(true);toast('Studio plan cancelled');}break;
+    case 'ad-why':e.stopPropagation();showWhy(b,b.dataset.kind,b.dataset.ad);break;
+    case 'ad-hide':{const k=b.dataset.ad;S.hiddenAds.add(k);b.closest('.tko')?.remove();toast('Sponsor banner hidden',{action:'Undo',fn:()=>{S.hiddenAds.delete(k);render(true);}});break;}
+    case 'sp-open':{const s=SPMAP[b.dataset.ad];if(!s)break;const br=s.brandObj||BRANDS[s.brand];openLeave(br.name,br.url,brandAv(br,'s56'));break;}
+    case 'brand-open':{const br=BRANDS[b.dataset.brand];if(br)openLeave(br.name,br.url,brandAv(br,'s56'));break;}
+    case 'kad-open':{e.preventDefault();const a=KWADS.find(x=>x.id===b.dataset.ad);if(!a)break;closeSearch();const v=advInfo(a);
+      if(v.creator){if(v.creator.id==='me')go('profile/me');else if(/hire|contact/i.test(a.cta)){openMessages(v.creator.id);setTimeout(()=>{const i=$('#min');if(i){i.value=`Hi ${v.creator.name}! Found you through search. I have a project in mind.`;i.focus();}},50);}else{S.ptab='work';go('profile/'+v.creator.id);}}
+      else openLeave(v.name,v.url||v.name,v.av);break;}
+    case 'jad-open':{S.jobf='All';S.jobHl=id;go('jobs');break;}
+    case 'talent-cat':chipToggle(S.talent.cats,b.dataset.v);b.classList.toggle('on');renderTalentRes();break;
+    case 'talent-tool':chipToggle(S.talent.tools,b.dataset.v);b.classList.toggle('on');renderTalentRes();break;
+    case 'talent-tab':S.talent.tab=b.dataset.v;renderTalentRes();break;
+    case 'talent-reset':S.talent={cats:[],tools:[],loc:'',hire:true,sort:'match',tab:S.talent.tab};render(true);break;
+    case 'shortlist':{const on=!S.shortlist.has(cid);on?S.shortlist.add(cid):S.shortlist.delete(cid);b.classList.toggle('on',on);toast(on?`Added <b>${esc(CR[cid].name)}</b> to your shortlist`:'Removed from shortlist');renderTalentRes();break;}
+    case 'talent-msg':{const has=CONVOS.some(v=>v.with===cid&&v.msgs.length);if(!has){if(S.credits<=0){toast('You’re out of message credits this month');break;}S.credits--;const cr=$('#tcred');if(cr)cr.textContent=`${S.credits} message credits`;toast(`1 credit used · ${S.credits} left`);}openMessages(cid);break;}
+  }
+});
 
 /* =========================================================
    Boot
