@@ -32,10 +32,8 @@ main{max-width:1500px;margin:0 auto;padding:16px 24px 60px;display:grid;grid-tem
 .pros{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:14px 20px 18px;font-size:12.5px;color:#4a4943;border-top:1px solid var(--line)}
 .pros b{display:block;color:var(--ink);font-size:12px;margin-bottom:4px}
 .pros ul{margin:0;padding-left:16px}
-.dir.extra{grid-column:1/-1;background:#0E0E0B;border-color:#0E0E0B;color:#F3F5E8}
-.dir.extra .dir-h p,.dir.extra .pros{color:#CDD0BF}.dir.extra .pros{border-top-color:#25251F}.dir.extra .pros b{color:#AFE607}.dir.extra .frame{border-top-color:#25251F}
-.dir.extra .open{background:#AFE607;color:#0E0E0B}.dir.extra .open:hover{background:#c4f52a}
-.dir.extra .chips i{border-color:#4A4A40}
+.group{grid-column:1/-1;padding:18px 2px 0}.group h3{margin:0;font-size:20px;letter-spacing:-.01em;display:flex;align-items:center;gap:10px;flex-wrap:wrap}.group h3 span{font-size:12px;font-weight:600;color:var(--muted)}.group p{margin:4px 0 0;color:#4a4943;font-size:13px}
+.group.lime{margin-top:20px;border-top:1px solid var(--line);padding-top:30px}.group.lime h3::before{content:"";width:22px;height:22px;border-radius:6px;background:#AFE607;box-shadow:inset 0 0 0 5px #0E0E0B}
 .rec.lime{background:#AFE607;color:#0E0E0B}
 .rec{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:var(--orange);color:#fff;border-radius:6px;padding:3px 8px;margin-left:8px;vertical-align:3px}
 
@@ -46,6 +44,7 @@ main{max-width:1500px;margin:0 auto;padding:16px 24px 60px;display:grid;grid-tem
 #full .bar button,#full .bar a{border:1px solid #444;background:transparent;color:#eee;height:32px;padding:0 12px;border-radius:999px;font:600 12.5px/1 Inter,ui-sans-serif,system-ui,sans-serif;cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-flex;align-items:center}
 #full .bar button.on{background:#fff;color:#1c1c1a;border-color:#fff}
 #full .bar .grow{flex:1}
+#full .bar .sep{width:1px;height:22px;background:#444;flex:none;margin:0 4px}
 #full .bar .close{background:var(--orange);border-color:var(--orange);color:#fff}
 #full iframe{flex:1;width:100%;border:0;background:#fff}
 @media (max-width:1000px){main{grid-template-columns:1fr}}
@@ -56,10 +55,11 @@ main{max-width:1500px;margin:0 auto;padding:16px 24px 60px;display:grid;grid-tem
 <header>
   <div class="eyebrow">Brand colours · homepage directions</div>
   <h1>Pick a colour direction</h1>
-  <p>The same live homepage in four colourways using your brand Orange #EC5E27 and Milk #FDFDF1, plus an extra direction (E) in Dark Grey and Lime. Click a preview or “Open full screen” to use it right here. Everything works in every theme, and you can also switch in the prototype under Settings → Colour direction.</p>
-  <div class="brandsw"><span><i style="background:#EC5E27"></i>Orange · #EC5E27</span><span><i style="background:#FDFDF1"></i>Milk · #FDFDF1</span><span><i style="background:#1c1c1a"></i>Ink · #1C1C1A</span></div>
+  <p>The same live homepage in four colourways using your brand Orange #EC5E27 and Milk #FDFDF1, and the same four approaches in Dark Grey #0E0E0B and Lime #AFE607. Click a preview or “Open full screen” to use it right here. Everything works in every theme, and you can also switch in the prototype under Settings → Colour direction.</p>
+  <div class="brandsw"><span><i style="background:#EC5E27"></i>Orange · #EC5E27</span><span><i style="background:#FDFDF1"></i>Milk · #FDFDF1</span><span><i style="background:#1c1c1a"></i>Ink · #1C1C1A</span><span><i style="background:#0E0E0B"></i>Dark Grey · #0E0E0B</span><span><i style="background:#AFE607"></i>Lime · #AFE607</span></div>
 </header>
 <main>
+  <div class="group"><h3>Orange set <span>Orange #EC5E27 + Milk #FDFDF1</span></h3><p>Your brand colours in four approaches.</p></div>
   <section class="dir">
     <div class="dir-h"><div class="grow"><h2>A · Ink &amp; Orange <span class="rec">Recommended</span></h2><p>White and black base. Orange only on primary buttons, Save, the active tab and the selected interest.</p>
       <div class="chips"><i style="background:#fff"></i><i style="background:#151413"></i><i style="background:#EC5E27"></i></div></div>
@@ -88,23 +88,45 @@ main{max-width:1500px;margin:0 auto;padding:16px 24px 60px;display:grid;grid-tem
     <div class="frame" data-brand="d"><button class="cover" data-full="d" aria-label="Open D full screen"></button></div>
     <div class="pros"><div><b>Why it works</b><ul><li>Work and motion pop on a dark background</li><li>Orange glows; feels premium</li></ul></div><div><b>Watch out</b><ul><li>Best as an optional dark mode alongside A or B, not the only theme</li></ul></div></div>
   </section>
-  <section class="dir extra">
-    <div class="dir-h"><div class="grow"><h2>E · Volt <span class="rec lime">Extra</span></h2><p>Dark Grey #0E0E0B with Lime Green #AFE607. Lime on every primary action, the active tab and the selected interest, always with dark text.</p>
-      <div class="chips"><i style="background:#0E0E0B"></i><i style="background:#22221D"></i><i style="background:#F3F5E8"></i><i style="background:#AFE607"></i></div></div>
+  <div class="group lime"><h3>Lime set <span>Dark Grey #0E0E0B + Lime Green #AFE607</span></h3><p>The same four approaches, using the colours from your reference. Lime is always paired with dark text, because white on lime is unreadable.</p></div>
+  <section class="dir">
+    <div class="dir-h"><div class="grow"><h2>E · Ink &amp; Lime <span class="rec lime">Recommended in set</span></h2><p>White and near-black base. Lime only on primary buttons, Save, the active tab and the selected interest.</p>
+      <div class="chips"><i style="background:#fff"></i><i style="background:#0E0E0B"></i><i style="background:#AFE607"></i></div></div>
       <button class="open" data-full="e">Open full screen ↗</button></div>
     <div class="frame" data-brand="e"><button class="cover" data-full="e" aria-label="Open E full screen"></button></div>
-    <div class="pros"><div><b>Why it works</b><ul><li>High energy and very loud on social media; it reads as “new”</li><li>Lime on near-black has very strong contrast (about 14:1), so buttons are impossible to miss</li><li>Work and motion pop on the dark base</li></ul></div><div><b>Watch out</b><ul><li>Lime is a popular tech and crypto colour, so it’s less distinctly Nigerian than Orange and Milk</li><li>Never put white text on lime; use the dark grey</li><li>Like D, dark-only can tire people in long sessions, so plan a light version too</li></ul></div></div>
+    <div class="pros"><div><b>Why it works</b><ul><li>The work stays the hero; lime makes every action jump out</li><li>Cleanest and easiest to scale</li><li>Closest to your reference, but on light</li></ul></div><div><b>Watch out</b><ul><li>Lime on white has low edge contrast, so buttons rely on their dark text</li><li>Lime text on white is unreadable, so liked hearts use a darker olive</li></ul></div></div>
+  </section>
+  <section class="dir">
+    <div class="dir-h"><div class="grow"><h2>F · Milk &amp; Lime</h2><p>The whole page in Milk, lime-tinted cards and lime buttons. Fresh and playful.</p>
+      <div class="chips"><i style="background:#FDFDF1"></i><i style="background:#DDEF92"></i><i style="background:#AFE607"></i><i style="background:#0E0E0B"></i></div></div>
+      <button class="open" data-full="f">Open full screen ↗</button></div>
+    <div class="frame" data-brand="f"><button class="cover" data-full="f" aria-label="Open F full screen"></button></div>
+    <div class="pros"><div><b>Why it works</b><ul><li>Feels fresh, youthful and very distinct</li><li>Milk softens the lime so it doesn’t shout</li></ul></div><div><b>Watch out</b><ul><li>Lime card tints show only while images load; real work covers them</li><li>A green cast shifts how colours in uploaded work look</li></ul></div></div>
+  </section>
+  <section class="dir">
+    <div class="dir-h"><div class="grow"><h2>G · Lime Frame</h2><p>Light content framed by a solid lime sidebar and header, with dark buttons that have lime text. The boldest lime presence.</p>
+      <div class="chips"><i style="background:#AFE607"></i><i style="background:#FBFCF4"></i><i style="background:#0E0E0B"></i></div></div>
+      <button class="open" data-full="g">Open full screen ↗</button></div>
+    <div class="frame" data-brand="g"><button class="cover" data-full="g" aria-label="Open G full screen"></button></div>
+    <div class="pros"><div><b>Why it works</b><ul><li>Instantly recognisable in screenshots</li><li>Dark buttons with lime text feel sharp and premium</li></ul></div><div><b>Watch out</b><ul><li>A large lime area is tiring over long sessions</li><li>Competes with the work more than any other option</li></ul></div></div>
+  </section>
+  <section class="dir">
+    <div class="dir-h"><div class="grow"><h2>H · Night Volt</h2><p>Dark Grey base with off-white text, lime actions and lime-tinted motion. Exactly your reference.</p>
+      <div class="chips"><i style="background:#0E0E0B"></i><i style="background:#22221D"></i><i style="background:#F3F5E8"></i><i style="background:#AFE607"></i></div></div>
+      <button class="open" data-full="h">Open full screen ↗</button></div>
+    <div class="frame" data-brand="h"><button class="cover" data-full="h" aria-label="Open H full screen"></button></div>
+    <div class="pros"><div><b>Why it works</b><ul><li>Highest energy; lime on near-black has about 14:1 contrast</li><li>Work and motion pop on the dark base</li></ul></div><div><b>Watch out</b><ul><li>Lime and black is a common tech and crypto look</li><li>Best as a dark mode alongside E or F, not the only theme</li></ul></div></div>
   </section>
 </main>
 <div id="full" hidden role="dialog" aria-modal="true" aria-label="Full screen preview">
-  <div class="bar"><b id="fullName"></b><button data-go="a">A · Ink &amp; Orange</button><button data-go="b">B · Milk &amp; Orange</button><button data-go="c">C · Orange Frame</button><button data-go="d">D · Night Market</button><button data-go="e">E · Volt</button><span class="grow"></span><a id="fullTab" href="#" target="_blank" rel="noopener">Open in new tab ↗</a><button class="close" id="fullClose">Close ✕</button></div>
+  <div class="bar"><b id="fullName"></b><button data-go="a">A · Ink &amp; Orange</button><button data-go="b">B · Milk &amp; Orange</button><button data-go="c">C · Orange Frame</button><button data-go="d">D · Night Market</button><span class="sep"></span><button data-go="e">E · Ink &amp; Lime</button><button data-go="f">F · Milk &amp; Lime</button><button data-go="g">G · Lime Frame</button><button data-go="h">H · Night Volt</button><span class="grow"></span><a id="fullTab" href="#" target="_blank" rel="noopener">Open in new tab ↗</a><button class="close" id="fullClose">Close ✕</button></div>
   <iframe id="fullFrame" title="Full screen homepage"></iframe>
 </div>
 <!-- The whole prototype is embedded below so this page works on its own (no other files needed).
      Regenerate with: python3 wireframes/tools/build_colors.py -->
 <script id="proto" type="application/octet-stream">__PROTO_B64__</script>
 <script>
-const NAMES={a:'A · Ink & Orange',b:'B · Milk & Orange',c:'C · Orange Frame',d:'D · Night Market',e:'E · Volt (extra)'};
+const NAMES={a:'A · Ink & Orange',b:'B · Milk & Orange',c:'C · Orange Frame',d:'D · Night Market',e:'E · Ink & Lime',f:'F · Milk & Lime',g:'G · Lime Frame',h:'H · Night Volt'};
 const PROTO=new TextDecoder().decode(Uint8Array.from(atob(document.getElementById('proto').textContent.trim()),c=>c.charCodeAt(0)));
 // Inject the colour choice before the prototype's own scripts run.
 const html=(brand,embed)=>PROTO.replace('<head>',`<head><script>window.WF_BRAND=${JSON.stringify(brand)};window.WF_EMBED=${embed};<\/script>`);

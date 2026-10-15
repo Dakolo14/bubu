@@ -684,7 +684,7 @@ button.plabel:hover{color:var(--ink);background:var(--surface)}
   .detail .dstage .canvas{padding:14px;min-height:46vh}
 }
 @media (prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;transition-duration:.001ms!important}}
-/* ---------- colour directions: <html data-brand="a|b|c|d|e"> (no attribute = greyscale wireframe) ---------- */
+/* ---------- colour directions: <html data-brand="a…h"> (no attribute = greyscale wireframe) ---------- */
 :root{--paper:#fff;--glass:rgba(255,255,255,.94);--chrome:var(--paper);--active:var(--ink);--on-active:#fff;--primary:var(--ink);--on-primary:#fff}
 html[data-brand]{--accent:#EC5E27}
 html[data-brand="a"] .tabs button.on,html[data-brand="b"] .tabs button.on{border-color:var(--primary)}
@@ -738,23 +738,67 @@ html[data-brand="d"] .wbar i{background:#5A4E42}
 html[data-brand="d"] .switch::after{background:#14110E}
 html[data-brand="d"] .switch.on::after{background:#14110E}
 
-/* E · Volt (extra): dark grey #0E0E0B with lime #AFE607; lime fills always carry dark text */
-html[data-brand="e"]{color-scheme:dark;--accent:#AFE607;--bg:#0E0E0B;--paper:#151512;--glass:rgba(14,14,11,.92);--surface:#1A1A16;--fill:#22221D;--fill2:#2F2F28;--fill3:#4A4A40;--line:#25251F;--line2:#383830;--ink:#F3F5E8;--ink2:#CDD0BF;--muted:#8F9180;--primary:#AFE607;--on-primary:#0E0E0B;--active:#AFE607;--on-active:#0E0E0B;--shadow:0 18px 50px -18px rgba(0,0,0,.8)}
-html[data-brand="e"] .tabs button.on{border-color:var(--primary);color:var(--primary)}
-html[data-brand="e"] .ring.on .o{border-color:var(--primary);box-shadow:0 0 0 2px var(--primary)}
-html[data-brand="e"] :is(.btn.accent,.ibtn .dotn,.ri .bdg,.sbtn){color:#0E0E0B}
-html[data-brand="e"] .ph{background-image:linear-gradient(to top right,transparent calc(50% - .6px),rgba(175,230,7,.08) 50%,transparent calc(50% + .6px)),linear-gradient(to top left,transparent calc(50% - .6px),rgba(175,230,7,.08) 50%,transparent calc(50% + .6px))}
-html[data-brand="e"] .t0{background-color:#22231C}html[data-brand="e"] .t1{background-color:#1E1F19}html[data-brand="e"] .t2{background-color:#272921}html[data-brand="e"] .t3{background-color:#1B1C16}
-html[data-brand="e"] .media.motion{background-color:#2A3014}
-html[data-brand="e"] .blob{background:#5E7A0C}html[data-brand="e"] .blob.b2{background:#AFE607}
-html[data-brand="e"] :is(.count,.hic,.scoll,.adtag.on-media,.secplay,.dnav,.car-nav,.ppbig span,.bigplay span,.uth .rm,.rarrow,.totop){color:#0E0E0B}
-html[data-brand="e"] .rarrow,html[data-brand="e"] .totop{background:#AFE607;border-color:#AFE607}
-html[data-brand="e"] .toast button{background:rgba(0,0,0,.1);color:var(--on-active)}
-html[data-brand="e"] .scrim{background:rgba(0,0,0,.75)}
-html[data-brand="e"] .wbar{background:#22221D;border-bottom-color:#2F2F28}
-html[data-brand="e"] .wbar i{background:#4A4A40}
-html[data-brand="e"] .switch::after,html[data-brand="e"] .switch.on::after{background:#0E0E0B}
-html[data-brand="e"] .rail .logo{border-color:#AFE607;color:#AFE607}
+
+/* ---------- Lime set: Dark Grey #0E0E0B + Lime #AFE607. Lime fills always carry dark text. ---------- */
+html:is([data-brand="e"],[data-brand="f"],[data-brand="g"],[data-brand="h"]){--accent:#AFE607}
+html:is([data-brand="e"],[data-brand="f"],[data-brand="g"],[data-brand="h"]) :is(.btn.accent,.ibtn .dotn,.ri .bdg,.sbtn,.mobbar .up){color:#0E0E0B}
+html:is([data-brand="e"],[data-brand="f"],[data-brand="g"]) :is(.hic.on,.likes.on,.cmt .tx .t button:hover,.cmt .tx .t button.on){color:#5E7F00}
+html:is([data-brand="e"],[data-brand="f"],[data-brand="g"]) .dact .ibtn.liked{color:#5E7F00;border-color:#5E7F00}
+html:is([data-brand="e"],[data-brand="f"]) .tabs button.on{border-color:var(--primary);border-bottom-width:3px}
+html:is([data-brand="e"],[data-brand="f"]) .ring.on .o{border-color:#8DBB00;box-shadow:0 0 0 2px var(--primary)}
+
+/* E · Ink & Lime: white and near-black, lime only for primary actions */
+html[data-brand="e"]{--bg:#fff;--surface:#F7F7F4;--fill:#EFEFEB;--fill2:#E1E1DB;--fill3:#C6C6BE;--line:#EBEBE5;--line2:#D5D5CD;--ink:#0E0E0B;--ink2:#43433D;--muted:#86867D;--primary:#AFE607;--on-primary:#0E0E0B}
+
+/* F · Milk & Lime: milk page, lime-tinted cards, lime buttons */
+html[data-brand="f"]{--bg:#FDFDF1;--paper:#FFFFF8;--glass:rgba(253,253,241,.94);--surface:#F6F7E3;--fill:#EEF0D6;--fill2:#E1E4C3;--fill3:#C7CBA4;--line:#E9EBD0;--line2:#D8DBB8;--ink:#0E0E0B;--ink2:#45473A;--muted:#8B8D78;--primary:#AFE607;--on-primary:#0E0E0B}
+html[data-brand="f"] .t0{background-color:#E8F4B0}html[data-brand="f"] .t1{background-color:#DDEF92}html[data-brand="f"] .t2{background-color:#F0F8CC}html[data-brand="f"] .t3{background-color:#D2EA78}
+html[data-brand="f"] .media.motion{background-color:#C6E35A}
+html[data-brand="f"] .blob{background:#8DBB00}html[data-brand="f"] .blob.b2{background:#5E7F00}
+html[data-brand="f"] .ph{background-image:linear-gradient(to top right,transparent calc(50% - .6px),rgba(60,80,0,.14) 50%,transparent calc(50% + .6px)),linear-gradient(to top left,transparent calc(50% - .6px),rgba(60,80,0,.14) 50%,transparent calc(50% + .6px))}
+
+/* G · Lime Frame: light content framed by a lime sidebar and header */
+html[data-brand="g"]{--bg:#FBFCF4;--paper:#FFFFFB;--glass:rgba(251,252,244,.94);--surface:#F5F6EA;--fill:#EDEFDF;--fill2:#E0E2CD;--fill3:#C6C9AE;--line:#E8EAD6;--line2:#D7DAC0;--ink:#0E0E0B;--ink2:#45473A;--muted:#8B8D78;--chrome:#AFE607;--primary:#0E0E0B;--on-primary:#AFE607;--active:#0E0E0B;--on-active:#AFE607}
+html[data-brand="g"] .rail{border-right-color:#97C800}
+html[data-brand="g"] .rail .ri,html[data-brand="g"] .rail .pinbtn{color:#0E0E0B}
+html[data-brand="g"] .rail .ri:hover{background:rgba(14,14,11,.1);color:#0E0E0B}
+html[data-brand="g"] .rail .ri.on{background:#0E0E0B;color:#AFE607}
+html[data-brand="g"] .rail .ri.me .lbl span{color:rgba(14,14,11,.75)!important}
+html[data-brand="g"] .rail .label,html[data-brand="g"] .rail .rc,html[data-brand="g"] .rail .rc .n{color:rgba(14,14,11,.85)}
+html[data-brand="g"] .rail .rc:hover{background:rgba(14,14,11,.1)}
+html[data-brand="g"] .rail .rsep{background:rgba(14,14,11,.2)}
+html[data-brand="g"] .rail .logo{border-color:rgba(14,14,11,.7);color:#0E0E0B;background:transparent}
+html[data-brand="g"] .rail .ri .bdg{border-color:#AFE607;background:#0E0E0B}
+html[data-brand="g"] .top{background:#AFE607;border-bottom-color:#97C800}
+html[data-brand="g"] .top .search{background:rgba(255,255,255,.5);color:rgba(14,14,11,.9)}
+html[data-brand="g"] .top .search input{color:#0E0E0B}
+html[data-brand="g"] .top .search input::placeholder{color:rgba(14,14,11,.85)}
+html[data-brand="g"] .top .swrap.open .search,html[data-brand="g"] .top .search:focus-within{background:#FFFFF8;border-color:#FFFFF8;color:var(--muted)}
+html[data-brand="g"] .top .swrap.open .search input,html[data-brand="g"] .top .search:focus-within input{color:var(--ink)}
+html[data-brand="g"] .top .search:not(:focus-within) .scope,html[data-brand="g"] .top .search:not(:focus-within) .ibtn.bare{color:#0E0E0B;border-left-color:rgba(14,14,11,.25)}
+html[data-brand="g"] .top .search:not(:focus-within) .kbd{background:transparent;border-color:rgba(14,14,11,.6);color:#0E0E0B}
+html[data-brand="g"] .top .upbtn{background:#0E0E0B;border-color:#0E0E0B;color:#AFE607}
+html[data-brand="g"] .mobbar .up{background:#AFE607}
+html[data-brand="g"] .rail .ri .bdg{color:#AFE607}
+html[data-brand="g"] .ring.on .o{border-color:#0E0E0B;box-shadow:0 0 0 2px #AFE607}
+
+/* H · Night Volt: dark grey #0E0E0B with lime #AFE607; lime fills always carry dark text */
+html[data-brand="h"]{color-scheme:dark;--accent:#AFE607;--bg:#0E0E0B;--paper:#151512;--glass:rgba(14,14,11,.92);--surface:#1A1A16;--fill:#22221D;--fill2:#2F2F28;--fill3:#4A4A40;--line:#25251F;--line2:#383830;--ink:#F3F5E8;--ink2:#CDD0BF;--muted:#8F9180;--primary:#AFE607;--on-primary:#0E0E0B;--active:#AFE607;--on-active:#0E0E0B;--shadow:0 18px 50px -18px rgba(0,0,0,.8)}
+html[data-brand="h"] .tabs button.on{border-color:var(--primary);color:var(--primary)}
+html[data-brand="h"] .ring.on .o{border-color:var(--primary);box-shadow:0 0 0 2px var(--primary)}
+html[data-brand="h"] :is(.btn.accent,.ibtn .dotn,.ri .bdg,.sbtn){color:#0E0E0B}
+html[data-brand="h"] .ph{background-image:linear-gradient(to top right,transparent calc(50% - .6px),rgba(175,230,7,.08) 50%,transparent calc(50% + .6px)),linear-gradient(to top left,transparent calc(50% - .6px),rgba(175,230,7,.08) 50%,transparent calc(50% + .6px))}
+html[data-brand="h"] .t0{background-color:#22231C}html[data-brand="h"] .t1{background-color:#1E1F19}html[data-brand="h"] .t2{background-color:#272921}html[data-brand="h"] .t3{background-color:#1B1C16}
+html[data-brand="h"] .media.motion{background-color:#2A3014}
+html[data-brand="h"] .blob{background:#5E7A0C}html[data-brand="h"] .blob.b2{background:#AFE607}
+html[data-brand="h"] :is(.count,.hic,.scoll,.adtag.on-media,.secplay,.dnav,.car-nav,.ppbig span,.bigplay span,.uth .rm,.rarrow,.totop){color:#0E0E0B}
+html[data-brand="h"] .rarrow,html[data-brand="h"] .totop{background:#AFE607;border-color:#AFE607}
+html[data-brand="h"] .toast button{background:rgba(0,0,0,.1);color:var(--on-active)}
+html[data-brand="h"] .scrim{background:rgba(0,0,0,.75)}
+html[data-brand="h"] .wbar{background:#22221D;border-bottom-color:#2F2F28}
+html[data-brand="h"] .wbar i{background:#4A4A40}
+html[data-brand="h"] .switch::after,html[data-brand="h"] .switch.on::after{background:#0E0E0B}
+html[data-brand="h"] .rail .logo{border-color:#AFE607;color:#AFE607}
 </style>
 </head>
 <body>
@@ -823,7 +867,7 @@ html[data-brand="e"] .rail .logo{border-color:#AFE607;color:#AFE607}
    Icons & utils
    ========================================================= */
 const QS=new URLSearchParams(location.search);const EMBED=QS.has('embed')||!!window.WF_EMBED;
-const BRAND_NAMES={'':'Wireframe (greyscale)',a:'A · Ink & Orange',b:'B · Milk & Orange',c:'C · Orange Frame',d:'D · Night Market',e:'E · Volt (extra)'};
+const BRAND_NAMES={'':'Wireframe (greyscale)',a:'A · Ink & Orange',b:'B · Milk & Orange',c:'C · Orange Frame',d:'D · Night Market',e:'E · Ink & Lime',f:'F · Milk & Lime',g:'G · Lime Frame',h:'H · Night Volt'};
 function setBrand(v){if(v)document.documentElement.dataset.brand=v;else delete document.documentElement.dataset.brand;}
 (()=>{let v=QS.get('brand');if(v==null&&typeof window.WF_BRAND==='string')v=window.WF_BRAND;if(v==null){try{v=JSON.parse(localStorage.getItem('wfp_brand')||'""')}catch{v=''}}if(!(v in BRAND_NAMES))v='';setBrand(v);})();
 const P={
