@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Colour Directions</title>
+<style>
+:root{--bg:#f4f3ee;--ink:#1c1c1a;--muted:#77756e;--line:#dedcd3;--orange:#EC5E27;--milk:#FDFDF1}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 Inter,ui-sans-serif,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{max-width:1500px;margin:0 auto;padding:32px 24px 8px}
+.eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+h1{margin:6px 0 6px;font-size:30px;letter-spacing:-.02em}
+header p{margin:0;color:#4a4943;max-width:760px}
+.brandsw{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.brandsw span{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px 12px 5px 6px}
+.brandsw i{width:18px;height:18px;border-radius:50%;border:1px solid rgba(0,0,0,.12)}
+main{max-width:1500px;margin:0 auto;padding:16px 24px 60px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.dir{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column}
+.dir-h{display:flex;align-items:flex-start;gap:14px;padding:18px 20px 14px}
+.dir-h h2{margin:0;font-size:18px;letter-spacing:-.01em}
+.dir-h p{margin:4px 0 0;color:#4a4943;font-size:13px}
+.dir-h .grow{flex:1}
+.chips{display:flex;gap:4px;margin-top:10px}
+.chips i{width:26px;height:26px;border-radius:7px;border:1px solid rgba(0,0,0,.1)}
+.open{flex:none;display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 14px;border-radius:999px;background:var(--ink);color:#fff;text-decoration:none;font-weight:600;font-size:13px;white-space:nowrap}
+.open:hover{background:#000}
+.frame{position:relative;border-top:1px solid var(--line);overflow:hidden;background:#eee}
+.frame iframe{position:absolute;top:0;left:0;width:1440px;height:900px;border:0;transform-origin:0 0;pointer-events:none}
+.frame a.cover{position:absolute;inset:0;z-index:1}
+.pros{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:14px 20px 18px;font-size:12.5px;color:#4a4943;border-top:1px solid var(--line)}
+.pros b{display:block;color:var(--ink);font-size:12px;margin-bottom:4px}
+.pros ul{margin:0;padding-left:16px}
+.rec{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:var(--orange);color:#fff;border-radius:6px;padding:3px 8px;margin-left:8px;vertical-align:3px}
+@media (max-width:1000px){main{grid-template-columns:1fr}}
+@media (max-width:560px){.dir-h{flex-direction:column}.pros{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="eyebrow">Brand colours · homepage directions</div>
+  <h1>Pick a colour direction</h1>
+  <p>The same live homepage in four colourways, using your brand Orange #EC5E27 and Milk #FDFDF1. Click a preview or “Open full screen” to use it. Everything works in every theme, and you can also switch in the prototype under Settings → Colour direction.</p>
+  <div class="brandsw"><span><i style="background:#EC5E27"></i>Orange · #EC5E27</span><span><i style="background:#FDFDF1"></i>Milk · #FDFDF1</span><span><i style="background:#1c1c1a"></i>Ink · #1C1C1A</span></div>
+</header>
+<main>
+  <section class="dir">
+    <div class="dir-h"><div class="grow"><h2>A · Ink &amp; Orange <span class="rec">Recommended</span></h2><p>White and black base. Orange only on primary buttons, Save, the active tab and the selected interest.</p>
+      <div class="chips"><i style="background:#fff"></i><i style="background:#151413"></i><i style="background:#EC5E27"></i></div></div>
+      <a class="open" href="prototype.html?brand=a" target="_blank" rel="noopener">Open full screen ↗</a></div>
+    <div class="frame" data-src="prototype.html?brand=a&embed=1"><a class="cover" href="prototype.html?brand=a" target="_blank" rel="noopener" aria-label="Open A full screen"></a></div>
+    <div class="pros"><div><b>Why it works</b><ul><li>Creators’ work is the colour on the page</li><li>Orange instantly means “do this”</li><li>Easiest to keep consistent as the product grows</li></ul></div><div><b>Watch out</b><ul><li>Brand feel is quieter; the logo and marketing pages carry more of it</li></ul></div></div>
+  </section>
+  <section class="dir">
+    <div class="dir-h"><div class="grow"><h2>B · Milk &amp; Orange</h2><p>The whole page in Milk, orange-tinted cards and orange buttons. Warm and very on-brand.</p>
+      <div class="chips"><i style="background:#FDFDF1"></i><i style="background:#F6CBB4"></i><i style="background:#EC5E27"></i><i style="background:#2B1A10"></i></div></div>
+      <a class="open" href="prototype.html?brand=b" target="_blank" rel="noopener">Open full screen ↗</a></div>
+    <div class="frame" data-src="prototype.html?brand=b&embed=1"><a class="cover" href="prototype.html?brand=b" target="_blank" rel="noopener" aria-label="Open B full screen"></a></div>
+    <div class="pros"><div><b>Why it works</b><ul><li>Feels warm, crafted and distinctly yours</li><li>Milk is gentler on the eyes than pure white</li></ul></div><div><b>Watch out</b><ul><li>Orange card tints show only while images load; real work will cover them</li><li>Warm backgrounds slightly shift how colours in uploaded work look</li></ul></div></div>
+  </section>
+  <section class="dir">
+    <div class="dir-h"><div class="grow"><h2>C · Orange Frame</h2><p>Milk content area framed by a solid orange sidebar and header. The boldest brand presence.</p>
+      <div class="chips"><i style="background:#EC5E27"></i><i style="background:#FDFDF1"></i><i style="background:#1E1510"></i></div></div>
+      <a class="open" href="prototype.html?brand=c" target="_blank" rel="noopener">Open full screen ↗</a></div>
+    <div class="frame" data-src="prototype.html?brand=c&embed=1"><a class="cover" href="prototype.html?brand=c" target="_blank" rel="noopener" aria-label="Open C full screen"></a></div>
+    <div class="pros"><div><b>Why it works</b><ul><li>Unmistakable in screenshots and on social media</li><li>The frame stays put while the work scrolls</li></ul></div><div><b>Watch out</b><ul><li>A big orange area competes with the work for attention</li><li>Can feel loud for long browsing sessions</li></ul></div></div>
+  </section>
+  <section class="dir">
+    <div class="dir-h"><div class="grow"><h2>D · Night Market</h2><p>Warm near-black base with Milk text and orange accents. Moody and premium.</p>
+      <div class="chips"><i style="background:#14110E"></i><i style="background:#2A241E"></i><i style="background:#FDFDF1"></i><i style="background:#EC5E27"></i></div></div>
+      <a class="open" href="prototype.html?brand=d" target="_blank" rel="noopener">Open full screen ↗</a></div>
+    <div class="frame" data-src="prototype.html?brand=d&embed=1"><a class="cover" href="prototype.html?brand=d" target="_blank" rel="noopener" aria-label="Open D full screen"></a></div>
+    <div class="pros"><div><b>Why it works</b><ul><li>Work and motion pop on a dark background</li><li>Orange glows; feels premium</li></ul></div><div><b>Watch out</b><ul><li>Best as an optional dark mode alongside A or B, not the only theme</li></ul></div></div>
+  </section>
+</main>
+<script>
+// Scale each live 1440×900 homepage to fit its card.
+const frames=[...document.querySelectorAll('.frame')];
+frames.forEach(f=>{const i=document.createElement('iframe');i.src=f.dataset.src;i.title='Homepage preview';i.tabIndex=-1;f.prepend(i);});
+const fit=()=>frames.forEach(f=>{const w=f.clientWidth,k=w/1440;f.style.height=Math.round(900*k)+'px';f.querySelector('iframe').style.transform=`scale(${k})`;});
+new ResizeObserver(fit).observe(document.body);fit();
+</script>
+</body>
+</html>
