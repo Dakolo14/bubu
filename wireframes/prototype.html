@@ -684,7 +684,7 @@ button.plabel:hover{color:var(--ink);background:var(--surface)}
   .detail .dstage .canvas{padding:14px;min-height:46vh}
 }
 @media (prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;transition-duration:.001ms!important}}
-/* ---------- colour directions: <html data-brand="a|b|c|d"> (no attribute = greyscale wireframe) ---------- */
+/* ---------- colour directions: <html data-brand="a|b|c|d|e"> (no attribute = greyscale wireframe) ---------- */
 :root{--paper:#fff;--glass:rgba(255,255,255,.94);--chrome:var(--paper);--active:var(--ink);--on-active:#fff;--primary:var(--ink);--on-primary:#fff}
 html[data-brand]{--accent:#EC5E27}
 html[data-brand="a"] .tabs button.on,html[data-brand="b"] .tabs button.on{border-color:var(--primary)}
@@ -737,6 +737,24 @@ html[data-brand="d"] .wbar{background:#2A241E;border-bottom-color:#3A3129}
 html[data-brand="d"] .wbar i{background:#5A4E42}
 html[data-brand="d"] .switch::after{background:#14110E}
 html[data-brand="d"] .switch.on::after{background:#14110E}
+
+/* E · Volt (extra): dark grey #0E0E0B with lime #AFE607; lime fills always carry dark text */
+html[data-brand="e"]{color-scheme:dark;--accent:#AFE607;--bg:#0E0E0B;--paper:#151512;--glass:rgba(14,14,11,.92);--surface:#1A1A16;--fill:#22221D;--fill2:#2F2F28;--fill3:#4A4A40;--line:#25251F;--line2:#383830;--ink:#F3F5E8;--ink2:#CDD0BF;--muted:#8F9180;--primary:#AFE607;--on-primary:#0E0E0B;--active:#AFE607;--on-active:#0E0E0B;--shadow:0 18px 50px -18px rgba(0,0,0,.8)}
+html[data-brand="e"] .tabs button.on{border-color:var(--primary);color:var(--primary)}
+html[data-brand="e"] .ring.on .o{border-color:var(--primary);box-shadow:0 0 0 2px var(--primary)}
+html[data-brand="e"] :is(.btn.accent,.ibtn .dotn,.ri .bdg,.sbtn){color:#0E0E0B}
+html[data-brand="e"] .ph{background-image:linear-gradient(to top right,transparent calc(50% - .6px),rgba(175,230,7,.08) 50%,transparent calc(50% + .6px)),linear-gradient(to top left,transparent calc(50% - .6px),rgba(175,230,7,.08) 50%,transparent calc(50% + .6px))}
+html[data-brand="e"] .t0{background-color:#22231C}html[data-brand="e"] .t1{background-color:#1E1F19}html[data-brand="e"] .t2{background-color:#272921}html[data-brand="e"] .t3{background-color:#1B1C16}
+html[data-brand="e"] .media.motion{background-color:#2A3014}
+html[data-brand="e"] .blob{background:#5E7A0C}html[data-brand="e"] .blob.b2{background:#AFE607}
+html[data-brand="e"] :is(.count,.hic,.scoll,.adtag.on-media,.secplay,.dnav,.car-nav,.ppbig span,.bigplay span,.uth .rm,.rarrow,.totop){color:#0E0E0B}
+html[data-brand="e"] .rarrow,html[data-brand="e"] .totop{background:#AFE607;border-color:#AFE607}
+html[data-brand="e"] .toast button{background:rgba(0,0,0,.1);color:var(--on-active)}
+html[data-brand="e"] .scrim{background:rgba(0,0,0,.75)}
+html[data-brand="e"] .wbar{background:#22221D;border-bottom-color:#2F2F28}
+html[data-brand="e"] .wbar i{background:#4A4A40}
+html[data-brand="e"] .switch::after,html[data-brand="e"] .switch.on::after{background:#0E0E0B}
+html[data-brand="e"] .rail .logo{border-color:#AFE607;color:#AFE607}
 </style>
 </head>
 <body>
@@ -805,7 +823,7 @@ html[data-brand="d"] .switch.on::after{background:#14110E}
    Icons & utils
    ========================================================= */
 const QS=new URLSearchParams(location.search);const EMBED=QS.has('embed')||!!window.WF_EMBED;
-const BRAND_NAMES={'':'Wireframe (greyscale)',a:'A · Ink & Orange',b:'B · Milk & Orange',c:'C · Orange Frame',d:'D · Night Market'};
+const BRAND_NAMES={'':'Wireframe (greyscale)',a:'A · Ink & Orange',b:'B · Milk & Orange',c:'C · Orange Frame',d:'D · Night Market',e:'E · Volt (extra)'};
 function setBrand(v){if(v)document.documentElement.dataset.brand=v;else delete document.documentElement.dataset.brand;}
 (()=>{let v=QS.get('brand');if(v==null&&typeof window.WF_BRAND==='string')v=window.WF_BRAND;if(v==null){try{v=JSON.parse(localStorage.getItem('wfp_brand')||'""')}catch{v=''}}if(!(v in BRAND_NAMES))v='';setBrand(v);})();
 const P={

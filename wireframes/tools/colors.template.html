@@ -32,6 +32,11 @@ main{max-width:1500px;margin:0 auto;padding:16px 24px 60px;display:grid;grid-tem
 .pros{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:14px 20px 18px;font-size:12.5px;color:#4a4943;border-top:1px solid var(--line)}
 .pros b{display:block;color:var(--ink);font-size:12px;margin-bottom:4px}
 .pros ul{margin:0;padding-left:16px}
+.dir.extra{grid-column:1/-1;background:#0E0E0B;border-color:#0E0E0B;color:#F3F5E8}
+.dir.extra .dir-h p,.dir.extra .pros{color:#CDD0BF}.dir.extra .pros{border-top-color:#25251F}.dir.extra .pros b{color:#AFE607}.dir.extra .frame{border-top-color:#25251F}
+.dir.extra .open{background:#AFE607;color:#0E0E0B}.dir.extra .open:hover{background:#c4f52a}
+.dir.extra .chips i{border-color:#4A4A40}
+.rec.lime{background:#AFE607;color:#0E0E0B}
 .rec{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:var(--orange);color:#fff;border-radius:6px;padding:3px 8px;margin-left:8px;vertical-align:3px}
 
 #full{position:fixed;inset:0;z-index:50;background:#111;display:flex;flex-direction:column}
@@ -51,7 +56,7 @@ main{max-width:1500px;margin:0 auto;padding:16px 24px 60px;display:grid;grid-tem
 <header>
   <div class="eyebrow">Brand colours · homepage directions</div>
   <h1>Pick a colour direction</h1>
-  <p>The same live homepage in four colourways, using your brand Orange #EC5E27 and Milk #FDFDF1. Click a preview or “Open full screen” to use it right here. Everything works in every theme, and you can also switch in the prototype under Settings → Colour direction.</p>
+  <p>The same live homepage in four colourways using your brand Orange #EC5E27 and Milk #FDFDF1, plus an extra direction (E) in Dark Grey and Lime. Click a preview or “Open full screen” to use it right here. Everything works in every theme, and you can also switch in the prototype under Settings → Colour direction.</p>
   <div class="brandsw"><span><i style="background:#EC5E27"></i>Orange · #EC5E27</span><span><i style="background:#FDFDF1"></i>Milk · #FDFDF1</span><span><i style="background:#1c1c1a"></i>Ink · #1C1C1A</span></div>
 </header>
 <main>
@@ -83,16 +88,23 @@ main{max-width:1500px;margin:0 auto;padding:16px 24px 60px;display:grid;grid-tem
     <div class="frame" data-brand="d"><button class="cover" data-full="d" aria-label="Open D full screen"></button></div>
     <div class="pros"><div><b>Why it works</b><ul><li>Work and motion pop on a dark background</li><li>Orange glows; feels premium</li></ul></div><div><b>Watch out</b><ul><li>Best as an optional dark mode alongside A or B, not the only theme</li></ul></div></div>
   </section>
+  <section class="dir extra">
+    <div class="dir-h"><div class="grow"><h2>E · Volt <span class="rec lime">Extra</span></h2><p>Dark Grey #0E0E0B with Lime Green #AFE607. Lime on every primary action, the active tab and the selected interest, always with dark text.</p>
+      <div class="chips"><i style="background:#0E0E0B"></i><i style="background:#22221D"></i><i style="background:#F3F5E8"></i><i style="background:#AFE607"></i></div></div>
+      <button class="open" data-full="e">Open full screen ↗</button></div>
+    <div class="frame" data-brand="e"><button class="cover" data-full="e" aria-label="Open E full screen"></button></div>
+    <div class="pros"><div><b>Why it works</b><ul><li>High energy and very loud on social media; it reads as “new”</li><li>Lime on near-black has very strong contrast (about 14:1), so buttons are impossible to miss</li><li>Work and motion pop on the dark base</li></ul></div><div><b>Watch out</b><ul><li>Lime is a popular tech and crypto colour, so it’s less distinctly Nigerian than Orange and Milk</li><li>Never put white text on lime; use the dark grey</li><li>Like D, dark-only can tire people in long sessions, so plan a light version too</li></ul></div></div>
+  </section>
 </main>
 <div id="full" hidden role="dialog" aria-modal="true" aria-label="Full screen preview">
-  <div class="bar"><b id="fullName"></b><button data-go="a">A · Ink &amp; Orange</button><button data-go="b">B · Milk &amp; Orange</button><button data-go="c">C · Orange Frame</button><button data-go="d">D · Night Market</button><span class="grow"></span><a id="fullTab" href="#" target="_blank" rel="noopener">Open in new tab ↗</a><button class="close" id="fullClose">Close ✕</button></div>
+  <div class="bar"><b id="fullName"></b><button data-go="a">A · Ink &amp; Orange</button><button data-go="b">B · Milk &amp; Orange</button><button data-go="c">C · Orange Frame</button><button data-go="d">D · Night Market</button><button data-go="e">E · Volt</button><span class="grow"></span><a id="fullTab" href="#" target="_blank" rel="noopener">Open in new tab ↗</a><button class="close" id="fullClose">Close ✕</button></div>
   <iframe id="fullFrame" title="Full screen homepage"></iframe>
 </div>
 <!-- The whole prototype is embedded below so this page works on its own (no other files needed).
      Regenerate with: python3 wireframes/tools/build_colors.py -->
 <script id="proto" type="application/octet-stream">__PROTO_B64__</script>
 <script>
-const NAMES={a:'A · Ink & Orange',b:'B · Milk & Orange',c:'C · Orange Frame',d:'D · Night Market'};
+const NAMES={a:'A · Ink & Orange',b:'B · Milk & Orange',c:'C · Orange Frame',d:'D · Night Market',e:'E · Volt (extra)'};
 const PROTO=new TextDecoder().decode(Uint8Array.from(atob(document.getElementById('proto').textContent.trim()),c=>c.charCodeAt(0)));
 // Inject the colour choice before the prototype's own scripts run.
 const html=(brand,embed)=>PROTO.replace('<head>',`<head><script>window.WF_BRAND=${JSON.stringify(brand)};window.WF_EMBED=${embed};<\/script>`);
