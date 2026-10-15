@@ -804,10 +804,10 @@ html[data-brand="d"] .switch.on::after{background:#14110E}
 /* =========================================================
    Icons & utils
    ========================================================= */
-const QS=new URLSearchParams(location.search);const EMBED=QS.has('embed');
+const QS=new URLSearchParams(location.search);const EMBED=QS.has('embed')||!!window.WF_EMBED;
 const BRAND_NAMES={'':'Wireframe (greyscale)',a:'A · Ink & Orange',b:'B · Milk & Orange',c:'C · Orange Frame',d:'D · Night Market'};
 function setBrand(v){if(v)document.documentElement.dataset.brand=v;else delete document.documentElement.dataset.brand;}
-(()=>{let v=QS.get('brand');if(v==null){try{v=JSON.parse(localStorage.getItem('wfp_brand')||'""')}catch{v=''}}if(!(v in BRAND_NAMES))v='';setBrand(v);})();
+(()=>{let v=QS.get('brand');if(v==null&&typeof window.WF_BRAND==='string')v=window.WF_BRAND;if(v==null){try{v=JSON.parse(localStorage.getItem('wfp_brand')||'""')}catch{v=''}}if(!(v in BRAND_NAMES))v='';setBrand(v);})();
 const P={
   search:'<circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/>',
   bell:'<path d="M6 8a6 6 0 0112 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10 21h4"/>',
@@ -2914,7 +2914,7 @@ document.addEventListener('click',async e=>{
    Boot
    ========================================================= */
 hydrate();renderMe();renderRailColls();applyPinned();updateBadges();
-if(!location.hash)history.replaceState(null,'','#/home');
+if(!location.hash){try{history.replaceState(null,'','#/home')}catch{}}
 render();
 if(!EMBED&&!store.get('hinted',false)){setTimeout(()=>toast('Prototype: everything is clickable. Hover a card, press <b>/</b> to search, or hit <b>Upload</b>.',{ms:6000}),900);store.set('hinted',true);}
 matchMedia('(prefers-reduced-motion: reduce)').addEventListener?.('change',schedulePlay);
