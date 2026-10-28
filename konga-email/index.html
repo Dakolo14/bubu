@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Konga Email Builder</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --pink:#ED017F; --ink:#1a1a1a; --muted:#6b6b6b; --line:#e3e3e3; --bg:#f5f5f7; --green:#1E9E3E; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family:'Poppins', Arial, sans-serif; color:var(--ink); background:var(--bg); font-size:13px; }
+  header.bar { position:sticky; top:0; z-index:5; display:flex; flex-wrap:wrap; gap:8px; align-items:center; padding:10px 16px; background:#fff; border-bottom:1px solid var(--line); }
+  header.bar h1 { font-size:16px; margin:0 auto 0 0; }
+  header.bar h1 span { color:var(--pink); }
+  button, .btn { font:inherit; font-size:12px; border:1px solid var(--line); background:#fff; border-radius:6px; padding:7px 12px; cursor:pointer; }
+  button.primary { background:var(--pink); border-color:var(--pink); color:#fff; font-weight:600; }
+  button.small { padding:3px 8px; font-size:11px; }
+  button.danger { color:#c0262d; }
+  main { display:grid; grid-template-columns: minmax(380px, 520px) 1fr; gap:0; height:calc(100vh - 53px); }
+  .form { overflow:auto; padding:16px; border-right:1px solid var(--line); }
+  .preview { overflow:auto; padding:16px; display:flex; flex-direction:column; align-items:center; gap:8px; }
+  .preview .toggle { display:flex; gap:6px; }
+  .preview iframe { width:640px; max-width:100%; height:100%; min-height:600px; border:1px solid var(--line); background:#fff; border-radius:8px; transition:width .2s; }
+  .preview iframe.mobile { width:380px; }
+  details { background:#fff; border:1px solid var(--line); border-radius:10px; margin-bottom:12px; }
+  summary { cursor:pointer; padding:12px 14px; font-weight:600; font-size:14px; list-style:none; display:flex; justify-content:space-between; }
+  summary::after { content:'+'; color:var(--muted); }
+  details[open] summary::after { content:'\2212'; }
+  .body { padding:0 14px 14px; }
+  label { display:block; margin-top:8px; font-size:11px; color:var(--muted); font-weight:500; }
+  input[type=text], input[type=number], input[type=url], textarea { width:100%; font:inherit; font-size:12px; padding:7px 9px; border:1px solid var(--line); border-radius:6px; background:#fff; }
+  input:focus, textarea:focus { outline:2px solid #f8c6e0; border-color:var(--pink); }
+  .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:0 10px; }
+  .check { display:flex; gap:6px; align-items:center; margin-top:8px; font-size:12px; color:var(--ink); }
+  .item { border:1px solid var(--line); border-radius:8px; padding:10px; margin-top:10px; background:#fafafa; }
+  .item-head { display:flex; align-items:center; gap:6px; }
+  .item-head strong { margin-right:auto; font-size:12px; }
+  .calc { margin-top:8px; font-size:11px; padding:6px 8px; border-radius:6px; background:#eef7f0; color:var(--green); }
+  .calc.none { background:#f2f2f2; color:var(--muted); }
+  .calc.warn { background:#fdecec; color:#c0262d; }
+  .thumb { width:44px; height:44px; object-fit:contain; border:1px solid var(--line); border-radius:4px; background:#fff; }
+  .hint { font-size:11px; color:var(--muted); margin:6px 0 0; line-height:1.5; }
+  .toast { position:fixed; bottom:18px; left:50%; transform:translateX(-50%); background:#111; color:#fff; padding:9px 16px; border-radius:8px; font-size:12px; opacity:0; transition:opacity .2s; pointer-events:none; }
+  .toast.show { opacity:1; }
+  @media (max-width: 900px) {
+    main { grid-template-columns:1fr; height:auto; }
+    .form { border-right:0; }
+    .preview iframe { height:900px; }
+  }
+</style>
+</head>
+<body>
+<header class="bar">
+  <h1><span>Konga</span> Email Builder</h1>
+  <button id="btnNew" title="Clear today's products but keep logos, links and footer">New day</button>
+  <button id="btnExport">Save JSON</button>
+  <label class="btn" style="margin:0;color:inherit;font-size:12px;">Load JSON<input id="fileImport" type="file" accept="application/json" hidden></label>
+  <button id="btnDownload">Download HTML</button>
+  <button id="btnCopy" class="primary">Copy HTML for Netcore</button>
+</header>
+<main>
+  <section class="form" id="form"></section>
+  <section class="preview">
+    <div class="toggle">
+      <button class="small" data-view="desktop">Desktop</button>
+      <button class="small" data-view="mobile">Mobile</button>
+    </div>
+    <iframe id="preview" title="Email preview"></iframe>
+  </section>
+</main>
+<div class="toast" id="toast"></div>
+
+<script src="render.js"></script>
+<script>
+(function () {
+  var STORE_KEY = 'konga-email-builder-v1';
+  var K = window.KongaEmail;
+  var state = load();
+  var form = document.getElementById('form');
+  var frame = document.getElementById('preview');
+
+  function load() {
+    try {
+      var saved = JSON.parse(localStorage.getItem(STORE_KEY));
+      if (saved && saved.settings) return Object.assign(K.defaultData(), saved);
+    } catch (e) {}
+    return K.defaultData();
+  }
+  function save() {
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch (e) {}
+  }
+
+  function get(path) { return path.split('.').reduce(function (o, k) { return o == null ? o : o[k]; }, state); }
+  function set(path, v) {
+    var keys = path.split('.'), last = keys.pop();
+    var obj = keys.reduce(function (o, k) { return o[k]; }, state);
+    obj[last] = v;
+  }
+
+  var timer;
+  function refresh() {
+    clearTimeout(timer);
+    timer = setTimeout(function () { frame.srcdoc = K.render(state); save(); }, 150);
+  }
+
+  function toast(msg) {
+    var t = document.getElementById('toast');
+    t.textContent = msg; t.classList.add('show');
+    setTimeout(function () { t.classList.remove('show'); }, 1800);
+  }
+
+  // ---------- small DOM helpers ----------
+  function h(tag, attrs, children) {
+    var el = document.createElement(tag);
+    Object.keys(attrs || {}).forEach(function (k) {
+      if (k === 'on') Object.keys(attrs.on).forEach(function (ev) { el.addEventListener(ev, attrs.on[ev]); });
+      else if (k === 'text') el.textContent = attrs[k];
+      else el.setAttribute(k, attrs[k]);
+    });
+    (children || []).forEach(function (c) { if (c) el.appendChild(typeof c === 'string' ? document.createTextNode(c) : c); });
+    return el;
+  }
+
+  function field(path, label, opts) {
+    opts = opts || {};
+    var input = h(opts.multiline ? 'textarea' : 'input', {
+      type: opts.type || 'text', placeholder: opts.placeholder || '', rows: opts.rows || 2,
+    });
+    input.value = get(path) == null ? '' : get(path);
+    input.addEventListener('input', function () {
+      var v = input.value;
+      set(path, opts.type === 'number' ? (v === '' ? '' : Number(v)) : v);
+      if (opts.onChange) opts.onChange();
+      refresh();
+    });
+    return h('div', {}, [h('label', { text: label }), input]);
+  }
+
+  function check(path, label) {
+    var box = h('input', { type: 'checkbox' });
+    box.checked = get(path) !== false;
+    box.addEventListener('change', function () { set(path, box.checked); refresh(); });
+    return h('label', { class: 'check' }, [box, label]);
+  }
+
+  function section(title, children, open) {
+    var d = h('details', open ? { open: '' } : {}, [h('summary', { text: title }), h('div', { class: 'body' }, children)]);
+    return d;
+  }
+
+  function calcBox(path) {
+    var box = h('div', { class: 'calc' });
+    function update() {
+      var p = get(path);
+      var pr = K.pricing(p);
+      var fmt = function (n) { return '₦' + Math.round(n).toLocaleString('en-NG'); };
+      if (pr.hasDiscount) {
+        box.className = 'calc';
+        box.textContent = 'Auto: -' + pr.pct + '% badge · You save ' + fmt(pr.save);
+      } else if (pr.oldPrice && pr.price && pr.oldPrice <= pr.price) {
+        box.className = 'calc warn';
+        box.textContent = 'Slashed price must be higher than price. No badge or savings will show.';
+      } else {
+        box.className = 'calc none';
+        box.textContent = 'No slashed price, so no badge or savings will show.';
+      }
+    }
+    update();
+    return { el: box, update: update };
+  }
+
+  function thumb(path) {
+    var im = h('img', { class: 'thumb', alt: '' });
+    function update() { var src = get(path); im.style.visibility = src ? 'visible' : 'hidden'; if (src) im.src = src; }
+    update();
+    return { el: im, update: update };
+  }
+
+  function productFields(path, withLogos) {
+    var calc = calcBox(path);
+    var t = thumb(path + '.image');
+    var nodes = [
+      field(path + '.name', 'Product name'),
+      h('div', { class: 'grid2' }, [
+        field(path + '.price', 'Price (₦)', { type: 'number', onChange: calc.update, placeholder: '551825' }),
+        field(path + '.oldPrice', 'Slashed price (₦)', { type: 'number', onChange: calc.update, placeholder: '650000' }),
+      ]),
+      calc.el,
+      field(path + '.image', 'Product image URL', { type: 'url', onChange: t.update, placeholder: 'https://...' }),
+      field(path + '.link', 'Shop Now link', { type: 'url', placeholder: 'https://www.konga.com/product/...' }),
+    ];
+    if (withLogos) {
+      nodes.push(h('div', { class: 'grid2' }, [
+        field(path + '.campaignLogo', 'Campaign logo URL (top left)', { type: 'url' }),
+        field(path + '.brandLogo', 'Brand logo URL (top right)', { type: 'url' }),
+      ]));
+    }
+    return { nodes: nodes, thumb: t.el };
+  }
+
+  // A repeatable list (products, nav, categories, social)
+  function list(path, itemLabel, renderItem, makeEmpty, opts) {
+    opts = opts || {};
+    var wrap = h('div');
+    function draw() {
+      wrap.innerHTML = '';
+      var arr = get(path);
+      arr.forEach(function (_, i) {
+        var ip = path + '.' + i;
+        var r = renderItem(ip, i);
+        var head = h('div', { class: 'item-head' }, [
+          r.thumb || null,
+          h('strong', { text: itemLabel + ' ' + (i + 1) }),
+          h('button', { class: 'small', title: 'Move up', on: { click: function () { move(i, -1); } } }, ['↑']),
+          h('button', { class: 'small', title: 'Move down', on: { click: function () { move(i, 1); } } }, ['↓']),
+          opts.noDuplicate ? null : h('button', { class: 'small', on: { click: function () { arr.splice(i + 1, 0, JSON.parse(JSON.stringify(arr[i]))); draw(); refresh(); } } }, ['Copy']),
+          h('button', { class: 'small danger', on: { click: function () { arr.splice(i, 1); draw(); refresh(); } } }, ['Remove']),
+        ]);
+        wrap.appendChild(h('div', { class: 'item' }, [head].concat(r.nodes)));
+      });
+      wrap.appendChild(h('button', { style: 'margin-top:10px', on: { click: function () { arr.push(makeEmpty()); draw(); refresh(); } } }, ['+ Add ' + itemLabel.toLowerCase()]));
+    }
+    function move(i, dir) {
+      var arr = get(path), j = i + dir;
+      if (j < 0 || j >= arr.length) return;
+      var tmp = arr[i]; arr[i] = arr[j]; arr[j] = tmp;
+      draw(); refresh();
+    }
+    draw();
+    wrap.redraw = draw;
+    return wrap;
+  }
+
+  // ---------- Bulk paste from spreadsheet ----------
+  function bulkPaste(productList) {
+    var ta = h('textarea', { rows: 5, placeholder: 'Name\tPrice\tSlashed price\tImage URL\tLink\tBrand logo URL\tCampaign logo URL' });
+    function parse() {
+      return ta.value.split(/\r?\n/).map(function (line) {
+        var c = line.split('\t');
+        if (c.length < 2 || isNaN(parseFloat(String(c[1]).replace(/[^0-9.]/g, '')))) return null; // skips header / blank rows
+        var n = function (v) { return v ? Number(String(v).replace(/[^0-9.]/g, '')) : ''; };
+        return {
+          name: (c[0] || '').trim(), price: n(c[1]), oldPrice: n(c[2]),
+          image: (c[3] || '').trim(), link: (c[4] || '').trim(),
+          brandLogo: (c[5] || '').trim(), campaignLogo: (c[6] || '').trim(),
+        };
+      }).filter(Boolean);
+    }
+    function apply(replace) {
+      var rows = parse();
+      if (!rows.length) { toast('No product rows found. Paste rows copied from Excel or Google Sheets.'); return; }
+      if (replace) state.topDeals.products = rows; else state.topDeals.products = state.topDeals.products.concat(rows);
+      ta.value = '';
+      productList.redraw(); refresh();
+      toast(rows.length + ' product(s) ' + (replace ? 'loaded' : 'added'));
+    }
+    return h('div', { class: 'item' }, [
+      h('strong', { text: 'Bulk paste from a spreadsheet' }),
+      h('p', { class: 'hint', text: 'Copy rows from Excel or Google Sheets with the columns in this order: Name | Price | Slashed price | Image URL | Link | Brand logo URL (optional) | Campaign logo URL (optional). Header rows are skipped.' }),
+      ta,
+      h('div', { style: 'display:flex;gap:6px;margin-top:8px' }, [
+        h('button', { class: 'primary', on: { click: function () { apply(true); } } }, ['Replace all products']),
+        h('button', { on: { click: function () { apply(false); } } }, ['Append']),
+      ]),
+    ]);
+  }
+
+  // ---------- Build the form ----------
+  function build() {
+    form.innerHTML = '';
+
+    var dod = productFields('dealOfDay.product', false);
+    var topList = list('topDeals.products', 'Product', function (p) { return productFields(p, true); }, K.emptyProduct);
+
+    form.append(
+      section('Top Deals (product cards)', [
+        h('p', { class: 'hint', text: 'Enter the price and slashed price. The discount badge and "You save" amount are calculated for you. Cards are laid out 3 per row.' }),
+        h('div', { class: 'grid2' }, [
+          field('topDeals.title', 'Section title'),
+          field('topDeals.shopAllLink', '"Shop All" link', { type: 'url' }),
+        ]),
+        field('settings.nameMaxChars', 'Max characters for product names (longer names end in …)', { type: 'number' }),
+        bulkPaste(topList),
+        topList,
+      ], true),
+
+      section('Deal Of The Day', [check('dealOfDay.enabled', 'Show this section'), field('dealOfDay.title', 'Section title')].concat(dod.nodes)),
+
+      section('Hero banner (image)', [
+        check('hero.enabled', 'Show hero banner'),
+        field('hero.image', 'Banner image URL (600px wide or larger, e.g. 1200 × 700)', { type: 'url' }),
+        field('hero.link', 'Banner link', { type: 'url' }),
+        field('hero.alt', 'Alt text'),
+      ]),
+
+      section('Promo banner (image)', [
+        check('promoBanner.enabled', 'Show promo banner'),
+        field('promoBanner.image', 'Banner image URL (1500 × 500)', { type: 'url' }),
+        field('promoBanner.link', 'Banner link', { type: 'url' }),
+        field('promoBanner.alt', 'Alt text'),
+      ]),
+
+      section('Shop By Category', [
+        check('categories.enabled', 'Show this section'),
+        h('div', { class: 'grid2' }, [field('categories.title', 'Section title'), field('categories.shopMoreLink', '"Shop More" link', { type: 'url' })]),
+        list('categories.items', 'Category', function (p) {
+          var t = thumb(p + '.image');
+          return { thumb: t.el, nodes: [
+            field(p + '.label', 'Label'),
+            field(p + '.image', 'Image URL (square)', { type: 'url', onChange: t.update }),
+            field(p + '.link', 'Link', { type: 'url' }),
+          ] };
+        }, function () { return { label: '', image: '', link: '' }; }, { noDuplicate: true }),
+      ]),
+
+      section('Header and menu (set once)', [
+        field('settings.subject', 'Email title (shown in browser tab)'),
+        field('settings.previewText', 'Inbox preview text', { multiline: true }),
+        field('settings.logoUrl', 'Konga logo image URL', { type: 'url' }),
+        field('settings.logoLink', 'Logo link', { type: 'url' }),
+        field('settings.tagline', 'Tagline under logo'),
+        list('nav', 'Menu button', function (p) {
+          return { nodes: [h('div', { class: 'grid2' }, [field(p + '.label', 'Label'), field(p + '.link', 'Link', { type: 'url' })])] };
+        }, function () { return { label: '', link: '' }; }, { noDuplicate: true }),
+      ]),
+
+      section('Footer, socials and app links (set once)', [
+        field('brandsStrip.image', 'Konga group brands strip image URL (Health, Corporate, Pay, Travel...)', { type: 'url' }),
+        field('brandsStrip.link', 'Brands strip link', { type: 'url' }),
+        h('p', { class: 'hint', text: 'Social icons: add a 32×32 icon image URL for each. A text button is shown until you add one.' }),
+        list('social', 'Social', function (p) {
+          var t = thumb(p + '.icon');
+          return { thumb: t.el, nodes: [
+            h('div', { class: 'grid2' }, [field(p + '.name', 'Name'), field(p + '.link', 'Link', { type: 'url' })]),
+            field(p + '.icon', 'Icon image URL', { type: 'url', onChange: t.update }),
+          ] };
+        }, function () { return { name: '', icon: '', link: '' }; }, { noDuplicate: true }),
+        h('div', { class: 'grid2' }, [
+          field('app.googlePlayLink', 'Google Play link', { type: 'url' }),
+          field('app.appStoreLink', 'App Store link', { type: 'url' }),
+          field('app.googlePlayImg', 'Google Play badge image (optional)', { type: 'url' }),
+          field('app.appStoreImg', 'App Store badge image (optional)', { type: 'url' }),
+        ]),
+        field('footer.unsubscribeLink', 'Unsubscribe link (paste Netcore’s unsubscribe tag/URL here)'),
+        h('div', { class: 'grid2' }, [
+          field('footer.websiteLabel', 'Website label'),
+          field('footer.websiteLink', 'Website link', { type: 'url' }),
+          field('footer.whatsapp', 'WhatsApp'),
+          field('footer.email', 'Email'),
+        ]),
+        field('footer.helpline', 'Helpline'),
+      ])
+    );
+  }
+
+  // ---------- Toolbar ----------
+  document.getElementById('btnCopy').addEventListener('click', function () {
+    var html = K.render(state);
+    var done = function () { toast('HTML copied. Paste it into Netcore’s HTML editor.'); };
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(html).then(done, function () { fallbackCopy(html); done(); });
+    } else { fallbackCopy(html); done(); }
+  });
+  function fallbackCopy(text) {
+    var ta = h('textarea'); ta.value = text; document.body.appendChild(ta); ta.select();
+    document.execCommand('copy'); ta.remove();
+  }
+
+  function download(name, content, type) {
+    var a = h('a', { href: URL.createObjectURL(new Blob([content], { type: type })), download: name });
+    document.body.appendChild(a); a.click(); a.remove();
+  }
+  function today() { return new Date().toISOString().slice(0, 10); }
+
+  document.getElementById('btnDownload').addEventListener('click', function () {
+    download('konga-daily-' + today() + '.html', K.render(state), 'text/html');
+  });
+  document.getElementById('btnExport').addEventListener('click', function () {
+    download('konga-daily-' + today() + '.json', JSON.stringify(state, null, 2), 'application/json');
+  });
+  document.getElementById('fileImport').addEventListener('change', function (e) {
+    var f = e.target.files[0]; if (!f) return;
+    f.text().then(function (txt) {
+      try { state = Object.assign(K.defaultData(), JSON.parse(txt)); build(); refresh(); toast('Loaded ' + f.name); }
+      catch (err) { toast('That file is not a valid builder JSON.'); }
+    });
+    e.target.value = '';
+  });
+  document.getElementById('btnNew').addEventListener('click', function () {
+    if (!confirm('Clear today’s products and banners? Logos, menu, socials and footer are kept.')) return;
+    var blank = function () { return K.emptyProduct(); };
+    state.topDeals.products = [blank(), blank(), blank(), blank(), blank(), blank(), blank(), blank(), blank()];
+    state.dealOfDay.product = blank();
+    state.hero.image = ''; state.promoBanner.image = '';
+    build(); refresh();
+  });
+
+  document.querySelectorAll('[data-view]').forEach(function (b) {
+    b.addEventListener('click', function () { frame.classList.toggle('mobile', b.dataset.view === 'mobile'); });
+  });
+
+  build();
+  refresh();
+})();
+</script>
+</body>
+</html>
