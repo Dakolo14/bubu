@@ -1,407 +1,397 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Konga Email Builder</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Konga Daily Deals</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!--
+  KONGA DAILY EMAIL - Netcore HTML template
+
+  HOW TO UPDATE A PRODUCT CARD (search for "PRODUCT CARD 1 START" ... "PRODUCT CARD 9 START"):
+    1. Image   -> change the <img src="..."> URL
+    2. Link    -> change all 3 href="..." in the card (image, name, SHOP NOW)
+    3. Name    -> change the text inside the name link (keep it under ~48 characters)
+    4. Price   -> e.g. &#8358;551,825
+    5. Slashed -> e.g. &#8358;650,000
+    6. Badge   -> round((slashed - price) / slashed x 100)  e.g. -15%
+    7. Saving  -> slashed - price                           e.g. You save &#8358;98,175
+  To add a row of cards, copy one whole <tr> ... </tr> row inside TOP DEALS GRID.
+-->
 <style>
-  :root { --pink:#ED017F; --ink:#1a1a1a; --muted:#6b6b6b; --line:#e3e3e3; --bg:#f5f5f7; --green:#1E9E3E; }
-  * { box-sizing: border-box; }
-  body { margin:0; font-family:'Poppins', Arial, sans-serif; color:var(--ink); background:var(--bg); font-size:13px; }
-  header.bar { position:sticky; top:0; z-index:5; display:flex; flex-wrap:wrap; gap:8px; align-items:center; padding:10px 16px; background:#fff; border-bottom:1px solid var(--line); }
-  header.bar h1 { font-size:16px; margin:0 auto 0 0; }
-  header.bar h1 span { color:var(--pink); }
-  button, .btn { font:inherit; font-size:12px; border:1px solid var(--line); background:#fff; border-radius:6px; padding:7px 12px; cursor:pointer; }
-  button.primary { background:var(--pink); border-color:var(--pink); color:#fff; font-weight:600; }
-  button.small { padding:3px 8px; font-size:11px; }
-  button.danger { color:#c0262d; }
-  main { display:grid; grid-template-columns: minmax(380px, 520px) 1fr; gap:0; height:calc(100vh - 53px); }
-  .form { overflow:auto; padding:16px; border-right:1px solid var(--line); }
-  .preview { overflow:auto; padding:16px; display:flex; flex-direction:column; align-items:center; gap:8px; }
-  .preview .toggle { display:flex; gap:6px; }
-  .preview iframe { width:640px; max-width:100%; height:100%; min-height:600px; border:1px solid var(--line); background:#fff; border-radius:8px; transition:width .2s; }
-  .preview iframe.mobile { width:380px; }
-  details { background:#fff; border:1px solid var(--line); border-radius:10px; margin-bottom:12px; }
-  summary { cursor:pointer; padding:12px 14px; font-weight:600; font-size:14px; list-style:none; display:flex; justify-content:space-between; }
-  summary::after { content:'+'; color:var(--muted); }
-  details[open] summary::after { content:'\2212'; }
-  .body { padding:0 14px 14px; }
-  label { display:block; margin-top:8px; font-size:11px; color:var(--muted); font-weight:500; }
-  input[type=text], input[type=number], input[type=url], textarea { width:100%; font:inherit; font-size:12px; padding:7px 9px; border:1px solid var(--line); border-radius:6px; background:#fff; }
-  input:focus, textarea:focus { outline:2px solid #f8c6e0; border-color:var(--pink); }
-  .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:0 10px; }
-  .check { display:flex; gap:6px; align-items:center; margin-top:8px; font-size:12px; color:var(--ink); }
-  .item { border:1px solid var(--line); border-radius:8px; padding:10px; margin-top:10px; background:#fafafa; }
-  .item-head { display:flex; align-items:center; gap:6px; }
-  .item-head strong { margin-right:auto; font-size:12px; }
-  .calc { margin-top:8px; font-size:11px; padding:6px 8px; border-radius:6px; background:#eef7f0; color:var(--green); }
-  .calc.none { background:#f2f2f2; color:var(--muted); }
-  .calc.warn { background:#fdecec; color:#c0262d; }
-  .thumb { width:44px; height:44px; object-fit:contain; border:1px solid var(--line); border-radius:4px; background:#fff; }
-  .hint { font-size:11px; color:var(--muted); margin:6px 0 0; line-height:1.5; }
-  .toast { position:fixed; bottom:18px; left:50%; transform:translateX(-50%); background:#111; color:#fff; padding:9px 16px; border-radius:8px; font-size:12px; opacity:0; transition:opacity .2s; pointer-events:none; }
-  .toast.show { opacity:1; }
-  @media (max-width: 900px) {
-    main { grid-template-columns:1fr; height:auto; }
-    .form { border-right:0; }
-    .preview iframe { height:900px; }
+  body { margin:0; padding:0; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; }
+  table { border-collapse:separate; mso-table-lspace:0; mso-table-rspace:0; }
+  img { -ms-interpolation-mode:bicubic; }
+  a[x-apple-data-detectors] { color:inherit !important; text-decoration:none !important; }
+  @media only screen and (max-width:620px) {
+    .wrap { width:100% !important; }
+    .px { padding-left:16px !important; padding-right:16px !important; }
+    .col { display:block !important; width:100% !important; max-width:100% !important; box-sizing:border-box; }
+    .col .card { margin-bottom:12px; }
+    .gap { display:none !important; }
+    .center { text-align:center !important; }
   }
 </style>
 </head>
-<body>
-<header class="bar">
-  <h1><span>Konga</span> Email Builder</h1>
-  <button id="btnNew" title="Clear today's products but keep logos, links and footer">New day</button>
-  <button id="btnExport">Save JSON</button>
-  <label class="btn" style="margin:0;color:inherit;font-size:12px;">Load JSON<input id="fileImport" type="file" accept="application/json" hidden></label>
-  <button id="btnDownload">Download HTML</button>
-  <button id="btnCopy" class="primary">Copy HTML for Netcore</button>
-</header>
-<main>
-  <section class="form" id="form"></section>
-  <section class="preview">
-    <div class="toggle">
-      <button class="small" data-view="desktop">Desktop</button>
-      <button class="small" data-view="mobile">Mobile</button>
-    </div>
-    <iframe id="preview" title="Email preview"></iframe>
-  </section>
-</main>
-<div class="toast" id="toast"></div>
+<body style="margin:0;padding:0;background:#FFFFFF;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#FFFFFF;"><tr><td align="center">
+  <table role="presentation" class="wrap" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px;max-width:100%;background:#FFFFFF;">
 
-<script src="render.js"></script>
-<script>
-(function () {
-  var STORE_KEY = 'konga-email-builder-v1';
-  var K = window.KongaEmail;
-  var state = load();
-  var form = document.getElementById('form');
-  var frame = document.getElementById('preview');
+    <!-- ===================== HEADER ===================== -->
+    <tr><td class="px" align="center" style="padding:24px 24px 16px;">
+      <!-- Replace with logo image: <img src="LOGO_URL" width="140" alt="Konga" style="display:block;margin:0 auto;"> -->
+      <a href="https://www.konga.com/" target="_blank" style="text-decoration:none;font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:40px;line-height:44px;font-weight:700;color:#ED017F;">konga</a>
+      <div style="padding-top:4px;font-family:Georgia,serif;font-size:11px;line-height:14px;color:#222222;">The E-commerce group you trust</div>
+    </td></tr>
+    <tr><td class="px" style="padding:0 24px 16px;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+                <td align="center" bgcolor="#000000" style="background:#000000;border-radius:3px;"><a href="https://www.konga.com/" target="_blank" style="display:block;padding:7px 2px;font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:9px;line-height:12px;font-weight:700;color:#FFFFFF;text-decoration:none;text-transform:uppercase;">Phones</a></td>
+                <td width="4" style="width:4px;font-size:0;">&nbsp;</td>
+                <td align="center" bgcolor="#000000" style="background:#000000;border-radius:3px;"><a href="https://www.konga.com/" target="_blank" style="display:block;padding:7px 2px;font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:9px;line-height:12px;font-weight:700;color:#FFFFFF;text-decoration:none;text-transform:uppercase;">Computers</a></td>
+                <td width="4" style="width:4px;font-size:0;">&nbsp;</td>
+                <td align="center" bgcolor="#000000" style="background:#000000;border-radius:3px;"><a href="https://www.konga.com/" target="_blank" style="display:block;padding:7px 2px;font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:9px;line-height:12px;font-weight:700;color:#FFFFFF;text-decoration:none;text-transform:uppercase;">Electronics</a></td>
+                <td width="4" style="width:4px;font-size:0;">&nbsp;</td>
+                <td align="center" bgcolor="#000000" style="background:#000000;border-radius:3px;"><a href="https://www.konga.com/" target="_blank" style="display:block;padding:7px 2px;font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:9px;line-height:12px;font-weight:700;color:#FFFFFF;text-decoration:none;text-transform:uppercase;">Groceries</a></td>
+                <td width="4" style="width:4px;font-size:0;">&nbsp;</td>
+                <td align="center" bgcolor="#000000" style="background:#000000;border-radius:3px;"><a href="https://www.konga.com/" target="_blank" style="display:block;padding:7px 2px;font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:9px;line-height:12px;font-weight:700;color:#FFFFFF;text-decoration:none;text-transform:uppercase;">Home Essentials</a></td>
+      </tr></table>
+    </td></tr>
 
-  function load() {
-    try {
-      var saved = JSON.parse(localStorage.getItem(STORE_KEY));
-      if (saved && saved.settings) return Object.assign(K.defaultData(), saved);
-    } catch (e) {}
-    return K.defaultData();
-  }
-  function save() {
-    try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch (e) {}
-  }
+    <!-- ===================== HERO BANNER (image upload) ===================== -->
+    <!-- Replace the grey box with: <a href="LINK"><img src="HERO_URL" width="552" style="display:block;width:100%;height:auto;border-radius:6px;" alt=""></a> -->
+    <tr><td class="px" style="padding:0 24px 24px;">
+      <a href="https://www.konga.com/" target="_blank" style="text-decoration:none;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td height="300" align="center" style="height:300px;background:#D9D9D9;border-radius:6px;font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:12px;color:#555555;">Hero banner<br>1200 &times; 700px</td></tr></table></a>
+    </td></tr>
 
-  function get(path) { return path.split('.').reduce(function (o, k) { return o == null ? o : o[k]; }, state); }
-  function set(path, v) {
-    var keys = path.split('.'), last = keys.pop();
-    var obj = keys.reduce(function (o, k) { return o[k]; }, state);
-    obj[last] = v;
-  }
+    <!-- ===================== DEAL OF THE DAY ===================== -->
+    <tr><td class="px" style="padding:0 24px 28px;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:18px;line-height:24px;color:#222222;padding-bottom:12px;">Deal Of The Day</td></tr></table>
+          <!-- ===================== DEAL OF THE DAY START ===================== -->
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border:1px solid #D6D6D6;border-radius:8px;"><tr><td style="padding:12px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+              <td class="col" width="200" valign="middle" align="center" style="width:200px;"><a href="https://www.konga.com/product/hp-hp-240r-g10-notebook-pc-oe-intel-core-7-150u-14-fhd-8gb-ram-512gb-ssd-oe-c94gxet-7009039" target="_blank"><img src="https://www-konga-com-res.cloudinary.com/image/upload/f_auto,q_auto,w_400,c_limit/media/catalog/product/R/H/_1784902533.png" width="200" alt="HP 240R G10 Notebook PC – Intel Core 7-150U, 14&quot; FHD, 8GB RAM, 512GB SSD – C94GXET" border="0" style="display:block;width:100%;max-width:200px;height:auto;border:0;"></a></td>
+              <td class="gap" width="24" style="width:24px;font-size:0;">&nbsp;</td>
+              <td class="col" valign="middle" style="padding:8px 0;">
+                <div style="padding-bottom:8px;"><span style="display:inline-block;background:#1E9E3E;color:#FFFFFF;font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:10px;line-height:14px;padding:2px 6px;border-radius:4px;">-16%</span></div>
+                <div style="font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:12px;line-height:18px;"><a href="https://www.konga.com/product/hp-hp-240r-g10-notebook-pc-oe-intel-core-7-150u-14-fhd-8gb-ram-512gb-ssd-oe-c94gxet-7009039" target="_blank" style="color:#111111;text-decoration:none;">HP 240R G10 Notebook PC – Intel Core 7-150U, 14&quot; FHD, 8GB RAM, 512GB SSD – C94GXET</a></div>
+                <div style="padding-top:12px;line-height:22px;"><span style="font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:17px;font-weight:700;color:#111111;">&#8358;859,999</span>&nbsp;&nbsp;<span style="font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:11px;color:#9A9A9A;text-decoration:line-through;">&#8358;1,027,114</span></div>
+                <div style="padding-top:6px;"><span style="display:inline-block;background:#D7EEDC;color:#1E9E3E;font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:10px;line-height:14px;padding:3px 7px;border-radius:5px;">You save &#8358;167,115</span></div>
+                <table role="presentation" width="180" cellpadding="0" cellspacing="0" border="0" style="margin-top:14px;width:180px;"><tr><td align="center" bgcolor="#ED017F" style="background:#ED017F;border-radius:6px;"><a href="https://www.konga.com/product/hp-hp-240r-g10-notebook-pc-oe-intel-core-7-150u-14-fhd-8gb-ram-512gb-ssd-oe-c94gxet-7009039" target="_blank" style="display:block;padding:10px 0;font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:12px;line-height:16px;font-weight:500;color:#FFFFFF;text-decoration:none;">SHOP NOW</a></td></tr></table>
+              </td>
+            </tr></table>
+          </td></tr></table>
+          <!-- ===================== DEAL OF THE DAY END ===================== -->
+    </td></tr>
 
-  var timer;
-  function refresh() {
-    clearTimeout(timer);
-    timer = setTimeout(function () { frame.srcdoc = K.render(state); save(); }, 150);
-  }
+    <!-- ===================== TOP DEALS GRID (3 per row) ===================== -->
+    <tr><td class="px" style="padding:0 24px 16px;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:18px;line-height:24px;color:#222222;padding-bottom:12px;">Top Deals</td><td align="right" style="font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:13px;line-height:24px;padding-bottom:12px;"><a href="https://www.konga.com/" target="_blank" style="color:#ED017F;text-decoration:none;">Shop All</a></td></tr></table>
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                  <tr>
+                    <td class="col" width="176" valign="top" style="width:176px;">
+                      <!-- ===================== PRODUCT CARD 1 START ===================== -->
+                      <table role="presentation" class="card" width="100%" cellpadding="0" cellspacing="0" border="0" style="border:1px solid #D6D6D6;border-radius:8px;background:#FFFFFF;">
+                        <tr><td style="padding:8px;">
+                          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                            <!-- Discount badge = round((slashed - price) / slashed x 100) -->
+                            <tr><td align="right" height="22" style="height:22px;padding-bottom:4px;"><span style="display:inline-block;background:#1E9E3E;color:#FFFFFF;font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:10px;line-height:14px;padding:2px 6px;border-radius:4px;">-15%</span></td></tr>
+                            <!-- Product image -->
+                            <tr><td align="center"><a href="https://www.konga.com/product/asus-vivobook-14-x1404va-laptop-intel-core-3-100u-8gb-ddr5-ram-512gb-ssd-14-fhd-7037242" target="_blank"><img src="https://www-konga-com-res.cloudinary.com/image/upload/f_auto,q_auto,w_1080,c_limit/media/catalog/product/K/E/231472_1787228371.jpg" width="158" alt="Asus Vivobook 14 X1404va Laptop - Intel Core 3-100u - 8gb Ddr5 Ram - 512gb Ssd - 14&quot; Fhd" border="0" style="display:block;width:100%;max-width:158px;height:auto;border:0;"></a></td></tr>
+                            <!-- Product name -->
+                            <tr><td style="padding:10px 0 8px;border-bottom:1px solid #8C8C8C;"><div style="font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:11px;line-height:15px;height:30px;overflow:hidden;"><a href="https://www.konga.com/product/asus-vivobook-14-x1404va-laptop-intel-core-3-100u-8gb-ddr5-ram-512gb-ssd-14-fhd-7037242" target="_blank" style="color:#111111;text-decoration:none;">Asus Vivobook 14 X1404va Laptop - Intel Core…</a></div></td></tr>
+                            <!-- Price + slashed price -->
+                            <tr><td style="padding-top:8px;line-height:18px;"><span style="font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:14px;font-weight:700;color:#111111;">&#8358;551,825</span>&nbsp;&nbsp;<span style="font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:10px;color:#9A9A9A;text-decoration:line-through;white-space:nowrap;">&#8358;650,000</span></td></tr>
+                            <!-- You save = slashed - price -->
+                            <tr><td style="padding-top:6px;"><span style="display:inline-block;background:#D7EEDC;color:#1E9E3E;font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:9px;line-height:13px;padding:3px 7px;border-radius:5px;white-space:nowrap;">You save &#8358;98,175</span></td></tr>
+                            <!-- Shop Now button -->
+                            <tr><td style="padding-top:10px;">
+                              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td align="center" bgcolor="#ED017F" style="background:#ED017F;border-radius:6px;"><a href="https://www.konga.com/product/asus-vivobook-14-x1404va-laptop-intel-core-3-100u-8gb-ddr5-ram-512gb-ssd-14-fhd-7037242" target="_blank" style="display:block;padding:9px 0;font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:11px;line-height:15px;font-weight:500;color:#FFFFFF;text-decoration:none;">SHOP NOW</a></td></tr></table>
+                            </td></tr>
+                          </table>
+                        </td></tr>
+                      </table>
+                      <!-- ===================== PRODUCT CARD 1 END ===================== -->
+                    </td>
+                    <td class="gap" width="12" style="width:12px;font-size:0;">&nbsp;</td>
+                    <td class="col" width="176" valign="top" style="width:176px;">
+                      <!-- ===================== PRODUCT CARD 2 START ===================== -->
+                      <table role="presentation" class="card" width="100%" cellpadding="0" cellspacing="0" border="0" style="border:1px solid #D6D6D6;border-radius:8px;background:#FFFFFF;">
+                        <tr><td style="padding:8px;">
+                          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                            <!-- Discount badge = round((slashed - price) / slashed x 100) -->
+                            <tr><td align="right" height="22" style="height:22px;padding-bottom:4px;"><span style="display:inline-block;background:#1E9E3E;color:#FFFFFF;font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:10px;line-height:14px;padding:2px 6px;border-radius:4px;">-32%</span></td></tr>
+                            <!-- Product image -->
+                            <tr><td align="center"><a href="https://www.konga.com/product/hp-hp-proone-240-g10-aio-desktop-pc-24-full-hd-core-o-i3-n300-8gb-ram-512gb-ssd-9m9m9at-6964614" target="_blank"><img src="https://www-konga-com-res.cloudinary.com/image/upload/f_auto,q_auto,w_400,c_limit/media/catalog/product/G/J/118566_1784888900.png" width="158" alt="HP ProOne 240 G10 AIO Desktop PC, 24&quot; Full HD, Core i3-N300, 8GB RAM, 512GB SSD" border="0" style="display:block;width:100%;max-width:158px;height:auto;border:0;"></a></td></tr>
+                            <!-- Product name -->
+                            <tr><td style="padding:10px 0 8px;border-bottom:1px solid #8C8C8C;"><div style="font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:11px;line-height:15px;height:30px;overflow:hidden;"><a href="https://www.konga.com/product/hp-hp-proone-240-g10-aio-desktop-pc-24-full-hd-core-o-i3-n300-8gb-ram-512gb-ssd-9m9m9at-6964614" target="_blank" style="color:#111111;text-decoration:none;">HP ProOne 240 G10 AIO Desktop PC, 24&quot; Full HD,…</a></div></td></tr>
+                            <!-- Price + slashed price -->
+                            <tr><td style="padding-top:8px;line-height:18px;"><span style="font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:14px;font-weight:700;color:#111111;">&#8358;819,717</span>&nbsp;&nbsp;<span style="font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:10px;color:#9A9A9A;text-decoration:line-through;white-space:nowrap;">&#8358;1,200,000</span></td></tr>
+                            <!-- You save = slashed - price -->
+                            <tr><td style="padding-top:6px;"><span style="display:inline-block;background:#D7EEDC;color:#1E9E3E;font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:9px;line-height:13px;padding:3px 7px;border-radius:5px;white-space:nowrap;">You save &#8358;380,283</span></td></tr>
+                            <!-- Shop Now button -->
+                            <tr><td style="padding-top:10px;">
+                              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td align="center" bgcolor="#ED017F" style="background:#ED017F;border-radius:6px;"><a href="https://www.konga.com/product/hp-hp-proone-240-g10-aio-desktop-pc-24-full-hd-core-o-i3-n300-8gb-ram-512gb-ssd-9m9m9at-6964614" target="_blank" style="display:block;padding:9px 0;font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:11px;line-height:15px;font-weight:500;color:#FFFFFF;text-decoration:none;">SHOP NOW</a></td></tr></table>
+                            </td></tr>
+                          </table>
+                        </td></tr>
+                      </table>
+                      <!-- ===================== PRODUCT CARD 2 END ===================== -->
+                    </td>
+                    <td class="gap" width="12" style="width:12px;font-size:0;">&nbsp;</td>
+                    <td class="col" width="176" valign="top" style="width:176px;">
+                      <!-- ===================== PRODUCT CARD 3 START ===================== -->
+                      <table role="presentation" class="card" width="100%" cellpadding="0" cellspacing="0" border="0" style="border:1px solid #D6D6D6;border-radius:8px;background:#FFFFFF;">
+                        <tr><td style="padding:8px;">
+                          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                            <!-- Discount badge = round((slashed - price) / slashed x 100) -->
+                            <tr><td align="right" height="22" style="height:22px;padding-bottom:4px;"><span style="display:inline-block;background:#1E9E3E;color:#FFFFFF;font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:10px;line-height:14px;padding:2px 6px;border-radius:4px;">-20%</span></td></tr>
+                            <!-- Product image -->
+                            <tr><td align="center"><a href="https://www.konga.com/product/hisense-hisense-2hp-split-air-conditioner-copper-condenser-7043972" target="_blank"><img src="https://www-konga-com-res.cloudinary.com/image/upload/f_auto,q_auto,w_400,c_limit/media/catalog/product/P/W/118566_1788273396.jpg" width="158" alt="Hisense 2hp Split Air Conditioner - Copper Condenser" border="0" style="display:block;width:100%;max-width:158px;height:auto;border:0;"></a></td></tr>
+                            <!-- Product name -->
+                            <tr><td style="padding:10px 0 8px;border-bottom:1px solid #8C8C8C;"><div style="font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:11px;line-height:15px;height:30px;overflow:hidden;"><a href="https://www.konga.com/product/hisense-hisense-2hp-split-air-conditioner-copper-condenser-7043972" target="_blank" style="color:#111111;text-decoration:none;">Hisense 2hp Split Air Conditioner - Copper…</a></div></td></tr>
+                            <!-- Price + slashed price -->
+                            <tr><td style="padding-top:8px;line-height:18px;"><span style="font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:14px;font-weight:700;color:#111111;">&#8358;477,700</span>&nbsp;&nbsp;<span style="font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:10px;color:#9A9A9A;text-decoration:line-through;white-space:nowrap;">&#8358;600,000</span></td></tr>
+                            <!-- You save = slashed - price -->
+                            <tr><td style="padding-top:6px;"><span style="display:inline-block;background:#D7EEDC;color:#1E9E3E;font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:9px;line-height:13px;padding:3px 7px;border-radius:5px;white-space:nowrap;">You save &#8358;122,300</span></td></tr>
+                            <!-- Shop Now button -->
+                            <tr><td style="padding-top:10px;">
+                              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td align="center" bgcolor="#ED017F" style="background:#ED017F;border-radius:6px;"><a href="https://www.konga.com/product/hisense-hisense-2hp-split-air-conditioner-copper-condenser-7043972" target="_blank" style="display:block;padding:9px 0;font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:11px;line-height:15px;font-weight:500;color:#FFFFFF;text-decoration:none;">SHOP NOW</a></td></tr></table>
+                            </td></tr>
+                          </table>
+                        </td></tr>
+                      </table>
+                      <!-- ===================== PRODUCT CARD 3 END ===================== -->
+                    </td>
+                  </tr>
+                  <tr><td colspan="5" height="12" style="height:12px;font-size:0;line-height:0;">&nbsp;</td></tr>
+                  <tr>
+                    <td class="col" width="176" valign="top" style="width:176px;">
+                      <!-- ===================== PRODUCT CARD 4 START ===================== -->
+                      <table role="presentation" class="card" width="100%" cellpadding="0" cellspacing="0" border="0" style="border:1px solid #D6D6D6;border-radius:8px;background:#FFFFFF;">
+                        <tr><td style="padding:8px;">
+                          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                            <!-- Discount badge = round((slashed - price) / slashed x 100) -->
+                            <tr><td align="right" height="22" style="height:22px;padding-bottom:4px;"><span style="display:inline-block;background:#1E9E3E;color:#FFFFFF;font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:10px;line-height:14px;padding:2px 6px;border-radius:4px;">-26%</span></td></tr>
+                            <!-- Product image -->
+                            <tr><td align="center"><a href="https://www.konga.com/product/samsung-75-u8000f-crystal-uhd-4k-smart-tv-2025-7037241" target="_blank"><img src="https://www-konga-com-res.cloudinary.com/image/upload/f_auto,q_auto,w_400,c_limit/media/catalog/product/I/A/231472_1787306581.jpg" width="158" alt="Samsung 75&quot; U8000f Crystal Uhd 4k Smart Tv - 2025" border="0" style="display:block;width:100%;max-width:158px;height:auto;border:0;"></a></td></tr>
+                            <!-- Product name -->
+                            <tr><td style="padding:10px 0 8px;border-bottom:1px solid #8C8C8C;"><div style="font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:11px;line-height:15px;height:30px;overflow:hidden;"><a href="https://www.konga.com/product/samsung-75-u8000f-crystal-uhd-4k-smart-tv-2025-7037241" target="_blank" style="color:#111111;text-decoration:none;">Samsung 75&quot; U8000f Crystal Uhd 4k Smart Tv -…</a></div></td></tr>
+                            <!-- Price + slashed price -->
+                            <tr><td style="padding-top:8px;line-height:18px;"><span style="font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:14px;font-weight:700;color:#111111;">&#8358;1,471,400</span>&nbsp;&nbsp;<span style="font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:10px;color:#9A9A9A;text-decoration:line-through;white-space:nowrap;">&#8358;2,000,000</span></td></tr>
+                            <!-- You save = slashed - price -->
+                            <tr><td style="padding-top:6px;"><span style="display:inline-block;background:#D7EEDC;color:#1E9E3E;font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:9px;line-height:13px;padding:3px 7px;border-radius:5px;white-space:nowrap;">You save &#8358;528,600</span></td></tr>
+                            <!-- Shop Now button -->
+                            <tr><td style="padding-top:10px;">
+                              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td align="center" bgcolor="#ED017F" style="background:#ED017F;border-radius:6px;"><a href="https://www.konga.com/product/samsung-75-u8000f-crystal-uhd-4k-smart-tv-2025-7037241" target="_blank" style="display:block;padding:9px 0;font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:11px;line-height:15px;font-weight:500;color:#FFFFFF;text-decoration:none;">SHOP NOW</a></td></tr></table>
+                            </td></tr>
+                          </table>
+                        </td></tr>
+                      </table>
+                      <!-- ===================== PRODUCT CARD 4 END ===================== -->
+                    </td>
+                    <td class="gap" width="12" style="width:12px;font-size:0;">&nbsp;</td>
+                    <td class="col" width="176" valign="top" style="width:176px;">
+                      <!-- ===================== PRODUCT CARD 5 START ===================== -->
+                      <table role="presentation" class="card" width="100%" cellpadding="0" cellspacing="0" border="0" style="border:1px solid #D6D6D6;border-radius:8px;background:#FFFFFF;">
+                        <tr><td style="padding:8px;">
+                          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                            <!-- Discount badge = round((slashed - price) / slashed x 100) -->
+                            <tr><td align="right" height="22" style="height:22px;padding-bottom:4px;"><span style="display:inline-block;background:#1E9E3E;color:#FFFFFF;font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:10px;line-height:14px;padding:2px 6px;border-radius:4px;">-15%</span></td></tr>
+                            <!-- Product image -->
+                            <tr><td align="center"><a href="https://www.konga.com/product/sony-playstation-5-console-slim-1tb-6918442" target="_blank"><img src="https://www-konga-com-res.cloudinary.com/image/upload/f_auto,q_auto,w_400,c_limit/media/catalog/product/G/J/118566_1768566234.jpg" width="158" alt="Sony Playstation 5 Console - Slim - 1tb" border="0" style="display:block;width:100%;max-width:158px;height:auto;border:0;"></a></td></tr>
+                            <!-- Product name -->
+                            <tr><td style="padding:10px 0 8px;border-bottom:1px solid #8C8C8C;"><div style="font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:11px;line-height:15px;height:30px;overflow:hidden;"><a href="https://www.konga.com/product/sony-playstation-5-console-slim-1tb-6918442" target="_blank" style="color:#111111;text-decoration:none;">Sony Playstation 5 Console - Slim - 1tb</a></div></td></tr>
+                            <!-- Price + slashed price -->
+                            <tr><td style="padding-top:8px;line-height:18px;"><span style="font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:14px;font-weight:700;color:#111111;">&#8358;1,190,000</span>&nbsp;&nbsp;<span style="font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:10px;color:#9A9A9A;text-decoration:line-through;white-space:nowrap;">&#8358;1,400,000</span></td></tr>
+                            <!-- You save = slashed - price -->
+                            <tr><td style="padding-top:6px;"><span style="display:inline-block;background:#D7EEDC;color:#1E9E3E;font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:9px;line-height:13px;padding:3px 7px;border-radius:5px;white-space:nowrap;">You save &#8358;210,000</span></td></tr>
+                            <!-- Shop Now button -->
+                            <tr><td style="padding-top:10px;">
+                              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td align="center" bgcolor="#ED017F" style="background:#ED017F;border-radius:6px;"><a href="https://www.konga.com/product/sony-playstation-5-console-slim-1tb-6918442" target="_blank" style="display:block;padding:9px 0;font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:11px;line-height:15px;font-weight:500;color:#FFFFFF;text-decoration:none;">SHOP NOW</a></td></tr></table>
+                            </td></tr>
+                          </table>
+                        </td></tr>
+                      </table>
+                      <!-- ===================== PRODUCT CARD 5 END ===================== -->
+                    </td>
+                    <td class="gap" width="12" style="width:12px;font-size:0;">&nbsp;</td>
+                    <td class="col" width="176" valign="top" style="width:176px;">
+                      <!-- ===================== PRODUCT CARD 6 START ===================== -->
+                      <table role="presentation" class="card" width="100%" cellpadding="0" cellspacing="0" border="0" style="border:1px solid #D6D6D6;border-radius:8px;background:#FFFFFF;">
+                        <tr><td style="padding:8px;">
+                          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                            <!-- Discount badge = round((slashed - price) / slashed x 100) -->
+                            <tr><td align="right" height="22" style="height:22px;padding-bottom:4px;"><span style="display:inline-block;background:#1E9E3E;color:#FFFFFF;font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:10px;line-height:14px;padding:2px 6px;border-radius:4px;">-27%</span></td></tr>
+                            <!-- Product image -->
+                            <tr><td align="center"><a href="https://www.konga.com/product/samsung-samsung-1hp-9-000-btu-hr-air-conditioner-wall-mount-fast-cooling-6745469" target="_blank"><img src="https://www-konga-com-res.cloudinary.com/image/upload/f_auto,q_auto,w_400,c_limit/media/catalog/product/M/D/118566_1747215024.jpg" width="158" alt="Samsung 1HP (9,000 BTU/hr) Air Conditioner Wall-mount Fast Cooling" border="0" style="display:block;width:100%;max-width:158px;height:auto;border:0;"></a></td></tr>
+                            <!-- Product name -->
+                            <tr><td style="padding:10px 0 8px;border-bottom:1px solid #8C8C8C;"><div style="font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:11px;line-height:15px;height:30px;overflow:hidden;"><a href="https://www.konga.com/product/samsung-samsung-1hp-9-000-btu-hr-air-conditioner-wall-mount-fast-cooling-6745469" target="_blank" style="color:#111111;text-decoration:none;">Samsung 1HP (9,000 BTU/hr) Air Conditioner…</a></div></td></tr>
+                            <!-- Price + slashed price -->
+                            <tr><td style="padding-top:8px;line-height:18px;"><span style="font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:14px;font-weight:700;color:#111111;">&#8358;398,825</span>&nbsp;&nbsp;<span style="font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:10px;color:#9A9A9A;text-decoration:line-through;white-space:nowrap;">&#8358;550,000</span></td></tr>
+                            <!-- You save = slashed - price -->
+                            <tr><td style="padding-top:6px;"><span style="display:inline-block;background:#D7EEDC;color:#1E9E3E;font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:9px;line-height:13px;padding:3px 7px;border-radius:5px;white-space:nowrap;">You save &#8358;151,175</span></td></tr>
+                            <!-- Shop Now button -->
+                            <tr><td style="padding-top:10px;">
+                              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td align="center" bgcolor="#ED017F" style="background:#ED017F;border-radius:6px;"><a href="https://www.konga.com/product/samsung-samsung-1hp-9-000-btu-hr-air-conditioner-wall-mount-fast-cooling-6745469" target="_blank" style="display:block;padding:9px 0;font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:11px;line-height:15px;font-weight:500;color:#FFFFFF;text-decoration:none;">SHOP NOW</a></td></tr></table>
+                            </td></tr>
+                          </table>
+                        </td></tr>
+                      </table>
+                      <!-- ===================== PRODUCT CARD 6 END ===================== -->
+                    </td>
+                  </tr>
+                  <tr><td colspan="5" height="12" style="height:12px;font-size:0;line-height:0;">&nbsp;</td></tr>
+                  <tr>
+                    <td class="col" width="176" valign="top" style="width:176px;">
+                      <!-- ===================== PRODUCT CARD 7 START ===================== -->
+                      <table role="presentation" class="card" width="100%" cellpadding="0" cellspacing="0" border="0" style="border:1px solid #D6D6D6;border-radius:8px;background:#FFFFFF;">
+                        <tr><td style="padding:8px;">
+                          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                            <!-- Discount badge = round((slashed - price) / slashed x 100) -->
+                            <tr><td align="right" height="22" style="height:22px;padding-bottom:4px;"><span style="display:inline-block;background:#1E9E3E;color:#FFFFFF;font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:10px;line-height:14px;padding:2px 6px;border-radius:4px;">-26%</span></td></tr>
+                            <!-- Product image -->
+                            <tr><td align="center"><a href="https://www.konga.com/product/asus-zenbook-14-touchscreen-ultra9-285h-32gbram-1tbssd-14-win11-silver-ux3405ca-6982687" target="_blank"><img src="https://www-konga-com-res.cloudinary.com/image/upload/f_auto,q_auto,w_400,c_limit/media/catalog/product/H/Y/56319_1786712399.jpg" width="158" alt="Asus Zenbook 14 TouchScreen - Ultra 9 285H - 32GB RAM - 1TB SSD - Win11" border="0" style="display:block;width:100%;max-width:158px;height:auto;border:0;"></a></td></tr>
+                            <!-- Product name -->
+                            <tr><td style="padding:10px 0 8px;border-bottom:1px solid #8C8C8C;"><div style="font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:11px;line-height:15px;height:30px;overflow:hidden;"><a href="https://www.konga.com/product/asus-zenbook-14-touchscreen-ultra9-285h-32gbram-1tbssd-14-win11-silver-ux3405ca-6982687" target="_blank" style="color:#111111;text-decoration:none;">Asus Zenbook 14 TouchScreen - Ultra 9 285H -…</a></div></td></tr>
+                            <!-- Price + slashed price -->
+                            <tr><td style="padding-top:8px;line-height:18px;"><span style="font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:14px;font-weight:700;color:#111111;">&#8358;2,380,740</span>&nbsp;&nbsp;<span style="font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:10px;color:#9A9A9A;text-decoration:line-through;white-space:nowrap;">&#8358;3,213,999</span></td></tr>
+                            <!-- You save = slashed - price -->
+                            <tr><td style="padding-top:6px;"><span style="display:inline-block;background:#D7EEDC;color:#1E9E3E;font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:9px;line-height:13px;padding:3px 7px;border-radius:5px;white-space:nowrap;">You save &#8358;833,259</span></td></tr>
+                            <!-- Shop Now button -->
+                            <tr><td style="padding-top:10px;">
+                              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td align="center" bgcolor="#ED017F" style="background:#ED017F;border-radius:6px;"><a href="https://www.konga.com/product/asus-zenbook-14-touchscreen-ultra9-285h-32gbram-1tbssd-14-win11-silver-ux3405ca-6982687" target="_blank" style="display:block;padding:9px 0;font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:11px;line-height:15px;font-weight:500;color:#FFFFFF;text-decoration:none;">SHOP NOW</a></td></tr></table>
+                            </td></tr>
+                          </table>
+                        </td></tr>
+                      </table>
+                      <!-- ===================== PRODUCT CARD 7 END ===================== -->
+                    </td>
+                    <td class="gap" width="12" style="width:12px;font-size:0;">&nbsp;</td>
+                    <td class="col" width="176" valign="top" style="width:176px;">
+                      <!-- ===================== PRODUCT CARD 8 START ===================== -->
+                      <table role="presentation" class="card" width="100%" cellpadding="0" cellspacing="0" border="0" style="border:1px solid #D6D6D6;border-radius:8px;background:#FFFFFF;">
+                        <tr><td style="padding:8px;">
+                          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                            <!-- Discount badge = round((slashed - price) / slashed x 100) -->
+                            <tr><td align="right" height="22" style="height:22px;padding-bottom:4px;"><span style="display:inline-block;background:#1E9E3E;color:#FFFFFF;font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:10px;line-height:14px;padding:2px 6px;border-radius:4px;">-19%</span></td></tr>
+                            <!-- Product image -->
+                            <tr><td align="center"><a href="https://www.konga.com/product/asus-tuf-gaming-f16-2025-oe-core-i7-14650hx-rtx-5050-16gb-ram-512gb-ssd-16-oy-fhd-6979347" target="_blank"><img src="https://www-konga-com-res.cloudinary.com/image/upload/f_auto,q_auto,w_400,c_limit/media/catalog/product/R/L/231472_1777986495.jpg" width="158" alt="Asus Tuf Gaming F16 2025 – Core i7-14650hx - Rtx 5050 - 16gb Ram - 512gb Ssd" border="0" style="display:block;width:100%;max-width:158px;height:auto;border:0;"></a></td></tr>
+                            <!-- Product name -->
+                            <tr><td style="padding:10px 0 8px;border-bottom:1px solid #8C8C8C;"><div style="font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:11px;line-height:15px;height:30px;overflow:hidden;"><a href="https://www.konga.com/product/asus-tuf-gaming-f16-2025-oe-core-i7-14650hx-rtx-5050-16gb-ram-512gb-ssd-16-oy-fhd-6979347" target="_blank" style="color:#111111;text-decoration:none;">Asus Tuf Gaming F16 2025 – Core i7-14650hx -…</a></div></td></tr>
+                            <!-- Price + slashed price -->
+                            <tr><td style="padding-top:8px;line-height:18px;"><span style="font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:14px;font-weight:700;color:#111111;">&#8358;2,195,890</span>&nbsp;&nbsp;<span style="font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:10px;color:#9A9A9A;text-decoration:line-through;white-space:nowrap;">&#8358;2,700,000</span></td></tr>
+                            <!-- You save = slashed - price -->
+                            <tr><td style="padding-top:6px;"><span style="display:inline-block;background:#D7EEDC;color:#1E9E3E;font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:9px;line-height:13px;padding:3px 7px;border-radius:5px;white-space:nowrap;">You save &#8358;504,110</span></td></tr>
+                            <!-- Shop Now button -->
+                            <tr><td style="padding-top:10px;">
+                              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td align="center" bgcolor="#ED017F" style="background:#ED017F;border-radius:6px;"><a href="https://www.konga.com/product/asus-tuf-gaming-f16-2025-oe-core-i7-14650hx-rtx-5050-16gb-ram-512gb-ssd-16-oy-fhd-6979347" target="_blank" style="display:block;padding:9px 0;font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:11px;line-height:15px;font-weight:500;color:#FFFFFF;text-decoration:none;">SHOP NOW</a></td></tr></table>
+                            </td></tr>
+                          </table>
+                        </td></tr>
+                      </table>
+                      <!-- ===================== PRODUCT CARD 8 END ===================== -->
+                    </td>
+                    <td class="gap" width="12" style="width:12px;font-size:0;">&nbsp;</td>
+                    <td class="col" width="176" valign="top" style="width:176px;">
+                      <!-- ===================== PRODUCT CARD 9 START ===================== -->
+                      <table role="presentation" class="card" width="100%" cellpadding="0" cellspacing="0" border="0" style="border:1px solid #D6D6D6;border-radius:8px;background:#FFFFFF;">
+                        <tr><td style="padding:8px;">
+                          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                            <!-- Discount badge = round((slashed - price) / slashed x 100) -->
+                            <tr><td align="right" height="22" style="height:22px;padding-bottom:4px;"><span style="display:inline-block;background:#1E9E3E;color:#FFFFFF;font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:10px;line-height:14px;padding:2px 6px;border-radius:4px;">-59%</span></td></tr>
+                            <!-- Product image -->
+                            <tr><td align="center"><a href="https://www.konga.com/product/living-room-sofa-set-6-seaters-6651225" target="_blank"><img src="https://www-konga-com-res.cloudinary.com/image/upload/f_auto,q_auto,w_400,c_limit/media/catalog/product/C/U/79497_1737647071.jpg" width="158" alt="Living Room Sofa Set 6 Seaters" border="0" style="display:block;width:100%;max-width:158px;height:auto;border:0;"></a></td></tr>
+                            <!-- Product name -->
+                            <tr><td style="padding:10px 0 8px;border-bottom:1px solid #8C8C8C;"><div style="font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:11px;line-height:15px;height:30px;overflow:hidden;"><a href="https://www.konga.com/product/living-room-sofa-set-6-seaters-6651225" target="_blank" style="color:#111111;text-decoration:none;">Living Room Sofa Set 6 Seaters</a></div></td></tr>
+                            <!-- Price + slashed price -->
+                            <tr><td style="padding-top:8px;line-height:18px;"><span style="font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:14px;font-weight:700;color:#111111;">&#8358;390,000</span>&nbsp;&nbsp;<span style="font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:10px;color:#9A9A9A;text-decoration:line-through;white-space:nowrap;">&#8358;960,000</span></td></tr>
+                            <!-- You save = slashed - price -->
+                            <tr><td style="padding-top:6px;"><span style="display:inline-block;background:#D7EEDC;color:#1E9E3E;font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:9px;line-height:13px;padding:3px 7px;border-radius:5px;white-space:nowrap;">You save &#8358;570,000</span></td></tr>
+                            <!-- Shop Now button -->
+                            <tr><td style="padding-top:10px;">
+                              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td align="center" bgcolor="#ED017F" style="background:#ED017F;border-radius:6px;"><a href="https://www.konga.com/product/living-room-sofa-set-6-seaters-6651225" target="_blank" style="display:block;padding:9px 0;font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:11px;line-height:15px;font-weight:500;color:#FFFFFF;text-decoration:none;">SHOP NOW</a></td></tr></table>
+                            </td></tr>
+                          </table>
+                        </td></tr>
+                      </table>
+                      <!-- ===================== PRODUCT CARD 9 END ===================== -->
+                    </td>
+                  </tr>
+                  <tr><td colspan="5" height="12" style="height:12px;font-size:0;line-height:0;">&nbsp;</td></tr>
+      </table>
+    </td></tr>
 
-  function toast(msg) {
-    var t = document.getElementById('toast');
-    t.textContent = msg; t.classList.add('show');
-    setTimeout(function () { t.classList.remove('show'); }, 1800);
-  }
+    <!-- ===================== 3 BY 1 PROMO BANNER ===================== -->
+    <tr><td class="px" style="padding:0 24px 28px;">
+      <a href="https://www.konga.com/" target="_blank"><img src="https://www-konga-com-res.cloudinary.com/image/upload/v1793185785/landingPages/2026%20Marketing/Email%20Templates/MidStrip.gif" width="552" alt="Konga promotion" border="0" style="display:block;width:100%;height:auto;border:0;border-radius:6px;"></a>
+    </td></tr>
 
-  // ---------- small DOM helpers ----------
-  function h(tag, attrs, children) {
-    var el = document.createElement(tag);
-    Object.keys(attrs || {}).forEach(function (k) {
-      if (k === 'on') Object.keys(attrs.on).forEach(function (ev) { el.addEventListener(ev, attrs.on[ev]); });
-      else if (k === 'text') el.textContent = attrs[k];
-      else el.setAttribute(k, attrs[k]);
-    });
-    (children || []).forEach(function (c) { if (c) el.appendChild(typeof c === 'string' ? document.createTextNode(c) : c); });
-    return el;
-  }
+    <!-- ===================== SHOP BY CATEGORY (5 separate images) ===================== -->
+    <tr><td class="px" style="padding:0 24px 28px;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:18px;line-height:24px;color:#222222;padding-bottom:12px;">Shop By Category</td><td align="right" style="font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:13px;line-height:24px;padding-bottom:12px;"><a href="https://www.konga.com/" target="_blank" style="color:#ED017F;text-decoration:none;">Shop More</a></td></tr></table>
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+                <!-- Category tile 1: replace the grey box with <img src="IMAGE_URL" width="100" style="display:block;width:100%;height:auto;border-radius:6px;"> -->
+                <td width="18%" valign="top" align="center" style="width:18%;">
+                  <a href="https://www.konga.com/" target="_blank" style="text-decoration:none;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td height="100" align="center" style="height:100px;background:#D9D9D9;border-radius:6px;font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:12px;color:#555555;"></td></tr></table></a>
+                  <div style="padding-top:8px;font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:10px;line-height:14px;"><a href="https://www.konga.com/" target="_blank" style="color:#111111;text-decoration:none;">Mobile Phones</a></div>
+                </td>
+                <td width="2.5%" style="width:2.5%;font-size:0;">&nbsp;</td>
+                <!-- Category tile 2: replace the grey box with <img src="IMAGE_URL" width="100" style="display:block;width:100%;height:auto;border-radius:6px;"> -->
+                <td width="18%" valign="top" align="center" style="width:18%;">
+                  <a href="https://www.konga.com/" target="_blank" style="text-decoration:none;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td height="100" align="center" style="height:100px;background:#D9D9D9;border-radius:6px;font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:12px;color:#555555;"></td></tr></table></a>
+                  <div style="padding-top:8px;font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:10px;line-height:14px;"><a href="https://www.konga.com/" target="_blank" style="color:#111111;text-decoration:none;">Computing</a></div>
+                </td>
+                <td width="2.5%" style="width:2.5%;font-size:0;">&nbsp;</td>
+                <!-- Category tile 3: replace the grey box with <img src="IMAGE_URL" width="100" style="display:block;width:100%;height:auto;border-radius:6px;"> -->
+                <td width="18%" valign="top" align="center" style="width:18%;">
+                  <a href="https://www.konga.com/" target="_blank" style="text-decoration:none;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td height="100" align="center" style="height:100px;background:#D9D9D9;border-radius:6px;font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:12px;color:#555555;"></td></tr></table></a>
+                  <div style="padding-top:8px;font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:10px;line-height:14px;"><a href="https://www.konga.com/" target="_blank" style="color:#111111;text-decoration:none;">Electronics</a></div>
+                </td>
+                <td width="2.5%" style="width:2.5%;font-size:0;">&nbsp;</td>
+                <!-- Category tile 4: replace the grey box with <img src="IMAGE_URL" width="100" style="display:block;width:100%;height:auto;border-radius:6px;"> -->
+                <td width="18%" valign="top" align="center" style="width:18%;">
+                  <a href="https://www.konga.com/" target="_blank" style="text-decoration:none;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td height="100" align="center" style="height:100px;background:#D9D9D9;border-radius:6px;font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:12px;color:#555555;"></td></tr></table></a>
+                  <div style="padding-top:8px;font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:10px;line-height:14px;"><a href="https://www.konga.com/" target="_blank" style="color:#111111;text-decoration:none;">Home &amp; Kitchen</a></div>
+                </td>
+                <td width="2.5%" style="width:2.5%;font-size:0;">&nbsp;</td>
+                <!-- Category tile 5: replace the grey box with <img src="IMAGE_URL" width="100" style="display:block;width:100%;height:auto;border-radius:6px;"> -->
+                <td width="18%" valign="top" align="center" style="width:18%;">
+                  <a href="https://www.konga.com/" target="_blank" style="text-decoration:none;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td height="100" align="center" style="height:100px;background:#D9D9D9;border-radius:6px;font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:12px;color:#555555;"></td></tr></table></a>
+                  <div style="padding-top:8px;font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:10px;line-height:14px;"><a href="https://www.konga.com/" target="_blank" style="color:#111111;text-decoration:none;">Beauty Hub</a></div>
+                </td>
+      </tr></table>
+    </td></tr>
 
-  function field(path, label, opts) {
-    opts = opts || {};
-    var input = h(opts.multiline ? 'textarea' : 'input', {
-      type: opts.type || 'text', placeholder: opts.placeholder || '', rows: opts.rows || 2,
-    });
-    input.value = get(path) == null ? '' : get(path);
-    input.addEventListener('input', function () {
-      var v = input.value;
-      set(path, opts.type === 'number' ? (v === '' ? '' : Number(v)) : v);
-      if (opts.onChange) opts.onChange();
-      refresh();
-    });
-    return h('div', {}, [h('label', { text: label }), input]);
-  }
+    <!-- ===================== KONGA GROUP BRANDS ===================== -->
+    <tr><td class="px" align="center" style="padding:0 24px 16px;font-size:0;line-height:0;"><a href="https://www.konga.com/" target="_blank" style="display:inline-block;margin:6px 8px;vertical-align:middle;"><img src="https://www-konga-com-res.cloudinary.com/image/upload/v1793185652/landingPages/2026%20Marketing/Email%20Templates/kcorporate-email.png" height="28" alt="Konga Corporate" border="0" style="display:block;height:28px;width:auto;border:0;"></a><a href="https://www.konga.com/" target="_blank" style="display:inline-block;margin:6px 8px;vertical-align:middle;"><img src="https://www-konga-com-res.cloudinary.com/image/upload/v1793185652/landingPages/2026%20Marketing/Email%20Templates/khealth-email.png" height="28" alt="Konga Health" border="0" style="display:block;height:28px;width:auto;border:0;"></a><a href="https://www.konga.com/" target="_blank" style="display:inline-block;margin:6px 8px;vertical-align:middle;"><img src="https://www-konga-com-res.cloudinary.com/image/upload/v1793185653/landingPages/2026%20Marketing/Email%20Templates/konganow-email.png" height="28" alt="KongaNow" border="0" style="display:block;height:28px;width:auto;border:0;"></a><a href="https://www.konga.com/" target="_blank" style="display:inline-block;margin:6px 8px;vertical-align:middle;"><img src="https://www-konga-com-res.cloudinary.com/image/upload/v1793185653/landingPages/2026%20Marketing/Email%20Templates/kongapay-email.png" height="28" alt="KongaPay" border="0" style="display:block;height:28px;width:auto;border:0;"></a><a href="https://www.konga.com/" target="_blank" style="display:inline-block;margin:6px 8px;vertical-align:middle;"><img src="https://www-konga-com-res.cloudinary.com/image/upload/v1793185654/landingPages/2026%20Marketing/Email%20Templates/ktravel-email.png" height="28" alt="Konga Travel" border="0" style="display:block;height:28px;width:auto;border:0;"></a><a href="https://www.konga.com/" target="_blank" style="display:inline-block;margin:6px 8px;vertical-align:middle;"><img src="https://www-konga-com-res.cloudinary.com/image/upload/v1793185654/landingPages/2026%20Marketing/Email%20Templates/ktt-email.png" height="28" alt="Konga Travels & Tours" border="0" style="display:block;height:28px;width:auto;border:0;"></a></td></tr>
+    <tr><td class="px" style="padding:0 24px 20px;"><div style="border-top:1px solid #EEEEEE;font-size:0;line-height:0;">&nbsp;</div></td></tr>
 
-  function check(path, label) {
-    var box = h('input', { type: 'checkbox' });
-    box.checked = get(path) !== false;
-    box.addEventListener('change', function () { set(path, box.checked); refresh(); });
-    return h('label', { class: 'check' }, [box, label]);
-  }
+    <!-- ===================== SOCIAL ICONS (set the href="#" links) ===================== -->
+    <tr><td class="px" align="center" style="padding:0 24px 16px;font-size:0;line-height:0;"><a href="#" target="_blank" style="display:inline-block;margin:4px 9px;vertical-align:middle;"><img src="https://www-konga-com-res.cloudinary.com/image/upload/v1793185647/landingPages/2026%20Marketing/Email%20Templates/Whatsapp_Icon.png" width="32" height="32" alt="WhatsApp" border="0" style="display:block;width:32px;height:32px;border:0;"></a><a href="#" target="_blank" style="display:inline-block;margin:4px 9px;vertical-align:middle;"><img src="https://www-konga-com-res.cloudinary.com/image/upload/v1793185647/landingPages/2026%20Marketing/Email%20Templates/Instagram_Icon.png" width="32" height="32" alt="Instagram" border="0" style="display:block;width:32px;height:32px;border:0;"></a><a href="#" target="_blank" style="display:inline-block;margin:4px 9px;vertical-align:middle;"><img src="https://www-konga-com-res.cloudinary.com/image/upload/v1793185646/landingPages/2026%20Marketing/Email%20Templates/Facebook_icon.png" width="32" height="32" alt="Facebook" border="0" style="display:block;width:32px;height:32px;border:0;"></a><a href="#" target="_blank" style="display:inline-block;margin:4px 9px;vertical-align:middle;"><img src="https://www-konga-com-res.cloudinary.com/image/upload/v1793185647/landingPages/2026%20Marketing/Email%20Templates/LinkedIn_Icon.png" width="32" height="32" alt="LinkedIn" border="0" style="display:block;width:32px;height:32px;border:0;"></a><a href="#" target="_blank" style="display:inline-block;margin:4px 9px;vertical-align:middle;"><img src="https://www-konga-com-res.cloudinary.com/image/upload/v1793185647/landingPages/2026%20Marketing/Email%20Templates/Tiktok_Icon.png" width="32" height="32" alt="TikTok" border="0" style="display:block;width:32px;height:32px;border:0;"></a><a href="#" target="_blank" style="display:inline-block;margin:4px 9px;vertical-align:middle;"><img src="https://www-konga-com-res.cloudinary.com/image/upload/v1793185648/landingPages/2026%20Marketing/Email%20Templates/Youtube_Icon.png" width="32" height="32" alt="YouTube" border="0" style="display:block;width:32px;height:32px;border:0;"></a><a href="#" target="_blank" style="display:inline-block;margin:4px 9px;vertical-align:middle;"><img src="https://www-konga-com-res.cloudinary.com/image/upload/v1793185647/landingPages/2026%20Marketing/Email%20Templates/X_Icon.png" width="32" height="32" alt="X" border="0" style="display:block;width:32px;height:32px;border:0;"></a></td></tr>
+    <tr><td class="px" style="padding:0 24px 20px;"><div style="border-top:1px solid #EEEEEE;font-size:0;line-height:0;">&nbsp;</div></td></tr>
 
-  function section(title, children, open) {
-    var d = h('details', open ? { open: '' } : {}, [h('summary', { text: title }), h('div', { class: 'body' }, children)]);
-    return d;
-  }
+    <!-- ===================== DOWNLOAD APP (set the href="#" links) ===================== -->
+    <tr><td class="px" style="padding:0 24px 28px;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+        <td class="col center" valign="middle" style="font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:16px;line-height:22px;color:#222222;padding:6px 0;">Download Our App</td>
+        <td class="col center" align="right" valign="middle" style="padding:6px 0;"><a href="#" target="_blank" style="display:inline-block;background:#000000;border-radius:7px;padding:6px 14px;text-decoration:none;font-family:'Poppins', Arial, Helvetica, sans-serif;color:#FFFFFF;"><span style="display:block;font-size:8px;line-height:10px;">GET IT ON</span><span style="display:block;font-size:15px;line-height:18px;font-weight:600;">Google Play</span></a>&nbsp;&nbsp;<a href="#" target="_blank" style="display:inline-block;background:#000000;border-radius:7px;padding:6px 14px;text-decoration:none;font-family:'Poppins', Arial, Helvetica, sans-serif;color:#FFFFFF;"><span style="display:block;font-size:8px;line-height:10px;">Download on the</span><span style="display:block;font-size:15px;line-height:18px;font-weight:600;">App Store</span></a></td>
+      </tr></table>
+    </td></tr>
 
-  function calcBox(path) {
-    var box = h('div', { class: 'calc' });
-    function update() {
-      var p = get(path);
-      var pr = K.pricing(p);
-      var fmt = function (n) { return '₦' + Math.round(n).toLocaleString('en-NG'); };
-      if (pr.hasDiscount) {
-        box.className = 'calc';
-        box.textContent = 'Auto: -' + pr.pct + '% badge · You save ' + fmt(pr.save);
-      } else if (pr.oldPrice && pr.price && pr.oldPrice <= pr.price) {
-        box.className = 'calc warn';
-        box.textContent = 'Slashed price must be higher than price. No badge or savings will show.';
-      } else {
-        box.className = 'calc none';
-        box.textContent = 'No slashed price, so no badge or savings will show.';
-      }
-    }
-    update();
-    return { el: box, update: update };
-  }
+    <!-- ===================== FOOTER ===================== -->
+    <tr><td class="px" align="center" style="padding:0 24px 32px;font-family:'Poppins', Arial, Helvetica, sans-serif;font-size:10px;line-height:16px;color:#8A8A8A;">
+      This email address is for outgoing emails only.<br>
+      If you wish to unsubscribe from this mailing list, please click
+      <!-- Replace # with Netcore's unsubscribe link/tag -->
+      <a href="#" target="_blank" style="color:#ED017F;text-decoration:underline;font-weight:600;">Unsubscribe</a><br><br>
+      <a href="https://www.konga.com" target="_blank" style="color:#ED017F;text-decoration:underline;">www.konga.com</a> | WhatsApp: 09070038400 | Email: <a href="mailto:help@konga.com" style="color:#ED017F;text-decoration:underline;">help@konga.com</a><br>
+      Helpline: 018883435, 07080635700 or 0809 460 5555<br>
+      &copy; 2013-2026, Konga.com<br>
+      All Rights Reserved. Do not reply.
+    </td></tr>
 
-  function thumb(path) {
-    var im = h('img', { class: 'thumb', alt: '' });
-    function update() { var src = get(path); im.style.visibility = src ? 'visible' : 'hidden'; if (src) im.src = src; }
-    update();
-    return { el: im, update: update };
-  }
-
-  function productFields(path, withLogos) {
-    var calc = calcBox(path);
-    var t = thumb(path + '.image');
-    var nodes = [
-      field(path + '.name', 'Product name'),
-      h('div', { class: 'grid2' }, [
-        field(path + '.price', 'Price (₦)', { type: 'number', onChange: calc.update, placeholder: '551825' }),
-        field(path + '.oldPrice', 'Slashed price (₦)', { type: 'number', onChange: calc.update, placeholder: '650000' }),
-      ]),
-      calc.el,
-      field(path + '.image', 'Product image URL', { type: 'url', onChange: t.update, placeholder: 'https://...' }),
-      field(path + '.link', 'Shop Now link', { type: 'url', placeholder: 'https://www.konga.com/product/...' }),
-    ];
-    if (withLogos) {
-      nodes.push(h('div', { class: 'grid2' }, [
-        field(path + '.campaignLogo', 'Campaign logo URL (top left)', { type: 'url' }),
-        field(path + '.brandLogo', 'Brand logo URL (top right)', { type: 'url' }),
-      ]));
-    }
-    return { nodes: nodes, thumb: t.el };
-  }
-
-  // A repeatable list (products, nav, categories, social)
-  function list(path, itemLabel, renderItem, makeEmpty, opts) {
-    opts = opts || {};
-    var wrap = h('div');
-    function draw() {
-      wrap.innerHTML = '';
-      var arr = get(path);
-      arr.forEach(function (_, i) {
-        var ip = path + '.' + i;
-        var r = renderItem(ip, i);
-        var head = h('div', { class: 'item-head' }, [
-          r.thumb || null,
-          h('strong', { text: itemLabel + ' ' + (i + 1) }),
-          h('button', { class: 'small', title: 'Move up', on: { click: function () { move(i, -1); } } }, ['↑']),
-          h('button', { class: 'small', title: 'Move down', on: { click: function () { move(i, 1); } } }, ['↓']),
-          opts.noDuplicate ? null : h('button', { class: 'small', on: { click: function () { arr.splice(i + 1, 0, JSON.parse(JSON.stringify(arr[i]))); draw(); refresh(); } } }, ['Copy']),
-          h('button', { class: 'small danger', on: { click: function () { arr.splice(i, 1); draw(); refresh(); } } }, ['Remove']),
-        ]);
-        wrap.appendChild(h('div', { class: 'item' }, [head].concat(r.nodes)));
-      });
-      wrap.appendChild(h('button', { style: 'margin-top:10px', on: { click: function () { arr.push(makeEmpty()); draw(); refresh(); } } }, ['+ Add ' + itemLabel.toLowerCase()]));
-    }
-    function move(i, dir) {
-      var arr = get(path), j = i + dir;
-      if (j < 0 || j >= arr.length) return;
-      var tmp = arr[i]; arr[i] = arr[j]; arr[j] = tmp;
-      draw(); refresh();
-    }
-    draw();
-    wrap.redraw = draw;
-    return wrap;
-  }
-
-  // ---------- Bulk paste from spreadsheet ----------
-  function bulkPaste(productList) {
-    var ta = h('textarea', { rows: 5, placeholder: 'Name\tPrice\tSlashed price\tImage URL\tLink\tBrand logo URL\tCampaign logo URL' });
-    function parse() {
-      return ta.value.split(/\r?\n/).map(function (line) {
-        var c = line.split('\t');
-        if (c.length < 2 || isNaN(parseFloat(String(c[1]).replace(/[^0-9.]/g, '')))) return null; // skips header / blank rows
-        var n = function (v) { return v ? Number(String(v).replace(/[^0-9.]/g, '')) : ''; };
-        return {
-          name: (c[0] || '').trim(), price: n(c[1]), oldPrice: n(c[2]),
-          image: (c[3] || '').trim(), link: (c[4] || '').trim(),
-          brandLogo: (c[5] || '').trim(), campaignLogo: (c[6] || '').trim(),
-        };
-      }).filter(Boolean);
-    }
-    function apply(replace) {
-      var rows = parse();
-      if (!rows.length) { toast('No product rows found. Paste rows copied from Excel or Google Sheets.'); return; }
-      if (replace) state.topDeals.products = rows; else state.topDeals.products = state.topDeals.products.concat(rows);
-      ta.value = '';
-      productList.redraw(); refresh();
-      toast(rows.length + ' product(s) ' + (replace ? 'loaded' : 'added'));
-    }
-    return h('div', { class: 'item' }, [
-      h('strong', { text: 'Bulk paste from a spreadsheet' }),
-      h('p', { class: 'hint', text: 'Copy rows from Excel or Google Sheets with the columns in this order: Name | Price | Slashed price | Image URL | Link | Brand logo URL (optional) | Campaign logo URL (optional). Header rows are skipped.' }),
-      ta,
-      h('div', { style: 'display:flex;gap:6px;margin-top:8px' }, [
-        h('button', { class: 'primary', on: { click: function () { apply(true); } } }, ['Replace all products']),
-        h('button', { on: { click: function () { apply(false); } } }, ['Append']),
-      ]),
-    ]);
-  }
-
-  // ---------- Build the form ----------
-  function build() {
-    form.innerHTML = '';
-
-    var dod = productFields('dealOfDay.product', false);
-    var topList = list('topDeals.products', 'Product', function (p) { return productFields(p, true); }, K.emptyProduct);
-
-    form.append(
-      section('Top Deals (product cards)', [
-        h('p', { class: 'hint', text: 'Enter the price and slashed price. The discount badge and "You save" amount are calculated for you. Cards are laid out 3 per row.' }),
-        h('div', { class: 'grid2' }, [
-          field('topDeals.title', 'Section title'),
-          field('topDeals.shopAllLink', '"Shop All" link', { type: 'url' }),
-        ]),
-        field('settings.nameMaxChars', 'Max characters for product names (longer names end in …)', { type: 'number' }),
-        bulkPaste(topList),
-        topList,
-      ], true),
-
-      section('Deal Of The Day', [check('dealOfDay.enabled', 'Show this section'), field('dealOfDay.title', 'Section title')].concat(dod.nodes)),
-
-      section('Hero banner (image)', [
-        check('hero.enabled', 'Show hero banner'),
-        field('hero.image', 'Banner image URL (600px wide or larger, e.g. 1200 × 700)', { type: 'url' }),
-        field('hero.link', 'Banner link', { type: 'url' }),
-        field('hero.alt', 'Alt text'),
-      ]),
-
-      section('Promo banner (image)', [
-        check('promoBanner.enabled', 'Show promo banner'),
-        field('promoBanner.image', 'Banner image URL (1500 × 500)', { type: 'url' }),
-        field('promoBanner.link', 'Banner link', { type: 'url' }),
-        field('promoBanner.alt', 'Alt text'),
-      ]),
-
-      section('Shop By Category', [
-        check('categories.enabled', 'Show this section'),
-        h('div', { class: 'grid2' }, [field('categories.title', 'Section title'), field('categories.shopMoreLink', '"Shop More" link', { type: 'url' })]),
-        list('categories.items', 'Category', function (p) {
-          var t = thumb(p + '.image');
-          return { thumb: t.el, nodes: [
-            field(p + '.label', 'Label'),
-            field(p + '.image', 'Image URL (square)', { type: 'url', onChange: t.update }),
-            field(p + '.link', 'Link', { type: 'url' }),
-          ] };
-        }, function () { return { label: '', image: '', link: '' }; }, { noDuplicate: true }),
-      ]),
-
-      section('Header and menu (set once)', [
-        field('settings.subject', 'Email title (shown in browser tab)'),
-        field('settings.previewText', 'Inbox preview text', { multiline: true }),
-        field('settings.logoUrl', 'Konga logo image URL', { type: 'url' }),
-        field('settings.logoLink', 'Logo link', { type: 'url' }),
-        field('settings.tagline', 'Tagline under logo'),
-        list('nav', 'Menu button', function (p) {
-          return { nodes: [h('div', { class: 'grid2' }, [field(p + '.label', 'Label'), field(p + '.link', 'Link', { type: 'url' })])] };
-        }, function () { return { label: '', link: '' }; }, { noDuplicate: true }),
-      ]),
-
-      section('Footer, socials and app links (set once)', [
-        field('brandsStrip.image', 'Konga group brands strip image URL (Health, Corporate, Pay, Travel...)', { type: 'url' }),
-        field('brandsStrip.link', 'Brands strip link', { type: 'url' }),
-        h('p', { class: 'hint', text: 'Social icons: add a 32×32 icon image URL for each. A text button is shown until you add one.' }),
-        list('social', 'Social', function (p) {
-          var t = thumb(p + '.icon');
-          return { thumb: t.el, nodes: [
-            h('div', { class: 'grid2' }, [field(p + '.name', 'Name'), field(p + '.link', 'Link', { type: 'url' })]),
-            field(p + '.icon', 'Icon image URL', { type: 'url', onChange: t.update }),
-          ] };
-        }, function () { return { name: '', icon: '', link: '' }; }, { noDuplicate: true }),
-        h('div', { class: 'grid2' }, [
-          field('app.googlePlayLink', 'Google Play link', { type: 'url' }),
-          field('app.appStoreLink', 'App Store link', { type: 'url' }),
-          field('app.googlePlayImg', 'Google Play badge image (optional)', { type: 'url' }),
-          field('app.appStoreImg', 'App Store badge image (optional)', { type: 'url' }),
-        ]),
-        field('footer.unsubscribeLink', 'Unsubscribe link (paste Netcore’s unsubscribe tag/URL here)'),
-        h('div', { class: 'grid2' }, [
-          field('footer.websiteLabel', 'Website label'),
-          field('footer.websiteLink', 'Website link', { type: 'url' }),
-          field('footer.whatsapp', 'WhatsApp'),
-          field('footer.email', 'Email'),
-        ]),
-        field('footer.helpline', 'Helpline'),
-      ])
-    );
-  }
-
-  // ---------- Toolbar ----------
-  document.getElementById('btnCopy').addEventListener('click', function () {
-    var html = K.render(state);
-    var done = function () { toast('HTML copied. Paste it into Netcore’s HTML editor.'); };
-    if (navigator.clipboard && window.isSecureContext) {
-      navigator.clipboard.writeText(html).then(done, function () { fallbackCopy(html); done(); });
-    } else { fallbackCopy(html); done(); }
-  });
-  function fallbackCopy(text) {
-    var ta = h('textarea'); ta.value = text; document.body.appendChild(ta); ta.select();
-    document.execCommand('copy'); ta.remove();
-  }
-
-  function download(name, content, type) {
-    var a = h('a', { href: URL.createObjectURL(new Blob([content], { type: type })), download: name });
-    document.body.appendChild(a); a.click(); a.remove();
-  }
-  function today() { return new Date().toISOString().slice(0, 10); }
-
-  document.getElementById('btnDownload').addEventListener('click', function () {
-    download('konga-daily-' + today() + '.html', K.render(state), 'text/html');
-  });
-  document.getElementById('btnExport').addEventListener('click', function () {
-    download('konga-daily-' + today() + '.json', JSON.stringify(state, null, 2), 'application/json');
-  });
-  document.getElementById('fileImport').addEventListener('change', function (e) {
-    var f = e.target.files[0]; if (!f) return;
-    f.text().then(function (txt) {
-      try { state = Object.assign(K.defaultData(), JSON.parse(txt)); build(); refresh(); toast('Loaded ' + f.name); }
-      catch (err) { toast('That file is not a valid builder JSON.'); }
-    });
-    e.target.value = '';
-  });
-  document.getElementById('btnNew').addEventListener('click', function () {
-    if (!confirm('Clear today’s products and banners? Logos, menu, socials and footer are kept.')) return;
-    var blank = function () { return K.emptyProduct(); };
-    state.topDeals.products = [blank(), blank(), blank(), blank(), blank(), blank(), blank(), blank(), blank()];
-    state.dealOfDay.product = blank();
-    state.hero.image = ''; state.promoBanner.image = '';
-    build(); refresh();
-  });
-
-  document.querySelectorAll('[data-view]').forEach(function (b) {
-    b.addEventListener('click', function () { frame.classList.toggle('mobile', b.dataset.view === 'mobile'); });
-  });
-
-  build();
-  refresh();
-})();
-</script>
+  </table>
+</td></tr></table>
 </body>
 </html>
